@@ -1,0 +1,61 @@
+$home__navbar__height: 5rem;
+$home__navbar__side__padding: 5rem;
+$login__signup__button_height: 3rem;
+$login_signup_button__width: 7.2rem;
+$login__signup__button__font__size: 1rem;
+
+.home__navbar {
+  display: flex;
+  justify-content: space-between;
+  height: $home__navbar__height;
+  padding: 0 $home__navbar__side__padding;
+}
+
+.logo__container {
+  height: $home__navbar__height - ($home__navbar__height / 2);
+  display: flex;
+  align-items: center;
+  margin-top: ($home__navbar__height - ($home__navbar__height / 2)) / 2;
+}
+
+.logo__container .navbar__link {
+  color: #222222;
+  font-size: 1.4rem;
+  font-family: "Libre Baskerville", "Times New Roman", Times, serif;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.auth__buttons__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: $login__signup__button_height;
+  margin-top: ($home__navbar__height - $login__signup__button_height) / 2;
+  width: $login_signup_button__width + $login_signup_button__width + 2.4rem;
+}
+
+.signup__button,
+.login__button {
+  width: $login_signup_button__width;
+  border-radius: 0.6rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $login__signup__button__font__size;
+  text-decoration: none;
+  font-family: "Libre Baskerville", "Times New Roman", Times, serif;
+  font-weight: 700;
+  border: 2px solid #222222;
+}
+
+.signup__button {
+  background-color: #222222;
+  color: #ffffff;
+}
+
+.login__button {
+  background-color: #ffffff;
+  color: #222222;
+}
