@@ -1,0 +1,65 @@
+$progress__indicator__width: 18rem;
+$progress__indicator__height: 4.8rem;
+$progress__indicator__bar__height: 0.2rem;
+$progress__indicator__bar__width: 7.5rem;
+$progress__circle__text__size: 1.4rem;
+$filled_progess_color: #5d44f8;
+
+.progress__indicator {
+  width: $progress__indicator__width;
+  height: $progress__indicator__height;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .progress__indicator__title {
+    font-family: "Mulish", sans-serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-top: 4px;
+    color: #75757566;
+  }
+
+  .progress__indicator__title__filled {
+    color: #333333;
+  }
+
+  .progress__indicator__title__filled__highlighed {
+    font-weight: 700;
+  }
+}
+
+.progress__indicator .progress__indicator__upper__section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+
+  .progress__indicator__bar {
+    height: $progress__indicator__bar__height;
+    width: $progress__indicator__bar__width;
+    background-color: #f0f0f0;
+  }
+
+  .progress__number__circle {
+    $circle_dimension: $progress__indicator__width - 2 *
+      $progress__indicator__bar__width;
+    width: $circle_dimension;
+    height: $circle_dimension;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #75757550;
+    border-radius: $circle_dimension/2;
+    color: #fff;
+    font-family: "Mulish", sans-serif;
+    font-size: $progress__circle__text__size;
+  }
+
+  .progress__indicator__filled__bar,
+  .progress__filled__number__circle {
+    background-color: $filled_progess_color;
+  }
+}

@@ -1,0 +1,24 @@
+.kv__container {
+  width: 50rem;
+  height: 4.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 4px 0;
+  padding: 0 1.6rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.kv__container .kv__key,
+.kv__container .kv__value {
+  font-family: "Mulish", sans-serif;
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+.kv__container .kv__key {
+  color: #757575;
+}
+.kv__container .kv__value {
+  color: #333333;
+}

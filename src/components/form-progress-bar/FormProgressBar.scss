@@ -1,0 +1,10 @@
+$progress__bar__height: 4.8rem;
+
+.form__progress__bar {
+  width: 100%;
+  margin: 3.6rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: $progress__bar__height;
+}

@@ -1,0 +1,50 @@
+.progress__indicator {
+  width: 18rem;
+  height: 4.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.progress__indicator .progress__indicator__title {
+  font-family: "Mulish", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin-top: 4px;
+  color: rgba(117, 117, 117, 0.4);
+}
+.progress__indicator .progress__indicator__title__filled {
+  color: #333333;
+}
+.progress__indicator .progress__indicator__title__filled__highlighed {
+  font-weight: 700;
+}
+
+.progress__indicator .progress__indicator__upper__section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+}
+.progress__indicator .progress__indicator__upper__section .progress__indicator__bar {
+  height: 0.2rem;
+  width: 7.5rem;
+  background-color: #f0f0f0;
+}
+.progress__indicator .progress__indicator__upper__section .progress__number__circle {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(117, 117, 117, 0.3137254902);
+  border-radius: 1.5rem;
+  color: #fff;
+  font-family: "Mulish", sans-serif;
+  font-size: 1.4rem;
+}
+.progress__indicator .progress__indicator__upper__section .progress__indicator__filled__bar,
+.progress__indicator .progress__indicator__upper__section .progress__filled__number__circle {
+  background-color: #5d44f8;
+}

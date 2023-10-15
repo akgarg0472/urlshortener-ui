@@ -1,21 +1,21 @@
 .home__navbar {
   display: flex;
   justify-content: space-between;
-  height: 5rem;
-  padding: 0 5rem;
+  height: 10rem;
+  padding: 0 8rem;
 }
 
 .logo__container {
-  height: 2.5rem;
+  height: 5rem;
   display: flex;
   align-items: center;
-  margin-top: 1.25rem;
+  margin-top: 2.5rem;
 }
 
 .logo__container .navbar__link {
   color: #222222;
-  font-size: 1.4rem;
-  font-family: "Libre Baskerville", "Times New Roman", Times, serif;
+  font-size: 2.4rem;
+  font-family: "Libre Baskerville", serif;
   font-weight: 700;
   text-decoration: none;
 }
@@ -24,23 +24,23 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 3rem;
-  margin-top: 1rem;
-  width: 16.8rem;
+  height: 5rem;
+  margin-top: 2.5rem;
+  width: 26.4rem;
 }
 
 .signup__button,
 .login__button {
-  width: 7.2rem;
+  width: 12rem;
   border-radius: 0.6rem;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1rem;
+  font-size: 1.6rem;
   text-decoration: none;
-  font-family: "Libre Baskerville", "Times New Roman", Times, serif;
-  font-weight: 700;
+  font-family: "Mulish", sans-serif;
+  font-weight: 600;
   border: 2px solid #222222;
 }
 
@@ -52,4 +52,9 @@
 .login__button {
   background-color: #ffffff;
   color: #222222;
+}
+
+.signup__button,
+.login__button:hover {
+  font-weight: 700;
 }

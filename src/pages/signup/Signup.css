@@ -1,0 +1,71 @@
+.signup__page {
+  background: #f6f6f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.signup__form__container {
+  width: 56rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #ffffff;
+  padding: 3.6rem 3.2rem;
+  border-radius: 1.2rem;
+}
+.signup__form__container .signup__heading {
+  width: 100%;
+  text-align: center;
+  font-size: 2.4rem;
+  font-family: "Libre Baskerville", serif;
+  font-weight: 700;
+}
+.signup__form__container .signup__form__btns__container {
+  margin-top: 3.6rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.signup__form__container .signup__form__btns__container .signup__prev__btn,
+.signup__form__container .signup__form__btns__container .signup__next__btn,
+.signup__form__container .signup__form__btns__container .signup__signup__btn {
+  width: 24rem;
+  height: 4.8rem;
+  border-radius: 0.6rem;
+  border: none;
+  font-family: "Libre Baskerville", serif;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  justify-content: center;
+  color: #ffffff;
+}
+.signup__form__container .signup__form__btns__container .signup__prev__btn,
+.signup__form__container .signup__form__btns__container .signup__next__btn {
+  background: #222222;
+}
+.signup__form__container .signup__form__btns__container .signup__signup__btn {
+  background: #5d44f8;
+}
+
+.signup__form__container .signup__form {
+  width: 49.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.signup__input__field {
+  width: 24rem;
+  margin-top: 2.4rem;
+}
+
+.signup__input__field__full {
+  width: 100%;
+  margin-top: 2.4rem;
+}

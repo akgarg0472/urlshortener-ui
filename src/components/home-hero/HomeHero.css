@@ -1,0 +1,52 @@
+.home__hero__container {
+  display: flex;
+  width: 80%;
+  margin: 4rem auto;
+  height: 50vh;
+}
+
+.home__hero__container .left__heading__section {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.home__hero__container .left__heading__section .main__heading {
+  color: #2808f1;
+  font-size: 4rem;
+  font-family: "Mulish", sans-serif;
+  font-weight: 700;
+}
+.home__hero__container .left__heading__section .sub__heading {
+  color: #333333;
+  font-size: 2rem;
+  width: 80%;
+  font-family: "Mulish", sans-serif;
+  font-weight: 600;
+  margin: 1.2rem 0;
+}
+.home__hero__container .left__heading__section .get__started__btn {
+  text-decoration: none;
+  background-color: #5d44f8;
+  color: #ffffff;
+  font-family: "Mulish", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  border-radius: 6px;
+  position: relative;
+  width: 20rem;
+  height: 5.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.8rem;
+}
+.home__hero__container .left__heading__section .get__started__btn:hover {
+  background-color: #462cf5;
+}
+
+.home__hero__container .right__image__section {
+  width: 50%;
+  background-color: rgba(84, 101, 118, 0.1450980392);
+  border-radius: 6px;
+}

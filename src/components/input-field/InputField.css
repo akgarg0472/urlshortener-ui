@@ -1,0 +1,30 @@
+.input__field__container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-family: "Mulish", sans-serif;
+}
+
+.input__field__container .input__field__label {
+  font-size: 1.4rem;
+  color: #333333;
+  font-weight: 600;
+}
+
+.input__field__container .input__field {
+  margin-top: 0.8rem;
+  border-radius: 0.6rem;
+  border: 2px solid rgba(0, 0, 0, 0.0823529412);
+  padding: 0 0.8rem;
+  height: 5.6rem;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  outline: none;
+  transition: all 250ms ease-in-out;
+  color: #333333;
+}
+
+.input__field__container .input__field:focus {
+  border: 2px solid rgba(0, 0, 0, 0.2509803922);
+}

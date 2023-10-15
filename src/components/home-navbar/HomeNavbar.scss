@@ -1,8 +1,8 @@
-$home__navbar__height: 5rem;
-$home__navbar__side__padding: 5rem;
-$login__signup__button_height: 3rem;
-$login_signup_button__width: 7.2rem;
-$login__signup__button__font__size: 1rem;
+$home__navbar__height: 10rem;
+$home__navbar__side__padding: 8rem;
+$login__signup__button_height: 5rem;
+$login_signup_button__width: 12rem;
+$login__signup__button__font__size: 1.6rem;
 
 .home__navbar {
   display: flex;
@@ -20,8 +20,8 @@ $login__signup__button__font__size: 1rem;
 
 .logo__container .navbar__link {
   color: #222222;
-  font-size: 1.4rem;
-  font-family: "Libre Baskerville", "Times New Roman", Times, serif;
+  font-size: 2.4rem;
+  font-family: "Libre Baskerville", serif;
   font-weight: 700;
   text-decoration: none;
 }
@@ -45,8 +45,8 @@ $login__signup__button__font__size: 1rem;
   justify-content: center;
   font-size: $login__signup__button__font__size;
   text-decoration: none;
-  font-family: "Libre Baskerville", "Times New Roman", Times, serif;
-  font-weight: 700;
+  font-family: "Mulish", sans-serif;
+  font-weight: 600;
   border: 2px solid #222222;
 }
 
@@ -58,4 +58,9 @@ $login__signup__button__font__size: 1rem;
 .login__button {
   background-color: #ffffff;
   color: #222222;
+}
+
+.signup__button,
+.login__button:hover {
+  font-weight: 700;
 }

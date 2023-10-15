@@ -1,0 +1,84 @@
+$signup__form__container__width: 56rem;
+$signup__form__side__margin: 3.2rem;
+$signup__form__top__bottom__margin: 3.6rem;
+$signup__form__top__margin: 2.4rem;
+
+$signup__form__button__width: 24rem;
+$signup__form__button__height: 4.8rem;
+
+.signup__page {
+  background: #f6f6f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.signup__form__container {
+  width: $signup__form__container__width;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #ffffff;
+  padding: $signup__form__top__bottom__margin $signup__form__side__margin;
+  border-radius: 1.2rem;
+
+  .signup__heading {
+    width: 100%;
+    text-align: center;
+    font-size: 2.4rem;
+    font-family: "Libre Baskerville", serif;
+    font-weight: 700;
+  }
+
+  .signup__form__btns__container {
+    margin-top: $signup__form__top__bottom__margin;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    .signup__prev__btn,
+    .signup__next__btn,
+    .signup__signup__btn {
+      width: $signup__form__button__width;
+      height: $signup__form__button__height;
+      border-radius: 0.6rem;
+      border: none;
+      font-family: "Libre Baskerville", serif;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      justify-content: center;
+      color: #ffffff;
+    }
+
+    .signup__prev__btn,
+    .signup__next__btn {
+      background: #222222;
+    }
+
+    .signup__signup__btn {
+      background: #5d44f8;
+    }
+  }
+}
+
+.signup__form__container .signup__form {
+  width: $signup__form__container__width - 2 * $signup__form__side__margin;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.signup__input__field {
+  width: 24rem;
+  margin-top: $signup__form__top__margin;
+}
+
+.signup__input__field__full {
+  width: 100%;
+  margin-top: $signup__form__top__margin;
+}
