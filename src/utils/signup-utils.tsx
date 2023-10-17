@@ -1,4 +1,5 @@
 import Swal from "sweetalert2";
+import Modal, { ModalIcon } from "../components/modal/Modal";
 import {
   validateEmail,
   validatePassword,
@@ -12,11 +13,12 @@ const validateSignupPage1 = (
   confirmPassword: string
 ): boolean => {
   if (!validateString(lastName)) {
-    Swal.fire({
-      icon: "error",
-      title: "Last name is required",
-      customClass: "modal",
+    Modal.showModal({
+      icon: ModalIcon.ERROR,
+      title: "Error",
+      message: "Please provide your last name",
     });
+
     return false;
   }
 
