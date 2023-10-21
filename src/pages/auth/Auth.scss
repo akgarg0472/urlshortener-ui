@@ -7,7 +7,8 @@ $signup__form__button__width: 24rem;
 $signup__form__button__height: 4.8rem;
 
 .signup__page,
-.login__page {
+.login__page,
+.forgot__password__page {
   background: #f6f6f8;
   display: flex;
   align-items: center;
@@ -16,7 +17,8 @@ $signup__form__button__height: 4.8rem;
 }
 
 .signup__form__container,
-.login__form__container {
+.login__form__container,
+.forgot__password__form__container {
   width: $signup__form__container__width;
   display: flex;
   align-items: center;
@@ -26,7 +28,8 @@ $signup__form__button__height: 4.8rem;
   padding: $signup__form__top__bottom__margin $signup__form__side__margin;
   border-radius: 1.2rem;
 
-  .signup__heading {
+  .signup__heading,
+  .forgot__password__heading {
     width: 100%;
     text-align: center;
     font-size: 2.4rem;
@@ -53,8 +56,16 @@ $signup__form__button__height: 4.8rem;
     color: #333333;
   }
 
+  .forgot__password__instruction {
+    font-size: 1.6rem;
+    font-family: "Mulish", sans-serif;
+    color: #757575;
+    margin-top: 1.6rem;
+  }
+
   .signup__form__btns__container,
-  .login__form__btns__container {
+  .login__form__btns__container,
+  .forgot__password__form__btns__container {
     margin-top: $signup__form__top__bottom__margin;
     width: 100%;
     display: flex;
@@ -64,7 +75,8 @@ $signup__form__button__height: 4.8rem;
     .signup__prev__btn,
     .signup__next__btn,
     .signup__signup__btn,
-    .login__login__btn {
+    .login__login__btn,
+    .forgot__password__btn {
       width: $signup__form__button__width;
       height: $signup__form__button__height;
       border-radius: 0.6rem;
@@ -78,7 +90,8 @@ $signup__form__button__height: 4.8rem;
       color: #ffffff;
     }
 
-    .login__login__btn {
+    .login__login__btn,
+    .forgot__password__btn {
       width: 100%;
     }
 
@@ -88,8 +101,11 @@ $signup__form__button__height: 4.8rem;
       background: #222222;
     }
 
-    .signup__signup__btn {
+    .signup__signup__btn,
+    .forgot__password__btn {
       background: #5d44f8;
+      font-family: "Mulish", sans-serif;
+      font-size: 1.6rem;
     }
   }
 
@@ -128,7 +144,8 @@ $signup__form__button__height: 4.8rem;
 }
 
 .signup__form__container .signup__form,
-.login__form__container .login__form {
+.login__form__container .login__form,
+.forgot__password__form__container .forgot__password__form {
   width: $signup__form__container__width - 2 * $signup__form__side__margin;
   display: flex;
   flex-wrap: wrap;
@@ -145,7 +162,8 @@ $signup__form__button__height: 4.8rem;
 }
 
 .signup__input__field__full,
-.login__input__field__full {
+.login__input__field__full,
+.forgot__password__input__field__full {
   width: 100%;
   margin-top: $signup__form__top__margin;
 }

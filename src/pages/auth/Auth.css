@@ -1,5 +1,6 @@
 .signup__page,
-.login__page {
+.login__page,
+.forgot__password__page {
   background: #f6f6f8;
   display: flex;
   align-items: center;
@@ -8,7 +9,8 @@
 }
 
 .signup__form__container,
-.login__form__container {
+.login__form__container,
+.forgot__password__form__container {
   width: 56rem;
   display: flex;
   align-items: center;
@@ -19,7 +21,11 @@
   border-radius: 1.2rem;
 }
 .signup__form__container .signup__heading,
-.login__form__container .signup__heading {
+.signup__form__container .forgot__password__heading,
+.login__form__container .signup__heading,
+.login__form__container .forgot__password__heading,
+.forgot__password__form__container .signup__heading,
+.forgot__password__form__container .forgot__password__heading {
   width: 100%;
   text-align: center;
   font-size: 2.4rem;
@@ -27,7 +33,8 @@
   font-weight: 700;
 }
 .signup__form__container .login__form__heading,
-.login__form__container .login__form__heading {
+.login__form__container .login__form__heading,
+.forgot__password__form__container .login__form__heading {
   width: 100%;
   text-align: left;
   font-size: 1.6rem;
@@ -36,7 +43,8 @@
   font-weight: 700;
 }
 .signup__form__container .login__heading,
-.login__form__container .login__heading {
+.login__form__container .login__heading,
+.forgot__password__form__container .login__heading {
   width: 100%;
   font-family: "Libre Baskerville", serif;
   font-size: 2.4rem;
@@ -45,10 +53,23 @@
   text-align: left;
   color: #333333;
 }
+.signup__form__container .forgot__password__instruction,
+.login__form__container .forgot__password__instruction,
+.forgot__password__form__container .forgot__password__instruction {
+  font-size: 1.6rem;
+  font-family: "Mulish", sans-serif;
+  color: #757575;
+  margin-top: 1.6rem;
+}
 .signup__form__container .signup__form__btns__container,
 .signup__form__container .login__form__btns__container,
+.signup__form__container .forgot__password__form__btns__container,
 .login__form__container .signup__form__btns__container,
-.login__form__container .login__form__btns__container {
+.login__form__container .login__form__btns__container,
+.login__form__container .forgot__password__form__btns__container,
+.forgot__password__form__container .signup__form__btns__container,
+.forgot__password__form__container .login__form__btns__container,
+.forgot__password__form__container .forgot__password__form__btns__container {
   margin-top: 3.6rem;
   width: 100%;
   display: flex;
@@ -59,18 +80,47 @@
 .signup__form__container .signup__form__btns__container .signup__next__btn,
 .signup__form__container .signup__form__btns__container .signup__signup__btn,
 .signup__form__container .signup__form__btns__container .login__login__btn,
+.signup__form__container .signup__form__btns__container .forgot__password__btn,
 .signup__form__container .login__form__btns__container .signup__prev__btn,
 .signup__form__container .login__form__btns__container .signup__next__btn,
 .signup__form__container .login__form__btns__container .signup__signup__btn,
 .signup__form__container .login__form__btns__container .login__login__btn,
+.signup__form__container .login__form__btns__container .forgot__password__btn,
+.signup__form__container .forgot__password__form__btns__container .signup__prev__btn,
+.signup__form__container .forgot__password__form__btns__container .signup__next__btn,
+.signup__form__container .forgot__password__form__btns__container .signup__signup__btn,
+.signup__form__container .forgot__password__form__btns__container .login__login__btn,
+.signup__form__container .forgot__password__form__btns__container .forgot__password__btn,
 .login__form__container .signup__form__btns__container .signup__prev__btn,
 .login__form__container .signup__form__btns__container .signup__next__btn,
 .login__form__container .signup__form__btns__container .signup__signup__btn,
 .login__form__container .signup__form__btns__container .login__login__btn,
+.login__form__container .signup__form__btns__container .forgot__password__btn,
 .login__form__container .login__form__btns__container .signup__prev__btn,
 .login__form__container .login__form__btns__container .signup__next__btn,
 .login__form__container .login__form__btns__container .signup__signup__btn,
-.login__form__container .login__form__btns__container .login__login__btn {
+.login__form__container .login__form__btns__container .login__login__btn,
+.login__form__container .login__form__btns__container .forgot__password__btn,
+.login__form__container .forgot__password__form__btns__container .signup__prev__btn,
+.login__form__container .forgot__password__form__btns__container .signup__next__btn,
+.login__form__container .forgot__password__form__btns__container .signup__signup__btn,
+.login__form__container .forgot__password__form__btns__container .login__login__btn,
+.login__form__container .forgot__password__form__btns__container .forgot__password__btn,
+.forgot__password__form__container .signup__form__btns__container .signup__prev__btn,
+.forgot__password__form__container .signup__form__btns__container .signup__next__btn,
+.forgot__password__form__container .signup__form__btns__container .signup__signup__btn,
+.forgot__password__form__container .signup__form__btns__container .login__login__btn,
+.forgot__password__form__container .signup__form__btns__container .forgot__password__btn,
+.forgot__password__form__container .login__form__btns__container .signup__prev__btn,
+.forgot__password__form__container .login__form__btns__container .signup__next__btn,
+.forgot__password__form__container .login__form__btns__container .signup__signup__btn,
+.forgot__password__form__container .login__form__btns__container .login__login__btn,
+.forgot__password__form__container .login__form__btns__container .forgot__password__btn,
+.forgot__password__form__container .forgot__password__form__btns__container .signup__prev__btn,
+.forgot__password__form__container .forgot__password__form__btns__container .signup__next__btn,
+.forgot__password__form__container .forgot__password__form__btns__container .signup__signup__btn,
+.forgot__password__form__container .forgot__password__form__btns__container .login__login__btn,
+.forgot__password__form__container .forgot__password__form__btns__container .forgot__password__btn {
   width: 24rem;
   height: 4.8rem;
   border-radius: 0.6rem;
@@ -84,9 +134,23 @@
   color: #ffffff;
 }
 .signup__form__container .signup__form__btns__container .login__login__btn,
+.signup__form__container .signup__form__btns__container .forgot__password__btn,
 .signup__form__container .login__form__btns__container .login__login__btn,
+.signup__form__container .login__form__btns__container .forgot__password__btn,
+.signup__form__container .forgot__password__form__btns__container .login__login__btn,
+.signup__form__container .forgot__password__form__btns__container .forgot__password__btn,
 .login__form__container .signup__form__btns__container .login__login__btn,
-.login__form__container .login__form__btns__container .login__login__btn {
+.login__form__container .signup__form__btns__container .forgot__password__btn,
+.login__form__container .login__form__btns__container .login__login__btn,
+.login__form__container .login__form__btns__container .forgot__password__btn,
+.login__form__container .forgot__password__form__btns__container .login__login__btn,
+.login__form__container .forgot__password__form__btns__container .forgot__password__btn,
+.forgot__password__form__container .signup__form__btns__container .login__login__btn,
+.forgot__password__form__container .signup__form__btns__container .forgot__password__btn,
+.forgot__password__form__container .login__form__btns__container .login__login__btn,
+.forgot__password__form__container .login__form__btns__container .forgot__password__btn,
+.forgot__password__form__container .forgot__password__form__btns__container .login__login__btn,
+.forgot__password__form__container .forgot__password__form__btns__container .forgot__password__btn {
   width: 100%;
 }
 .signup__form__container .signup__form__btns__container .signup__prev__btn,
@@ -95,22 +159,54 @@
 .signup__form__container .login__form__btns__container .signup__prev__btn,
 .signup__form__container .login__form__btns__container .login__login__btn,
 .signup__form__container .login__form__btns__container .signup__next__btn,
+.signup__form__container .forgot__password__form__btns__container .signup__prev__btn,
+.signup__form__container .forgot__password__form__btns__container .login__login__btn,
+.signup__form__container .forgot__password__form__btns__container .signup__next__btn,
 .login__form__container .signup__form__btns__container .signup__prev__btn,
 .login__form__container .signup__form__btns__container .login__login__btn,
 .login__form__container .signup__form__btns__container .signup__next__btn,
 .login__form__container .login__form__btns__container .signup__prev__btn,
 .login__form__container .login__form__btns__container .login__login__btn,
-.login__form__container .login__form__btns__container .signup__next__btn {
+.login__form__container .login__form__btns__container .signup__next__btn,
+.login__form__container .forgot__password__form__btns__container .signup__prev__btn,
+.login__form__container .forgot__password__form__btns__container .login__login__btn,
+.login__form__container .forgot__password__form__btns__container .signup__next__btn,
+.forgot__password__form__container .signup__form__btns__container .signup__prev__btn,
+.forgot__password__form__container .signup__form__btns__container .login__login__btn,
+.forgot__password__form__container .signup__form__btns__container .signup__next__btn,
+.forgot__password__form__container .login__form__btns__container .signup__prev__btn,
+.forgot__password__form__container .login__form__btns__container .login__login__btn,
+.forgot__password__form__container .login__form__btns__container .signup__next__btn,
+.forgot__password__form__container .forgot__password__form__btns__container .signup__prev__btn,
+.forgot__password__form__container .forgot__password__form__btns__container .login__login__btn,
+.forgot__password__form__container .forgot__password__form__btns__container .signup__next__btn {
   background: #222222;
 }
 .signup__form__container .signup__form__btns__container .signup__signup__btn,
+.signup__form__container .signup__form__btns__container .forgot__password__btn,
 .signup__form__container .login__form__btns__container .signup__signup__btn,
+.signup__form__container .login__form__btns__container .forgot__password__btn,
+.signup__form__container .forgot__password__form__btns__container .signup__signup__btn,
+.signup__form__container .forgot__password__form__btns__container .forgot__password__btn,
 .login__form__container .signup__form__btns__container .signup__signup__btn,
-.login__form__container .login__form__btns__container .signup__signup__btn {
+.login__form__container .signup__form__btns__container .forgot__password__btn,
+.login__form__container .login__form__btns__container .signup__signup__btn,
+.login__form__container .login__form__btns__container .forgot__password__btn,
+.login__form__container .forgot__password__form__btns__container .signup__signup__btn,
+.login__form__container .forgot__password__form__btns__container .forgot__password__btn,
+.forgot__password__form__container .signup__form__btns__container .signup__signup__btn,
+.forgot__password__form__container .signup__form__btns__container .forgot__password__btn,
+.forgot__password__form__container .login__form__btns__container .signup__signup__btn,
+.forgot__password__form__container .login__form__btns__container .forgot__password__btn,
+.forgot__password__form__container .forgot__password__form__btns__container .signup__signup__btn,
+.forgot__password__form__container .forgot__password__form__btns__container .forgot__password__btn {
   background: #5d44f8;
+  font-family: "Mulish", sans-serif;
+  font-size: 1.6rem;
 }
 .signup__form__container .login__links__container,
-.login__form__container .login__links__container {
+.login__form__container .login__links__container,
+.forgot__password__form__container .login__links__container {
   margin-top: 2.4rem;
   display: flex;
   align-items: center;
@@ -120,7 +216,9 @@
 .signup__form__container .login__links__container .forgot__password__link,
 .signup__form__container .login__links__container .signup__link,
 .login__form__container .login__links__container .forgot__password__link,
-.login__form__container .login__links__container .signup__link {
+.login__form__container .login__links__container .signup__link,
+.forgot__password__form__container .login__links__container .forgot__password__link,
+.forgot__password__form__container .login__links__container .signup__link {
   color: rgba(0, 102, 255, 0.9);
   font-size: 1.4rem;
   font-family: "Libre Baskerville", serif;
@@ -128,7 +226,8 @@
   text-decoration: none;
 }
 .signup__form__container .login__links__container .signup__link__container .heading,
-.login__form__container .login__links__container .signup__link__container .heading {
+.login__form__container .login__links__container .signup__link__container .heading,
+.forgot__password__form__container .login__links__container .signup__link__container .heading {
   font-size: 1.4rem;
   font-family: "Libre Baskerville", serif;
   font-weight: 400;
@@ -137,7 +236,9 @@
 .signup__form__container .login__links__container .forgot__password__link:hover,
 .signup__form__container .login__links__container .signup__link:hover,
 .login__form__container .login__links__container .forgot__password__link:hover,
-.login__form__container .login__links__container .signup__link:hover {
+.login__form__container .login__links__container .signup__link:hover,
+.forgot__password__form__container .login__links__container .forgot__password__link:hover,
+.forgot__password__form__container .login__links__container .signup__link:hover {
   text-decoration: underline;
 }
 
@@ -146,7 +247,8 @@
 }
 
 .signup__form__container .signup__form,
-.login__form__container .login__form {
+.login__form__container .login__form,
+.forgot__password__form__container .forgot__password__form {
   width: 49.6rem;
   display: flex;
   flex-wrap: wrap;
@@ -163,7 +265,8 @@
 }
 
 .signup__input__field__full,
-.login__input__field__full {
+.login__input__field__full,
+.forgot__password__input__field__full {
   width: 100%;
   margin-top: 2.4rem;
 }
