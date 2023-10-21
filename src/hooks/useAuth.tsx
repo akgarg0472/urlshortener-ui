@@ -30,7 +30,12 @@ const useAuth = () => {
     return _auth.userId;
   };
 
-  return { setAuth, isAuthenticated, getUserId };
+  const logout = () => {
+    localStorage.removeItem("auth");
+    console.log("Logged out");
+  };
+
+  return { setAuth, isAuthenticated, getUserId, logout };
 };
 
 export default useAuth;

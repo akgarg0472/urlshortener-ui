@@ -5,7 +5,7 @@ interface ButtonProps {
   className: string;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
   isHidden?: boolean;
-  loadable: boolean;
+  loadable?: boolean;
   type?: "button" | "submit" | "reset" | undefined;
 }
 

@@ -3,7 +3,7 @@ import {
   validateEmail,
   validatePassword,
   validateString,
-} from "./validation-utils";
+} from "./validationutils";
 
 const validateSignupPage1 = (
   lastName: string,
@@ -105,4 +105,44 @@ const validateSignupPage2 = (
   return true;
 };
 
-export { validateSignupPage1, validateSignupPage2 };
+const validateLoginPage = (email: string, password: string): boolean => {
+  if (!validateEmail(email)) {
+    Modal.showModal({
+      icon: ModalIcon.ERROR,
+      title: "Error",
+      message: "Please provide valid email",
+    });
+    return false;
+  }
+
+  if (!validatePassword(password)) {
+    Modal.showModal({
+      icon: ModalIcon.ERROR,
+      title: "Error",
+      message: "Please provide valid password",
+    });
+    return false;
+  }
+
+  return true;
+};
+
+const validateForgotPasswordPage = (email: string): boolean => {
+  if (!validateEmail(email)) {
+    Modal.showModal({
+      icon: ModalIcon.ERROR,
+      title: "Error",
+      message: "Please provide valid email",
+    });
+    return false;
+  }
+
+  return true;
+};
+
+export {
+  validateForgotPasswordPage,
+  validateLoginPage,
+  validateSignupPage1,
+  validateSignupPage2,
+};

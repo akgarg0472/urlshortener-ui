@@ -6,7 +6,7 @@ import Modal, { ModalIcon } from "../../../components/modal/Modal";
 import {
   validateSignupPage1,
   validateSignupPage2,
-} from "../../../utils/signup-utils";
+} from "../../../utils/authutils";
 import "../Auth.css";
 import SignupPage1 from "./SignupPage1";
 import SignupPage2 from "./SignupPage2";

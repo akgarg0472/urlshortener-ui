@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./LinkButton.css";
 
 interface ButtonProps {
   text: string;
@@ -8,7 +9,7 @@ interface ButtonProps {
 
 const LinkButton = (props: ButtonProps) => {
   return (
-    <Link className={props.className} to={props.onClickLink}>
+    <Link className={`link__button ${props.className}`} to={props.onClickLink}>
       {props.text}
     </Link>
   );

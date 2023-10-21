@@ -1,0 +1,72 @@
+.dashboard__navbar {
+  width: 16vw;
+  height: 100%;
+  background: #5d44f8;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.dashboard__navbar .heading__logo {
+  height: 5.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-family: "Mulish", sans-serif;
+  font-weight: 700;
+  font-size: 1.6rem;
+  text-decoration: none;
+}
+.dashboard__navbar .dashboard__navbar__links__container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.dashboard__navbar .create__new__link__btn {
+  width: 92%;
+  height: 4rem;
+  border-radius: 0.6rem;
+  margin-bottom: 1.2rem;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-family: "Mulish", sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 4%;
+  margin-top: 3.2rem;
+  background: #4731d4;
+}
+
+.dashboard__navbar .dashboard__navbar__links__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard__navbar .dashboard__navbar__bottom__btns__container {
+  width: 100%;
+  height: 6.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.6rem;
+}
+.dashboard__navbar .dashboard__navbar__bottom__btns__container .btn__img__container {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.dashboard__navbar .dashboard__navbar__bottom__btns__container .btn__img__container img {
+  width: 2rem;
+  height: 2rem;
+}
+.dashboard__navbar .dashboard__navbar__bottom__btns__container .btn__img__container:hover {
+  background: rgba(71, 49, 212, 0.66);
+}

@@ -4,6 +4,10 @@ interface ModalProps {
   icon: ModalIcon;
   title?: string;
   message?: string;
+  onConfirm?: () => void;
+  onCancel?: () => void;
+  cancelText?: string;
+  confirmText?: string;
 }
 
 export enum ModalIcon {
@@ -11,12 +15,15 @@ export enum ModalIcon {
   SUCCESS = "success",
   INFO = "info",
   WARNING = "warning",
+  CONFIRMATION = "confirmation",
 }
 
 const Modal = () => {
   const modal__container__id = "url__shortener__modal__container";
   const modal__id = "url__shortener__modal";
-  const modal__btn__id = "url__shortener__modal__button";
+  const modal__ok__btn__id = "url__shortener__modal__button__ok";
+  const modal__cancel__btn__id = "url__shortener__modal__button__cancel";
+  const modal__confirm__btn__id = "url__shortener__modal__button__confirm";
 
   let modal: HTMLDivElement;
   let modalDialog: any;
@@ -38,6 +45,8 @@ const Modal = () => {
         return "modal__btn__info";
       case ModalIcon.WARNING:
         return "modal__btn__warning";
+      case ModalIcon.CONFIRMATION:
+        return "modal__btn__confirmation";
     }
   };
 
@@ -51,7 +60,13 @@ const Modal = () => {
         return "./assets/icons/info.png";
       case ModalIcon.WARNING:
         return "./assets/icons/warning.png";
+      case ModalIcon.CONFIRMATION:
+        return "./assets/icons/confirmation.png";
     }
+  };
+
+  const isShowOkButton = (props: ModalProps): boolean => {
+    return props.icon !== ModalIcon.CONFIRMATION;
   };
 
   const createModal = (props: ModalProps): HTMLDivElement => {
@@ -72,9 +87,33 @@ const Modal = () => {
             ? "<div class='modal__message'>" + props.message + "</div>"
             : ""
         }
-        <button class="modal__button ${getButtonColorClass(
-          props.icon
-        )}" id='url__shortener__modal__button'>OK</button>
+            
+        <div class="modal__btns__container">
+          ${
+            isShowOkButton(props)
+              ? `<button class="modal__button ${getButtonColorClass(
+                  props.icon
+                )}" id=${modal__ok__btn__id}>OK</button>`
+              : ""
+          }
+
+          ${
+            props.icon === ModalIcon.CONFIRMATION
+              ? `<button class="modal__button modal__button__cancel" id=${modal__cancel__btn__id}>${
+                  props.cancelText ? props.cancelText : "Cancel"
+                }</button>`
+              : ""
+          }
+
+          ${
+            props.icon === ModalIcon.CONFIRMATION
+              ? `<button class="modal__button modal__button__confirm" id=${modal__confirm__btn__id}>${
+                  props.confirmText ? props.confirmText : "Confirm"
+                }</button>`
+              : ""
+          }
+        </div>
+
       </dialog>
     `;
 
@@ -91,21 +130,49 @@ const Modal = () => {
     const modal: HTMLDivElement = createModal(props);
     document.body.appendChild(modal);
     modalDialog = document.getElementById(modal__id);
-    const modalButton: HTMLElement | null =
-      document.getElementById(modal__btn__id);
+
+    const modalOkButton: HTMLElement | null = document.querySelector(
+      `#${modal__ok__btn__id}`
+    );
+
+    const modalCancelButton: HTMLElement | null = document.querySelector(
+      `#${modal__cancel__btn__id}`
+    );
+
+    const modalConfirmButton: HTMLElement | null = document.querySelector(
+      `#${modal__confirm__btn__id}`
+    );
+
+    if (modalOkButton != null) {
+      modalOkButton.onclick = (e) => {
+        closeModal();
+      };
+    }
+
+    if (modalCancelButton != null) {
+      modalCancelButton.onclick = (e) => {
+        closeModal();
+        if (props.onCancel) {
+          props.onCancel();
+        }
+      };
+    }
+
+    if (modalConfirmButton != null) {
+      modalConfirmButton.onclick = (e) => {
+        closeModal();
+        if (props.onConfirm) {
+          props.onConfirm();
+        }
+      };
+    }
 
     if (modalDialog != null) {
       modalDialog.showModal();
     }
-
-    if (modalButton != null) {
-      modalButton.onclick = (e) => {
-        closeModal();
-      };
-    }
   };
 
-  return { showModal };
+  return { showModal, closeModal };
 };
 
 export default Modal();

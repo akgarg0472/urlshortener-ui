@@ -5,6 +5,7 @@ import InputField, {
   InputFieldType,
 } from "../../../components/inputfield/InputField";
 import Loader, { LoaderSpeed } from "../../../components/loader/Loader";
+import { validateForgotPasswordPage } from "../../../utils/authutils";
 import "../Auth.css";
 
 const ForgotPassword = () => {
@@ -15,15 +16,15 @@ const ForgotPassword = () => {
   const [email, setEmail] = useState<string>("");
 
   const handleForgotPasswordButtonClick = () => {
-    Loader.showLoader({
-      speed: LoaderSpeed.MEDIUM,
-    });
+    if (validateForgotPasswordPage(email)) {
+      Loader.showLoader({
+        speed: LoaderSpeed.MEDIUM,
+      });
 
-    const timeout = setTimeout(() => {
-      Loader.hideLoader();
-    }, 1000);
-
-    return () => clearTimeout(timeout);
+      const timeout = setTimeout(() => {
+        Loader.hideLoader();
+      }, 1000);
+    }
   };
 
   return (

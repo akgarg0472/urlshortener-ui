@@ -54,14 +54,21 @@ $modal__icon__width: 6.4rem;
     text-align: center;
   }
 
-  .modal__button {
-    width: 12rem;
-    height: 4rem;
-    border: none;
-    outline: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 700;
+  .modal__btns__container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    .modal__button {
+      width: 12rem;
+      height: 4rem;
+      border: none;
+      outline: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 700;
+    }
   }
 
   .modal__btn__error {
@@ -81,6 +88,15 @@ $modal__icon__width: 6.4rem;
 
   .modal__btn__info {
     background: #2626e8;
+    color: #ffffff;
+  }
+
+  .modal__button__cancel {
+    background: #f0f0f0;
+  }
+
+  .modal__button__confirm {
+    background: rgba(255, 0, 0, 90);
     color: #ffffff;
   }
 }

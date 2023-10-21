@@ -5,6 +5,7 @@ import InputField, {
   InputFieldType,
 } from "../../../components/inputfield/InputField";
 import Loader, { LoaderSpeed } from "../../../components/loader/Loader";
+import { validateLoginPage } from "../../../utils/authutils";
 import "../Auth.css";
 
 const Login = () => {
@@ -16,15 +17,17 @@ const Login = () => {
   const [password, setPassword] = useState<string>("");
 
   const handleLoginButtonClick = () => {
-    Loader.showLoader({
-      speed: LoaderSpeed.MEDIUM,
-    });
+    if (validateLoginPage(email, password)) {
+      Loader.showLoader({
+        speed: LoaderSpeed.MEDIUM,
+      });
 
-    const timeout = setTimeout(() => {
-      Loader.hideLoader();
-    }, 1000);
+      const timeout = setTimeout(() => {
+        Loader.hideLoader();
+      }, 1000);
 
-    return () => clearTimeout(timeout);
+      return () => clearTimeout(timeout);
+    }
   };
 
   return (
