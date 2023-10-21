@@ -1,8 +1,12 @@
+import "./RegularButton.css";
+
 interface ButtonProps {
   text: string;
   className: string;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
   isHidden?: boolean;
+  loadable: boolean;
+  type?: "button" | "submit" | "reset" | undefined;
 }
 
 const RegularButton = (props: ButtonProps) => {
@@ -10,6 +14,7 @@ const RegularButton = (props: ButtonProps) => {
     <button
       className={props.className}
       onClick={props.onClick}
+      type={props.type}
       style={{
         visibility: props.isHidden ? "hidden" : "visible",
       }}

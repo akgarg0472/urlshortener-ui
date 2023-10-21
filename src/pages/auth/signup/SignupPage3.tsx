@@ -1,5 +1,5 @@
 import React from "react";
-import KVPair from "../../components/KVPair/KVPair";
+import KVPair from "../../../components/KVPair/KVPair";
 
 interface SignupPage3Props {
   firstName: string;

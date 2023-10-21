@@ -1,16 +1,22 @@
-import React, { useState } from "react";
-import RegularButton from "../../components/button/RegularButton";
-import FormProgressBar from "../../components/form-progress-bar/FormProgressBar";
+import React, { useEffect, useState } from "react";
+import RegularButton from "../../../components/button/RegularButton";
+import FormProgressBar from "../../../components/form-progress-bar/FormProgressBar";
+import Loader, { LoaderSpeed } from "../../../components/loader/Loader";
+import Modal, { ModalIcon } from "../../../components/modal/Modal";
 import {
   validateSignupPage1,
   validateSignupPage2,
-} from "../../utils/signup-utils";
-import "./Signup.css";
+} from "../../../utils/signup-utils";
+import "../Auth.css";
 import SignupPage1 from "./SignupPage1";
 import SignupPage2 from "./SignupPage2";
 import SignupPage3 from "./SignupPage3";
 
 const Signup = () => {
+  useEffect(() => {
+    document.title = "Signup";
+  }, []);
+
   const SIGNUP_FORM_STEP_TITLES = [
     "Personal Info",
     "Contact Details",
@@ -93,12 +99,26 @@ const Signup = () => {
     setZipcode(event.target.value);
   };
 
-  const handleCountryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCountry(event.target.value);
+  const handleCountryChange = (value: string) => {
+    setCountry(value);
   };
 
   const handleSignupButtonClick = () => {
-    console.log("Signup button clicked");
+    Loader.showLoader({
+      speed: LoaderSpeed.MEDIUM,
+    });
+
+    const timeout = setTimeout(() => {
+      Loader.hideLoader();
+      Modal.showModal({
+        icon: ModalIcon.SUCCESS,
+        title: "Congratulations🎉",
+        message:
+          "Signup successful. We have sent you a verification email. Please verify your email to continue.",
+      });
+    }, 5000);
+
+    return () => clearTimeout(timeout);
   };
 
   const renderFormStep = (step: number) => {
@@ -116,6 +136,10 @@ const Signup = () => {
             email={email}
             password={password}
             confirmPassword={confirmPassword}
+            onKeyDown={(event: React.KeyboardEvent<HTMLInputElement>) => {
+              event.preventDefault();
+              handleNextButtonClick();
+            }}
           />
         );
 
@@ -132,6 +156,10 @@ const Signup = () => {
             zipcode={zipcode}
             city={city}
             country={country}
+            onKeyDown={(event: React.KeyboardEvent<HTMLInputElement>) => {
+              event.preventDefault();
+              handleNextButtonClick();
+            }}
           />
         );
 
@@ -173,6 +201,7 @@ const Signup = () => {
                 text="Previous"
                 className="signup__prev__btn"
                 onClick={handlePreviousButtonClick}
+                loadable={false}
               />
             ) : (
               <RegularButton
@@ -180,6 +209,7 @@ const Signup = () => {
                 className="signup__prev__btn"
                 onClick={handlePreviousButtonClick}
                 isHidden={true}
+                loadable={false}
               />
             )}
 
@@ -188,6 +218,7 @@ const Signup = () => {
                 text="Next"
                 className="signup__next__btn"
                 onClick={handleNextButtonClick}
+                loadable={false}
               />
             ) : null}
 
@@ -196,6 +227,7 @@ const Signup = () => {
                 text="Signup"
                 className="signup__signup__btn"
                 onClick={handleSignupButtonClick}
+                loadable={true}
               />
             ) : null}
           </div>

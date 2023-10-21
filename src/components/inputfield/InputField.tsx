@@ -10,14 +10,28 @@ interface InputFieldProps {
   id: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   style?: React.CSSProperties;
+  isRequired?: boolean;
+  onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 export enum InputFieldType {
   TEXT,
   PASSWORD,
+  EMAIL,
 }
 
 const InputField = (props: InputFieldProps) => {
+  const getInputType = (type: InputFieldType) => {
+    switch (type) {
+      case InputFieldType.TEXT:
+        return "text";
+      case InputFieldType.PASSWORD:
+        return "password";
+      case InputFieldType.EMAIL:
+        return "email";
+    }
+  };
+
   return (
     <React.Fragment>
       <div
@@ -25,16 +39,32 @@ const InputField = (props: InputFieldProps) => {
         style={props.style}
       >
         <label className="input__field__label" htmlFor={props.id}>
-          {props.title}
+          {props.title}{" "}
+          {props.isRequired ? (
+            <span
+              style={{
+                color: "red",
+              }}
+            >
+              *
+            </span>
+          ) : (
+            ""
+          )}
         </label>
 
         <input
           className={`input__field`}
           id={props.id}
-          type={props.type === InputFieldType.TEXT ? "text" : "password"}
+          type={getInputType(props.type)}
           onChange={props.onChange}
           placeholder={props.placeholder}
           value={props.text}
+          onKeyDown={(event) => {
+            if (event.key === "Enter") {
+              props.onKeyDown && props.onKeyDown(event);
+            }
+          }}
         />
       </div>
     </React.Fragment>

@@ -1,4 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
+import Login from "../pages/auth/login/Login";
+import Signup from "../pages/auth/signup/Signup";
 import Dashboard from "../pages/dashboard/Dashboard";
 import DashboardLinks from "../pages/dashboard/DashboardLinks";
 import DashboardProfile from "../pages/dashboard/DashboardProfile";
@@ -6,8 +8,6 @@ import DashboardStatistics from "../pages/dashboard/DashboardStatistics";
 import ErrorPage from "../pages/error/ErrorPage";
 import ForgotPassword from "../pages/forgot-password/ForgotPassword";
 import HomePage from "../pages/home/HomePage";
-import Login from "../pages/login/Login";
-import Signup from "../pages/signup/Signup";
 import {
   DASHBOARD_LINKS_URL,
   DASHBOARD_PROFILE_URL,

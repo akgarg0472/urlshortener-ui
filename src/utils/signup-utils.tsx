@@ -1,4 +1,3 @@
-import Swal from "sweetalert2";
 import Modal, { ModalIcon } from "../components/modal/Modal";
 import {
   validateEmail,
@@ -16,44 +15,44 @@ const validateSignupPage1 = (
     Modal.showModal({
       icon: ModalIcon.ERROR,
       title: "Error",
-      message: "Please provide your last name",
+      message: "Please provide last name",
     });
 
     return false;
   }
 
   if (!validateEmail(email)) {
-    Swal.fire({
-      icon: "error",
-      title: "Please provide valid email",
-      customClass: "modal",
+    Modal.showModal({
+      icon: ModalIcon.ERROR,
+      title: "Error",
+      message: "Please provide valid email",
     });
     return false;
   }
 
   if (!validatePassword(password)) {
-    Swal.fire({
-      icon: "error",
-      title: "Please provide valid Password",
-      customClass: "modal",
+    Modal.showModal({
+      icon: ModalIcon.ERROR,
+      title: "Error",
+      message: "Please provide valid password",
     });
     return false;
   }
 
   if (!validatePassword(confirmPassword)) {
-    Swal.fire({
-      icon: "error",
-      title: "Please provide valid Confirm Password",
-      customClass: "modal",
+    Modal.showModal({
+      icon: ModalIcon.ERROR,
+      title: "Error",
+      message: "Please provide valid confirm password",
     });
     return false;
   }
 
   if (password !== confirmPassword) {
-    Swal.fire({
-      icon: "error",
-      title: "Passwords do not match",
-      customClass: "modal",
+    Modal.showModal({
+      icon: ModalIcon.ERROR,
+      title: "Error",
+      message: "Passwords doesn't match",
     });
     return false;
   }
@@ -67,7 +66,43 @@ const validateSignupPage2 = (
   zipcode: string,
   country: string
 ): boolean => {
-  return false;
+  if (!validateString(phoneNumber) || phoneNumber.length < 10) {
+    Modal.showModal({
+      icon: ModalIcon.ERROR,
+      title: "Error",
+      message: "Please provide valid phone number",
+    });
+    return false;
+  }
+
+  if (!validateString(city)) {
+    Modal.showModal({
+      icon: ModalIcon.ERROR,
+      title: "Error",
+      message: "Please provide valid city",
+    });
+    return false;
+  }
+
+  if (!validateString(zipcode)) {
+    Modal.showModal({
+      icon: ModalIcon.ERROR,
+      title: "Error",
+      message: "Please provide valid zipcode",
+    });
+    return false;
+  }
+
+  if (!validateString(country)) {
+    Modal.showModal({
+      icon: ModalIcon.ERROR,
+      title: "Error",
+      message: "Please provide valid country",
+    });
+    return false;
+  }
+
+  return true;
 };
 
 export { validateSignupPage1, validateSignupPage2 };

@@ -1,14 +1,18 @@
 import React from "react";
+import DropdownSelector, {
+  DropdownType,
+} from "../../../components/dropdownselector/DropdownSelector";
 import InputField, {
   InputFieldType,
-} from "../../components/input-field/InputField";
+} from "../../../components/inputfield/InputField";
 
 interface SignupPage2Props {
   onBusinessDetailsChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onPhoneNumberChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onCityChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onZipcodeChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onCountryChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onCountryChange: (value: string) => void;
+  onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   businessDetails: string;
   phoneNumber: string;
   zipcode: string;
@@ -31,6 +35,7 @@ const SignupPage2 = (props: SignupPage2Props) => {
         onChange={props.onBusinessDetailsChange}
         text={props.businessDetails}
         key="signup__business__details"
+        onKeyDown={props.onKeyDown}
       />
 
       <InputField
@@ -42,6 +47,8 @@ const SignupPage2 = (props: SignupPage2Props) => {
         onChange={props.onPhoneNumberChange}
         text={props.phoneNumber}
         key="signup__phone__number"
+        isRequired={true}
+        onKeyDown={props.onKeyDown}
       />
 
       <InputField
@@ -53,6 +60,8 @@ const SignupPage2 = (props: SignupPage2Props) => {
         onChange={props.onCityChange}
         text={props.city}
         key="signup__city"
+        isRequired={true}
+        onKeyDown={props.onKeyDown}
       />
 
       <InputField
@@ -64,17 +73,19 @@ const SignupPage2 = (props: SignupPage2Props) => {
         onChange={props.onZipcodeChange}
         text={props.zipcode}
         key="signup__zipcode"
+        isRequired={true}
+        onKeyDown={props.onKeyDown}
       />
 
-      <InputField
-        className="signup__input__field"
-        placeholder="Select Country"
-        title="Country"
-        type={InputFieldType.TEXT}
+      <DropdownSelector
+        classes="signup__input__field"
+        type={DropdownType.COUNTRY}
         id="signup__country"
         onChange={props.onCountryChange}
-        text={props.country}
         key="signup__country"
+        title="Country"
+        value={props.country}
+        isRequired={true}
       />
     </React.Fragment>
   );

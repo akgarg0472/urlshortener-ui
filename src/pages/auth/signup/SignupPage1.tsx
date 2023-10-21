@@ -1,7 +1,7 @@
 import React from "react";
 import InputField, {
   InputFieldType,
-} from "../../components/input-field/InputField";
+} from "../../../components/inputfield/InputField";
 
 interface SignupPage1Props {
   onFirstNameChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -9,6 +9,7 @@ interface SignupPage1Props {
   onEmailChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onPasswordChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onConfirmPasswordChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   firstName: string;
   lastName: string;
   email: string;
@@ -31,6 +32,7 @@ const SignupPage1 = (props: SignupPage1Props) => {
         onChange={props.onFirstNameChange}
         text={props.firstName}
         key="signup__first__name"
+        onKeyDown={props.onKeyDown}
       />
 
       <InputField
@@ -45,6 +47,8 @@ const SignupPage1 = (props: SignupPage1Props) => {
         onChange={props.onLastNameChange}
         text={props.lastName}
         key="signup__last__name"
+        isRequired={true}
+        onKeyDown={props.onKeyDown}
       />
 
       <InputField
@@ -56,6 +60,8 @@ const SignupPage1 = (props: SignupPage1Props) => {
         onChange={props.onEmailChange}
         text={props.email}
         key="signup__email"
+        isRequired={true}
+        onKeyDown={props.onKeyDown}
       />
 
       <InputField
@@ -67,6 +73,8 @@ const SignupPage1 = (props: SignupPage1Props) => {
         onChange={props.onPasswordChange}
         text={props.password}
         key="signup__password"
+        isRequired={true}
+        onKeyDown={props.onKeyDown}
       />
 
       <InputField
@@ -78,6 +86,8 @@ const SignupPage1 = (props: SignupPage1Props) => {
         onChange={props.onConfirmPasswordChange}
         text={props.confirmPassword}
         key="signup__confirm_password"
+        isRequired={true}
+        onKeyDown={props.onKeyDown}
       />
     </React.Fragment>
   );

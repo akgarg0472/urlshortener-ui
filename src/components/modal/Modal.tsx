@@ -41,14 +41,27 @@ const Modal = () => {
     }
   };
 
+  const getIconSrc = (icon: ModalIcon): string => {
+    switch (icon) {
+      case ModalIcon.ERROR:
+        return "./assets/icons/error.png";
+      case ModalIcon.SUCCESS:
+        return "./assets/icons/success.png";
+      case ModalIcon.INFO:
+        return "./assets/icons/info.png";
+      case ModalIcon.WARNING:
+        return "./assets/icons/warning.png";
+    }
+  };
+
   const createModal = (props: ModalProps): HTMLDivElement => {
     modal = document.createElement("div");
-    modal.id = modal__container__id;
     modal.classList.add("modal__overlay");
+    modal.id = modal__container__id;
 
     modal.innerHTML = `
       <dialog class='modal__dialog' id=${modal__id}>
-        <img class="modal__icon" src='./assets/icons/error.png' />
+        <img class="modal__icon" src=${getIconSrc(props.icon)} />
         ${
           props.title
             ? "<div class='modal__title'>" + props.title + "</div>"
@@ -66,7 +79,7 @@ const Modal = () => {
     `;
 
     modal.onkeydown = (e: KeyboardEvent) => {
-      if (e.key == "Escape") {
+      if (e.key === "Escape") {
         closeModal();
       }
     };
@@ -82,11 +95,11 @@ const Modal = () => {
       document.getElementById(modal__btn__id);
 
     if (modalDialog != null) {
-      modalDialog?.showModal();
+      modalDialog.showModal();
     }
 
     if (modalButton != null) {
-      modalButton.onclick = () => {
+      modalButton.onclick = (e) => {
         closeModal();
       };
     }

@@ -11,7 +11,7 @@ const KVPair = (props: KVPairProps) => {
     <React.Fragment>
       <div className="kv__container">
         <div className="kv__key">{props._key}</div>
-        <div className="kv__value">{props.value}</div>
+        <div className="kv__value">{props.value ? props.value : "-"}</div>
       </div>
     </React.Fragment>
   );

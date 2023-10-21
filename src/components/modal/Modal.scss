@@ -22,7 +22,7 @@ $modal__icon__width: 6.4rem;
   border-color: #ffffff;
   width: $modal__width;
   height: $modal__height;
-  border-radius: 6px;
+  border-radius: 4px;
   margin: auto;
   display: flex;
   align-items: center;
@@ -31,6 +31,7 @@ $modal__icon__width: 6.4rem;
   border: none;
   outline: none;
   padding: 2rem;
+  user-select: none;
   animation: modal__dialog__animation 200ms linear 1;
 
   .modal__icon {
@@ -48,8 +49,9 @@ $modal__icon__width: 6.4rem;
   .modal__message {
     font-family: "Mulish", sans-serif;
     font-size: 1.6rem;
-    font-weight: 400;
+    font-weight: 500;
     color: #333333;
+    text-align: center;
   }
 
   .modal__button {
@@ -59,9 +61,6 @@ $modal__icon__width: 6.4rem;
     outline: none;
     border-radius: 4px;
     cursor: pointer;
-  }
-
-  .modal__button:hover {
     font-weight: 700;
   }
 
@@ -71,7 +70,7 @@ $modal__icon__width: 6.4rem;
   }
 
   .modal__btn__success {
-    background: #00ff00;
+    background: #31ab40;
     color: #ffffff;
   }
 
@@ -81,7 +80,7 @@ $modal__icon__width: 6.4rem;
   }
 
   .modal__btn__info {
-    background: #0000ff;
+    background: #2626e8;
     color: #ffffff;
   }
 }
