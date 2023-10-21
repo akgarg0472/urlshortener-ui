@@ -35,7 +35,11 @@ const useAuth = () => {
     console.log("Logged out");
   };
 
-  return { setAuth, isAuthenticated, getUserId, logout };
+  const getName = (): string => {
+    return "John Doe";
+  };
+
+  return { setAuth, isAuthenticated, getUserId, logout, getName };
 };
 
 export default useAuth;

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import LinkButton from "../../../components/button/LinkButton";
 import RegularButton from "../../../components/button/RegularButton";
 import InputField, {
@@ -13,6 +14,7 @@ const Login = () => {
     document.title = "Login";
   }, []);
 
+  const navigation = useNavigate();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
@@ -24,6 +26,9 @@ const Login = () => {
 
       const timeout = setTimeout(() => {
         Loader.hideLoader();
+        navigation("/dashboard", {
+          replace: true,
+        });
       }, 1000);
 
       return () => clearTimeout(timeout);

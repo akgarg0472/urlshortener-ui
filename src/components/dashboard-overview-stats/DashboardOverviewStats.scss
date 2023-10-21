@@ -1,0 +1,15 @@
+$box__shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.05);
+
+.dashboard__stats__overview {
+  width: 45%;
+  background: #ffffff;
+  box-shadow: $box__shadow;
+  border-radius: 0.6rem;
+  padding: 1.6rem;
+
+  .heading__txt {
+    font-family: "Mulish", sans-serif;
+    font-weight: 700;
+    font-size: 1.6rem;
+  }
+}

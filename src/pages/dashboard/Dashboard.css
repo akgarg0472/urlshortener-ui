@@ -1,4 +1,57 @@
 .dashboard__page {
   width: 100vw;
   height: 100vh;
+  display: flex;
+}
+
+.dashboard__page__content {
+  height: 100vh;
+  width: 100%;
+  overflow-y: auto;
+  padding: 4rem 4rem 2rem 4rem;
+  background: #f6f6f8;
+}
+.dashboard__page__content .main__dashboard__heading {
+  font-size: 3.2rem;
+  font-family: "Mulish", sans-serif;
+  font-weight: 700;
+  display: flex;
+}
+.dashboard__page__content .main__dashboard__heading .welcome__text {
+  color: #757575;
+}
+.dashboard__page__content .main__dashboard__heading .name__heading {
+  padding-left: 0.8rem;
+}
+.dashboard__page__content .heading__time__section {
+  background: #ffffff;
+  width: 56rem;
+  height: 9.6rem;
+  border-radius: 0.6rem;
+  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.05);
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  font-family: "Mulish", sans-serif;
+  margin-top: 1.6rem;
+  padding: 1.6rem;
+}
+.dashboard__page__content .heading__time__section .heading {
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 3.2rem;
+  font-weight: 700;
+}
+.dashboard__page__content .heading__time__section .timestamp {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-top: 0.4rem;
+}
+.dashboard__page__content .stats__overview__container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.8rem;
 }
