@@ -64,4 +64,31 @@ $box__shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.05);
     justify-content: space-between;
     margin-top: 1.8rem;
   }
+
+  .prev__seven__days__hits__container {
+    margin-top: 1.6rem;
+    box-shadow: $box__shadow;
+    width: 100%;
+    background: #ffffff;
+    padding: 1.6rem;
+  }
+
+  .continents__countries__container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .continents__stats__container,
+    .countries__stats__container {
+      margin-top: 1.6rem;
+      box-shadow: $box__shadow;
+      width: 48%;
+      background: #ffffff;
+      padding: 1.6rem;
+      display: flex;
+      flex-direction: column;
+      padding: 1.6rem;
+    }
+  }
 }

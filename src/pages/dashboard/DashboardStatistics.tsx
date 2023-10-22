@@ -11,6 +11,8 @@ const DashboardStatistics = () => {
     <React.Fragment>
       <div className="dashboard__page">
         <DashboardNavbar />
+
+        <div className="dashboard__page__content"></div>
       </div>
     </React.Fragment>
   );

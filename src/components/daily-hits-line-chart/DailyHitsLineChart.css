@@ -1,0 +1,7 @@
+.daily__hits__line__chart__container {
+  margin-top: 1.6rem;
+  padding: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

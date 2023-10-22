@@ -10,3 +10,10 @@
   font-weight: 700;
   font-size: 1.6rem;
 }
+.dashboard__stats__overview .stats__container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 1.6rem;
+  margin-top: 1.6rem;
+}
