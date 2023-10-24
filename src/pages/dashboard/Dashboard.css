@@ -87,7 +87,7 @@
   background-color: #ffffff;
   border-radius: 0.6rem;
   box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.05);
-  max-height: 75vh;
+  height: 75vh;
   overflow-y: auto;
 }
 .dashboard__page__content .my__links__load__more__btn {

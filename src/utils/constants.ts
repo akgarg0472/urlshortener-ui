@@ -15,6 +15,12 @@ export const DASH_CONTINET_SUBHEAD: string =
 export const DASH_COUNTRY_HEAD: string = "Countries";
 export const DASH_COUNTRY_SUBHEAD: string =
   "Represents detailed geographical information, offering a comprehensive view of countries where URL is accessed or clicked";
-export const DASH_MY_LINKS_HEAD: string = "My Links";
+export const DASH_MY_LINKS_HEAD: string = "🔗 My Links";
 export const DASH_MY_LINKS_SUBHEAD: string =
   "An informative dataset featuring original URLs, shortened URLs, timestamps indicating when the URLs were shortened, and the respective IP addresses from which the shortening occurred";
+export const DASH_STATISTICS_HEAD: string = "🔗 Statistics";
+export const DASH_STATISTICS_SUBHEAD: string =
+  "A comprehensive statistical dataset featuring device metrics, including OS and browser details, with an analysis of hits per OS-browser combination. It also offers geographical data with total hits by continent, country, and city, alongside a ranking of the top 'n' most popular short URLs based on their hit counts";
+export const DASH_PROFILE_HEAD: string = "🔗 Profile";
+export const DASH_PROFILE_SUBHEAD: string =
+  "An informative dataset featuring your profile information";

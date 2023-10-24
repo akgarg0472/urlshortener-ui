@@ -12,6 +12,7 @@ import DailyHitsLineChart from "../../components/daily-hits-line-chart/DailyHits
 import DashboardNavbar from "../../components/dashboard-navbar/DashboardNavbar";
 import DashboardOverviewStats from "../../components/dashboard-overview-stats/DashboardOverviewStats";
 import DashboardHeadSubHead from "../../components/dashboardheadsubhead/DashboardHeadSubHead";
+import InternalLoader from "../../components/loader/internal-loader/InternalLoader";
 import PieChart from "../../components/pie-chart/PieChart";
 import useAuth from "../../hooks/useAuth";
 import {
@@ -37,6 +38,7 @@ const Dashboard = () => {
   );
   const [continents, setContinents] = useState([] as Continent[]);
   const [countries, setCountries] = useState([] as Country[]);
+  const [loading, setLoading] = useState(true);
 
   const doLogout = () => {
     logout();
@@ -54,18 +56,22 @@ const Dashboard = () => {
     //   return;
     // }
 
-    const apiResponse: DashboardApiResponse = dashboard({ userId: userId!! });
+    setTimeout(() => {
+      const apiResponse: DashboardApiResponse = dashboard({ userId: userId!! });
 
-    if (apiResponse.httpCode !== 200) {
-      doLogout();
-      return;
-    }
+      if (apiResponse.httpCode !== 200) {
+        doLogout();
+        return;
+      }
 
-    setTodayStats(apiResponse.current_day_stats);
-    setLifetimeStats(apiResponse.lifetime_stats);
-    setPrevSevenDayHitsData(apiResponse.prev_seven_days_hits);
-    setContinents(apiResponse.continents);
-    setCountries(apiResponse.countries);
+      setTodayStats(apiResponse.current_day_stats);
+      setLifetimeStats(apiResponse.lifetime_stats);
+      setPrevSevenDayHitsData(apiResponse.prev_seven_days_hits);
+      setContinents(apiResponse.continents);
+      setCountries(apiResponse.countries);
+
+      setLoading(false);
+    }, 1000);
   }, []);
 
   const { getName } = useAuth();
@@ -108,10 +114,16 @@ const Dashboard = () => {
               subheading={DASH_PREV_SEVEN_DAYS_SUBHEAD}
             />
 
-            <DailyHitsLineChart
-              data={prevSevenDaysHitsData}
-              datasetLabel={PREV_SEVEN_DAYS_DATASET_LABEL}
-            />
+            {loading ? (
+              <InternalLoader />
+            ) : (
+              <>
+                <DailyHitsLineChart
+                  data={prevSevenDaysHitsData}
+                  datasetLabel={PREV_SEVEN_DAYS_DATASET_LABEL}
+                />
+              </>
+            )}
           </div>
 
           <div className="continents__countries__container">
@@ -121,15 +133,23 @@ const Dashboard = () => {
                 subheading={DASH_CONTINET_SUBHEAD}
               />
 
-              <PieChart datasetLabel="Country" data={continents} />
-            </div>{" "}
+              {loading ? (
+                <InternalLoader />
+              ) : (
+                <PieChart datasetLabel="Country" data={continents} />
+              )}
+            </div>
             <div className="countries__stats__container">
               <DashboardHeadSubHead
                 heading={DASH_COUNTRY_HEAD}
                 subheading={DASH_COUNTRY_SUBHEAD}
               />
 
-              <PieChart datasetLabel="Country" data={countries} />
+              {loading ? (
+                <InternalLoader />
+              ) : (
+                <PieChart datasetLabel="Country" data={countries} />
+              )}
             </div>
           </div>
         </div>

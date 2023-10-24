@@ -44,7 +44,7 @@ const ShortUrlMetricModal = (props: ShortUrlMetricModalProps) => {
       setTotalHits(apiResponse.total_hits);
       setLatestHits(apiResponse.latest_hits);
       setLoading(false);
-    }, 2000);
+    }, 1000);
   }, []);
 
   const closeModal = () => {

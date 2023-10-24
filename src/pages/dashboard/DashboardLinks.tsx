@@ -5,6 +5,7 @@ import { myLinks } from "../../api/dashboard";
 import RegularButton from "../../components/button/RegularButton";
 import DashboardNavbar from "../../components/dashboard-navbar/DashboardNavbar";
 import DashboardHeadSubHead from "../../components/dashboardheadsubhead/DashboardHeadSubHead";
+import InternalLoader from "../../components/loader/internal-loader/InternalLoader";
 import MyLink from "../../components/mylink/MyLink";
 import useAuth from "../../hooks/useAuth";
 import {
@@ -20,6 +21,7 @@ const DashboardLinks = () => {
   const [urls, setUrls] = useState([] as URL[]);
   const [totalRecords, setTotalRecords] = useState(0);
   const [nextOffset, setNextOffset] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   const doLogout = () => {
     logout();
@@ -62,14 +64,17 @@ const DashboardLinks = () => {
   useEffect(() => {
     document.title = "My Links";
 
-    const myLinksApiResponse: MyLinksApiResponse = hitApi();
+    setTimeout(() => {
+      const myLinksApiResponse: MyLinksApiResponse = hitApi();
 
-    setUrls((prev) => {
-      return [...prev, ...myLinksApiResponse.urls];
-    });
+      setUrls((prev) => {
+        return [...prev, ...myLinksApiResponse.urls];
+      });
 
-    setTotalRecords(myLinksApiResponse.total_records);
-    setNextOffset(myLinksApiResponse.next_offset);
+      setTotalRecords(myLinksApiResponse.total_records);
+      setNextOffset(myLinksApiResponse.next_offset);
+      setLoading(false);
+    }, 1000);
   }, []);
 
   return (
@@ -84,14 +89,20 @@ const DashboardLinks = () => {
           />
 
           <div className="my__links__container">
-            {urls.map((url, index) => (
-              <MyLink
-                url={url}
-                serialNumber={index + 1}
-                key={`${url.short_url}_${index}`} // todo: fix later
-                userId={getUserId()!!}
-              />
-            ))}
+            {loading ? (
+              <InternalLoader />
+            ) : (
+              <>
+                {urls.map((url, index) => (
+                  <MyLink
+                    url={url}
+                    serialNumber={index + 1}
+                    key={`${url.short_url}_${index}`} // todo: fix later
+                    userId={getUserId()!!}
+                  />
+                ))}
+              </>
+            )}
           </div>
 
           <div
