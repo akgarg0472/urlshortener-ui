@@ -201,7 +201,6 @@ const Signup = () => {
                 text="Previous"
                 className="signup__prev__btn"
                 onClick={handlePreviousButtonClick}
-                loadable={false}
               />
             ) : (
               <RegularButton
@@ -209,7 +208,6 @@ const Signup = () => {
                 className="signup__prev__btn"
                 onClick={handlePreviousButtonClick}
                 isHidden={true}
-                loadable={false}
               />
             )}
 
@@ -218,7 +216,6 @@ const Signup = () => {
                 text="Next"
                 className="signup__next__btn"
                 onClick={handleNextButtonClick}
-                loadable={false}
               />
             ) : null}
 
@@ -227,7 +224,6 @@ const Signup = () => {
                 text="Signup"
                 className="signup__signup__btn"
                 onClick={handleSignupButtonClick}
-                loadable={true}
               />
             ) : null}
           </div>

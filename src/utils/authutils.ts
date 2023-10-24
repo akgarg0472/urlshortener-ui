@@ -15,9 +15,18 @@ const validateSignupPage1 = (
     Modal.showModal({
       icon: ModalIcon.ERROR,
       title: "Error",
-      message: "Please provide last name",
+      message: "Please provide valid last name",
     });
 
+    return false;
+  }
+
+  if (!validateString(email)) {
+    Modal.showModal({
+      icon: ModalIcon.ERROR,
+      title: "Error",
+      message: "Email is a required field",
+    });
     return false;
   }
 
@@ -34,7 +43,25 @@ const validateSignupPage1 = (
     Modal.showModal({
       icon: ModalIcon.ERROR,
       title: "Error",
+      message: "Password is a required field",
+    });
+    return false;
+  }
+
+  if (!validatePassword(password)) {
+    Modal.showModal({
+      icon: ModalIcon.ERROR,
+      title: "Error",
       message: "Please provide valid password",
+    });
+    return false;
+  }
+
+  if (!validatePassword(confirmPassword)) {
+    Modal.showModal({
+      icon: ModalIcon.ERROR,
+      title: "Error",
+      message: "Confirm password is a required field",
     });
     return false;
   }

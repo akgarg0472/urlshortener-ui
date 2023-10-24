@@ -66,7 +66,6 @@ const ForgotPassword = () => {
                   event.preventDefault();
                   handleForgotPasswordButtonClick();
                 }}
-                loadable={true}
                 type="submit"
               />
             </div>

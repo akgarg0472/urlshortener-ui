@@ -1,0 +1,75 @@
+$serial__number__width: 4rem;
+$serial__number__height: 4rem;
+
+.my__link__container {
+  display: flex;
+  margin: 0.8rem 0;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0;
+  cursor: pointer;
+
+  .serial__urls__container {
+    width: 70%;
+    display: flex;
+  }
+
+  .metadata__container {
+    width: 25%;
+  }
+}
+
+.my__link__container .serial__urls__container {
+  .serial__number__container {
+    width: $serial__number__width;
+    height: $serial__number__height;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    span {
+      width: $serial__number__width;
+      height: $serial__number__height;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(51, 51, 51, 0.15);
+      font-size: 1.3rem;
+      font-family: "Mulish", sans-serif;
+    }
+  }
+
+  .urls__container,
+  .metadata__container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    font-family: "Mulish", sans-serif;
+    font-weight: 500;
+    margin-left: 1.2rem;
+  }
+}
+
+.my__link__container .serial__urls__container .urls__container {
+  .short__url__container {
+    font-size: 1.4rem;
+  }
+
+  .original__url__container {
+    margin-top: 0.4rem;
+    font-size: 1.2rem;
+    color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+.my__link__container .metadata__container {
+  font-family: "Mulish", sans-serif;
+  font-weight: 500;
+  font-size: 1.3rem;
+
+  .ip__address__container {
+    margin-top: 0.4rem;
+  }
+}

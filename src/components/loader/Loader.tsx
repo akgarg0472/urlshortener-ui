@@ -33,7 +33,7 @@ const Loader = () => {
     return "loader__medium";
   };
 
-  const createModal = (props?: LoaderProps): HTMLDivElement => {
+  const createLoader = (props?: LoaderProps): HTMLDivElement => {
     loader = document.createElement("div");
     loader.classList.add("loader__overlay");
     loader.id = loader__container__id;
@@ -45,8 +45,8 @@ const Loader = () => {
   };
 
   const showLoader = (props?: LoaderProps) => {
-    const modal: HTMLDivElement = createModal(props);
-    document.body.appendChild(modal);
+    const loader: HTMLDivElement = createLoader(props);
+    document.body.appendChild(loader);
   };
 
   const hideLoader = () => {

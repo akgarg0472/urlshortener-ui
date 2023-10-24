@@ -92,3 +92,27 @@ $box__shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.05);
     }
   }
 }
+
+.dashboard__page__content {
+  .my__links__container {
+    display: flex;
+    flex-direction: column;
+    padding: 1.6rem;
+    background-color: #ffffff;
+    border-radius: 0.6rem;
+    box-shadow: $box__shadow;
+    max-height: 75vh;
+    overflow-y: auto;
+  }
+
+  .my__links__load__more__btn {
+    font-family: "Mulish", sans-serif;
+    font-weight: 700;
+    border: none;
+    outline: none;
+    font-size: 1.6rem;
+    margin-top: 1.6rem;
+    cursor: pointer;
+    background: transparent;
+  }
+}

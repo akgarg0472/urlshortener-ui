@@ -87,7 +87,6 @@ const Login = () => {
                   event.preventDefault();
                   handleLoginButtonClick();
                 }}
-                loadable={true}
                 type="submit"
               />
             </div>

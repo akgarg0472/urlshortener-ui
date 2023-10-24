@@ -1,0 +1,27 @@
+.summ_url__metadata__container {
+  width: 26rem;
+  height: 4.8rem;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 0 0.8rem;
+  border-radius: 0.6rem;
+}
+.summ_url__metadata__container .title {
+  height: 2.4rem;
+  display: flex;
+  align-items: end;
+  font-family: "Mulish", sans-serif;
+  font-weight: 700;
+  color: #757575;
+  font-size: 1.3rem;
+}
+.summ_url__metadata__container .value {
+  height: 2.4rem;
+  display: flex;
+  align-items: start;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: "Mulish", sans-serif;
+  font-weight: 600;
+  font-size: 1.2rem;
+}

@@ -1,0 +1,112 @@
+$modal__width: 60vw;
+$modal__height: 75vh;
+$modal__close__btn__dimension: 2.4rem;
+
+.short__url__metric__modal__overlay {
+  padding: 0;
+}
+
+.short__url__metric__modal__dialog {
+  background: #ffffff;
+  border-color: #ffffff;
+  width: $modal__width;
+  height: $modal__height;
+  border-radius: 4px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  border: none;
+  outline: none;
+  user-select: none;
+  animation: short__url__metric__modal__dialog__animation 200ms linear 1;
+
+  .url__metric__dialog__title__container {
+    height: 4.8rem;
+    background: rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.4rem 1.6rem;
+  }
+}
+
+.short__url__metric__modal__dialog .url__metric__dialog__title__container {
+  .title {
+    font-family: "Mulish", sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+
+  .close__button__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: $modal__close__btn__dimension;
+    height: $modal__close__btn__dimension;
+    cursor: pointer;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.short__url__metric__modal__dialog .url__metadata__modal__content__wrapper {
+  height: 100%;
+  padding: 3.2rem;
+  overflow-y: auto;
+
+  .url__metadata__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2.4rem;
+    flex-wrap: wrap;
+  }
+
+  .latest__hits {
+    margin-top: 3.2rem;
+
+    .heading {
+      font-size: 1.6rem;
+      font-family: "Mulish", sans-serif;
+      font-weight: 700;
+      color: #757575;
+    }
+
+    table {
+      margin-top: 1.2rem;
+      width: 100%;
+      font-family: "Mulish", sans-serif;
+      font-size: 1.2rem;
+      border-collapse: collapse;
+
+      td,
+      th {
+        border: 1px solid #dddddd;
+        text-align: center;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        padding: 0.4rem;
+      }
+
+      td {
+        color: rgba(51, 51, 51, 1);
+      }
+    }
+  }
+}
+
+@keyframes short__url__metric__modal__dialog__animation {
+  0% {
+    transform: scale(1.05);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
