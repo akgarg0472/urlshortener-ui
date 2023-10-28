@@ -136,7 +136,11 @@ const Dashboard = () => {
               {loading ? (
                 <InternalLoader />
               ) : (
-                <PieChart datasetLabel="Country" data={continents} />
+                <PieChart
+                  datasetLabel="Country"
+                  data={continents}
+                  legendPosition="top"
+                />
               )}
             </div>
             <div className="countries__stats__container">
@@ -148,7 +152,11 @@ const Dashboard = () => {
               {loading ? (
                 <InternalLoader />
               ) : (
-                <PieChart datasetLabel="Country" data={countries} />
+                <PieChart
+                  datasetLabel="Country"
+                  data={countries}
+                  legendPosition="top"
+                />
               )}
             </div>
           </div>

@@ -115,4 +115,49 @@ $box__shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.05);
     cursor: pointer;
     background: transparent;
   }
+
+  .geographical__stats__container,
+  .device__metrics__stats__container {
+    background-color: #ffffff;
+    margin-top: 3.2rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.6rem;
+
+    .dropdown__selector__container {
+      width: 40%;
+      display: flex;
+      padding: 3.2rem;
+    }
+
+    .stats__data__container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 1.6rem;
+
+      .continent__container,
+      .country__container,
+      .os__container,
+      .browser__stats__container {
+        width: 45%;
+      }
+    }
+  }
+
+  .popular__urls__container {
+    background-color: #ffffff;
+    margin-top: 3.2rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.6rem;
+
+    .popular__urls__stats__container {
+      display: flex;
+      padding: 3.2rem;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 }

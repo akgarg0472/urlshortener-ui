@@ -24,3 +24,5 @@ export const DASH_STATISTICS_SUBHEAD: string =
 export const DASH_PROFILE_HEAD: string = "🔗 Profile";
 export const DASH_PROFILE_SUBHEAD: string =
   "An informative dataset featuring your profile information";
+export const DASH_OS_HEAD: string = "OS Statistics";
+export const DASH_BROWSER_HEAD: string = "Browser Statistics";

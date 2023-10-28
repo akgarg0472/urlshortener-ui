@@ -1,6 +1,9 @@
 import {
   DashboardApiResponse,
+  DeviceMetricsApiResponse,
+  GeographicalApiResponse,
   MyLinksApiResponse,
+  PopularURLApiResponse,
   UrlMetricApiResponse,
 } from "./apiModals";
 
@@ -239,6 +242,394 @@ export const urlMetrics = (props: {
           country: "United States",
           timezone: "America/Chicago",
         },
+      },
+    ],
+  };
+};
+
+export const geographicalStats = (props: {
+  userId: string;
+}): GeographicalApiResponse => {
+  return {
+    httpCode: 200,
+    continents: [
+      {
+        name: "North America",
+        hits_count: 13,
+        countries: [
+          {
+            name: "United States",
+            hits_count: 12,
+            cities: [
+              {
+                name: "unidentified",
+                hits_count: 10,
+              },
+              {
+                name: "Kennett Square",
+                hits_count: 1,
+              },
+              {
+                name: "San Antonio",
+                hits_count: 1,
+              },
+            ],
+          },
+          {
+            name: "Canada",
+            hits_count: 1,
+            cities: [
+              {
+                name: "unidentified",
+                hits_count: 1,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: "Asia",
+        hits_count: 4,
+        countries: [
+          {
+            name: "China",
+            hits_count: 1,
+            cities: [
+              {
+                name: "unidentified",
+                hits_count: 1,
+              },
+            ],
+          },
+          {
+            name: "Indonesia",
+            hits_count: 1,
+            cities: [
+              {
+                name: "unidentified",
+                hits_count: 1,
+              },
+            ],
+          },
+          {
+            name: "Singapore",
+            hits_count: 1,
+            cities: [
+              {
+                name: "unidentified",
+                hits_count: 1,
+              },
+            ],
+          },
+          {
+            name: "Taiwan",
+            hits_count: 1,
+            cities: [
+              {
+                name: "unidentified",
+                hits_count: 1,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: "Europe",
+        hits_count: 2,
+        countries: [
+          {
+            name: "France",
+            hits_count: 1,
+            cities: [
+              {
+                name: "Bourg-la-Reine",
+                hits_count: 1,
+              },
+            ],
+          },
+          {
+            name: "Switzerland",
+            hits_count: 1,
+            cities: [
+              {
+                name: "unidentified",
+                hits_count: 1,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: "unidentified",
+        hits_count: 2,
+        countries: [
+          {
+            name: "unidentified",
+            hits_count: 2,
+            cities: [
+              {
+                name: "unidentified",
+                hits_count: 2,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: "South America",
+        hits_count: 1,
+        countries: [
+          {
+            name: "Brazil",
+            hits_count: 1,
+            cities: [
+              {
+                name: "unidentified",
+                hits_count: 1,
+              },
+            ],
+          },
+        ],
+      },
+    ],
+    countries: [
+      {
+        name: "United States",
+        hits_count: 12,
+        cities: [
+          {
+            name: "unidentified",
+            hits_count: 10,
+          },
+          {
+            name: "Kennett Square",
+            hits_count: 1,
+          },
+          {
+            name: "San Antonio",
+            hits_count: 1,
+          },
+        ],
+      },
+      {
+        name: "Canada",
+        hits_count: 1,
+        cities: [
+          {
+            name: "unidentified",
+            hits_count: 1,
+          },
+        ],
+      },
+      {
+        name: "China",
+        hits_count: 1,
+        cities: [
+          {
+            name: "unidentified",
+            hits_count: 1,
+          },
+        ],
+      },
+      {
+        name: "Indonesia",
+        hits_count: 1,
+        cities: [
+          {
+            name: "unidentified",
+            hits_count: 1,
+          },
+        ],
+      },
+      {
+        name: "Singapore",
+        hits_count: 1,
+        cities: [
+          {
+            name: "unidentified",
+            hits_count: 1,
+          },
+        ],
+      },
+      {
+        name: "Taiwan",
+        hits_count: 1,
+        cities: [
+          {
+            name: "unidentified",
+            hits_count: 1,
+          },
+        ],
+      },
+      {
+        name: "France",
+        hits_count: 1,
+        cities: [
+          {
+            name: "Bourg-la-Reine",
+            hits_count: 1,
+          },
+        ],
+      },
+      {
+        name: "Switzerland",
+        hits_count: 1,
+        cities: [
+          {
+            name: "unidentified",
+            hits_count: 1,
+          },
+        ],
+      },
+      {
+        name: "unidentified",
+        hits_count: 2,
+        cities: [
+          {
+            name: "unidentified",
+            hits_count: 2,
+          },
+        ],
+      },
+      {
+        name: "Brazil",
+        hits_count: 1,
+        cities: [
+          {
+            name: "unidentified",
+            hits_count: 1,
+          },
+        ],
+      },
+    ],
+  };
+};
+
+export const deviceMetricsStats = (props: {
+  userId: string;
+}): DeviceMetricsApiResponse => {
+  return {
+    httpCode: 200,
+    os_browsers: [
+      {
+        os_name: "Windows",
+        hits_count: 12,
+        browsers: [
+          {
+            name: "IE",
+            hits_count: 5,
+          },
+          {
+            name: "Opera",
+            hits_count: 3,
+          },
+          {
+            name: "Chrome",
+            hits_count: 2,
+          },
+          {
+            name: "Safari",
+            hits_count: 2,
+          },
+        ],
+      },
+      {
+        os_name: "Linux",
+        hits_count: 6,
+        browsers: [
+          {
+            name: "Opera",
+            hits_count: 5,
+          },
+          {
+            name: "Chrome",
+            hits_count: 1,
+          },
+        ],
+      },
+      {
+        os_name: "Mac OS",
+        hits_count: 4,
+        browsers: [
+          {
+            name: "Opera",
+            hits_count: 2,
+          },
+          {
+            name: "Firefox",
+            hits_count: 1,
+          },
+          {
+            name: "Safari",
+            hits_count: 1,
+          },
+        ],
+      },
+    ],
+    browsers: [
+      {
+        name: "IE",
+        hits_count: 5,
+      },
+      {
+        name: "Opera",
+        hits_count: 10,
+      },
+      {
+        name: "Chrome",
+        hits_count: 3,
+      },
+      {
+        name: "Safari",
+        hits_count: 3,
+      },
+      {
+        name: "Firefox",
+        hits_count: 1,
+      },
+    ],
+    oss: [
+      {
+        name: "Windows",
+        hits_count: 12,
+      },
+      {
+        name: "Linux",
+        hits_count: 6,
+      },
+      {
+        name: "Mac OS",
+        hits_count: 4,
+      },
+    ],
+  };
+};
+
+export const popularURLStats = (props: {
+  userId: string;
+}): PopularURLApiResponse => {
+  return {
+    httpCode: 200,
+    popular_urls: [
+      {
+        short_url: "8nJ2GDC",
+        hits_count: 35,
+      },
+      {
+        short_url: "u2rGaOw",
+        hits_count: 33,
+      },
+      {
+        short_url: "7FO5bt8",
+        hits_count: 32,
+      },
+      {
+        short_url: "u6yV36W",
+        hits_count: 32,
+      },
+      {
+        short_url: "Rmm6gGY",
+        hits_count: 30,
       },
     ],
   };

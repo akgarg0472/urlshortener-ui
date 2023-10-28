@@ -1,7 +1,11 @@
 import React from "react";
 import "./IconStats.css";
 
-const IconStats = (props: { icon: string; label: string; value: string }) => {
+const IconStats = (props: {
+  icon: string;
+  label: string;
+  value: string | number;
+}) => {
   return (
     <React.Fragment>
       <div className="icon__stats__container">

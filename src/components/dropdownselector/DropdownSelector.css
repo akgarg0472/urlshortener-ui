@@ -6,6 +6,15 @@
   transition: all 250ms ease-in-out;
 }
 
+.dropdown__container__one__liner {
+  flex-direction: row;
+  align-items: center;
+}
+.dropdown__container__one__liner .dropdown__select {
+  margin: 0 !important;
+  margin-left: 0.8rem !important;
+}
+
 .dropdown__container .dropdown__label {
   font-size: 1.4rem;
   color: #333333;
@@ -30,4 +39,13 @@
   font-family: "Mulish", sans-serif;
   font-size: 1.6rem;
   outline: none;
+}
+.dropdown__container .dropdown__container__low {
+  height: 3.2rem;
+}
+.dropdown__container .dropdown__container__medium {
+  height: 4.8rem;
+}
+.dropdown__container .dropdown__container__high {
+  height: 5.6rem;
 }

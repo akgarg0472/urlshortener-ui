@@ -1,10 +1,9 @@
 import React from "react";
-import DropdownSelector, {
-  DropdownType,
-} from "../../../components/dropdownselector/DropdownSelector";
+import DropdownSelector from "../../../components/dropdownselector/DropdownSelector";
 import InputField, {
   InputFieldType,
 } from "../../../components/inputfield/InputField";
+import { signupCountryDropdown } from "../../../utils/dropdownutils";
 
 interface SignupPage2Props {
   onBusinessDetailsChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -79,13 +78,13 @@ const SignupPage2 = (props: SignupPage2Props) => {
 
       <DropdownSelector
         classes="signup__input__field"
-        type={DropdownType.COUNTRY}
         id="signup__country"
         onChange={props.onCountryChange}
         key="signup__country"
         title="Country"
         value={props.country}
         isRequired={true}
+        dropdownValues={signupCountryDropdown}
       />
     </React.Fragment>
   );

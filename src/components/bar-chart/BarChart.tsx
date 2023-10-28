@@ -1,20 +1,39 @@
-import { ArcElement, Chart as ChartJS, Legend, Tooltip } from "chart.js";
+import {
+  BarElement,
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LinearScale,
+  Title,
+  Tooltip,
+} from "chart.js";
 import React, { useEffect, useState } from "react";
-import { Pie } from "react-chartjs-2";
-import { Continent, Country } from "../../api/apiModals";
+import { Bar } from "react-chartjs-2";
 import { generateChartBgAndHoverColorArrays } from "../../utils/colorutils";
-import "./PieChart.css";
+import "./BarChart.css";
 
-interface PieChartProps {
-  data: Country[] | Continent[] | any[];
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
+interface BarChartProps {
+  data: BarChartData[];
   datasetLabel: string;
-  legendPosition: "top" | "bottom" | "left" | "right";
+  legendPosition?: "top" | "bottom" | "left" | "right";
   borderWidth?: number;
 }
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+interface BarChartData {
+  label: string;
+  value: string | number;
+}
 
-const PieChart = (props: PieChartProps) => {
+const BarChart = (props: BarChartProps) => {
   const [bgColors, setBgColors] = useState([] as string[]);
   const [hoverBgColors, setHoverBgColors] = useState([] as string[]);
 
@@ -27,14 +46,15 @@ const PieChart = (props: PieChartProps) => {
 
   return (
     <React.Fragment>
-      <div className="pie__chart__container">
-        <Pie
+      <div className="bar__chart__container">
+        <Bar
           id={`id__${props.datasetLabel}`}
           data={{
-            labels: props.data.map((item) => item.name),
+            labels: props.data.map((item) => item.label),
             datasets: [
               {
-                data: props.data.map((item) => item.hits_count),
+                label: props.datasetLabel,
+                data: props.data.map((item) => item.value),
                 backgroundColor: bgColors,
                 hoverBackgroundColor: hoverBgColors,
                 borderWidth: props.borderWidth ? props.borderWidth : 2,
@@ -57,4 +77,4 @@ const PieChart = (props: PieChartProps) => {
   );
 };
 
-export default PieChart;
+export default BarChart;

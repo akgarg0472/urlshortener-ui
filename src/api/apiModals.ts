@@ -11,9 +11,16 @@ export interface DashboardApiStat {
 export interface Continent {
   name: string;
   hits_count: number;
+  countries?: Country[];
 }
 
 export interface Country {
+  name: string;
+  hits_count: number;
+  cities?: City[];
+}
+
+export interface City {
   name: string;
   hits_count: number;
 }
@@ -44,6 +51,27 @@ export interface LatestHit {
   };
 }
 
+export interface OSBrowser {
+  os_name: string;
+  hits_count: number;
+  browsers: Browser[];
+}
+
+export interface Browser {
+  name: string;
+  hits_count: number;
+}
+
+export interface OS {
+  name: string;
+  hits_count: number;
+}
+
+export interface PopularURL {
+  short_url: string;
+  hits_count: number;
+}
+
 export interface DashboardApiResponse extends ApiResponse {
   lifetime_stats: DashboardApiStat[];
   current_day_stats: DashboardApiStat[];
@@ -62,4 +90,19 @@ export interface UrlMetricApiResponse extends ApiResponse {
   total_hits: number;
   avg_redirect_duration: number;
   latest_hits: LatestHit[];
+}
+
+export interface GeographicalApiResponse extends ApiResponse {
+  countries: Country[];
+  continents: Continent[];
+}
+
+export interface DeviceMetricsApiResponse extends ApiResponse {
+  os_browsers: OSBrowser[];
+  browsers: Browser[];
+  oss: OS[];
+}
+
+export interface PopularURLApiResponse extends ApiResponse {
+  popular_urls: PopularURL[];
 }

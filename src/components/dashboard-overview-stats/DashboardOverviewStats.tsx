@@ -13,7 +13,7 @@ interface DashboardOverviewStatsProps {
 interface Stat {
   icon: string;
   label: string;
-  value: string;
+  value: string | number;
 }
 
 const DashboardOverviewStats = (props: DashboardOverviewStatsProps) => {
@@ -22,7 +22,7 @@ const DashboardOverviewStats = (props: DashboardOverviewStatsProps) => {
       <div className="dashboard__stats__overview">
         <div className="heading__txt">{props.headingText}</div>
 
-        {props.data.length == 0 ? (
+        {props.data.length === 0 ? (
           <InternalLoader size={LoaderSize.SMALL} />
         ) : (
           <div className="stats__container">

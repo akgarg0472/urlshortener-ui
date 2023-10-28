@@ -100,3 +100,48 @@
   cursor: pointer;
   background: transparent;
 }
+.dashboard__page__content .geographical__stats__container,
+.dashboard__page__content .device__metrics__stats__container {
+  background-color: #ffffff;
+  margin-top: 3.2rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.6rem;
+}
+.dashboard__page__content .geographical__stats__container .dropdown__selector__container,
+.dashboard__page__content .device__metrics__stats__container .dropdown__selector__container {
+  width: 40%;
+  display: flex;
+  padding: 3.2rem;
+}
+.dashboard__page__content .geographical__stats__container .stats__data__container,
+.dashboard__page__content .device__metrics__stats__container .stats__data__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1.6rem;
+}
+.dashboard__page__content .geographical__stats__container .stats__data__container .continent__container,
+.dashboard__page__content .geographical__stats__container .stats__data__container .country__container,
+.dashboard__page__content .geographical__stats__container .stats__data__container .os__container,
+.dashboard__page__content .geographical__stats__container .stats__data__container .browser__stats__container,
+.dashboard__page__content .device__metrics__stats__container .stats__data__container .continent__container,
+.dashboard__page__content .device__metrics__stats__container .stats__data__container .country__container,
+.dashboard__page__content .device__metrics__stats__container .stats__data__container .os__container,
+.dashboard__page__content .device__metrics__stats__container .stats__data__container .browser__stats__container {
+  width: 45%;
+}
+.dashboard__page__content .popular__urls__container {
+  background-color: #ffffff;
+  margin-top: 3.2rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.6rem;
+}
+.dashboard__page__content .popular__urls__container .popular__urls__stats__container {
+  display: flex;
+  padding: 3.2rem;
+  align-items: center;
+  justify-content: center;
+}

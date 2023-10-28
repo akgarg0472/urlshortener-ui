@@ -36,7 +36,7 @@ const ShortUrlMetricModal = (props: ShortUrlMetricModalProps) => {
         limit: 10,
       });
 
-      if (apiResponse.httpCode != 200) {
+      if (apiResponse.httpCode !== 200) {
         // do error handling
       }
 

@@ -1,4 +1,4 @@
-export const generateBarChartColorArrays = (
+export const generateChartBgAndHoverColorArrays = (
   numberOfColors: number
 ): {
   backgroundColor: string[];
@@ -10,7 +10,7 @@ export const generateBarChartColorArrays = (
   for (let i = 0; i < numberOfColors; i++) {
     const hue = Math.floor(Math.random() * 360);
 
-    const backgroundRGB = `hsla(${hue}, 70%, 60%, 0.6)`;
+    const backgroundRGB = `hsla(${hue}, 70%, 60%, 0.667)`;
     const hoverRGB = `hsla(${hue}, 70%, 60%, 1)`;
 
     backgroundColor.push(backgroundRGB);
@@ -18,4 +18,26 @@ export const generateBarChartColorArrays = (
   }
 
   return { backgroundColor, hoverBackgroundColor };
+};
+
+export const generateChartBgAndBorderColorArrays = (
+  numberOfColors: number
+): {
+  backgroundColor: string[];
+  borderColor: string[];
+} => {
+  const backgroundColor: string[] = [];
+  const borderColor: string[] = [];
+
+  for (let i = 0; i < numberOfColors; i++) {
+    const hue = Math.floor(Math.random() * 360);
+
+    const backgroundRGB = `hsla(${hue}, 70%, 60%, 0.667)`;
+    const borderRGB = `hsla(${hue}, 70%, 60%, 1)`;
+
+    backgroundColor.push(backgroundRGB);
+    borderColor.push(borderRGB);
+  }
+
+  return { backgroundColor, borderColor };
 };
