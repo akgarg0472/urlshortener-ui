@@ -45,7 +45,12 @@ $bottom__btns__img__container__height: 4rem;
     cursor: pointer;
     margin-left: 4%;
     margin-top: 3.2rem;
-    background: #4731d4;
+    background: rgba(71, 49, 212, 0.9);
+  }
+
+  .create__new__link__btn:hover {
+    background: rgba(71, 49, 212, 1);
+    font-weight: 700;
   }
 }
 

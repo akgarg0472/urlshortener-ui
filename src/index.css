@@ -12,3 +12,7 @@
 html {
   font-size: 62.5%;
 }
+
+.uss__button__disabled {
+  cursor: not-allowed !important;
+}

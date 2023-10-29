@@ -13,25 +13,29 @@
   border-top: 2px solid #5d44f8;
   border-radius: 50%;
 }
-.internal__loader__container .internal__loader__small {
+.internal__loader__container .internal__loader__size__extra__small {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+.internal__loader__container .internal__loader__size__small {
   width: 3rem;
   height: 3rem;
 }
-.internal__loader__container .internal__loader__medium {
+.internal__loader__container .internal__loader__size__medium {
   width: 4.5rem;
   height: 4.5rem;
 }
-.internal__loader__container .internal__loader__large {
+.internal__loader__container .internal__loader__size__large {
   width: 9rem;
   height: 9rem;
 }
-.internal__loader__container .internal__loader__fast {
+.internal__loader__container .internal__loader__speed__fast {
   animation: internal_loader__rotation 250ms linear infinite;
 }
-.internal__loader__container .internal__loader__medium {
+.internal__loader__container .internal__loader__speed__medium {
   animation: internal_loader__rotation 500ms linear infinite;
 }
-.internal__loader__container .internal__loader__slow {
+.internal__loader__container .internal__loader__speed__slow {
   animation: internal_loader__rotation 1000ms linear infinite;
 }
 

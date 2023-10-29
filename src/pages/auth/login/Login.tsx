@@ -79,7 +79,7 @@ const Login = () => {
 
             <div className="login__form__btns__container">
               <RegularButton
-                text="Login"
+                content="Login"
                 className="login__login__btn"
                 onClick={(
                   event: React.MouseEvent<HTMLButtonElement, MouseEvent>

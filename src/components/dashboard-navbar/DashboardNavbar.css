@@ -38,7 +38,11 @@
   cursor: pointer;
   margin-left: 4%;
   margin-top: 3.2rem;
-  background: #4731d4;
+  background: rgba(71, 49, 212, 0.9);
+}
+.dashboard__navbar .create__new__link__btn:hover {
+  background: rgb(71, 49, 212);
+  font-weight: 700;
 }
 
 .dashboard__navbar .dashboard__navbar__links__container {

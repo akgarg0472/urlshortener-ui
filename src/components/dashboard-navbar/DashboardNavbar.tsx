@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { dashboardNavbarLinks } from "../../utils/data";
 import LinkButton from "../button/LinkButton";
 import RegularButton from "../button/RegularButton";
+import CreateUrlModal from "../create-url-modal/CreateUrlModal";
 import Modal, { ModalIcon } from "../modal/Modal";
 import "./DashboardNavbar.css";
 import DashboardLink from "./dashboard-link/DashboardLink";
@@ -13,7 +14,7 @@ const DashboardNavbar = () => {
   const navigation = useNavigate();
   const { logout } = useAuth();
 
-  const handleCreateNewLinkButtonClick = () => {};
+  const [showCreateNewLinkModal, setShowCreateNewLinkModal] = useState(false);
 
   const handleLogout = () => {
     logout();
@@ -35,6 +36,10 @@ const DashboardNavbar = () => {
 
   return (
     <React.Fragment>
+      {showCreateNewLinkModal ? (
+        <CreateUrlModal onClose={() => setShowCreateNewLinkModal(false)} />
+      ) : null}
+
       <div className="dashboard__navbar">
         <div
           style={{
@@ -49,8 +54,8 @@ const DashboardNavbar = () => {
 
           <RegularButton
             className="create__new__link__btn"
-            text="Create New Link"
-            onClick={handleCreateNewLinkButtonClick}
+            content="Create New Link"
+            onClick={() => setShowCreateNewLinkModal(true)}
           />
 
           <div className="dashboard__navbar__links__container">

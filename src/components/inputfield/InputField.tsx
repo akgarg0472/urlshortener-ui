@@ -6,7 +6,7 @@ interface InputFieldProps {
   text: string;
   type: InputFieldType;
   placeholder: string;
-  className: string;
+  className?: string;
   id: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   style?: React.CSSProperties;
@@ -35,11 +35,13 @@ const InputField = (props: InputFieldProps) => {
   return (
     <React.Fragment>
       <div
-        className={`input__field__container ${props.className}`}
+        className={`input__field__container ${
+          props.className ? props.className : ""
+        }`}
         style={props.style}
       >
         <label className="input__field__label" htmlFor={props.id}>
-          {props.title}{" "}
+          {props.title}
           {props.isRequired ? (
             <span
               style={{

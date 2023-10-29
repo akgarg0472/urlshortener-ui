@@ -113,7 +113,7 @@ const DashboardLinks = () => {
             }}
           >
             <RegularButton
-              text="Load More"
+              content="Load More"
               key="my__links__load__more__btn"
               onClick={() => {
                 loadMoreUrls();

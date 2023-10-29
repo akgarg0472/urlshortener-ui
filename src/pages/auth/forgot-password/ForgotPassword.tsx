@@ -58,7 +58,7 @@ const ForgotPassword = () => {
 
             <div className="forgot__password__form__btns__container">
               <RegularButton
-                text="Reset Password"
+                content="Reset Password"
                 className="forgot__password__btn"
                 onClick={(
                   event: React.MouseEvent<HTMLButtonElement, MouseEvent>

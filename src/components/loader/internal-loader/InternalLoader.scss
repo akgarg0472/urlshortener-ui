@@ -19,30 +19,35 @@ $border__transparent: 2px solid transparent;
     border-radius: 50%;
   }
 
-  .internal__loader__small {
+  .internal__loader__size__extra__small {
+    width: $internal__loader__width/4;
+    height: $internal__loader__height/4;
+  }
+
+  .internal__loader__size__small {
     width: $internal__loader__width/3;
     height: $internal__loader__height/3;
   }
 
-  .internal__loader__medium {
+  .internal__loader__size__medium {
     width: $internal__loader__width/2;
     height: $internal__loader__height/2;
   }
 
-  .internal__loader__large {
+  .internal__loader__size__large {
     width: $internal__loader__width;
     height: $internal__loader__height;
   }
 
-  .internal__loader__fast {
+  .internal__loader__speed__fast {
     animation: internal_loader__rotation 250ms linear infinite;
   }
 
-  .internal__loader__medium {
+  .internal__loader__speed__medium {
     animation: internal_loader__rotation 500ms linear infinite;
   }
 
-  .internal__loader__slow {
+  .internal__loader__speed__slow {
     animation: internal_loader__rotation 1000ms linear infinite;
   }
 }

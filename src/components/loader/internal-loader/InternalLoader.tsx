@@ -7,6 +7,7 @@ interface InternalLoaderProps {
 }
 
 export enum LoaderSize {
+  EXTRA_SMALL = 0,
   SMALL = 1,
   MEDIUM = 2,
   LARGE = 3,
@@ -20,28 +21,30 @@ export enum LoaderSpeed {
 
 const getLoaderSize = (size?: LoaderSize): string => {
   switch (size) {
+    case LoaderSize.EXTRA_SMALL:
+      return "internal__loader__size__extra__small";
     case LoaderSize.SMALL:
-      return "internal__loader__small";
+      return "internal__loader__size__small";
     case LoaderSize.MEDIUM:
-      return "internal__loader__medium";
+      return "internal__loader__size__medium";
     case LoaderSize.LARGE:
-      return "internal__loader__large";
+      return "internal__loader__size__large";
   }
 
-  return "internal__loader__medium";
+  return "internal__loader__size__medium";
 };
 
 const getLoaderSpeed = (speed?: LoaderSpeed): string => {
   switch (speed) {
     case LoaderSpeed.FAST:
-      return "internal__loader__fast";
+      return "internal__loader__speed__fast";
     case LoaderSpeed.MEDIUM:
-      return "internal__loader__medium";
+      return "internal__loader__speed__medium";
     case LoaderSpeed.SLOW:
-      return "internal__loader__slow";
+      return "internal__loader__speed__slow";
   }
 
-  return "internal__loader__medium";
+  return "internal__loader__speed__medium";
 };
 
 const InternalLoader = (props: InternalLoaderProps) => {

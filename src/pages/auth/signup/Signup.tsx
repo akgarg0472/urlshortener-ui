@@ -198,13 +198,13 @@ const Signup = () => {
           <div className="signup__form__btns__container">
             {currentStep !== 1 ? (
               <RegularButton
-                text="Previous"
+                content="Previous"
                 className="signup__prev__btn"
                 onClick={handlePreviousButtonClick}
               />
             ) : (
               <RegularButton
-                text="Previous"
+                content="Previous"
                 className="signup__prev__btn"
                 onClick={handlePreviousButtonClick}
                 isHidden={true}
@@ -213,7 +213,7 @@ const Signup = () => {
 
             {currentStep !== SIGNUP_FORM_STEP_TITLES.length ? (
               <RegularButton
-                text="Next"
+                content="Next"
                 className="signup__next__btn"
                 onClick={handleNextButtonClick}
               />
@@ -221,7 +221,7 @@ const Signup = () => {
 
             {currentStep === SIGNUP_FORM_STEP_TITLES.length ? (
               <RegularButton
-                text="Signup"
+                content="Signup"
                 className="signup__signup__btn"
                 onClick={handleSignupButtonClick}
               />
