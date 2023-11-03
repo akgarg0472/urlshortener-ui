@@ -20,11 +20,13 @@ const HomeNavbar = () => {
             text="Signup"
             className="signup__button"
             onClickLink="/signup"
+            referrerPolicy="no-referrer"
           />
           <LinkButton
             text="Login"
             className="login__button"
             onClickLink="/login"
+            referrerPolicy="no-referrer"
           />
         </div>
       </div>

@@ -32,6 +32,7 @@ const DashboardLink = (props: DashboardLinkProps) => {
           }`}
           text={props.text}
           onClickLink={props.path}
+          referrerPolicy="no-referrer"
         />
       </div>
     </React.Fragment>

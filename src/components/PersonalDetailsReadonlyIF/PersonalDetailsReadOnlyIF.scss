@@ -1,0 +1,31 @@
+.personal__details__readonly__input__field__container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-family: "Mulish", sans-serif;
+  height: 8rem;
+  margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
+
+  .input__field__label {
+    display: flex;
+    align-items: center;
+    height: 50%;
+    font-size: 1.3rem;
+    color: rgba(117, 117, 117, 0.9);
+    font-weight: 600;
+  }
+
+  .input__field {
+    display: flex;
+    align-items: center;
+    border-radius: 0.6rem;
+    border: 2px solid #00000015;
+    height: 50%;
+    font-family: "Mulish", sans-serif;
+    font-weight: 600;
+    font-size: 1.3rem;
+    color: #333333;
+    padding-left: 0.8rem;
+  }
+}

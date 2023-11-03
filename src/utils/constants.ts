@@ -23,6 +23,15 @@ export const DASH_STATISTICS_SUBHEAD: string =
   "A comprehensive statistical dataset featuring device metrics, including OS and browser details, with an analysis of hits per OS-browser combination. It also offers geographical data with total hits by continent, country, and city, alongside a ranking of the top 'n' most popular short URLs based on their hit counts";
 export const DASH_PROFILE_HEAD: string = "🔗 Profile";
 export const DASH_PROFILE_SUBHEAD: string =
-  "An informative dataset featuring your profile information";
+  "The profile page is your virtual representation, a place where you can share information about yourself and your activities on the platform. It typically includes your username, profile picture, a bio or description.";
 export const DASH_OS_HEAD: string = "OS Statistics";
 export const DASH_BROWSER_HEAD: string = "Browser Statistics";
+
+export const DASH_PROFILE_DEFAULT_USERNAME: string = "John Doe";
+export const DASH_PROFILE_DEFAULT_BIO: string =
+  "Experienced Software Engg with a passion for innovation & problem-solving";
+export const DASH_PROFILE_DEFAULT_EMAIL: string = "john.doe@gmail.com";
+export const DASH_PROFILE_DEFAULT_LOCATION: string = "New York, United States";
+export const DASH_PROFILE_DEFAULT_GITHUB: string = "john.doe";
+export const DASH_PROFILE_DEFAULT_INSTAGRAM: string = "john.doe";
+export const DASH_PROFILE_DEFAULT_TWITTER: string = "doe.john1";

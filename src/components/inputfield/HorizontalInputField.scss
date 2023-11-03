@@ -1,0 +1,35 @@
+.horizontal__input__field__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Mulish", sans-serif;
+  margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.horizontal__input__field__container .input__field__label {
+  font-size: 1.4rem;
+  font-weight: 600;
+  width: 33%;
+  text-align: right;
+  padding-right: 8px;
+  color: rgba(117, 117, 117, 0.9);
+}
+
+.horizontal__input__field__container .input__field {
+  width: 67%;
+  border-radius: 0.6rem;
+  border: 2px solid #00000015;
+  padding: 0 0.8rem;
+  height: 4rem;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  outline: none;
+  transition: all 250ms ease-in-out;
+  color: #333333;
+}
+
+.horizontal__input__field__container .input__field:focus {
+  border: 2px solid #00000040;
+}

@@ -22,3 +22,11 @@
 .kv__container .kv__value {
   color: #333333;
 }
+.kv__container .kv__icon {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+.kv__container .kv__icon img {
+  width: 100%;
+  height: 100%;
+}

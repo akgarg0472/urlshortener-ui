@@ -11,7 +11,7 @@ $summ__url__metadata__container__width: 26rem;
   .title {
     height: $summ__url__metadata__container__height/2;
     display: flex;
-    align-items: end;
+    align-items: flex-end;
     font-family: "Mulish", sans-serif;
     font-weight: 700;
     color: #757575;
@@ -21,7 +21,7 @@ $summ__url__metadata__container__width: 26rem;
   .value {
     height: $summ__url__metadata__container__height/2;
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;

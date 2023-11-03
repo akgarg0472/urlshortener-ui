@@ -17,6 +17,7 @@ const HomeHero = () => {
             className="get__started__btn"
             onClickLink={LOGIN_URL}
             text="Get Started"
+            referrerPolicy="no-referrer"
           />
         </div>
         <div className="right__image__section"></div>

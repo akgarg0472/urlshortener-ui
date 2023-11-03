@@ -97,6 +97,7 @@ const Login = () => {
               text="Forgot Password?"
               onClickLink="/forgot-password"
               className="forgot__password__link"
+              referrerPolicy="no-referrer"
             />
             <br />
 
@@ -106,6 +107,7 @@ const Login = () => {
                 text="Signup"
                 onClickLink="/signup"
                 className="signup__link"
+                referrerPolicy="no-referrer"
               />
             </div>
           </div>

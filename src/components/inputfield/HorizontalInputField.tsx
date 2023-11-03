@@ -1,10 +1,10 @@
 import React from "react";
-import "./InputField.css";
+import "./HorizontalInputField.css";
 
 interface InputFieldProps {
   title: string;
   text: string;
-  type: InputFieldType;
+  type: "text" | "password" | "email";
   placeholder?: string;
   className?: string;
   id: string;
@@ -14,28 +14,11 @@ interface InputFieldProps {
   onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
-export enum InputFieldType {
-  TEXT,
-  PASSWORD,
-  EMAIL,
-}
-
-const InputField = (props: InputFieldProps) => {
-  const getInputType = (type: InputFieldType) => {
-    switch (type) {
-      case InputFieldType.TEXT:
-        return "text";
-      case InputFieldType.PASSWORD:
-        return "password";
-      case InputFieldType.EMAIL:
-        return "email";
-    }
-  };
-
+const HorizontalInputField = (props: InputFieldProps) => {
   return (
     <React.Fragment>
       <div
-        className={`input__field__container ${
+        className={`horizontal__input__field__container ${
           props.className ? props.className : ""
         }`}
         style={props.style}
@@ -58,7 +41,7 @@ const InputField = (props: InputFieldProps) => {
         <input
           className={`input__field`}
           id={props.id}
-          type={getInputType(props.type)}
+          type={props.type}
           onChange={props.onChange}
           placeholder={props.placeholder}
           value={props.text}
@@ -73,4 +56,4 @@ const InputField = (props: InputFieldProps) => {
   );
 };
 
-export default InputField;
+export default HorizontalInputField;

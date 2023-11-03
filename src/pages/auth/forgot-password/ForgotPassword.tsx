@@ -78,6 +78,7 @@ const ForgotPassword = () => {
                 text="Signup"
                 onClickLink="/signup"
                 className="signup__link"
+                referrerPolicy="no-referrer"
               />
             </div>
           </div>
