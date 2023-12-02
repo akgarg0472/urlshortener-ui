@@ -12,6 +12,7 @@ import DailyHitsLineChart from "../../components/daily-hits-line-chart/DailyHits
 import DashboardNavbar from "../../components/dashboard-navbar/DashboardNavbar";
 import DashboardOverviewStats from "../../components/dashboard-overview-stats/DashboardOverviewStats";
 import DashboardHeadSubHead from "../../components/dashboardheadsubhead/DashboardHeadSubHead";
+import InvisibleContainer from "../../components/invisible-container/InvisibleContainer";
 import InternalLoader from "../../components/loader/internal-loader/InternalLoader";
 import PieChart from "../../components/pie-chart/PieChart";
 import useAuth from "../../hooks/useAuth";
@@ -82,14 +83,16 @@ const Dashboard = () => {
         <DashboardNavbar />
 
         <div className="dashboard__page__content">
-          <div className="main__dashboard__heading">
-            <div className="welcome__text">Welcome,</div>
-            <div className="name__heading">{getName()}</div>
-          </div>
-
           <div className="heading__time__section">
             <div className="heading">Dashboard</div>
             <div className="timestamp">{getCurrentDateTime()}</div>
+            <div className="description">
+              Track, manage, and analyze your shortened links effortlessly.
+              Real-time click insights, customizable short URLs, and
+              user-friendly interface make link management a breeze. Elevate
+              your link tracking experience with our intuitive dashboard – where
+              efficiency meets ease.
+            </div>
           </div>
 
           <div className="stats__overview__container">
@@ -107,6 +110,8 @@ const Dashboard = () => {
               })}
             />
           </div>
+
+          <InvisibleContainer />
 
           <div className="prev__seven__days__hits__container">
             <DashboardHeadSubHead

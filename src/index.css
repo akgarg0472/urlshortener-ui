@@ -9,6 +9,28 @@
   transition: all 0.1s linear;
 }
 
+:root {
+  /* Dashboard variables */
+  --dashboard-bg: #fff0;
+  --dashboard-navbar-heading-logo-color: #222222;
+  --dashboard-navbar-bg: #ffffff00;
+  --dashboard-navbar-right-border-color: rgb(218, 220, 224);
+  --dashboard-navbar-link-txt: #333333;
+  --dashboard-navbar-link-txt-active: #f0f0f0;
+  --dashboard-navbar-link-active-bg: #222222;
+  --dashboard-navbar-create-link-bg: none;
+  --dashboard-navbar-create-link-bg-hover: #222222;
+  --dashboard-navbar-create-link-border: 1px solid #22222250;
+  --dashboard-navbar-create-link-border-hover: none;
+  --dashboard-navbar-create-link-text: #222222;
+  --dashboard-navbar-create-link-text-hover: #ffffff;
+  --dashboard-navbar-link-img-color: #222222;
+  --dashboard-navbar-link-active-img-color: #ffffff;
+  --dashboard-navbar-bottom-btns-bg: rgba(33, 33, 33, 0.925);
+  --dashboard-navbar-bottom-btns-hover-bg: rgba(33, 33, 33, 1);
+  --dashboard-content-box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.05);
+}
+
 html {
   font-size: 62.5%;
   scroll-behavior: smooth;

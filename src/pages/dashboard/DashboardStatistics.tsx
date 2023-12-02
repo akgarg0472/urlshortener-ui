@@ -23,6 +23,7 @@ import DoughnutChart from "../../components/doughnut-chart/DoughnutChart";
 import DropdownSelector, {
   DropdownSelectorHeight,
 } from "../../components/dropdownselector/DropdownSelector";
+import InvisibleContainer from "../../components/invisible-container/InvisibleContainer";
 import InternalLoader from "../../components/loader/internal-loader/InternalLoader";
 import NoDataAvailable from "../../components/no-data-available/NoDataAvailable";
 import PieChart from "../../components/pie-chart/PieChart";
@@ -171,13 +172,13 @@ const DashboardStatistics = () => {
 
           <div className="popular__urls__container">
             <DashboardStatsHeading heading="Popular URLs" />
-
             {loading ? <InternalLoader /> : renderPopularURLs()}
           </div>
 
+          <InvisibleContainer />
+
           <div className="geographical__stats__container">
             <DashboardStatsHeading heading="Geographical Stats" />
-
             <div className="dropdown__selector__container">
               <DropdownSelector
                 dropdownValues={dashboardChartTypeDropdown}
@@ -190,7 +191,6 @@ const DashboardStatistics = () => {
                 isOneLiner={true}
               />
             </div>
-
             <div className="stats__data__container">
               <div className="continent__container">
                 <DashboardHeadSubHead
@@ -229,6 +229,8 @@ const DashboardStatistics = () => {
               </div>
             </div>
           </div>
+
+          <InvisibleContainer />
 
           <div className="device__metrics__stats__container">
             <DashboardStatsHeading heading="OS & Browser Stats" />

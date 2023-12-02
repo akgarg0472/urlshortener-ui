@@ -5,6 +5,9 @@ export const DASHBOARD_URL: string = "/dashboard";
 export const DASHBOARD_LINKS_URL: string = "/dashboard/links";
 export const DASHBOARD_STATISTICS_URL: string = "/dashboard/statistics";
 export const DASHBOARD_PROFILE_URL: string = "/dashboard/profile";
+
+export const MAKE_PAYMENT_URL = "/make-payment";
+
 export const DASH_PREV_SEVEN_DAYS_HEAD: string = "Previous 7 Days Hits";
 export const DASH_PREV_SEVEN_DAYS_SUBHEAD: string =
   "A visual snapshot of the total hits on our URLs over the past 7 days, helping you track recent usage pattern and engagement";

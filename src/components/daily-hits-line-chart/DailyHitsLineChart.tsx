@@ -59,6 +59,10 @@ const DailyHitsLineChart = (props: DailyHitsLineChartProps) => {
               },
             ],
           }}
+          options={{
+            maintainAspectRatio: true,
+            responsive: true,
+          }}
         />
       </div>
     </React.Fragment>

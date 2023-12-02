@@ -11,6 +11,7 @@ $profile__picture__size: 10rem;
   flex-direction: column;
   padding: 2.4rem 1.6rem;
   border-radius: 0.6rem;
+  box-shadow: var(--dashboard-content-box-shadow);
 
   .profile__picture__container {
     width: $profile__picture__size;

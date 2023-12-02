@@ -19,10 +19,12 @@ const DashboardLink = (props: DashboardLinkProps) => {
         }`}
       >
         <div className="dashboard__link__img__container">
-          <img
+          <span
             className="dashboard__link__img"
-            src={props.icon}
-            alt={`${props.text}__icon`}
+            style={{
+              mask: `url(${props.icon}) center center / contain no-repeat`,
+              WebkitMask: `url(${props.icon}) center center / contain no-repeat`,
+            }}
           />
         </div>
 

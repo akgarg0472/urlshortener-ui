@@ -6,18 +6,19 @@ $bottom__btns__img__container__height: 4rem;
 .dashboard__navbar {
   width: $dashboard__navbar__width;
   height: 100%;
-  background: #5d44f8;
+  background: var(--dashboard-navbar-bg, #5d44f8);
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
+  border-right: 1px solid var(--dashboard-navbar-right-border-color);
 
   .heading__logo {
     height: 5.6rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ffffff;
+    color: var(--dashboard-navbar-heading-logo-color);
     font-family: "Mulish", sans-serif;
     font-weight: 700;
     font-size: 1.6rem;
@@ -39,18 +40,20 @@ $bottom__btns__img__container__height: 4rem;
     margin-bottom: 1.2rem;
     border: none;
     outline: none;
-    color: #ffffff;
+    color: var(--dashboard-navbar-create-link-text);
     font-family: "Mulish", sans-serif;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     margin-left: 4%;
     margin-top: 3.2rem;
-    background: rgba(71, 49, 212, 0.9);
+    background: var(--dashboard-navbar-create-link-bg);
+    border: var(--dashboard-navbar-create-link-border);
   }
 
   .create__new__link__btn:hover {
-    background: rgba(71, 49, 212, 1);
-    font-weight: 700;
+    background: var(--dashboard-navbar-create-link-bg-hover);
+    color: var(--dashboard-navbar-create-link-text-hover);
+    border: var(--dashboard-navbar-create-link-border-hover);
   }
 }
 
@@ -75,6 +78,7 @@ $bottom__btns__img__container__height: 4rem;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    background: var(--dashboard-navbar-bottom-btns-bg);
 
     img {
       width: $bottom__btns__img__container__height/2;
@@ -83,6 +87,6 @@ $bottom__btns__img__container__height: 4rem;
   }
 
   .btn__img__container:hover {
-    background: rgba(71, 49, 212, 0.66);
+    background: var(--dashboard-navbar-bottom-btns-hover-bg);
   }
 }

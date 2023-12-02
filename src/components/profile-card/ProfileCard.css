@@ -9,6 +9,7 @@
   flex-direction: column;
   padding: 2.4rem 1.6rem;
   border-radius: 0.6rem;
+  box-shadow: var(--dashboard-content-box-shadow);
 }
 .profile__card__container .profile__picture__container {
   width: 10rem;

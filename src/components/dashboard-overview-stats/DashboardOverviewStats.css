@@ -1,7 +1,7 @@
 .dashboard__stats__overview {
   width: 45%;
   background: #ffffff;
-  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--dashboard-content-box-shadow);
   border-radius: 0.6rem;
   padding: 1.6rem;
 }

@@ -42,8 +42,8 @@ const PieChart = (props: PieChartProps) => {
             ],
           }}
           options={{
-            responsive: true,
-            maintainAspectRatio: true,
+            // responsive: true,
+            // maintainAspectRatio: true,
             plugins: {
               legend: {
                 display: true,

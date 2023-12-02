@@ -72,6 +72,14 @@ export interface PopularURL {
   hits_count: number;
 }
 
+export enum PaymentStatus {
+  SUCCESS = "success",
+  FAILED = "failed",
+  PENDING = "pending",
+  PROCESSING = "processing",
+  CONFIRMATION_REQUIRED = "confirmation_required",
+}
+
 export interface DashboardApiResponse extends ApiResponse {
   lifetime_stats: DashboardApiStat[];
   current_day_stats: DashboardApiStat[];
@@ -105,4 +113,13 @@ export interface DeviceMetricsApiResponse extends ApiResponse {
 
 export interface PopularURLApiResponse extends ApiResponse {
   popular_urls: PopularURL[];
+}
+
+export interface StripeMakePaymentResponse extends ApiResponse {
+  payment_client_secret: string;
+}
+
+export interface VerifyPaymentResponse extends ApiResponse {
+  message: string;
+  payment_status: PaymentStatus;
 }

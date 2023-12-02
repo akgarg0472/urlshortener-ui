@@ -10,32 +10,20 @@
   overflow-y: auto;
   padding: 4rem 4rem 2rem 4rem;
   background: #f6f6f8;
-}
-.dashboard__page__content .main__dashboard__heading {
-  font-size: 3.2rem;
-  font-family: "Mulish", sans-serif;
-  font-weight: 700;
-  display: flex;
-}
-.dashboard__page__content .main__dashboard__heading .welcome__text {
-  color: #757575;
-}
-.dashboard__page__content .main__dashboard__heading .name__heading {
-  padding-left: 0.8rem;
+  background: var(--dashboard-bg, #f6f6f8);
 }
 .dashboard__page__content .heading__time__section {
   background: #ffffff;
-  width: 56rem;
-  height: 9.6rem;
+  width: 64rem;
   border-radius: 0.6rem;
-  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--dashboard-content-box-shadow);
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   font-family: "Mulish", sans-serif;
-  margin-top: 1.6rem;
   padding: 1.6rem;
+  margin: 1.2rem 0;
 }
 .dashboard__page__content .heading__time__section .heading {
   color: rgba(0, 0, 0, 0.8);
@@ -46,6 +34,12 @@
   color: rgba(0, 0, 0, 0.5);
   font-size: 1.6rem;
   font-weight: 700;
+  margin: 1rem 0;
+}
+.dashboard__page__content .heading__time__section .description {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 1.4rem;
+  font-weight: 500;
   margin-top: 0.4rem;
 }
 .dashboard__page__content .stats__overview__container {
@@ -53,25 +47,26 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 1.8rem;
+  margin: 1.2rem 0;
 }
 .dashboard__page__content .prev__seven__days__hits__container {
-  margin-top: 1.6rem;
-  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--dashboard-content-box-shadow);
   width: 100%;
   background: #ffffff;
   padding: 1.6rem;
+  margin: 1.2rem 0;
 }
 .dashboard__page__content .continents__countries__container {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: 1.2rem 0;
 }
 .dashboard__page__content .continents__countries__container .continents__stats__container,
 .dashboard__page__content .continents__countries__container .countries__stats__container {
   margin-top: 1.6rem;
-  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--dashboard-content-box-shadow);
   width: 48%;
   background: #ffffff;
   padding: 1.6rem;
@@ -86,9 +81,10 @@
   padding: 1.6rem;
   background-color: #ffffff;
   border-radius: 0.6rem;
-  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--dashboard-content-box-shadow);
   height: 75vh;
   overflow-y: auto;
+  margin: 1.2rem 0;
 }
 .dashboard__page__content .my__links__load__more__btn {
   font-family: "Mulish", sans-serif;
@@ -103,10 +99,11 @@
 .dashboard__page__content .geographical__stats__container,
 .dashboard__page__content .device__metrics__stats__container {
   background-color: #ffffff;
-  margin-top: 3.2rem;
   display: flex;
   flex-direction: column;
   border-radius: 0.6rem;
+  box-shadow: var(--dashboard-content-box-shadow);
+  margin: 1.2rem 0;
 }
 .dashboard__page__content .geographical__stats__container .dropdown__selector__container,
 .dashboard__page__content .device__metrics__stats__container .dropdown__selector__container {
@@ -134,10 +131,11 @@
 }
 .dashboard__page__content .popular__urls__container {
   background-color: #ffffff;
-  margin-top: 3.2rem;
   display: flex;
   flex-direction: column;
   border-radius: 0.6rem;
+  box-shadow: var(--dashboard-content-box-shadow);
+  margin: 1.2rem 0;
 }
 .dashboard__page__content .popular__urls__container .popular__urls__stats__container {
   display: flex;
@@ -163,6 +161,7 @@
   background: #ffffff;
   border-radius: 0.6rem;
   min-height: 24rem;
+  box-shadow: var(--dashboard-content-box-shadow);
 }
 .dashboard__page__content .profile__page__right__section .personal__details__section .personal__details__section__content {
   padding: 1.2rem 2.8rem 2.4rem 2.8rem;
@@ -173,6 +172,7 @@
 }
 .dashboard__page__content .profile__page__right__section .account__information__section {
   min-height: 24rem;
+  box-shadow: var(--dashboard-content-box-shadow);
 }
 .dashboard__page__content .profile__page__right__section .account__information__section,
 .dashboard__page__content .profile__page__right__section .change__password__section,
@@ -180,6 +180,7 @@
   margin-top: 3.2rem;
   background: #ffffff;
   border-radius: 0.6rem;
+  box-shadow: var(--dashboard-content-box-shadow);
 }
 .dashboard__page__content .profile__page__right__section .change__password__section .change__password__section__content {
   display: flex;
