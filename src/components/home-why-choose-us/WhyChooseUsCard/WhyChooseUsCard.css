@@ -1,0 +1,37 @@
+.why__choose__us__card {
+  width: 25%;
+  height: 6rem;
+  padding: 2.8rem;
+  height: 24rem;
+  font-family: "Mulish", sans-serif;
+  display: flex;
+  position: relative;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.why__choose__us__card .icon {
+  width: 4.8rem;
+  height: 4.8rem;
+  margin-bottom: 1.6rem;
+}
+.why__choose__us__card .title {
+  font-size: 3.2rem;
+  font-weight: 600;
+}
+.why__choose__us__card .description {
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: rgb(51, 51, 51);
+  margin-top: 1.4rem;
+}
+
+.wcus__right__border::after {
+  content: "";
+  position: absolute;
+  top: 20%;
+  right: 0;
+  height: 60%;
+  border-right: 1px solid rgba(0, 0, 0, 0.15);
+}

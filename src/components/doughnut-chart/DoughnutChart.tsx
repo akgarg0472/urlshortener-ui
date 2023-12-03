@@ -47,11 +47,11 @@ const DoughnutChart = (props: DoughnutChartProps) => {
             ],
           }}
           options={{
-            // interaction: {
-            //   mode: "nearest",
-            // },
-            // responsive: true,
-            // maintainAspectRatio: true,
+            interaction: {
+              mode: "nearest",
+            },
+            responsive: true,
+            maintainAspectRatio: true,
             plugins: {
               legend: {
                 display: true,

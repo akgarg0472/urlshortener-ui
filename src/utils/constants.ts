@@ -8,6 +8,12 @@ export const DASHBOARD_PROFILE_URL: string = "/dashboard/profile";
 
 export const MAKE_PAYMENT_URL = "/make-payment";
 
+export const HOME_WHY_CHOOSE_US: string = "Why Choose us";
+export const HOME_WHY_CHOOSE_US_DESC: string =
+  "At URLShortener, we prioritize simplicity, speed, and security. Our user-friendly platform empowers you to share links effortlessly, while our advanced technology safeguards your data.";
+
+export const HOME_CUSTOMER_TESTIMONIALS: string = "Customer Testimonials";
+
 export const DASH_PREV_SEVEN_DAYS_HEAD: string = "Previous 7 Days Hits";
 export const DASH_PREV_SEVEN_DAYS_SUBHEAD: string =
   "A visual snapshot of the total hits on our URLs over the past 7 days, helping you track recent usage pattern and engagement";

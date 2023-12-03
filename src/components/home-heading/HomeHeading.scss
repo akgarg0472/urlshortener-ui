@@ -1,0 +1,23 @@
+.home__heading__container {
+  width: 100%;
+  font-family: "Mulish", sans-serif;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .home__heading__title {
+    width: 80%;
+    text-align: center;
+    margin: auto;
+    font-size: 3.6rem;
+  }
+
+  .home__heading__subtitle {
+    width: 90%;
+    margin-top: 1.2rem;
+    font-size: 1.6rem;
+    font-weight: 500;
+    text-align: center;
+    color: rgba(117, 117, 117, 1);
+  }
+}

@@ -1,0 +1,9 @@
+.why__choose__us__container {
+  margin: 4.8rem 0 0 0;
+  padding: 3.2rem;
+}
+.why__choose__us__container .why__choose__us__cards__container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2.4rem 0 0 0;
+}

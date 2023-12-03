@@ -29,6 +29,7 @@
   --dashboard-navbar-bottom-btns-bg: rgba(33, 33, 33, 0.925);
   --dashboard-navbar-bottom-btns-hover-bg: rgba(33, 33, 33, 1);
   --dashboard-content-box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.05);
+  --customer-testimonial-box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.1);
 }
 
 html {
