@@ -1,3 +1,4 @@
+import { Navigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 interface ProtectedRouteProps {
@@ -9,11 +10,11 @@ const ProtectedRoute = ({
   element,
   redirectTo,
 }: ProtectedRouteProps): JSX.Element => {
-  const { isAuthenticated } = useAuth();
+  const { getAuthenticated } = useAuth();
 
-  // if (!isAuthenticated()) {
-  //   return <Navigate to={`/login?redirectTo=${redirectTo}`} replace={true} />;
-  // }
+  if (!getAuthenticated()) {
+    return <Navigate to={`/login?redirectTo=${redirectTo}`} replace={true} />;
+  }
 
   return element;
 };

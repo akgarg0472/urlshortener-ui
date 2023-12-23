@@ -40,3 +40,23 @@ html {
 .uss__button__disabled {
   cursor: not-allowed !important;
 }
+
+.shimmer {
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    #f0f0f0 50%,
+    transparent 100%
+  ) !important;
+
+  animation: shimmer-anim 1.5s linear infinite;
+}
+
+@keyframes shimmer-anim {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}

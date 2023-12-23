@@ -8,30 +8,59 @@ import InputField, {
 import Loader, { LoaderSpeed } from "../../../components/loader/Loader";
 import { validateLoginPage } from "../../../utils/authutils";
 import "../Auth.css";
+import { doLogin } from "../../../api/auth";
+import { LoginApiResponse } from "../../../api/apiModals";
+import useAuth from "../../../hooks/useAuth";
+import Modal, { ModalIcon } from "../../../components/modal/Modal";
 
 const Login = () => {
-  useEffect(() => {
-    document.title = "Login";
-  }, []);
-
   const navigation = useNavigate();
+  const { setAuth, getAuthenticated } = useAuth();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const handleLoginButtonClick = () => {
+  useEffect(() => {
+    document.title = "Login";
+
+    if (getAuthenticated()) {
+      navigation("/dashboard", {
+        replace: true,
+      });
+    }
+  }, []);
+
+  const handleLoginButtonClick = async () => {
     if (validateLoginPage(email, password)) {
       Loader.showLoader({
         speed: LoaderSpeed.MEDIUM,
       });
 
-      const timeout = setTimeout(() => {
-        Loader.hideLoader();
+      const loginResponse: LoginApiResponse = await doLogin(email, password);
+
+      Loader.hideLoader();
+
+      if (!loginResponse.success) {
+        Modal.showModal({
+          icon: ModalIcon.ERROR,
+          title: `Error ${loginResponse.httpCode}`,
+          message: loginResponse.message,
+        });
+
+        return;
+      }
+
+      const isAuthCompleted = setAuth(
+        loginResponse.token!,
+        loginResponse.userId!,
+        email,
+        loginResponse.name!
+      );
+
+      if (isAuthCompleted) {
         navigation("/dashboard", {
           replace: true,
         });
-      }, 1000);
-
-      return () => clearTimeout(timeout);
+      }
     }
   };
 
@@ -40,7 +69,7 @@ const Login = () => {
       <div className="login__page">
         <div className="login__form__container">
           <div className="login__form__heading">Welcome Back</div>
-          <div className="login__heading">Login to URLShortener🔗</div>
+          <div className="login__heading">Login to continue</div>
 
           <form className="login__form">
             <InputField

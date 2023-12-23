@@ -10,6 +10,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  transition: all 250ms ease-in-out;
+  border-radius: 6px;
 }
 .customer__testimonial__card .image {
   width: 9.6rem;
@@ -53,3 +55,7 @@
   right: -1.6rem;
   bottom: 0;
 }
+
+.customer__testimonial__card:hover {
+  transform: scale(1.05);
+}/*# sourceMappingURL=CustomerTestimonialCard.css.map */

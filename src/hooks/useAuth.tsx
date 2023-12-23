@@ -1,12 +1,28 @@
+interface AuthObject {
+  authToken: string;
+  userId: string;
+  email: string;
+  name: string;
+}
+
+const AUTH_OBJ_NAME: string = "auth";
+
 const useAuth = () => {
-  const setAuth = (authToken: string, userId: string): boolean => {
+  const setAuth = (
+    authToken: string,
+    userId: string,
+    email: string,
+    name: string
+  ): boolean => {
     try {
-      const auth = {
+      const auth: AuthObject = {
         authToken,
         userId,
+        email,
+        name,
       };
 
-      localStorage.setItem("auth", JSON.stringify(auth));
+      localStorage.setItem(AUTH_OBJ_NAME, JSON.stringify(auth));
     } catch (error) {
       console.error(error);
       return false;
@@ -15,31 +31,48 @@ const useAuth = () => {
     return true;
   };
 
-  const isAuthenticated = () => {
-    return getUserId() !== null;
-  };
-
-  const getUserId = (): string | null => {
-    const auth: string | null = localStorage.getItem("auth");
+  const getAuth = (): AuthObject | null => {
+    const auth: string | null = localStorage.getItem(AUTH_OBJ_NAME);
 
     if (auth === null) {
       return null;
     }
 
-    const _auth = JSON.parse(auth);
+    const _auth: AuthObject = JSON.parse(auth);
+    return _auth;
+  };
+
+  const getAuthenticated = () => {
+    return getUserId() !== null;
+  };
+
+  const getUserId = (): string | null => {
+    const auth: string | null = localStorage.getItem(AUTH_OBJ_NAME);
+
+    if (auth === null) {
+      return null;
+    }
+
+    const _auth: AuthObject = JSON.parse(auth);
     return _auth.userId;
   };
 
   const logout = () => {
-    localStorage.removeItem("auth");
-    console.log("Logged out");
+    localStorage.removeItem(AUTH_OBJ_NAME);
   };
 
   const getName = (): string => {
-    return "John Doe";
+    const auth: string | null = localStorage.getItem(AUTH_OBJ_NAME);
+
+    if (!auth) {
+      return "";
+    }
+
+    const _auth: AuthObject = JSON.parse(auth);
+    return _auth.name;
   };
 
-  return { setAuth, isAuthenticated, getUserId, logout, getName };
+  return { setAuth, getAuth, getAuthenticated, getUserId, logout, getName };
 };
 
 export default useAuth;

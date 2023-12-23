@@ -8,19 +8,29 @@ import CreateUrlModal from "../create-url-modal/CreateUrlModal";
 import Modal, { ModalIcon } from "../modal/Modal";
 import "./DashboardNavbar.css";
 import DashboardLink from "./dashboard-link/DashboardLink";
+import { doLogout } from "../../api/auth";
+import { LogoutApiResponse } from "../../api/apiModals";
 
 const DashboardNavbar = () => {
   const location = useLocation();
   const navigation = useNavigate();
-  const { logout } = useAuth();
+  const { getAuth, logout } = useAuth();
 
   const [showCreateNewLinkModal, setShowCreateNewLinkModal] = useState(false);
 
-  const handleLogout = () => {
-    logout();
-    navigation("/", {
-      replace: true,
-    });
+  const handleLogout = async () => {
+    const logoutApiResponse: LogoutApiResponse = await doLogout(
+      getAuth()?.authToken!,
+      getAuth()?.userId!
+    );
+
+    if (logoutApiResponse.success) {
+      logout();
+      navigation("/", {
+        replace: true,
+      });
+    } else {
+    }
   };
 
   const handleLogoutIconClick = () => {

@@ -123,3 +123,16 @@ export interface VerifyPaymentResponse extends ApiResponse {
   message: string;
   payment_status: PaymentStatus;
 }
+
+export interface LoginApiResponse extends ApiResponse {
+  success: boolean;
+  message: string;
+  token?: string;
+  userId?: string;
+  name?: string;
+}
+
+export interface LogoutApiResponse extends ApiResponse {
+  message: string;
+  success: boolean;
+}

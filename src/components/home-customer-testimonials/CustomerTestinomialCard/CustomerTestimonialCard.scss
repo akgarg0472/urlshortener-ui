@@ -14,6 +14,8 @@ $before__after__dimension: 1.6rem;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  transition: all 250ms ease-in-out;
+  border-radius: 6px;
 
   .image {
     width: $image__dimension;
@@ -63,4 +65,8 @@ $before__after__dimension: 1.6rem;
     right: -1.6rem;
     bottom: 0;
   }
+}
+
+.customer__testimonial__card:hover {
+  transform: scale(1.05);
 }

@@ -44,3 +44,6 @@ export const DASH_PROFILE_DEFAULT_LOCATION: string = "New York, United States";
 export const DASH_PROFILE_DEFAULT_GITHUB: string = "john.doe";
 export const DASH_PROFILE_DEFAULT_INSTAGRAM: string = "john.doe";
 export const DASH_PROFILE_DEFAULT_TWITTER: string = "doe.john1";
+
+export const LOGIN_API_URL_V1: string = "/api/v1/auth/login";
+export const LOGOUT_API_URL_V1: string = "/api/v1/auth/logout";
