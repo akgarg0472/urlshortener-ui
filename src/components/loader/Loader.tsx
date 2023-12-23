@@ -1,15 +1,5 @@
 import "./Loader.css";
 
-interface LoaderProps {
-  speed?: LoaderSpeed;
-}
-
-export enum LoaderSpeed {
-  SLOW = "slow",
-  MEDIUM = "medium",
-  HIGH = "high",
-}
-
 const Loader = () => {
   const loader__container__id = "url__shortener__loader__container";
   const loader__id = "url__shortener__loader";

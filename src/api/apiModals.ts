@@ -130,9 +130,17 @@ export interface LoginApiResponse extends ApiResponse {
   token?: string;
   userId?: string;
   name?: string;
+  errors?: string;
+}
+
+export interface SignupApiResponse extends ApiResponse {
+  message?: string;
+  success: boolean;
+  errors?: string;
 }
 
 export interface LogoutApiResponse extends ApiResponse {
   message: string;
   success: boolean;
+  errors?: string;
 }

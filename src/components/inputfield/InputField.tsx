@@ -1,25 +1,6 @@
 import React from "react";
 import "./InputField.css";
 
-interface InputFieldProps {
-  title: string;
-  text: string;
-  type: InputFieldType;
-  placeholder?: string;
-  className?: string;
-  id: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  style?: React.CSSProperties;
-  isRequired?: boolean;
-  onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
-}
-
-export enum InputFieldType {
-  TEXT,
-  PASSWORD,
-  EMAIL,
-}
-
 const InputField = (props: InputFieldProps) => {
   const getInputType = (type: InputFieldType) => {
     switch (type) {

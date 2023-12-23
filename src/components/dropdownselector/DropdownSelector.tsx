@@ -1,30 +1,6 @@
 import React from "react";
 import "./DropdownSelector.css";
 
-interface DropdownSelectorProps {
-  onChange: (value: string) => void;
-  value: string;
-  classes?: string;
-  style?: React.CSSProperties;
-  title: string;
-  id: string;
-  isRequired?: boolean;
-  isOneLiner?: boolean;
-  dropdownValues: DropdownDataType[];
-  height?: DropdownSelectorHeight;
-}
-
-export interface DropdownDataType {
-  title: string;
-  value: string;
-}
-
-export enum DropdownSelectorHeight {
-  LOW = "dropdown__container__low",
-  MEDIUM = "dropdown__container__medium",
-  HIGH = "dropdown__container__high",
-}
-
 const DropdownSelector = (props: DropdownSelectorProps) => {
   const getDropdownHeight = () => {
     switch (props.height) {

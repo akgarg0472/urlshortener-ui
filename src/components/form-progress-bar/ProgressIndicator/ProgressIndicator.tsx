@@ -1,16 +1,6 @@
 import React from "react";
 import "./ProgressIndicator.css";
 
-interface ProgressIndicatorProps {
-  fill: boolean;
-  number: number;
-  title: string;
-  renderLeftLine?: boolean;
-  renderRightLine?: boolean;
-  fillRightLine: boolean;
-  isHighlighed: boolean;
-}
-
 const ProgressIndicator = (props: ProgressIndicatorProps) => {
   return (
     <React.Fragment>

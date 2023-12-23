@@ -1,46 +1,28 @@
 import React from "react";
 import "./InternalLoader.css";
 
-interface InternalLoaderProps {
-  speed?: LoaderSpeed;
-  size?: LoaderSize;
-}
-
-export enum LoaderSize {
-  EXTRA_SMALL = 0,
-  SMALL = 1,
-  MEDIUM = 2,
-  LARGE = 3,
-}
-
-export enum LoaderSpeed {
-  FAST = 1,
-  MEDIUM = 2,
-  SLOW = 3,
-}
-
-const getLoaderSize = (size?: LoaderSize): string => {
+const getLoaderSize = (size?: InternalLoaderSize): string => {
   switch (size) {
-    case LoaderSize.EXTRA_SMALL:
+    case InternalLoaderSize.EXTRA_SMALL:
       return "internal__loader__size__extra__small";
-    case LoaderSize.SMALL:
+    case InternalLoaderSize.SMALL:
       return "internal__loader__size__small";
-    case LoaderSize.MEDIUM:
+    case InternalLoaderSize.MEDIUM:
       return "internal__loader__size__medium";
-    case LoaderSize.LARGE:
+    case InternalLoaderSize.LARGE:
       return "internal__loader__size__large";
   }
 
   return "internal__loader__size__medium";
 };
 
-const getLoaderSpeed = (speed?: LoaderSpeed): string => {
+const getLoaderSpeed = (speed?: InternalLoaderSpeed): string => {
   switch (speed) {
-    case LoaderSpeed.FAST:
+    case InternalLoaderSpeed.FAST:
       return "internal__loader__speed__fast";
-    case LoaderSpeed.MEDIUM:
+    case InternalLoaderSpeed.MEDIUM:
       return "internal__loader__speed__medium";
-    case LoaderSpeed.SLOW:
+    case InternalLoaderSpeed.SLOW:
       return "internal__loader__speed__slow";
   }
 

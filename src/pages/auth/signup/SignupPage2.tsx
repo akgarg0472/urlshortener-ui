@@ -1,9 +1,7 @@
 import React from "react";
 import DropdownSelector from "../../../components/dropdownselector/DropdownSelector";
-import InputField, {
-  InputFieldType,
-} from "../../../components/inputfield/InputField";
 import { signupCountryDropdown } from "../../../utils/dropdownutils";
+import InputField from "../../../components/inputfield/InputField";
 
 interface SignupPage2Props {
   onBusinessDetailsChange: (event: React.ChangeEvent<HTMLInputElement>) => void;

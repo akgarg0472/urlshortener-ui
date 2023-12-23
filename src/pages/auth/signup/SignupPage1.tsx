@@ -1,7 +1,5 @@
 import React from "react";
-import InputField, {
-  InputFieldType,
-} from "../../../components/inputfield/InputField";
+import InputField from "../../../components/inputfield/InputField";
 
 interface SignupPage1Props {
   onFirstNameChange: (event: React.ChangeEvent<HTMLInputElement>) => void;

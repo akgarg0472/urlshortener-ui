@@ -1,4 +1,4 @@
-import Modal, { ModalIcon } from "../components/modal/Modal";
+import Modal from "../components/modal/Modal";
 import {
   validateEmail,
   validatePassword,

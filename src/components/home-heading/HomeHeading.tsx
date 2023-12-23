@@ -1,11 +1,6 @@
 import React from "react";
 import "./HomeHeading.css";
 
-interface HomeHeadingProps {
-  title: string;
-  subtitle?: string;
-}
-
 const HomeHeading = (props: HomeHeadingProps) => {
   return (
     <React.Fragment>

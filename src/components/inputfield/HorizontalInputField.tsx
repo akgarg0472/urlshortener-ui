@@ -1,20 +1,7 @@
 import React from "react";
 import "./HorizontalInputField.css";
 
-interface InputFieldProps {
-  title: string;
-  text: string;
-  type: "text" | "password" | "email";
-  placeholder?: string;
-  className?: string;
-  id: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  style?: React.CSSProperties;
-  isRequired?: boolean;
-  onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
-}
-
-const HorizontalInputField = (props: InputFieldProps) => {
+const HorizontalInputField = (props: HorizontalInputFieldProps) => {
   return (
     <React.Fragment>
       <div

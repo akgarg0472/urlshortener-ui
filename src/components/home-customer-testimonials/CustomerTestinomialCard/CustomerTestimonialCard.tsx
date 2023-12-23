@@ -2,13 +2,6 @@ import React from "react";
 
 import "./CustomerTestimonialCard.css";
 
-interface CustomerTestimonialCardProps {
-  image: string;
-  name: string;
-  designation: string;
-  review: string;
-}
-
 const CustomerTestimonialCard = (props: CustomerTestimonialCardProps) => {
   return (
     <React.Fragment>

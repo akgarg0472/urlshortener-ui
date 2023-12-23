@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import LinkButton from "../../../components/button/LinkButton";
 import RegularButton from "../../../components/button/RegularButton";
-import InputField, {
-  InputFieldType,
-} from "../../../components/inputfield/InputField";
-import Loader, { LoaderSpeed } from "../../../components/loader/Loader";
+import InputField from "../../../components/inputfield/InputField";
+import Loader from "../../../components/loader/Loader";
 import { validateForgotPasswordPage } from "../../../utils/authutils";
+
 import "../Auth.css";
 
 const ForgotPassword = () => {

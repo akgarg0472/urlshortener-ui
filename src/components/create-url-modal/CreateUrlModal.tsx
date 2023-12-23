@@ -1,16 +1,11 @@
 import React, { useRef, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import RegularButton from "../button/RegularButton";
-import InputField, { InputFieldType } from "../inputfield/InputField";
-import InternalLoader, {
-  LoaderSize,
-} from "../loader/internal-loader/InternalLoader";
-import Modal, { ModalIcon } from "../modal/Modal";
-import "./CreateUrlModal.css";
+import InputField from "../inputfield/InputField";
+import InternalLoader from "../loader/internal-loader/InternalLoader";
+import Modal from "../modal/Modal";
 
-interface CreateUrlModalProps {
-  onClose: () => void;
-}
+import "./CreateUrlModal.css";
 
 const CreateUrlModal = (props: CreateUrlModalProps) => {
   const { getUserId } = useAuth();
@@ -87,7 +82,7 @@ const CreateUrlModal = (props: CreateUrlModalProps) => {
               reference={generateShortUrlButtonRef}
               content={
                 loading ? (
-                  <InternalLoader size={LoaderSize.SMALL} />
+                  <InternalLoader size={InternalLoaderSize.SMALL} />
                 ) : (
                   "Generate Short URL"
                 )

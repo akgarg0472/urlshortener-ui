@@ -3,12 +3,10 @@ import { LatestHit, UrlMetricApiResponse } from "../../api/apiModals";
 import { urlMetrics } from "../../api/dashboard";
 import useAuth from "../../hooks/useAuth";
 import { convertTimestampToDateTime } from "../../utils/datetimeutils";
-import InternalLoader, {
-  LoaderSize,
-  LoaderSpeed,
-} from "../loader/internal-loader/InternalLoader";
-import "./ShortUrlMetricModal.css";
+import InternalLoader from "../loader/internal-loader/InternalLoader";
 import URLMetadata from "./URLMetadata/URLMetadata";
+
+import "./ShortUrlMetricModal.css";
 
 interface ShortUrlMetricModalProps {
   onClose: () => void;
@@ -132,8 +130,8 @@ const ShortUrlMetricModal = (props: ShortUrlMetricModalProps) => {
 
           {loading ? (
             <InternalLoader
-              speed={LoaderSpeed.MEDIUM}
-              size={LoaderSize.MEDIUM}
+              speed={InternalLoaderSpeed.MEDIUM}
+              size={InternalLoaderSize.MEDIUM}
             />
           ) : (
             renderModalContent()

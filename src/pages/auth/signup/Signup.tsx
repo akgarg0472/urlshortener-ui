@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
 import RegularButton from "../../../components/button/RegularButton";
 import FormProgressBar from "../../../components/form-progress-bar/FormProgressBar";
-import Loader, { LoaderSpeed } from "../../../components/loader/Loader";
-import Modal, { ModalIcon } from "../../../components/modal/Modal";
 import {
   validateSignupPage1,
   validateSignupPage2,
 } from "../../../utils/authutils";
-import "../Auth.css";
 import SignupPage1 from "./SignupPage1";
 import SignupPage2 from "./SignupPage2";
 import SignupPage3 from "./SignupPage3";
+import { SignupApiResponse } from "../../../api/apiModals";
+import { doSignup } from "../../../api/auth";
+import Loader from "../../../components/loader/Loader";
+import Modal from "../../../components/modal/Modal";
+
+import "../Auth.css";
 
 const Signup = () => {
   useEffect(() => {
@@ -28,12 +31,48 @@ const Signup = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
-  const [currentStep, setCurrentStep] = useState<number>(1);
   const [businessDetails, setBusinessDetails] = useState<string>("");
   const [phoneNumber, setPhoneNumber] = useState<string>("");
   const [city, setCity] = useState<string>("");
   const [zipcode, setZipcode] = useState<string>("");
   const [country, setCountry] = useState<string>("");
+  const [currentStep, setCurrentStep] = useState<number>(1);
+
+  const handleSignupButtonClick = async () => {
+    Loader.showLoader({
+      speed: LoaderSpeed.MEDIUM,
+    });
+
+    const signupApiResponse: SignupApiResponse = await doSignup({
+      firstName,
+      lastName,
+      email,
+      password,
+      confirmPassword,
+      phoneNumber,
+      city,
+      zipcode,
+      country,
+      businessDetails,
+    });
+
+    Loader.hideLoader();
+
+    if (signupApiResponse.success) {
+      Modal.showModal({
+        icon: ModalIcon.SUCCESS,
+        title: "Congratulations🎉",
+        message:
+          "Signup successful. We have sent you a verification email. Please verify your email to continue.",
+      });
+    } else {
+      Modal.showModal({
+        icon: ModalIcon.ERROR,
+        title: signupApiResponse.message,
+        message: signupApiResponse.errors,
+      });
+    }
+  };
 
   const handlePreviousButtonClick = () => {
     if (currentStep === 2) {
@@ -101,24 +140,6 @@ const Signup = () => {
 
   const handleCountryChange = (value: string) => {
     setCountry(value);
-  };
-
-  const handleSignupButtonClick = () => {
-    Loader.showLoader({
-      speed: LoaderSpeed.MEDIUM,
-    });
-
-    const timeout = setTimeout(() => {
-      Loader.hideLoader();
-      Modal.showModal({
-        icon: ModalIcon.SUCCESS,
-        title: "Congratulations🎉",
-        message:
-          "Signup successful. We have sent you a verification email. Please verify your email to continue.",
-      });
-    }, 5000);
-
-    return () => clearTimeout(timeout);
   };
 
   const renderFormStep = (step: number) => {

@@ -1,15 +1,6 @@
 import "./RegularButton.css";
 
-interface ButtonProps {
-  content: string | any;
-  className: string;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
-  isHidden?: boolean;
-  type?: "button" | "submit" | "reset" | undefined;
-  reference?: React.RefObject<HTMLButtonElement>;
-}
-
-const RegularButton = (props: ButtonProps) => {
+const RegularButton = (props: RegularButtonProps) => {
   return (
     <button
       ref={props.reference}

@@ -21,18 +21,6 @@ ChartJS.register(
   Legend
 );
 
-interface BarChartProps {
-  data: BarChartData[];
-  datasetLabel: string;
-  legendPosition?: "top" | "bottom" | "left" | "right";
-  borderWidth?: number;
-}
-
-interface BarChartData {
-  label: string;
-  value: string | number;
-}
-
 const BarChart = (props: BarChartProps) => {
   const [bgColors, setBgColors] = useState([] as string[]);
   const [hoverBgColors, setHoverBgColors] = useState([] as string[]);

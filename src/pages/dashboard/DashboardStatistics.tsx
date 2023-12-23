@@ -20,9 +20,6 @@ import DashboardNavbar from "../../components/dashboard-navbar/DashboardNavbar";
 import IconStats from "../../components/dashboard-overview-stats/stats-with-icon/IconStats";
 import DashboardHeadSubHead from "../../components/dashboardheadsubhead/DashboardHeadSubHead";
 import DoughnutChart from "../../components/doughnut-chart/DoughnutChart";
-import DropdownSelector, {
-  DropdownSelectorHeight,
-} from "../../components/dropdownselector/DropdownSelector";
 import InvisibleContainer from "../../components/invisible-container/InvisibleContainer";
 import InternalLoader from "../../components/loader/internal-loader/InternalLoader";
 import NoDataAvailable from "../../components/no-data-available/NoDataAvailable";
@@ -42,6 +39,8 @@ import {
   CHART__TYPE__PIE,
   dashboardChartTypeDropdown,
 } from "../../utils/dropdownutils";
+import DropdownSelector from "../../components/dropdownselector/DropdownSelector";
+
 import "./Dashboard.css";
 
 const DashboardStatistics = () => {

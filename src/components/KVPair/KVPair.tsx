@@ -1,13 +1,6 @@
 import React from "react";
 import "./KVPair.css";
 
-interface KVPairProps {
-  _key: string;
-  value: string;
-  style?: React.CSSProperties;
-  icon?: string;
-}
-
 const KVPair = (props: KVPairProps) => {
   return (
     <React.Fragment>

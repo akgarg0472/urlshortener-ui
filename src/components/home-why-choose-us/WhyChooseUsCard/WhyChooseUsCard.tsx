@@ -2,13 +2,6 @@ import React from "react";
 
 import "./WhyChooseUsCard.css";
 
-interface WhyChooseUsCardProps {
-  title: string;
-  description: string;
-  icon: string;
-  rightBorder: boolean;
-}
-
 const WhyChooseUsCard = (props: WhyChooseUsCardProps) => {
   return (
     <React.Fragment>

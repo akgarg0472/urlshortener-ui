@@ -16,11 +16,6 @@ import {
 } from "chart.js";
 import { generateChartBgAndBorderColorArrays } from "../../utils/colorutils";
 
-interface DailyHitsLineChartProps {
-  data: PrevSevenDaysHit[];
-  datasetLabel: string;
-}
-
 ChartJS.register(
   CategoryScale,
   LinearScale,

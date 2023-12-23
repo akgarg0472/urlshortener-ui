@@ -1,23 +1,5 @@
 import "./Modal.css";
 
-interface ModalProps {
-  icon: ModalIcon;
-  title?: string;
-  message?: string;
-  onConfirm?: () => void;
-  onCancel?: () => void;
-  cancelText?: string;
-  confirmText?: string;
-}
-
-export enum ModalIcon {
-  ERROR = "error",
-  SUCCESS = "success",
-  INFO = "info",
-  WARNING = "warning",
-  CONFIRMATION = "confirmation",
-}
-
 const Modal = () => {
   const modal__container__id = "url__shortener__modal__container";
   const modal__id = "url__shortener__modal";

@@ -1,13 +1,7 @@
 import React, { useState } from "react";
-import { URL } from "../../api/apiModals";
 import ShortUrlMetricModal from "../short-url-metric-modal/ShortUrlMetricModal";
 import "./MyLink.css";
-
-interface MyLinkProps {
-  url: URL;
-  serialNumber: number;
-  userId: string;
-}
+import { MyLinkProps } from "./MyLink.types";
 
 const MyLink = (props: MyLinkProps) => {
   const [showDialog, setShowDialog] = useState(false);

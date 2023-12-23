@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import { LogoutApiResponse } from "../../api/apiModals";
+import { doLogout } from "../../api/auth";
 import { dashboardNavbarLinks } from "../../utils/data";
 import LinkButton from "../button/LinkButton";
 import RegularButton from "../button/RegularButton";
 import CreateUrlModal from "../create-url-modal/CreateUrlModal";
-import Modal, { ModalIcon } from "../modal/Modal";
-import "./DashboardNavbar.css";
+import Modal from "../modal/Modal";
 import DashboardLink from "./dashboard-link/DashboardLink";
-import { doLogout } from "../../api/auth";
-import { LogoutApiResponse } from "../../api/apiModals";
+
+import "./DashboardNavbar.css";
 
 const DashboardNavbar = () => {
   const location = useLocation();

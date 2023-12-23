@@ -7,18 +7,6 @@ import "./DoughnutChart.css";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-interface DoughnutChartProps {
-  data: DoughnutChartData[];
-  datasetLabel: string;
-  legendPosition: "top" | "bottom" | "left" | "right";
-  borderWidth?: number;
-}
-
-interface DoughnutChartData {
-  label: string;
-  value: string | number;
-}
-
 const DoughnutChart = (props: DoughnutChartProps) => {
   const [bgColors, setBgColors] = useState([] as string[]);
   const [hoverBgColors, setHoverBgColors] = useState([] as string[]);

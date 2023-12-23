@@ -1,24 +1,7 @@
 import { Link } from "react-router-dom";
 import "./LinkButton.css";
 
-interface ButtonProps {
-  text: string;
-  className?: string;
-  onClickLink: string;
-  target?: string;
-  referrerPolicy:
-    | ""
-    | "no-referrer"
-    | "no-referrer-when-downgrade"
-    | "origin"
-    | "origin-when-cross-origin"
-    | "same-origin"
-    | "strict-origin"
-    | "strict-origin-when-cross-origin"
-    | "unsafe-url";
-}
-
-const LinkButton = (props: ButtonProps) => {
+const LinkButton = (props: LinkButtonProps) => {
   return (
     <Link
       className={`link__button ${props.className}`}

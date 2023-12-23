@@ -2,14 +2,6 @@ import React from "react";
 import LinkButton from "../../button/LinkButton";
 import "./DashboardLink.css";
 
-interface DashboardLinkProps {
-  className?: string;
-  text: string;
-  path: string;
-  icon: string;
-  active?: boolean;
-}
-
 const DashboardLink = (props: DashboardLinkProps) => {
   return (
     <React.Fragment>

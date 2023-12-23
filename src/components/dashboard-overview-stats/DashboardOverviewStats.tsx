@@ -2,17 +2,6 @@ import React from "react";
 import "./DashboardOverviewStats.css";
 import IconStats from "./stats-with-icon/IconStats";
 
-interface DashboardOverviewStatsProps {
-  headingText: string;
-  data: Stat[];
-}
-
-interface Stat {
-  icon: string;
-  label: string;
-  value: string | number;
-}
-
 const DashboardOverviewStats = (props: DashboardOverviewStatsProps) => {
   return (
     <React.Fragment>

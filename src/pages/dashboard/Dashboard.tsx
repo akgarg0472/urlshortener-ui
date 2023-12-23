@@ -51,12 +51,6 @@ const Dashboard = () => {
 
     const userId = getUserId();
 
-    // if (!userId) {
-    //   logout();
-    //   navigate("/login", { replace: true });
-    //   return;
-    // }
-
     setTimeout(() => {
       const apiResponse: DashboardApiResponse = dashboard({ userId: userId!! });
 

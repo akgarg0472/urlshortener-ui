@@ -1,12 +1,6 @@
 import React from "react";
 import "./DashboardHeadSubHead.css";
 
-interface DashboardHeadSubHeadProps {
-  heading?: string;
-  subheading?: string;
-  centered?: boolean;
-}
-
 const DashboardHeadSubHead = (props: DashboardHeadSubHeadProps) => {
   return (
     <React.Fragment>
