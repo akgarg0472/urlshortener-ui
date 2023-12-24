@@ -1,4 +1,5 @@
 import Modal from "../components/modal/Modal";
+import { ModalIcon } from "../components/modal/Modal.enums";
 import {
   validateEmail,
   validatePassword,
@@ -39,52 +40,7 @@ const validateSignupPage1 = (
     return false;
   }
 
-  if (!validatePassword(password)) {
-    Modal.showModal({
-      icon: ModalIcon.ERROR,
-      title: "Error",
-      message: "Password is a required field",
-    });
-    return false;
-  }
-
-  if (!validatePassword(password)) {
-    Modal.showModal({
-      icon: ModalIcon.ERROR,
-      title: "Error",
-      message: "Please provide valid password",
-    });
-    return false;
-  }
-
-  if (!validatePassword(confirmPassword)) {
-    Modal.showModal({
-      icon: ModalIcon.ERROR,
-      title: "Error",
-      message: "Confirm password is a required field",
-    });
-    return false;
-  }
-
-  if (!validatePassword(confirmPassword)) {
-    Modal.showModal({
-      icon: ModalIcon.ERROR,
-      title: "Error",
-      message: "Please provide valid confirm password",
-    });
-    return false;
-  }
-
-  if (password !== confirmPassword) {
-    Modal.showModal({
-      icon: ModalIcon.ERROR,
-      title: "Error",
-      message: "Passwords doesn't match",
-    });
-    return false;
-  }
-
-  return true;
+  return validatePasswordAndConfirmPassword(password, confirmPassword);
 };
 
 const validateSignupPage2 = (
@@ -167,9 +123,51 @@ const validateForgotPasswordPage = (email: string): boolean => {
   return true;
 };
 
+const validateResetPasswordPage = (
+  password: string,
+  confirmPassword: string
+): boolean => {
+  return validatePasswordAndConfirmPassword(password, confirmPassword);
+};
+
+const validatePasswordAndConfirmPassword = (
+  password: string,
+  confirmPassword: string
+): boolean => {
+  if (!validatePassword(password)) {
+    Modal.showModal({
+      icon: ModalIcon.ERROR,
+      title: "Error",
+      message: "Please provide valid password",
+    });
+    return false;
+  }
+
+  if (!validatePassword(confirmPassword)) {
+    Modal.showModal({
+      icon: ModalIcon.ERROR,
+      title: "Error",
+      message: "Please provide valid confirm password",
+    });
+    return false;
+  }
+
+  if (password !== confirmPassword) {
+    Modal.showModal({
+      icon: ModalIcon.ERROR,
+      title: "Error",
+      message: "Passwords doesn't match",
+    });
+    return false;
+  }
+
+  return true;
+};
+
 export {
   validateForgotPasswordPage,
   validateLoginPage,
   validateSignupPage1,
   validateSignupPage2,
+  validateResetPasswordPage,
 };

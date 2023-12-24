@@ -1,27 +1,23 @@
 import axios, { AxiosError } from "axios";
 import {
+  ForgotPasswordApiResponse,
   LoginApiResponse,
   LogoutApiResponse,
+  ResetPasswordApiResponse,
   SignupApiResponse,
 } from "./apiModals";
 import {
+  FORGOT_PASSWORD_API_URL_V1,
   LOGIN_API_URL_V1,
   LOGOUT_API_URL_V1,
+  RESET_PASSWORD_API_URL_V1,
+  RESET_PASSWORD_URL,
   SIGNUP_API_URL_V1,
-} from "../utils/constants";
+} from "../constants";
 
-const doSignup = async (props: {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-  phoneNumber: string;
-  city: string;
-  zipcode: string;
-  country: string;
-  businessDetails: string;
-}): Promise<SignupApiResponse> => {
+const doSignup = async (
+  props: SignupApiRequestProps
+): Promise<SignupApiResponse> => {
   const url = process.env.REACT_APP_BACKEND_BASE_URL + SIGNUP_API_URL_V1;
 
   const requestBody = {
@@ -46,6 +42,10 @@ const doSignup = async (props: {
       success: signupApiResponse.status == 201,
     };
   } catch (err: any) {
+    if (isAxiosNetworkError(err)) {
+      return axiosNwErrorResponse();
+    }
+
     if (err.response && err.response.data) {
       const response = err.response.data;
 
@@ -83,14 +83,13 @@ const doSignup = async (props: {
 };
 
 const doLogin = async (
-  email: string,
-  password: string
+  props: LoginApiRequestProps
 ): Promise<LoginApiResponse> => {
   const url = process.env.REACT_APP_BACKEND_BASE_URL + LOGIN_API_URL_V1;
 
   const requestBody = {
-    email,
-    password,
+    email: props.email,
+    password: props.password,
   };
 
   try {
@@ -104,14 +103,12 @@ const doLogin = async (
       userId: loginApiResponse.data.user_id,
     };
   } catch (err: any) {
-    if (err.response && err.response.data) {
-      const response = err.response.data;
+    if (isAxiosNetworkError(err)) {
+      return axiosNwErrorResponse();
+    }
 
-      return {
-        success: false,
-        message: response.message || response.error_message,
-        httpCode: response.error_code || response.status_code,
-      };
+    if (err.response && err.response.data) {
+      return errorResponse(err);
     }
 
     return {
@@ -123,14 +120,13 @@ const doLogin = async (
 };
 
 const doLogout = async (
-  authToken: string,
-  userId: string
+  props: LogoutApiRequestProps
 ): Promise<LogoutApiResponse> => {
   const url = process.env.REACT_APP_BACKEND_BASE_URL + LOGOUT_API_URL_V1;
 
   const requestBody = {
-    auth_token: authToken,
-    user_id: userId,
+    auth_token: props.authToken,
+    user_id: props.userId,
   };
 
   try {
@@ -142,14 +138,12 @@ const doLogout = async (
       success: logoutApiResponse.data.message === "Logout successful",
     };
   } catch (err: any) {
-    if (err.response && err.response.data) {
-      const response = err.response.data;
+    if (isAxiosNetworkError(err)) {
+      return axiosNwErrorResponse();
+    }
 
-      return {
-        success: false,
-        message: response.message || response.error_message,
-        httpCode: response.error_code || response.status_code,
-      };
+    if (err.response && err.response.data) {
+      return errorResponse(err);
     }
 
     return {
@@ -160,4 +154,99 @@ const doLogout = async (
   }
 };
 
-export { doSignup, doLogin, doLogout };
+const doForgotPassword = async (
+  props: ForgotPasswordRequestProps
+): Promise<ForgotPasswordApiResponse> => {
+  const url =
+    process.env.REACT_APP_BACKEND_BASE_URL + FORGOT_PASSWORD_API_URL_V1;
+
+  const requestBody = {
+    email: props.email,
+  };
+
+  try {
+    const ForgotPasswordApiResponse = await axios.post(url, requestBody);
+
+    return {
+      httpCode: 200,
+      message: "",
+      success: ForgotPasswordApiResponse.data.message,
+    };
+  } catch (err: any) {
+    if (isAxiosNetworkError(err)) {
+      return axiosNwErrorResponse();
+    }
+
+    if (err.response && err.response.data) {
+      return errorResponse(err);
+    }
+
+    return {
+      success: false,
+      httpCode: 500,
+      message: "Forgot Password Failed",
+    };
+  }
+};
+
+const doResetPassword = async (
+  props: ResetPasswordRequestProps
+): Promise<ResetPasswordApiResponse> => {
+  const url =
+    process.env.REACT_APP_BACKEND_BASE_URL + RESET_PASSWORD_API_URL_V1;
+
+  const requestBody = {
+    email: props.email,
+    token: props.token,
+    password: props.password,
+    confirm_password: props.confirmPassword,
+  };
+
+  try {
+    const resetPasswordApiResponse = await axios.post(url, requestBody);
+
+    return {
+      httpCode: resetPasswordApiResponse.status,
+      message: resetPasswordApiResponse.data.message,
+      success: resetPasswordApiResponse.status == 200,
+    };
+  } catch (err: any) {
+    if (isAxiosNetworkError(err)) {
+      return axiosNwErrorResponse();
+    }
+
+    if (err.response && err.response.data) {
+      return errorResponse(err);
+    }
+
+    return {
+      success: false,
+      httpCode: 500,
+      message: "Reset Password Failed",
+    };
+  }
+};
+
+const errorResponse = (err: any) => {
+  const response = err.response.data;
+
+  return {
+    success: false,
+    message: response.message || response.error_message,
+    httpCode: response.error_code || response.status_code,
+  };
+};
+
+const isAxiosNetworkError = (err: Error): boolean => {
+  return axios.isAxiosError(err) && err.code === "ERR_NETWORK" && !err.response;
+};
+
+const axiosNwErrorResponse = () => {
+  return {
+    success: false,
+    message: "Service temporarily unavailable",
+    httpCode: 503,
+  };
+};
+
+export { doSignup, doLogin, doLogout, doForgotPassword, doResetPassword };

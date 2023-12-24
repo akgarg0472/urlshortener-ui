@@ -6,4 +6,5 @@ interface ModalProps {
   onCancel?: () => void;
   cancelText?: string;
   confirmText?: string;
+  onClose?: () => void;
 }

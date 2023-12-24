@@ -1,15 +1,6 @@
 import React from "react";
 import KVPair from "../../../components/KVPair/KVPair";
 
-interface SignupPage3Props {
-  firstName: string;
-  lastName: string;
-  email: string;
-  businessDetails: string;
-  phoneNumber: string;
-  address: string;
-}
-
 const SignupPage3 = (props: SignupPage3Props) => {
   return (
     <React.Fragment>

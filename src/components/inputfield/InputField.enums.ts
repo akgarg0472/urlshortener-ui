@@ -1,4 +1,4 @@
-enum InputFieldType {
+export enum InputFieldType {
   TEXT,
   PASSWORD,
   EMAIL,

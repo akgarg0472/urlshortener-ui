@@ -1,4 +1,4 @@
-enum ModalIcon {
+export enum ModalIcon {
   ERROR = "error",
   SUCCESS = "success",
   INFO = "info",

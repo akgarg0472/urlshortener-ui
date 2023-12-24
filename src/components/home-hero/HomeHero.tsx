@@ -1,5 +1,5 @@
 import React from "react";
-import { LOGIN_URL } from "../../utils/constants";
+import { LOGIN_URL } from "../../constants";
 import LinkButton from "../button/LinkButton";
 import "./HomeHero.css";
 

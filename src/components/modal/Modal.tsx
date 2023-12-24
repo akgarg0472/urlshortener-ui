@@ -1,4 +1,5 @@
 import "./Modal.css";
+import { ModalIcon } from "./Modal.enums";
 
 const Modal = () => {
   const modal__container__id = "url__shortener__modal__container";
@@ -102,6 +103,10 @@ const Modal = () => {
     modal.onkeydown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         closeModal();
+
+        if (props.onClose) {
+          props.onClose();
+        }
       }
     };
 
@@ -128,12 +133,21 @@ const Modal = () => {
     if (modalOkButton != null) {
       modalOkButton.onclick = (e) => {
         closeModal();
+
+        if (props.onClose) {
+          props.onClose();
+        }
       };
     }
 
     if (modalCancelButton != null) {
       modalCancelButton.onclick = (e) => {
         closeModal();
+
+        if (props.onClose) {
+          props.onClose();
+        }
+
         if (props.onCancel) {
           props.onCancel();
         }
@@ -143,6 +157,11 @@ const Modal = () => {
     if (modalConfirmButton != null) {
       modalConfirmButton.onclick = (e) => {
         closeModal();
+
+        if (props.onClose) {
+          props.onClose();
+        }
+
         if (props.onConfirm) {
           props.onConfirm();
         }

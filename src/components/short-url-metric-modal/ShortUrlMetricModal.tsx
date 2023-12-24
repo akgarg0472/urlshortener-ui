@@ -7,14 +7,10 @@ import InternalLoader from "../loader/internal-loader/InternalLoader";
 import URLMetadata from "./URLMetadata/URLMetadata";
 
 import "./ShortUrlMetricModal.css";
-
-interface ShortUrlMetricModalProps {
-  onClose: () => void;
-  originalUrl: string;
-  shortUrl: string;
-  createdAt: string;
-  createdByIp: string;
-}
+import {
+  InternalLoaderSpeed,
+  InternalLoaderSize,
+} from "../loader/Loader.enums";
 
 const ShortUrlMetricModal = (props: ShortUrlMetricModalProps) => {
   const { getUserId } = useAuth();

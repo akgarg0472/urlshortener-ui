@@ -1,19 +1,6 @@
 import React from "react";
 import InputField from "../../../components/inputfield/InputField";
-
-interface SignupPage1Props {
-  onFirstNameChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onLastNameChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onEmailChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onPasswordChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onConfirmPasswordChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
+import { InputFieldType } from "../../../components/inputfield/InputField.enums";
 
 const SignupPage1 = (props: SignupPage1Props) => {
   return (

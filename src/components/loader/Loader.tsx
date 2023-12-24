@@ -1,4 +1,5 @@
 import "./Loader.css";
+import { LoaderSpeed } from "./Loader.enums";
 
 const Loader = () => {
   const loader__container__id = "url__shortener__loader__container";

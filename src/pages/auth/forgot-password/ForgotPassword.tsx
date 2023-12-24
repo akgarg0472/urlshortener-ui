@@ -4,25 +4,56 @@ import RegularButton from "../../../components/button/RegularButton";
 import InputField from "../../../components/inputfield/InputField";
 import Loader from "../../../components/loader/Loader";
 import { validateForgotPasswordPage } from "../../../utils/authutils";
+import { LoaderSpeed } from "../../../components/loader/Loader.enums";
+import { InputFieldType } from "../../../components/inputfield/InputField.enums";
+import { ForgotPasswordApiResponse } from "../../../api/apiModals";
+import { doForgotPassword } from "../../../api/auth";
+import Modal from "../../../components/modal/Modal";
+import { ModalIcon } from "../../../components/modal/Modal.enums";
 
 import "../Auth.css";
+import { useNavigate } from "react-router-dom";
+import { LOGIN_URL } from "../../../constants";
 
 const ForgotPassword = () => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     document.title = "Forgot Password";
   }, []);
 
   const [email, setEmail] = useState<string>("");
 
-  const handleForgotPasswordButtonClick = () => {
+  const handleForgotPasswordButtonClick = async () => {
     if (validateForgotPasswordPage(email)) {
       Loader.showLoader({
         speed: LoaderSpeed.MEDIUM,
       });
 
-      const timeout = setTimeout(() => {
-        Loader.hideLoader();
-      }, 1000);
+      const forgotPasswordApiResponse: ForgotPasswordApiResponse =
+        await doForgotPassword({ email });
+
+      Loader.hideLoader();
+
+      if (!forgotPasswordApiResponse.success) {
+        Modal.showModal({
+          icon: ModalIcon.ERROR,
+          title: `Error ${forgotPasswordApiResponse.httpCode}`,
+          message: forgotPasswordApiResponse.message,
+        });
+
+        return;
+      }
+
+      Modal.showModal({
+        icon: ModalIcon.SUCCESS,
+        message: `We have sent an email to ${email} with instructions to change your password. Pleae follow the email to continue resetting your password`,
+        onClose: () => {
+          navigate("/", {
+            replace: true,
+          });
+        },
+      });
     }
   };
 

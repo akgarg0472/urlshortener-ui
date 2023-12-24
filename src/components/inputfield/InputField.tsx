@@ -1,5 +1,6 @@
 import React from "react";
 import "./InputField.css";
+import { InputFieldType } from "./InputField.enums";
 
 const InputField = (props: InputFieldProps) => {
   const getInputType = (type: InputFieldType) => {

@@ -6,6 +6,9 @@ import InternalLoader from "../loader/internal-loader/InternalLoader";
 import Modal from "../modal/Modal";
 
 import "./CreateUrlModal.css";
+import { ModalIcon } from "../modal/Modal.enums";
+import { InputFieldType } from "../inputfield/InputField.enums";
+import { InternalLoaderSize } from "../loader/Loader.enums";
 
 const CreateUrlModal = (props: CreateUrlModalProps) => {
   const { getUserId } = useAuth();

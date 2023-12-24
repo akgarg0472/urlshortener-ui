@@ -144,3 +144,13 @@ export interface LogoutApiResponse extends ApiResponse {
   success: boolean;
   errors?: string;
 }
+
+export interface ForgotPasswordApiResponse extends ApiResponse {
+  message: string;
+  success: boolean;
+}
+
+export interface ResetPasswordApiResponse extends ApiResponse {
+  success: boolean;
+  message: string;
+}

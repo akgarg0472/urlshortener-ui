@@ -9,6 +9,7 @@ import RegularButton from "../button/RegularButton";
 import CreateUrlModal from "../create-url-modal/CreateUrlModal";
 import Modal from "../modal/Modal";
 import DashboardLink from "./dashboard-link/DashboardLink";
+import { ModalIcon } from "../modal/Modal.enums";
 
 import "./DashboardNavbar.css";
 
@@ -20,17 +21,16 @@ const DashboardNavbar = () => {
   const [showCreateNewLinkModal, setShowCreateNewLinkModal] = useState(false);
 
   const handleLogout = async () => {
-    const logoutApiResponse: LogoutApiResponse = await doLogout(
-      getAuth()?.authToken!,
-      getAuth()?.userId!
-    );
+    const logoutApiResponse: LogoutApiResponse = await doLogout({
+      authToken: getAuth()?.authToken!,
+      userId: getAuth()?.userId!,
+    });
 
     if (logoutApiResponse.success) {
       logout();
       navigation("/", {
         replace: true,
       });
-    } else {
     }
   };
 

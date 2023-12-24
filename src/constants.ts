@@ -1,6 +1,7 @@
 export const LOGIN_URL: string = "/login";
 export const SIGNUP_URL: string = "/signup";
 export const FORGOT_PASSWORD_URL: string = "/forgot-password";
+export const RESET_PASSWORD_URL: string = "/reset-password";
 export const DASHBOARD_URL: string = "/dashboard";
 export const DASHBOARD_LINKS_URL: string = "/dashboard/links";
 export const DASHBOARD_STATISTICS_URL: string = "/dashboard/statistics";
@@ -48,3 +49,5 @@ export const DASH_PROFILE_DEFAULT_TWITTER: string = "doe.john1";
 export const SIGNUP_API_URL_V1: string = "/api/v1/auth/signup";
 export const LOGIN_API_URL_V1: string = "/api/v1/auth/login";
 export const LOGOUT_API_URL_V1: string = "/api/v1/auth/logout";
+export const FORGOT_PASSWORD_API_URL_V1 = "/api/v1/auth/forgot-password";
+export const RESET_PASSWORD_API_URL_V1 = "/api/v1/auth/reset-password";

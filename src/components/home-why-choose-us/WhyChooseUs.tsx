@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  HOME_WHY_CHOOSE_US,
-  HOME_WHY_CHOOSE_US_DESC,
-} from "../../utils/constants";
+import { HOME_WHY_CHOOSE_US, HOME_WHY_CHOOSE_US_DESC } from "../../constants";
 import HomeHeading from "../home-heading/HomeHeading";
 
 import { homeWhyChooseUs } from "../../utils/data";

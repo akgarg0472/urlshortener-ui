@@ -11,12 +11,21 @@ import useAuth from "../../../hooks/useAuth";
 import { validateLoginPage } from "../../../utils/authutils";
 
 import "../Auth.css";
+import { InputFieldType } from "../../../components/inputfield/InputField.enums";
+import { LoaderSpeed } from "../../../components/loader/Loader.enums";
+import { ModalIcon } from "../../../components/modal/Modal.enums";
 
 const Login = () => {
   const navigation = useNavigate();
   const { setAuth, getAuthenticated } = useAuth();
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+
+  const [loginObject, setLoginObject] = useState<{
+    email: string;
+    password: string;
+  }>({
+    email: "",
+    password: "",
+  });
 
   useEffect(() => {
     document.title = "Login";
@@ -29,12 +38,12 @@ const Login = () => {
   }, []);
 
   const handleLoginButtonClick = async () => {
-    if (validateLoginPage(email, password)) {
+    if (validateLoginPage(loginObject.email, loginObject.password)) {
       Loader.showLoader({
         speed: LoaderSpeed.MEDIUM,
       });
 
-      const loginResponse: LoginApiResponse = await doLogin(email, password);
+      const loginResponse: LoginApiResponse = await doLogin(loginObject);
 
       Loader.hideLoader();
 
@@ -51,7 +60,7 @@ const Login = () => {
       const isAuthCompleted = setAuth(
         loginResponse.token!,
         loginResponse.userId!,
-        email,
+        loginObject.email,
         loginResponse.name!
       );
 
@@ -78,9 +87,14 @@ const Login = () => {
               type={InputFieldType.EMAIL}
               id="login__email"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                setEmail(e.target.value);
+                setLoginObject((prev) => {
+                  return {
+                    ...prev,
+                    email: e.target.value,
+                  };
+                });
               }}
-              text={email}
+              text={loginObject.email}
               key="login__email"
               isRequired={true}
               onKeyDown={() => {
@@ -95,9 +109,14 @@ const Login = () => {
               type={InputFieldType.PASSWORD}
               id="login__password"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                setPassword(e.target.value);
+                setLoginObject((prev) => {
+                  return {
+                    ...prev,
+                    password: e.target.value,
+                  };
+                });
               }}
-              text={password}
+              text={loginObject.password}
               key="login__password"
               isRequired={true}
               onKeyDown={() => {

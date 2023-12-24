@@ -15,9 +15,11 @@ import {
   DASHBOARD_URL,
   FORGOT_PASSWORD_URL,
   LOGIN_URL,
+  RESET_PASSWORD_URL,
   SIGNUP_URL,
-} from "../utils/constants";
+} from "../constants";
 import ProtectedRoute from "./ProtectedRoute";
+import ResetPassword from "../pages/auth/reset-password/ResetPassword";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +37,10 @@ const router = createBrowserRouter([
   {
     path: FORGOT_PASSWORD_URL,
     element: <ForgotPassword />,
+  },
+  {
+    path: RESET_PASSWORD_URL,
+    element: <ResetPassword />,
   },
   {
     path: DASHBOARD_URL,

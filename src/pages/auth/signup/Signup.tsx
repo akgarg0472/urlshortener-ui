@@ -14,6 +14,8 @@ import Loader from "../../../components/loader/Loader";
 import Modal from "../../../components/modal/Modal";
 
 import "../Auth.css";
+import { LoaderSpeed } from "../../../components/loader/Loader.enums";
+import { ModalIcon } from "../../../components/modal/Modal.enums";
 
 const Signup = () => {
   useEffect(() => {
