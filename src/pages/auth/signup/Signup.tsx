@@ -16,17 +16,21 @@ import Modal from "../../../components/modal/Modal";
 import "../Auth.css";
 import { LoaderSpeed } from "../../../components/loader/Loader.enums";
 import { ModalIcon } from "../../../components/modal/Modal.enums";
+import { useNavigate } from "react-router-dom";
+import { LOGIN_URL } from "../../../constants";
+
+const SIGNUP_FORM_STEP_TITLES = [
+  "Personal Info",
+  "Contact Details",
+  "Verification",
+];
 
 const Signup = () => {
   useEffect(() => {
     document.title = "Signup";
   }, []);
 
-  const SIGNUP_FORM_STEP_TITLES = [
-    "Personal Info",
-    "Contact Details",
-    "Verification",
-  ];
+  const navigate = useNavigate();
 
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
@@ -60,12 +64,16 @@ const Signup = () => {
 
     Loader.hideLoader();
 
+    console.log(JSON.stringify(signupApiResponse));
+
     if (signupApiResponse.success) {
       Modal.showModal({
         icon: ModalIcon.SUCCESS,
         title: "Congratulations🎉",
-        message:
-          "Signup successful. We have sent you a verification email. Please verify your email to continue.",
+        message: signupApiResponse.message,
+        onClose() {
+          // navigate(LOGIN_URL, { replace: true });
+        },
       });
     } else {
       Modal.showModal({

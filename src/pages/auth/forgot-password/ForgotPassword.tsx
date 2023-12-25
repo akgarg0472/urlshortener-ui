@@ -45,13 +45,13 @@ const ForgotPassword = () => {
         return;
       }
 
+      console.log(forgotPasswordApiResponse);
+
       Modal.showModal({
         icon: ModalIcon.SUCCESS,
-        message: `We have sent an email to ${email} with instructions to change your password. Pleae follow the email to continue resetting your password`,
+        message: forgotPasswordApiResponse.message,
         onClose: () => {
-          navigate("/", {
-            replace: true,
-          });
+          // navigate("/", { replace: true });
         },
       });
     }

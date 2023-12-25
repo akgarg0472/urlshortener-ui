@@ -165,12 +165,12 @@ const doForgotPassword = async (
   };
 
   try {
-    const ForgotPasswordApiResponse = await axios.post(url, requestBody);
+    const forgotPasswordApiResponse = await axios.post(url, requestBody);
 
     return {
-      httpCode: 200,
-      message: "",
-      success: ForgotPasswordApiResponse.data.message,
+      httpCode: forgotPasswordApiResponse.status,
+      message: forgotPasswordApiResponse.data.message,
+      success: forgotPasswordApiResponse.data.status_code === 200,
     };
   } catch (err: any) {
     if (isAxiosNetworkError(err)) {

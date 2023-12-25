@@ -1,5 +1,6 @@
 import React from "react";
 import "./DropdownSelector.css";
+import { DropdownSelectorHeight } from "./DropdownSelector.enums";
 
 const DropdownSelector = (props: DropdownSelectorProps) => {
   const getDropdownHeight = () => {
