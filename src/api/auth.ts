@@ -1,4 +1,4 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import {
   ForgotPasswordApiResponse,
   LoginApiResponse,
@@ -11,7 +11,6 @@ import {
   LOGIN_API_URL_V1,
   LOGOUT_API_URL_V1,
   RESET_PASSWORD_API_URL_V1,
-  RESET_PASSWORD_URL,
   SIGNUP_API_URL_V1,
 } from "../constants";
 
@@ -39,7 +38,7 @@ const doSignup = async (
     return {
       httpCode: signupApiResponse.status,
       message: signupApiResponse.data.message,
-      success: signupApiResponse.status == 201,
+      success: signupApiResponse.status === 201,
     };
   } catch (err: any) {
     if (isAxiosNetworkError(err)) {
@@ -208,7 +207,7 @@ const doResetPassword = async (
     return {
       httpCode: resetPasswordApiResponse.status,
       message: resetPasswordApiResponse.data.message,
-      success: resetPasswordApiResponse.status == 200,
+      success: resetPasswordApiResponse.status === 200,
     };
   } catch (err: any) {
     if (isAxiosNetworkError(err)) {

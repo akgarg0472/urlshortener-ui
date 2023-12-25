@@ -5,7 +5,7 @@ import LinkButton from "../button/LinkButton";
 import "./HomeNavbar.css";
 
 const HomeNavbar = () => {
-  const { getAuthenticated } = useAuth();
+  const { isUserLoggedIn } = useAuth();
 
   return (
     <React.Fragment>

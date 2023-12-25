@@ -10,9 +10,9 @@ const ProtectedRoute = ({
   element,
   redirectTo,
 }: ProtectedRouteProps): JSX.Element => {
-  const { getAuthenticated } = useAuth();
+  const { isUserLoggedIn } = useAuth();
 
-  if (!getAuthenticated()) {
+  if (!isUserLoggedIn()) {
     return <Navigate to={`/login?redirectTo=${redirectTo}`} replace={true} />;
   }
 

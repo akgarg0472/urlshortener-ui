@@ -17,7 +17,7 @@ import { ModalIcon } from "../../../components/modal/Modal.enums";
 
 const Login = () => {
   const navigation = useNavigate();
-  const { setAuth, getAuthenticated } = useAuth();
+  const { setAuth, isUserLoggedIn } = useAuth();
 
   const [loginObject, setLoginObject] = useState<{
     email: string;
@@ -30,7 +30,7 @@ const Login = () => {
   useEffect(() => {
     document.title = "Login";
 
-    if (getAuthenticated()) {
+    if (isUserLoggedIn()) {
       navigation("/dashboard", {
         replace: true,
       });

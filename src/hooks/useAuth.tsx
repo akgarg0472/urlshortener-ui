@@ -42,7 +42,7 @@ const useAuth = () => {
     return _auth;
   };
 
-  const getAuthenticated = () => {
+  const isUserLoggedIn = () => {
     return getUserId() !== null;
   };
 
@@ -72,7 +72,7 @@ const useAuth = () => {
     return _auth.name;
   };
 
-  return { setAuth, getAuth, getAuthenticated, getUserId, logout, getName };
+  return { setAuth, getAuth, isUserLoggedIn, getUserId, logout, getName };
 };
 
 export default useAuth;

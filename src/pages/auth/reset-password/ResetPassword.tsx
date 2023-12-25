@@ -18,7 +18,7 @@ import { LOGIN_URL } from "../../../constants";
 
 const ResetPassword = () => {
   const navigate = useNavigate();
-  const { getAuthenticated } = useAuth();
+  const { isUserLoggedIn } = useAuth();
   const [searchParams] = useSearchParams();
 
   const [resetPasswordObject, setResetPasswordObject] =
@@ -30,7 +30,7 @@ const ResetPassword = () => {
     });
 
   useEffect(() => {
-    if (getAuthenticated()) {
+    if (isUserLoggedIn()) {
       navigate("/dashboard", {
         replace: true,
       });

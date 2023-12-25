@@ -13,7 +13,6 @@ import { ModalIcon } from "../../../components/modal/Modal.enums";
 
 import "../Auth.css";
 import { useNavigate } from "react-router-dom";
-import { LOGIN_URL } from "../../../constants";
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
@@ -45,13 +44,11 @@ const ForgotPassword = () => {
         return;
       }
 
-      console.log(forgotPasswordApiResponse);
-
       Modal.showModal({
         icon: ModalIcon.SUCCESS,
         message: forgotPasswordApiResponse.message,
         onClose: () => {
-          // navigate("/", { replace: true });
+          navigate("/", { replace: true });
         },
       });
     }

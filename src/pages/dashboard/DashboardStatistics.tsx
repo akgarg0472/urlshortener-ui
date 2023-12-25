@@ -42,6 +42,7 @@ import {
 import DropdownSelector from "../../components/dropdownselector/DropdownSelector";
 
 import "./Dashboard.css";
+import { DropdownSelectorHeight } from "../../components/dropdownselector/DropdownSelector.enums";
 
 const DashboardStatistics = () => {
   const { getUserId } = useAuth();

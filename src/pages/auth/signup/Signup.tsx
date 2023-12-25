@@ -72,7 +72,7 @@ const Signup = () => {
         title: "Congratulations🎉",
         message: signupApiResponse.message,
         onClose() {
-          // navigate(LOGIN_URL, { replace: true });
+          navigate(LOGIN_URL, { replace: true });
         },
       });
     } else {
