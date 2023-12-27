@@ -17,7 +17,7 @@ import "../Auth.css";
 import { LoaderSpeed } from "../../../components/loader/Loader.enums";
 import { ModalIcon } from "../../../components/modal/Modal.enums";
 import { useNavigate } from "react-router-dom";
-import { LOGIN_URL } from "../../../constants";
+import { LOGIN_URL } from "../../../api.constants";
 
 const SIGNUP_FORM_STEP_TITLES = [
   "Personal Info",

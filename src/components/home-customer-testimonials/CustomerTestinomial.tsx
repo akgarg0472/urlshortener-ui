@@ -1,5 +1,5 @@
 import React from "react";
-import { HOME_CUSTOMER_TESTIMONIALS } from "../../constants";
+import { HOME_CUSTOMER_TESTIMONIALS } from "../../api.constants";
 import HomeHeading from "../home-heading/HomeHeading";
 
 import { homeCustomerTestimonials } from "../../utils/data";

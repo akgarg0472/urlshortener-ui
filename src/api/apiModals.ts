@@ -1,5 +1,6 @@
 export interface ApiResponse {
   httpCode: number;
+  message?: string;
 }
 
 export interface DashboardApiStat {
@@ -86,6 +87,7 @@ export interface DashboardApiResponse extends ApiResponse {
   continents: Continent[];
   countries: Country[];
   prev_seven_days_hits: PrevSevenDaysHit[];
+  success: boolean;
 }
 
 export interface MyLinksApiResponse extends ApiResponse {
@@ -134,7 +136,6 @@ export interface LoginApiResponse extends ApiResponse {
 }
 
 export interface SignupApiResponse extends ApiResponse {
-  message?: string;
   success: boolean;
   errors?: string;
 }
@@ -153,4 +154,10 @@ export interface ForgotPasswordApiResponse extends ApiResponse {
 export interface ResetPasswordApiResponse extends ApiResponse {
   success: boolean;
   message: string;
+}
+
+export interface ApiErrorResponse {
+  success: boolean;
+  message: string;
+  httpCode: number;
 }

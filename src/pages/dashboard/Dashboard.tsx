@@ -7,7 +7,7 @@ import {
   DashboardApiStat,
   PrevSevenDaysHit,
 } from "../../api/apiModals";
-import { dashboard } from "../../api/dashboard";
+import { getDashboard } from "../../api/dashboard";
 import DailyHitsLineChart from "../../components/daily-hits-line-chart/DailyHitsLineChart";
 import DashboardNavbar from "../../components/dashboard-navbar/DashboardNavbar";
 import DashboardOverviewStats from "../../components/dashboard-overview-stats/DashboardOverviewStats";
@@ -24,13 +24,18 @@ import {
   DASH_PREV_SEVEN_DAYS_HEAD,
   DASH_PREV_SEVEN_DAYS_SUBHEAD,
   PREV_SEVEN_DAYS_DATASET_LABEL,
-} from "../../constants";
+} from "../../api.constants";
 import { getCurrentDateTime } from "../../utils/datetimeutils";
 import "./Dashboard.css";
 
 const Dashboard = () => {
-  const { getUserId, logout } = useAuth();
+  const { getUserId, logout, getName } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = "Dashboard";
+    fetchDashboard();
+  }, []);
 
   const [todayStats, setTodayStats] = useState([] as DashboardApiStat[]);
   const [lifetimeStats, setLifetimeStats] = useState([] as DashboardApiStat[]);
@@ -41,35 +46,34 @@ const Dashboard = () => {
   const [countries, setCountries] = useState([] as Country[]);
   const [loading, setLoading] = useState(true);
 
+  const fetchDashboard = async () => {
+    // const userId = getUserId();
+    const userId = "38202f1895654ea492fd30c37f4e3482";
+
+    const dashboardApiResponse: DashboardApiResponse = await getDashboard({
+      userId: userId,
+      startTime: 0,
+      endTime: Date.now(),
+    });
+
+    setLoading(false);
+
+    if (!dashboardApiResponse.success) {
+      doLogout();
+      return;
+    }
+
+    setTodayStats(dashboardApiResponse.current_day_stats);
+    setLifetimeStats(dashboardApiResponse.lifetime_stats);
+    setPrevSevenDayHitsData(dashboardApiResponse.prev_seven_days_hits);
+    setContinents(dashboardApiResponse.continents);
+    setCountries(dashboardApiResponse.countries);
+  };
+
   const doLogout = () => {
     logout();
     navigate("/login", { replace: true });
   };
-
-  useEffect(() => {
-    document.title = "Dashboard";
-
-    const userId = getUserId();
-
-    setTimeout(() => {
-      const apiResponse: DashboardApiResponse = dashboard({ userId: userId!! });
-
-      if (apiResponse.httpCode !== 200) {
-        doLogout();
-        return;
-      }
-
-      setTodayStats(apiResponse.current_day_stats);
-      setLifetimeStats(apiResponse.lifetime_stats);
-      setPrevSevenDayHitsData(apiResponse.prev_seven_days_hits);
-      setContinents(apiResponse.continents);
-      setCountries(apiResponse.countries);
-
-      setLoading(false);
-    }, 1000);
-  }, []);
-
-  const { getName } = useAuth();
 
   return (
     <React.Fragment>

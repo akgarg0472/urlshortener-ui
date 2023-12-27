@@ -1,4 +1,6 @@
+import axios from "axios";
 import {
+  ApiErrorResponse,
   DashboardApiResponse,
   DeviceMetricsApiResponse,
   GeographicalApiResponse,
@@ -6,109 +8,95 @@ import {
   PopularURLApiResponse,
   UrlMetricApiResponse,
 } from "./apiModals";
+import {
+  DASHBOARD_STATISTICS_URL,
+  DASHBOARD_SUMMARY_API_URL_V1,
+} from "../api.constants";
+import {
+  getCurrentDayStartTimeInMs,
+  getOneWeekOldTimeInMsFromCurrentDate,
+} from "../utils/datetimeutils";
+import {
+  axiosNwErrorResponse,
+  errorResponse,
+  isAxiosNetworkError,
+} from "../utils/errorutils";
 
-export const dashboard = (props: { userId: string }): DashboardApiResponse => {
-  return {
-    httpCode: 200,
-    current_day_stats: [
-      {
-        key: "Total Hits",
-        value: "23",
-        icon: "/assets/icons/total-hits.png",
+export const getDashboard = async (
+  props: DashboardSummaryApiRequest
+): Promise<DashboardApiResponse> => {
+  const url =
+    process.env.REACT_APP_BACKEND_BASE_URL + DASHBOARD_SUMMARY_API_URL_V1;
+
+  try {
+    const dashboardSummaryApiResponse = await axios.get(url, {
+      params: {
+        userId: props.userId,
+        endTime: props.endTime,
+        startTime: props.startTime,
+        currentDayStartTime: getCurrentDayStartTimeInMs(),
+        currentTime: new Date().getTime(),
+        oneWeekOldTime: getOneWeekOldTimeInMsFromCurrentDate(),
       },
-      {
-        key: "New Links",
-        value: "2",
-        icon: "/assets/icons/add-link.png",
-      },
-    ],
-    lifetime_stats: [
-      {
-        key: "Total Hits",
-        value: "99999",
-        icon: "/assets/icons/total-hits.png",
-      },
-      {
-        key: "Avg Redirect Duration",
-        value: "1234ms",
-        icon: "/assets/icons/clock.png",
-      },
-    ],
-    continents: [
-      {
-        name: "North America",
-        hits_count: 924,
-      },
-      {
-        name: "Asia",
-        hits_count: 522,
-      },
-      {
-        name: "Europe",
-        hits_count: 365,
-      },
-      {
-        name: "unidentified",
-        hits_count: 341,
-      },
-      {
-        name: "South America",
-        hits_count: 72,
-      },
-    ],
-    countries: [
-      {
-        name: "United States",
-        hits_count: 865,
-      },
-      {
-        name: "unidentified",
-        hits_count: 342,
-      },
-      {
-        name: "China",
-        hits_count: 185,
-      },
-      {
-        name: "Japan",
-        hits_count: 104,
-      },
-      {
-        name: "South Korea",
-        hits_count: 76,
-      },
-    ],
-    prev_seven_days_hits: [
-      {
-        timestamp: 1696291200000,
-        hits: 28,
-      },
-      {
-        timestamp: 1696377600000,
-        hits: 45,
-      },
-      {
-        timestamp: 1696464000000,
-        hits: 13,
-      },
-      {
-        timestamp: 1696550400000,
-        hits: 67,
-      },
-      {
-        timestamp: 1696636800000,
-        hits: 56,
-      },
-      {
-        timestamp: 1696703400000,
-        hits: 36,
-      },
-      {
-        timestamp: 1696789800000,
-        hits: 41,
-      },
-    ],
-  };
+    });
+
+    console.log(dashboardSummaryApiResponse.data);
+
+    return {
+      httpCode: dashboardSummaryApiResponse.status,
+      continents: dashboardSummaryApiResponse.data.continents,
+      countries: dashboardSummaryApiResponse.data.countries,
+      current_day_stats: dashboardSummaryApiResponse.data.current_day_stats,
+      lifetime_stats: dashboardSummaryApiResponse.data.lifetime_stats,
+      prev_seven_days_hits:
+        dashboardSummaryApiResponse.data.prev_seven_days_hits,
+      success: dashboardSummaryApiResponse.data.status_code === 200,
+    };
+  } catch (err: any) {
+    console.log(err);
+
+    if (isAxiosNetworkError(err)) {
+      const axiosNetworkErrorResponse: ApiErrorResponse =
+        axiosNwErrorResponse();
+
+      return {
+        success: axiosNetworkErrorResponse.success,
+        httpCode: axiosNetworkErrorResponse.httpCode,
+        message: axiosNetworkErrorResponse.message,
+        continents: [],
+        countries: [],
+        current_day_stats: [],
+        lifetime_stats: [],
+        prev_seven_days_hits: [],
+      };
+    }
+
+    if (err.response && err.response.data) {
+      const errResp = errorResponse(err);
+
+      return {
+        success: errResp.success,
+        httpCode: errResp.httpCode,
+        message: errResp.message,
+        continents: [],
+        countries: [],
+        current_day_stats: [],
+        lifetime_stats: [],
+        prev_seven_days_hits: [],
+      };
+    }
+
+    return {
+      success: false,
+      httpCode: 500,
+      message: "Dashboard Fetch Failed",
+      continents: [],
+      countries: [],
+      current_day_stats: [],
+      lifetime_stats: [],
+      prev_seven_days_hits: [],
+    };
+  }
 };
 
 export const myLinks = (props: {

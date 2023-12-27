@@ -13,7 +13,7 @@ const ProtectedRoute = ({
   const { isUserLoggedIn } = useAuth();
 
   if (!isUserLoggedIn()) {
-    return <Navigate to={`/login?redirectTo=${redirectTo}`} replace={true} />;
+    // return <Navigate to={`/login?redirectTo=${redirectTo}`} replace={true} />;
   }
 
   return element;

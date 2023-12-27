@@ -8,7 +8,7 @@ import DashboardHeadSubHead from "../../components/dashboardheadsubhead/Dashboar
 import InternalLoader from "../../components/loader/internal-loader/InternalLoader";
 import MyLink from "../../components/mylink/MyLink";
 import useAuth from "../../hooks/useAuth";
-import { DASH_MY_LINKS_HEAD, DASH_MY_LINKS_SUBHEAD } from "../../constants";
+import { DASH_MY_LINKS_HEAD, DASH_MY_LINKS_SUBHEAD } from "../../api.constants";
 import "./Dashboard.css";
 
 const DashboardLinks = () => {

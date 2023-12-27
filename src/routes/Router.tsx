@@ -17,7 +17,7 @@ import {
   LOGIN_URL,
   RESET_PASSWORD_URL,
   SIGNUP_URL,
-} from "../constants";
+} from "../api.constants";
 import ProtectedRoute from "./ProtectedRoute";
 import ResetPassword from "../pages/auth/reset-password/ResetPassword";
 

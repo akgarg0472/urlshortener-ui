@@ -8,7 +8,7 @@ import {
   DASH_PROFILE_DEFAULT_LOCATION,
   DASH_PROFILE_DEFAULT_TWITTER,
   DASH_PROFILE_DEFAULT_USERNAME,
-} from "../../constants";
+} from "../../api.constants";
 import InternalLoader from "../loader/internal-loader/InternalLoader";
 import "./ProfileCard.css";
 import ProfileCardIconLink from "./ProfileCardIconLink/ProfileCardIconLink";

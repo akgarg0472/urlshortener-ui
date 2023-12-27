@@ -63,3 +63,16 @@ export const convertTimestampToDateTime = (timestamp: number): string => {
 
   return `${day}-${month}-${year}, ${hours}:${minutes} ${amPm}`;
 };
+
+export const getCurrentDayStartTimeInMs = (): number => {
+  const currentDate = new Date();
+  currentDate.setHours(0, 0, 0, 0);
+  return currentDate.getTime();
+};
+
+export const getOneWeekOldTimeInMsFromCurrentDate = (): number => {
+  const currentDate = new Date();
+  currentDate.setHours(0, 0, 0, 0);
+  const oneWeekAgoTimestamp = currentDate.getTime() - 7 * 24 * 60 * 60 * 1000;
+  return oneWeekAgoTimestamp;
+};

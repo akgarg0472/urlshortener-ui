@@ -12,7 +12,12 @@ import {
   LOGOUT_API_URL_V1,
   RESET_PASSWORD_API_URL_V1,
   SIGNUP_API_URL_V1,
-} from "../constants";
+} from "../api.constants";
+import {
+  axiosNwErrorResponse,
+  errorResponse,
+  isAxiosNetworkError,
+} from "../utils/errorutils";
 
 const doSignup = async (
   props: SignupApiRequestProps
@@ -224,28 +229,6 @@ const doResetPassword = async (
       message: "Reset Password Failed",
     };
   }
-};
-
-const errorResponse = (err: any) => {
-  const response = err.response.data;
-
-  return {
-    success: false,
-    message: response.message || response.error_message,
-    httpCode: response.error_code || response.status_code,
-  };
-};
-
-const isAxiosNetworkError = (err: Error): boolean => {
-  return axios.isAxiosError(err) && err.code === "ERR_NETWORK" && !err.response;
-};
-
-const axiosNwErrorResponse = () => {
-  return {
-    success: false,
-    message: "Service temporarily unavailable",
-    httpCode: 503,
-  };
 };
 
 export { doSignup, doLogin, doLogout, doForgotPassword, doResetPassword };

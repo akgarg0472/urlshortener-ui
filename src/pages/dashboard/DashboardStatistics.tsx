@@ -32,7 +32,7 @@ import {
   DASH_OS_HEAD,
   DASH_STATISTICS_HEAD,
   DASH_STATISTICS_SUBHEAD,
-} from "../../constants";
+} from "../../api.constants";
 import {
   CHART_TYPE_BAR,
   CHART__TYPE__DOUGHNUT,

@@ -14,7 +14,7 @@ import { doResetPassword } from "../../../api/auth";
 
 import "../Auth.css";
 import { validateEmail, validateString } from "../../../utils/validationutils";
-import { LOGIN_URL } from "../../../constants";
+import { LOGIN_URL } from "../../../api.constants";
 
 const ResetPassword = () => {
   const navigate = useNavigate();
