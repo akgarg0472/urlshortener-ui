@@ -56,3 +56,7 @@ export const RESET_PASSWORD_API_URL_V1 = "/api/v1/auth/reset-password";
 // Dashboard API endpoints
 export const DASHBOARD_SUMMARY_API_URL_V1 =
   "/api/v1/statistics/dashboard-summary";
+export const DASHBOARD_MY_LINKS_API_URL_V1 =
+  "/api/v1/statistics/generated-urls";
+export const DASHBOARD_URL_METRICS_API_URL_V1 =
+  "/api/v1/statistics/url-metrics";

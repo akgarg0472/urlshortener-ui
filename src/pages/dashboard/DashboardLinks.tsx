@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MyLinksApiResponse, URL } from "../../api/apiModals";
-import { myLinks } from "../../api/dashboard";
+import { getMyLinks } from "../../api/dashboard";
 import RegularButton from "../../components/button/RegularButton";
 import DashboardNavbar from "../../components/dashboard-navbar/DashboardNavbar";
 import DashboardHeadSubHead from "../../components/dashboardheadsubhead/DashboardHeadSubHead";
 import InternalLoader from "../../components/loader/internal-loader/InternalLoader";
 import MyLink from "../../components/mylink/MyLink";
 import useAuth from "../../hooks/useAuth";
-import { DASH_MY_LINKS_HEAD, DASH_MY_LINKS_SUBHEAD } from "../../api.constants";
+import {
+  DASH_MY_LINKS_HEAD,
+  DASH_MY_LINKS_SUBHEAD,
+  LOGIN_URL,
+} from "../../api.constants";
 import "./Dashboard.css";
 
 const DashboardLinks = () => {
@@ -16,63 +20,60 @@ const DashboardLinks = () => {
   const navigate = useNavigate();
 
   const [urls, setUrls] = useState([] as URL[]);
-  const [totalRecords, setTotalRecords] = useState(0);
-  const [nextOffset, setNextOffset] = useState(0);
-  const [loading, setLoading] = useState(true);
+  const [nextOffset, setNextOffset] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [showLoadMoreButton, setShowLoadMoreButton] = useState<boolean>(false);
+  const [limit, setLimit] = useState<number>(100);
+
+  useEffect(() => {
+    document.title = "My Links";
+    fetchMyLinks();
+  }, []);
 
   const doLogout = () => {
     logout();
     navigate("/login", { replace: true });
   };
 
-  const hitApi = (): MyLinksApiResponse => {
+  const fetchMyLinks = async () => {
     const userId = getUserId();
 
-    // if (!userId) {
-    //   logout();
-    //   navigate("/login", { replace: true });
-    //   return;
-    // }
-
-    const apiResponse: MyLinksApiResponse = myLinks({
-      userId: getUserId()!!,
-      offset: nextOffset,
-      limit: 5,
-    });
-
-    if (apiResponse.httpCode !== 200) {
+    if (!userId) {
       doLogout();
+      return;
     }
 
-    return apiResponse;
-  };
+    setLoading(true);
 
-  const loadMoreUrls = () => {
-    const myLinksApiResponse: MyLinksApiResponse = hitApi();
+    const myLinksApiResponse: MyLinksApiResponse = await getMyLinks({
+      userId: userId,
+      offset: nextOffset,
+      limit: limit,
+    });
+
+    if (
+      myLinksApiResponse.httpCode === 401 ||
+      myLinksApiResponse.httpCode === 403
+    ) {
+      doLogout();
+      return;
+    }
 
     setUrls((prev) => {
       return [...prev, ...myLinksApiResponse.urls];
     });
 
-    setTotalRecords(myLinksApiResponse.total_records);
     setNextOffset(myLinksApiResponse.next_offset);
+    setShowLoadMoreButton(
+      limit * myLinksApiResponse.next_offset < myLinksApiResponse.total_records
+    );
+
+    setLoading(false);
   };
 
-  useEffect(() => {
-    document.title = "My Links";
-
-    setTimeout(() => {
-      const myLinksApiResponse: MyLinksApiResponse = hitApi();
-
-      setUrls((prev) => {
-        return [...prev, ...myLinksApiResponse.urls];
-      });
-
-      setTotalRecords(myLinksApiResponse.total_records);
-      setNextOffset(myLinksApiResponse.next_offset);
-      setLoading(false);
-    }, 1000);
-  }, []);
+  const loadMoreUrls = () => {
+    fetchMyLinks();
+  };
 
   return (
     <React.Fragment>
@@ -102,22 +103,24 @@ const DashboardLinks = () => {
             )}
           </div>
 
-          <div
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <RegularButton
-              content="Load More"
-              key="my__links__load__more__btn"
-              onClick={() => {
-                loadMoreUrls();
+          {showLoadMoreButton ? (
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
               }}
-              className="my__links__load__more__btn"
-            />
-          </div>
+            >
+              <RegularButton
+                content="Load More"
+                key="my__links__load__more__btn"
+                onClick={() => {
+                  loadMoreUrls();
+                }}
+                className="my__links__load__more__btn"
+              />
+            </div>
+          ) : null}
         </div>
       </div>
     </React.Fragment>

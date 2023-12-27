@@ -27,6 +27,8 @@ import {
 } from "../../api.constants";
 import { getCurrentDateTime } from "../../utils/datetimeutils";
 import "./Dashboard.css";
+import Modal from "../../components/modal/Modal";
+import { ModalIcon } from "../../components/modal/Modal.enums";
 
 const Dashboard = () => {
   const { getUserId, logout, getName } = useAuth();
@@ -47,8 +49,12 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
 
   const fetchDashboard = async () => {
-    // const userId = getUserId();
-    const userId = "38202f1895654ea492fd30c37f4e3482";
+    const userId = getUserId();
+
+    if (!userId) {
+      doLogout();
+      return;
+    }
 
     const dashboardApiResponse: DashboardApiResponse = await getDashboard({
       userId: userId,
@@ -58,7 +64,10 @@ const Dashboard = () => {
 
     setLoading(false);
 
-    if (!dashboardApiResponse.success) {
+    if (
+      dashboardApiResponse.httpCode === 401 ||
+      dashboardApiResponse.httpCode === 403
+    ) {
       doLogout();
       return;
     }

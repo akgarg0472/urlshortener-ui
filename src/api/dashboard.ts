@@ -9,8 +9,10 @@ import {
   UrlMetricApiResponse,
 } from "./apiModals";
 import {
+  DASHBOARD_MY_LINKS_API_URL_V1,
   DASHBOARD_STATISTICS_URL,
   DASHBOARD_SUMMARY_API_URL_V1,
+  DASHBOARD_URL_METRICS_API_URL_V1,
 } from "../api.constants";
 import {
   getCurrentDayStartTimeInMs,
@@ -40,8 +42,6 @@ export const getDashboard = async (
       },
     });
 
-    console.log(dashboardSummaryApiResponse.data);
-
     return {
       httpCode: dashboardSummaryApiResponse.status,
       continents: dashboardSummaryApiResponse.data.continents,
@@ -53,8 +53,6 @@ export const getDashboard = async (
       success: dashboardSummaryApiResponse.data.status_code === 200,
     };
   } catch (err: any) {
-    console.log(err);
-
     if (isAxiosNetworkError(err)) {
       const axiosNetworkErrorResponse: ApiErrorResponse =
         axiosNwErrorResponse();
@@ -99,147 +97,142 @@ export const getDashboard = async (
   }
 };
 
-export const myLinks = (props: {
+export const getMyLinks = async (props: {
   userId: string;
   limit: number;
   offset: number;
-}): MyLinksApiResponse => {
-  return {
-    httpCode: 200,
-    total_records: 11,
-    next_offset: 1,
-    urls: [
-      {
-        original_url:
-          "https://www.dummy.xyz/this-is-a-dummy-long-url-for-my-links-section-of-url-shortender-project-1234",
-        short_url: "shorturl.xyz/vwx123",
-        created_at: "2022-10-24T22:46:54.000Z",
-        ip_address: "555.666.777.888",
+}): Promise<MyLinksApiResponse> => {
+  const url =
+    process.env.REACT_APP_BACKEND_BASE_URL + DASHBOARD_MY_LINKS_API_URL_V1;
+
+  try {
+    const myLinksApiResponse = await axios.get(url, {
+      params: {
+        userId: props.userId,
+        limit: props.limit,
+        offset: props.offset,
       },
-      {
-        original_url:
-          "https://www.dummy.xyz/this-is-a-dummy-long-url-for-my-links-section-of-url-shortender-project-1234",
-        short_url: "shorturl.xyz/vwx456",
-        created_at: "2022-10-24T22:46:54.000Z",
-        ip_address: "555.666.777.888",
-      },
-      {
-        original_url:
-          "https://www.dummy.xyz/this-is-a-dummy-long-url-for-my-links-section-of-url-shortender-project-1234",
-        short_url: "shorturl.xyz/vwx789",
-        created_at: "2022-10-24T22:46:54.000Z",
-        ip_address: "555.666.777.888",
-      },
-      {
-        original_url:
-          "https://www.dummy.xyz/this-is-a-dummy-long-url-for-my-links-section-of-url-shortender-project-1234",
-        short_url: "shorturl.xyz/vwx012",
-        created_at: "2022-10-24T22:46:54.000Z",
-        ip_address: "555.666.777.888",
-      },
-    ],
-  };
+    });
+
+    return {
+      httpCode: myLinksApiResponse.status,
+      next_offset: myLinksApiResponse.data.next_offset,
+      success: myLinksApiResponse.data.status_code === 200,
+      total_records: myLinksApiResponse.data.total_records,
+      urls: myLinksApiResponse.data.urls,
+    };
+  } catch (err: any) {
+    if (isAxiosNetworkError(err)) {
+      const axiosNetworkErrorResponse: ApiErrorResponse =
+        axiosNwErrorResponse();
+
+      return {
+        success: axiosNetworkErrorResponse.success,
+        httpCode: axiosNetworkErrorResponse.httpCode,
+        message: axiosNetworkErrorResponse.message,
+        next_offset: -1,
+        total_records: -1,
+        urls: [],
+      };
+    }
+
+    if (err.response && err.response.data) {
+      const errResp = errorResponse(err);
+
+      return {
+        success: errResp.success,
+        httpCode: errResp.httpCode,
+        message: errResp.message,
+        next_offset: -1,
+        total_records: -1,
+        urls: [],
+      };
+    }
+
+    return {
+      success: false,
+      httpCode: 500,
+      message: "My Links Fetch Failed",
+      next_offset: -1,
+      total_records: -1,
+      urls: [],
+    };
+  }
 };
 
-export const urlMetrics = (props: {
+export const getUrlMetrics = async (props: {
   userId: string;
   startTime: number;
   endTime: number;
   shortUrl: string;
   limit: number;
-}): UrlMetricApiResponse => {
-  return {
-    httpCode: 200,
-    total_hits: 22,
-    avg_redirect_duration: 2442.27,
-    latest_hits: [
-      {
-        ip: "62.161.168.168",
-        device_info: {
-          browser: "IE",
-          os: "Windows",
-        },
-        redirect_duration: 673,
-        timestamp: 1694028145801,
-        location: {
-          country: "France",
-          timezone: "Europe/Paris",
-        },
+}): Promise<UrlMetricApiResponse> => {
+  const url =
+    process.env.REACT_APP_BACKEND_BASE_URL + DASHBOARD_URL_METRICS_API_URL_V1;
+
+  try {
+    const urlMetricsApiResponse = await axios.get(url, {
+      params: {
+        userId: props.userId,
+        shortUrl: props.shortUrl,
+        startTime: props.startTime,
+        endTime: props.endTime,
+        limit: props.limit,
       },
-      {
-        ip: "129.115.216.222",
-        device_info: {
-          browser: "Opera",
-          os: "Mac OS",
-        },
-        redirect_duration: 823,
-        timestamp: 1694028072656,
-        location: {
-          country: "United States",
-          timezone: "America/Chicago",
-        },
-      },
-      {
-        ip: "47.122.194.116",
-        device_info: {
-          browser: "Opera",
-          os: "Linux",
-        },
-        redirect_duration: 687,
-        timestamp: 1694028070626,
-        location: {
-          country: "China",
-          timezone: "Asia/Shanghai",
-        },
-      },
-      {
-        ip: "127.126.60.250",
-        device_info: {
-          browser: "Opera",
-          os: "Windows",
-        },
-        redirect_duration: 2934,
-        timestamp: 1694027974807,
-        location: {
-          country: "unidentified",
-          timezone: "unidentified",
-        },
-      },
-      {
-        ip: "48.179.240.43",
-        device_info: {
-          browser: "Opera",
-          os: "Windows",
-        },
-        redirect_duration: 3175,
-        timestamp: 1694027974321,
-        location: {
-          country: "United States",
-          timezone: "America/Chicago",
-        },
-      },
-      {
-        ip: "48.179.240.43",
-        device_info: {
-          browser: "Opera",
-          os: "Windows",
-        },
-        redirect_duration: 3175,
-        timestamp: 1694027974321,
-        location: {
-          country: "United States",
-          timezone: "America/Chicago",
-        },
-      },
-    ],
-  };
+    });
+
+    return {
+      httpCode: urlMetricsApiResponse.status,
+      avg_redirect_duration: urlMetricsApiResponse.data.avg_redirect_duration,
+      latest_hits: urlMetricsApiResponse.data.latest_hits,
+      total_hits: urlMetricsApiResponse.data.total_hits,
+      success: urlMetricsApiResponse.data.status_code === 200,
+    };
+  } catch (err: any) {
+    if (isAxiosNetworkError(err)) {
+      const axiosNetworkErrorResponse: ApiErrorResponse =
+        axiosNwErrorResponse();
+
+      return {
+        success: axiosNetworkErrorResponse.success,
+        httpCode: axiosNetworkErrorResponse.httpCode,
+        message: axiosNetworkErrorResponse.message,
+        avg_redirect_duration: -1,
+        latest_hits: [],
+        total_hits: -1,
+      };
+    }
+
+    if (err.response && err.response.data) {
+      const errResp = errorResponse(err);
+
+      return {
+        success: errResp.success,
+        httpCode: errResp.httpCode,
+        message: errResp.message,
+        avg_redirect_duration: -1,
+        latest_hits: [],
+        total_hits: -1,
+      };
+    }
+
+    return {
+      success: false,
+      httpCode: 500,
+      message: "Url Metrics Fetch Failed",
+      avg_redirect_duration: -1,
+      latest_hits: [],
+      total_hits: -1,
+    };
+  }
 };
 
-export const geographicalStats = (props: {
+export const getGeographicalStats = (props: {
   userId: string;
 }): GeographicalApiResponse => {
   return {
     httpCode: 200,
+    success: true,
     continents: [
       {
         name: "North America",
@@ -493,11 +486,12 @@ export const geographicalStats = (props: {
   };
 };
 
-export const deviceMetricsStats = (props: {
+export const getDeviceMetricsStats = (props: {
   userId: string;
 }): DeviceMetricsApiResponse => {
   return {
     httpCode: 200,
+    success: true,
     os_browsers: [
       {
         os_name: "Windows",
@@ -593,11 +587,12 @@ export const deviceMetricsStats = (props: {
   };
 };
 
-export const popularURLStats = (props: {
+export const getPopularURLStats = (props: {
   userId: string;
 }): PopularURLApiResponse => {
   return {
     httpCode: 200,
+    success: true,
     popular_urls: [
       {
         short_url: "8nJ2GDC",

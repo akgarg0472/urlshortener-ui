@@ -1,6 +1,7 @@
 export interface ApiResponse {
   httpCode: number;
   message?: string;
+  success: boolean;
 }
 
 export interface DashboardApiStat {
@@ -127,7 +128,6 @@ export interface VerifyPaymentResponse extends ApiResponse {
 }
 
 export interface LoginApiResponse extends ApiResponse {
-  success: boolean;
   message: string;
   token?: string;
   userId?: string;
@@ -136,23 +136,19 @@ export interface LoginApiResponse extends ApiResponse {
 }
 
 export interface SignupApiResponse extends ApiResponse {
-  success: boolean;
   errors?: string;
 }
 
 export interface LogoutApiResponse extends ApiResponse {
   message: string;
-  success: boolean;
   errors?: string;
 }
 
 export interface ForgotPasswordApiResponse extends ApiResponse {
   message: string;
-  success: boolean;
 }
 
 export interface ResetPasswordApiResponse extends ApiResponse {
-  success: boolean;
   message: string;
 }
 

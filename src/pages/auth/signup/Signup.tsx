@@ -64,8 +64,6 @@ const Signup = () => {
 
     Loader.hideLoader();
 
-    console.log(JSON.stringify(signupApiResponse));
-
     if (signupApiResponse.success) {
       Modal.showModal({
         icon: ModalIcon.SUCCESS,

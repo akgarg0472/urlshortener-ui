@@ -1,6 +1,5 @@
 import React, { ReactNode, useEffect, useState } from "react";
 import { LatestHit, UrlMetricApiResponse } from "../../api/apiModals";
-import { urlMetrics } from "../../api/dashboard";
 import useAuth from "../../hooks/useAuth";
 import { convertTimestampToDateTime } from "../../utils/datetimeutils";
 import InternalLoader from "../loader/internal-loader/InternalLoader";
@@ -11,6 +10,7 @@ import {
   InternalLoaderSpeed,
   InternalLoaderSize,
 } from "../loader/Loader.enums";
+import { getUrlMetrics } from "../../api/dashboard";
 
 const ShortUrlMetricModal = (props: ShortUrlMetricModalProps) => {
   const { getUserId } = useAuth();
@@ -21,25 +21,28 @@ const ShortUrlMetricModal = (props: ShortUrlMetricModalProps) => {
   const [latestHits, setLatestHits] = useState([] as LatestHit[]);
 
   useEffect(() => {
-    setTimeout(() => {
-      const apiResponse: UrlMetricApiResponse = urlMetrics({
-        userId: getUserId()!!,
-        shortUrl: props.shortUrl,
-        endTime: new Date().getTime(),
-        startTime: 0,
-        limit: 10,
-      });
-
-      if (apiResponse.httpCode !== 200) {
-        // do error handling
-      }
-
-      setAvgRedirectDuration(apiResponse.avg_redirect_duration);
-      setTotalHits(apiResponse.total_hits);
-      setLatestHits(apiResponse.latest_hits);
-      setLoading(false);
-    }, 1000);
+    fetchUrlMetrics();
   }, []);
+
+  const fetchUrlMetrics = async () => {
+    const apiResponse: UrlMetricApiResponse = await getUrlMetrics({
+      userId: getUserId()!!,
+      shortUrl: props.shortUrl,
+      endTime: new Date().getTime(),
+      startTime: 0,
+      limit: 10,
+    });
+
+    if (apiResponse.httpCode !== 200) {
+      closeModal();
+      return;
+    }
+
+    setAvgRedirectDuration(apiResponse.avg_redirect_duration);
+    setTotalHits(apiResponse.total_hits);
+    setLatestHits(apiResponse.latest_hits);
+    setLoading(false);
+  };
 
   const closeModal = () => {
     setLoading(false);
@@ -66,29 +69,31 @@ const ShortUrlMetricModal = (props: ShortUrlMetricModalProps) => {
             <div className="heading">Latest Hits</div>
 
             <table>
-              <tr>
-                <th>S.No</th>
-                <th>Timestamp</th>
-                <th>IP Address</th>
-                <th>OS</th>
-                <th>Browser</th>
-                <th>Country</th>
-                <th>Redirect Duration</th>
-                <th>Timezone</th>
-              </tr>
-
-              {latestHits.map((hit, index) => (
+              <tbody>
                 <tr>
-                  <td>{index + 1}</td>
-                  <td>{convertTimestampToDateTime(hit.timestamp)}</td>
-                  <td>{hit.ip}</td>
-                  <td>{hit.device_info.os}</td>
-                  <td>{hit.device_info.browser}</td>
-                  <td>{hit.location.country}</td>
-                  <td>{hit.redirect_duration}ms</td>
-                  <td>{hit.location.timezone}</td>
+                  <th>S.No</th>
+                  <th>Timestamp</th>
+                  <th>IP Address</th>
+                  <th>OS</th>
+                  <th>Browser</th>
+                  <th>Country</th>
+                  <th>Redirect Duration</th>
+                  <th>Timezone</th>
                 </tr>
-              ))}
+
+                {latestHits.map((hit, index) => (
+                  <tr key={hit.ip + hit.timestamp}>
+                    <td>{index + 1}</td>
+                    <td>{convertTimestampToDateTime(hit.timestamp)}</td>
+                    <td>{hit.ip}</td>
+                    <td>{hit.device_info.os}</td>
+                    <td>{hit.device_info.browser}</td>
+                    <td>{hit.location.country}</td>
+                    <td>{hit.redirect_duration}ms</td>
+                    <td>{hit.location.timezone}</td>
+                  </tr>
+                ))}
+              </tbody>
             </table>
           </div>
         </div>

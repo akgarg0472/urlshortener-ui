@@ -13,6 +13,7 @@ const stripeMakePayment = (props: {
   };
 
   return {
+    success: true,
     httpCode: 200,
     payment_client_secret: "this_is_some_sort_of_client_secret_1234",
   };

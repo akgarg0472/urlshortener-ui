@@ -9,11 +9,6 @@ import {
   PopularURL,
   PopularURLApiResponse,
 } from "../../api/apiModals";
-import {
-  deviceMetricsStats,
-  geographicalStats,
-  popularURLStats,
-} from "../../api/dashboard";
 import DashboardStatsHeading from "../../components/DashboardStatsHeading/DashboardStatsHeading";
 import BarChart from "../../components/bar-chart/BarChart";
 import DashboardNavbar from "../../components/dashboard-navbar/DashboardNavbar";
@@ -43,6 +38,11 @@ import DropdownSelector from "../../components/dropdownselector/DropdownSelector
 
 import "./Dashboard.css";
 import { DropdownSelectorHeight } from "../../components/dropdownselector/DropdownSelector.enums";
+import {
+  getDeviceMetricsStats,
+  getGeographicalStats,
+  getPopularURLStats,
+} from "../../api/dashboard";
 
 const DashboardStatistics = () => {
   const { getUserId } = useAuth();
@@ -56,22 +56,23 @@ const DashboardStatistics = () => {
   const [deviceChartType, setDeviceChartType] = useState(CHART__TYPE__PIE);
 
   const getPopularURLs = async () => {
-    const popularURLResponse: PopularURLApiResponse = popularURLStats({
+    const popularURLResponse: PopularURLApiResponse = getPopularURLStats({
       userId: getUserId()!!,
     });
     setPopularUrls(popularURLResponse.popular_urls);
   };
 
   const getGeographicalData = async () => {
-    const geographicalApiResponse: GeographicalApiResponse = geographicalStats({
-      userId: getUserId()!!,
-    });
+    const geographicalApiResponse: GeographicalApiResponse =
+      getGeographicalStats({
+        userId: getUserId()!!,
+      });
     setContinents(geographicalApiResponse.continents);
     setCountries(geographicalApiResponse.countries);
   };
 
   const getOSBrowserData = async () => {
-    const osBrowserResponse: DeviceMetricsApiResponse = deviceMetricsStats({
+    const osBrowserResponse: DeviceMetricsApiResponse = getDeviceMetricsStats({
       userId: getUserId()!!,
     });
     setOss(osBrowserResponse.oss);
