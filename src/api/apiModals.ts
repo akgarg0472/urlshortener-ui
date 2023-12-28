@@ -152,6 +152,11 @@ export interface ResetPasswordApiResponse extends ApiResponse {
   message: string;
 }
 
+export interface GenerateUrlResponse extends ApiResponse {
+  short_url?: string;
+  original_url?: string;
+}
+
 export interface ApiErrorResponse {
   success: boolean;
   message: string;

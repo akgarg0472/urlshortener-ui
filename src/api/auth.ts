@@ -12,7 +12,7 @@ import {
   LOGOUT_API_URL_V1,
   RESET_PASSWORD_API_URL_V1,
   SIGNUP_API_URL_V1,
-} from "../api.constants";
+} from "../api.endpoint.constants";
 import {
   axiosNwErrorResponse,
   errorResponse,

@@ -10,10 +10,9 @@ import {
 } from "./apiModals";
 import {
   DASHBOARD_MY_LINKS_API_URL_V1,
-  DASHBOARD_STATISTICS_URL,
   DASHBOARD_SUMMARY_API_URL_V1,
   DASHBOARD_URL_METRICS_API_URL_V1,
-} from "../api.constants";
+} from "../api.endpoint.constants";
 import {
   getCurrentDayStartTimeInMs,
   getOneWeekOldTimeInMsFromCurrentDate,

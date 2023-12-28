@@ -1,3 +1,4 @@
+// Front-end Pages endpoints
 export const LOGIN_URL: string = "/login";
 export const SIGNUP_URL: string = "/signup";
 export const FORGOT_PASSWORD_URL: string = "/forgot-password";
@@ -6,15 +7,12 @@ export const DASHBOARD_URL: string = "/dashboard";
 export const DASHBOARD_LINKS_URL: string = "/dashboard/links";
 export const DASHBOARD_STATISTICS_URL: string = "/dashboard/statistics";
 export const DASHBOARD_PROFILE_URL: string = "/dashboard/profile";
-
 export const MAKE_PAYMENT_URL = "/make-payment";
 
 export const HOME_WHY_CHOOSE_US: string = "Why Choose us";
 export const HOME_WHY_CHOOSE_US_DESC: string =
   "At URLShortener, we prioritize simplicity, speed, and security. Our user-friendly platform empowers you to share links effortlessly, while our advanced technology safeguards your data.";
-
 export const HOME_CUSTOMER_TESTIMONIALS: string = "Customer Testimonials";
-
 export const DASH_PREV_SEVEN_DAYS_HEAD: string = "Previous 7 Days Hits";
 export const DASH_PREV_SEVEN_DAYS_SUBHEAD: string =
   "A visual snapshot of the total hits on our URLs over the past 7 days, helping you track recent usage pattern and engagement";
@@ -36,7 +34,6 @@ export const DASH_PROFILE_SUBHEAD: string =
   "The profile page is your virtual representation, a place where you can share information about yourself and your activities on the platform. It typically includes your username, profile picture, a bio or description.";
 export const DASH_OS_HEAD: string = "OS Statistics";
 export const DASH_BROWSER_HEAD: string = "Browser Statistics";
-
 export const DASH_PROFILE_DEFAULT_USERNAME: string = "John Doe";
 export const DASH_PROFILE_DEFAULT_BIO: string =
   "Experienced Software Engg with a passion for innovation & problem-solving";
@@ -45,18 +42,3 @@ export const DASH_PROFILE_DEFAULT_LOCATION: string = "New York, United States";
 export const DASH_PROFILE_DEFAULT_GITHUB: string = "john.doe";
 export const DASH_PROFILE_DEFAULT_INSTAGRAM: string = "john.doe";
 export const DASH_PROFILE_DEFAULT_TWITTER: string = "doe.john1";
-
-// Auth API endpoints
-export const SIGNUP_API_URL_V1: string = "/api/v1/auth/signup";
-export const LOGIN_API_URL_V1: string = "/api/v1/auth/login";
-export const LOGOUT_API_URL_V1: string = "/api/v1/auth/logout";
-export const FORGOT_PASSWORD_API_URL_V1 = "/api/v1/auth/forgot-password";
-export const RESET_PASSWORD_API_URL_V1 = "/api/v1/auth/reset-password";
-
-// Dashboard API endpoints
-export const DASHBOARD_SUMMARY_API_URL_V1 =
-  "/api/v1/statistics/dashboard-summary";
-export const DASHBOARD_MY_LINKS_API_URL_V1 =
-  "/api/v1/statistics/generated-urls";
-export const DASHBOARD_URL_METRICS_API_URL_V1 =
-  "/api/v1/statistics/url-metrics";

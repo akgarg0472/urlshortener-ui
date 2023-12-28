@@ -4,11 +4,13 @@ import RegularButton from "../button/RegularButton";
 import InputField from "../inputfield/InputField";
 import InternalLoader from "../loader/internal-loader/InternalLoader";
 import Modal from "../modal/Modal";
-
-import "./CreateUrlModal.css";
 import { ModalIcon } from "../modal/Modal.enums";
 import { InputFieldType } from "../inputfield/InputField.enums";
 import { InternalLoaderSize } from "../loader/Loader.enums";
+import { generateShortUrl } from "../../api/url";
+
+import "./CreateUrlModal.css";
+import { GenerateUrlResponse } from "../../api/apiModals";
 
 const CreateUrlModal = (props: CreateUrlModalProps) => {
   const { getUserId } = useAuth();
@@ -17,7 +19,22 @@ const CreateUrlModal = (props: CreateUrlModalProps) => {
   const [loading, setLoading] = useState(false);
   const [originalUrl, setOriginalUrl] = useState("");
 
-  const handleGenerateShortUrlButtonClick = () => {
+  const handleGenerateShortUrlButtonClick = async () => {
+    if (!originalUrl) {
+      Modal.showModal({
+        icon: ModalIcon.ERROR,
+        title: "ERROR",
+        message: "Please provide valid URL",
+      });
+      return;
+    }
+
+    const userId = getUserId();
+
+    if (!userId) {
+      return;
+    }
+
     setLoading(true);
 
     if (generateShortUrlButtonRef.current) {
@@ -25,22 +42,40 @@ const CreateUrlModal = (props: CreateUrlModalProps) => {
       generateShortUrlButtonRef.current.classList.add("uss__button__disabled");
     }
 
-    setTimeout(() => {
-      setLoading(false);
+    const generateShortUrlApiResponse: GenerateUrlResponse =
+      await generateShortUrl({
+        originalUrl,
+        userId,
+      });
 
-      if (generateShortUrlButtonRef.current) {
-        generateShortUrlButtonRef.current.disabled = false;
-        generateShortUrlButtonRef.current.classList.remove(
-          "uss__button__disabled"
-        );
-      }
+    setLoading(false);
 
+    if (generateShortUrlButtonRef.current) {
+      generateShortUrlButtonRef.current.disabled = false;
+      generateShortUrlButtonRef.current.classList.remove(
+        "uss__button__disabled"
+      );
+    }
+
+    if (generateShortUrlApiResponse.success) {
       Modal.showModal({
         icon: ModalIcon.SUCCESS,
         title: "Success",
         message: "Short URL generated successfully",
+        onClose() {
+          props.onClose();
+        },
       });
-    }, 5000);
+    } else {
+      Modal.showModal({
+        icon: ModalIcon.ERROR,
+        title: "ERROR",
+        message: "Error generation short URL",
+        onClose() {
+          props.onClose();
+        },
+      });
+    }
   };
 
   return (

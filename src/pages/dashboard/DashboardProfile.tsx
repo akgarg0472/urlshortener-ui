@@ -8,7 +8,7 @@ import DashboardHeadSubHead from "../../components/dashboardheadsubhead/Dashboar
 import HorizontalInputField from "../../components/inputfield/HorizontalInputField";
 import InternalLoader from "../../components/loader/internal-loader/InternalLoader";
 import ProfileCard from "../../components/profile-card/ProfileCard";
-import { DASH_PROFILE_HEAD, DASH_PROFILE_SUBHEAD } from "../../api.constants";
+import { DASH_PROFILE_HEAD, DASH_PROFILE_SUBHEAD } from "../../constants";
 import "./Dashboard.css";
 
 const DashboardProfile = () => {

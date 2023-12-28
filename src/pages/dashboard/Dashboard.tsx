@@ -24,7 +24,7 @@ import {
   DASH_PREV_SEVEN_DAYS_HEAD,
   DASH_PREV_SEVEN_DAYS_SUBHEAD,
   PREV_SEVEN_DAYS_DATASET_LABEL,
-} from "../../api.constants";
+} from "../../constants";
 import { getCurrentDateTime } from "../../utils/datetimeutils";
 import "./Dashboard.css";
 import Modal from "../../components/modal/Modal";

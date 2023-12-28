@@ -12,7 +12,7 @@ import {
   DASH_MY_LINKS_HEAD,
   DASH_MY_LINKS_SUBHEAD,
   LOGIN_URL,
-} from "../../api.constants";
+} from "../../constants";
 import "./Dashboard.css";
 
 const DashboardLinks = () => {
@@ -23,7 +23,7 @@ const DashboardLinks = () => {
   const [nextOffset, setNextOffset] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
   const [showLoadMoreButton, setShowLoadMoreButton] = useState<boolean>(false);
-  const [limit, setLimit] = useState<number>(100);
+  const [limit, setLimit] = useState<number>(10);
 
   useEffect(() => {
     document.title = "My Links";
