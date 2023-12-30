@@ -1,6 +1,8 @@
 .icon__stats__container {
-  width: 45%;
+  width: 25rem;
   display: flex;
+  margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
 }
 .icon__stats__container .img__container {
   width: 4.8rem;

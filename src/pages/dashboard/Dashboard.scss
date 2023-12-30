@@ -151,9 +151,9 @@ $component__margin: 1.2rem 0;
 
     .popular__urls__stats__container {
       display: flex;
-      padding: 3.2rem;
+      padding: 2.8rem;
       align-items: center;
-      justify-content: center;
+      flex-wrap: wrap;
     }
   }
 

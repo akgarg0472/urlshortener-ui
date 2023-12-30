@@ -12,4 +12,9 @@ export const DASHBOARD_MY_LINKS_API_URL_V1 =
   "/api/v1/statistics/generated-urls";
 export const DASHBOARD_URL_METRICS_API_URL_V1 =
   "/api/v1/statistics/url-metrics";
+export const DASHBOARD_DEVICE_METRICS_API_URL_V1 =
+  "/api/v1/statistics/device-metrics";
+export const GET_TOP_POPULAR_URLS_V1 = "/api/v1/statistics/popular-urls";
+export const GET_URL_GEOGRAPHICAL_DATA_V1 =
+  "/api/v1/statistics/geographical-metrics";
 export const GENERATE_SHORT_URL_API_URL_V1 = "/api/v1/urlshortener";

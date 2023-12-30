@@ -139,9 +139,9 @@
 }
 .dashboard__page__content .popular__urls__container .popular__urls__stats__container {
   display: flex;
-  padding: 3.2rem;
+  padding: 2.8rem;
   align-items: center;
-  justify-content: center;
+  flex-wrap: wrap;
 }
 .dashboard__page__content .profile__page__content__container {
   display: flex;

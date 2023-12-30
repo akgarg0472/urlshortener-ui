@@ -162,3 +162,9 @@ export interface ApiErrorResponse {
   message: string;
   httpCode: number;
 }
+
+export interface DashboardStatisticsApiResponse extends ApiResponse {
+  popularUrls?: PopularURLApiResponse;
+  geographicalStats?: GeographicalApiResponse;
+  deviceMetrics?: DeviceMetricsApiResponse;
+}

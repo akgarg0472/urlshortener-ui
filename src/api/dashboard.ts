@@ -1,7 +1,8 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import {
   ApiErrorResponse,
   DashboardApiResponse,
+  DashboardStatisticsApiResponse,
   DeviceMetricsApiResponse,
   GeographicalApiResponse,
   MyLinksApiResponse,
@@ -9,9 +10,12 @@ import {
   UrlMetricApiResponse,
 } from "./apiModals";
 import {
+  DASHBOARD_DEVICE_METRICS_API_URL_V1,
   DASHBOARD_MY_LINKS_API_URL_V1,
   DASHBOARD_SUMMARY_API_URL_V1,
   DASHBOARD_URL_METRICS_API_URL_V1,
+  GET_TOP_POPULAR_URLS_V1,
+  GET_URL_GEOGRAPHICAL_DATA_V1,
 } from "../api.endpoint.constants";
 import {
   getCurrentDayStartTimeInMs,
@@ -226,393 +230,104 @@ export const getUrlMetrics = async (props: {
   }
 };
 
-export const getGeographicalStats = (props: {
-  userId: string;
-}): GeographicalApiResponse => {
-  return {
-    httpCode: 200,
-    success: true,
-    continents: [
-      {
-        name: "North America",
-        hits_count: 13,
-        countries: [
-          {
-            name: "United States",
-            hits_count: 12,
-            cities: [
-              {
-                name: "unidentified",
-                hits_count: 10,
-              },
-              {
-                name: "Kennett Square",
-                hits_count: 1,
-              },
-              {
-                name: "San Antonio",
-                hits_count: 1,
-              },
-            ],
-          },
-          {
-            name: "Canada",
-            hits_count: 1,
-            cities: [
-              {
-                name: "unidentified",
-                hits_count: 1,
-              },
-            ],
-          },
-        ],
-      },
-      {
-        name: "Asia",
-        hits_count: 4,
-        countries: [
-          {
-            name: "China",
-            hits_count: 1,
-            cities: [
-              {
-                name: "unidentified",
-                hits_count: 1,
-              },
-            ],
-          },
-          {
-            name: "Indonesia",
-            hits_count: 1,
-            cities: [
-              {
-                name: "unidentified",
-                hits_count: 1,
-              },
-            ],
-          },
-          {
-            name: "Singapore",
-            hits_count: 1,
-            cities: [
-              {
-                name: "unidentified",
-                hits_count: 1,
-              },
-            ],
-          },
-          {
-            name: "Taiwan",
-            hits_count: 1,
-            cities: [
-              {
-                name: "unidentified",
-                hits_count: 1,
-              },
-            ],
-          },
-        ],
-      },
-      {
-        name: "Europe",
-        hits_count: 2,
-        countries: [
-          {
-            name: "France",
-            hits_count: 1,
-            cities: [
-              {
-                name: "Bourg-la-Reine",
-                hits_count: 1,
-              },
-            ],
-          },
-          {
-            name: "Switzerland",
-            hits_count: 1,
-            cities: [
-              {
-                name: "unidentified",
-                hits_count: 1,
-              },
-            ],
-          },
-        ],
-      },
-      {
-        name: "unidentified",
-        hits_count: 2,
-        countries: [
-          {
-            name: "unidentified",
-            hits_count: 2,
-            cities: [
-              {
-                name: "unidentified",
-                hits_count: 2,
-              },
-            ],
-          },
-        ],
-      },
-      {
-        name: "South America",
-        hits_count: 1,
-        countries: [
-          {
-            name: "Brazil",
-            hits_count: 1,
-            cities: [
-              {
-                name: "unidentified",
-                hits_count: 1,
-              },
-            ],
-          },
-        ],
-      },
-    ],
-    countries: [
-      {
-        name: "United States",
-        hits_count: 12,
-        cities: [
-          {
-            name: "unidentified",
-            hits_count: 10,
-          },
-          {
-            name: "Kennett Square",
-            hits_count: 1,
-          },
-          {
-            name: "San Antonio",
-            hits_count: 1,
-          },
-        ],
-      },
-      {
-        name: "Canada",
-        hits_count: 1,
-        cities: [
-          {
-            name: "unidentified",
-            hits_count: 1,
-          },
-        ],
-      },
-      {
-        name: "China",
-        hits_count: 1,
-        cities: [
-          {
-            name: "unidentified",
-            hits_count: 1,
-          },
-        ],
-      },
-      {
-        name: "Indonesia",
-        hits_count: 1,
-        cities: [
-          {
-            name: "unidentified",
-            hits_count: 1,
-          },
-        ],
-      },
-      {
-        name: "Singapore",
-        hits_count: 1,
-        cities: [
-          {
-            name: "unidentified",
-            hits_count: 1,
-          },
-        ],
-      },
-      {
-        name: "Taiwan",
-        hits_count: 1,
-        cities: [
-          {
-            name: "unidentified",
-            hits_count: 1,
-          },
-        ],
-      },
-      {
-        name: "France",
-        hits_count: 1,
-        cities: [
-          {
-            name: "Bourg-la-Reine",
-            hits_count: 1,
-          },
-        ],
-      },
-      {
-        name: "Switzerland",
-        hits_count: 1,
-        cities: [
-          {
-            name: "unidentified",
-            hits_count: 1,
-          },
-        ],
-      },
-      {
-        name: "unidentified",
-        hits_count: 2,
-        cities: [
-          {
-            name: "unidentified",
-            hits_count: 2,
-          },
-        ],
-      },
-      {
-        name: "Brazil",
-        hits_count: 1,
-        cities: [
-          {
-            name: "unidentified",
-            hits_count: 1,
-          },
-        ],
-      },
-    ],
-  };
+export const getDashboardStatistics = async (
+  props: DashboardStatisticsRequest
+): Promise<DashboardStatisticsApiResponse> => {
+  try {
+    const result = await Promise.all([
+      popularUrlsPromise(props.popularUrlParam),
+      geographicalApiPromise(props.geographicalParams),
+      getDeviceMetricsStats(props.geographicalParams),
+    ]);
+
+    const isSuccessResponse =
+      result[0].status === 200 &&
+      result[1].status === 200 &&
+      result[2].status === 200;
+
+    return {
+      success: isSuccessResponse,
+      httpCode: isSuccessResponse ? 200 : 500,
+      popularUrls: { ...result[0].data, success: true },
+      geographicalStats: { ...result[1].data, success: true },
+      deviceMetrics: { ...result[2].data, success: true },
+    };
+  } catch (err: any) {
+    if (isAxiosNetworkError(err)) {
+      const axiosNetworkErrorResponse: ApiErrorResponse =
+        axiosNwErrorResponse();
+
+      return {
+        success: axiosNetworkErrorResponse.success,
+        httpCode: axiosNetworkErrorResponse.httpCode,
+        message: axiosNetworkErrorResponse.message,
+      };
+    }
+
+    const errorHttpCode: number =
+      err.response && err.response.data ? err.response.data.status_code : 500;
+
+    return {
+      success: false,
+      httpCode: errorHttpCode,
+      message:
+        errorHttpCode === 400
+          ? "Invalid Request. Please try again"
+          : `Error Fetching Statistics Data`,
+    };
+  }
 };
 
-export const getDeviceMetricsStats = (props: {
-  userId: string;
-}): DeviceMetricsApiResponse => {
-  return {
-    httpCode: 200,
-    success: true,
-    os_browsers: [
-      {
-        os_name: "Windows",
-        hits_count: 12,
-        browsers: [
-          {
-            name: "IE",
-            hits_count: 5,
-          },
-          {
-            name: "Opera",
-            hits_count: 3,
-          },
-          {
-            name: "Chrome",
-            hits_count: 2,
-          },
-          {
-            name: "Safari",
-            hits_count: 2,
-          },
-        ],
-      },
-      {
-        os_name: "Linux",
-        hits_count: 6,
-        browsers: [
-          {
-            name: "Opera",
-            hits_count: 5,
-          },
-          {
-            name: "Chrome",
-            hits_count: 1,
-          },
-        ],
-      },
-      {
-        os_name: "Mac OS",
-        hits_count: 4,
-        browsers: [
-          {
-            name: "Opera",
-            hits_count: 2,
-          },
-          {
-            name: "Firefox",
-            hits_count: 1,
-          },
-          {
-            name: "Safari",
-            hits_count: 1,
-          },
-        ],
-      },
-    ],
-    browsers: [
-      {
-        name: "IE",
-        hits_count: 5,
-      },
-      {
-        name: "Opera",
-        hits_count: 10,
-      },
-      {
-        name: "Chrome",
-        hits_count: 3,
-      },
-      {
-        name: "Safari",
-        hits_count: 3,
-      },
-      {
-        name: "Firefox",
-        hits_count: 1,
-      },
-    ],
-    oss: [
-      {
-        name: "Windows",
-        hits_count: 12,
-      },
-      {
-        name: "Linux",
-        hits_count: 6,
-      },
-      {
-        name: "Mac OS",
-        hits_count: 4,
-      },
-    ],
-  };
+const geographicalApiPromise = (
+  geographicRequest: UrlGeographicalRequest
+): Promise<AxiosResponse> => {
+  const geographicalStatsApiUrl =
+    process.env.REACT_APP_BACKEND_BASE_URL + GET_URL_GEOGRAPHICAL_DATA_V1;
+
+  const geographicalApiPromiseResponse = axios.get(geographicalStatsApiUrl, {
+    params: {
+      userId: geographicRequest.userId,
+      startTime: geographicRequest.startTime,
+      endTime: geographicRequest.endTime,
+    },
+  });
+
+  return geographicalApiPromiseResponse;
 };
 
-export const getPopularURLStats = (props: {
-  userId: string;
-}): PopularURLApiResponse => {
-  return {
-    httpCode: 200,
-    success: true,
-    popular_urls: [
-      {
-        short_url: "8nJ2GDC",
-        hits_count: 35,
-      },
-      {
-        short_url: "u2rGaOw",
-        hits_count: 33,
-      },
-      {
-        short_url: "7FO5bt8",
-        hits_count: 32,
-      },
-      {
-        short_url: "u6yV36W",
-        hits_count: 32,
-      },
-      {
-        short_url: "Rmm6gGY",
-        hits_count: 30,
-      },
-    ],
-  };
+const getDeviceMetricsStats = (
+  props: DeviceMetricsApiRequest
+): Promise<AxiosResponse> => {
+  const deviceStatsApiUrl =
+    process.env.REACT_APP_BACKEND_BASE_URL +
+    DASHBOARD_DEVICE_METRICS_API_URL_V1;
+
+  const deviceMetricsApiResponse = axios.get(deviceStatsApiUrl, {
+    params: {
+      userId: props.userId,
+      startTime: props.startTime,
+      endTime: props.endTime,
+    },
+  });
+
+  return deviceMetricsApiResponse;
+};
+
+const popularUrlsPromise = (
+  popularUrlRequest: TopPopularUrlRequest
+): Promise<AxiosResponse> => {
+  const popularUrlsApiUrl =
+    process.env.REACT_APP_BACKEND_BASE_URL + GET_TOP_POPULAR_URLS_V1;
+
+  const popularUrlApiResponse = axios.get(popularUrlsApiUrl, {
+    params: {
+      userId: popularUrlRequest.userId,
+      sortOrder: popularUrlRequest.sortOrder,
+      limit: popularUrlRequest.limit,
+      startTime: popularUrlRequest.startTime,
+      endTime: popularUrlRequest.endTime,
+    },
+  });
+
+  return popularUrlApiResponse;
 };

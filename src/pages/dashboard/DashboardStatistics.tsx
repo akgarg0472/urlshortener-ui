@@ -3,6 +3,7 @@ import {
   Browser,
   Continent,
   Country,
+  DashboardStatisticsApiResponse,
   DeviceMetricsApiResponse,
   GeographicalApiResponse,
   OS,
@@ -21,12 +22,14 @@ import NoDataAvailable from "../../components/no-data-available/NoDataAvailable"
 import PieChart from "../../components/pie-chart/PieChart";
 import useAuth from "../../hooks/useAuth";
 import {
+  DASHBOARD_URL,
   DASH_BROWSER_HEAD,
   DASH_CONTINET_HEAD,
   DASH_COUNTRY_HEAD,
   DASH_OS_HEAD,
   DASH_STATISTICS_HEAD,
   DASH_STATISTICS_SUBHEAD,
+  LOGIN_URL,
 } from "../../constants";
 import {
   CHART_TYPE_BAR,
@@ -38,14 +41,16 @@ import DropdownSelector from "../../components/dropdownselector/DropdownSelector
 
 import "./Dashboard.css";
 import { DropdownSelectorHeight } from "../../components/dropdownselector/DropdownSelector.enums";
-import {
-  getDeviceMetricsStats,
-  getGeographicalStats,
-  getPopularURLStats,
-} from "../../api/dashboard";
+import { getDashboardStatistics } from "../../api/dashboard";
+import Modal from "../../components/modal/Modal";
+import { ModalIcon } from "../../components/modal/Modal.enums";
+import { useNavigate } from "react-router-dom";
+import { count } from "console";
 
 const DashboardStatistics = () => {
-  const { getUserId } = useAuth();
+  const { getUserId, logout } = useAuth();
+  const navigate = useNavigate();
+
   const [loading, setLoading] = useState(true);
   const [popularUrls, setPopularUrls] = useState([] as PopularURL[]);
   const [continents, setContinents] = useState([] as Continent[]);
@@ -55,39 +60,112 @@ const DashboardStatistics = () => {
   const [geoChartType, setGeoChartType] = useState(CHART__TYPE__PIE);
   const [deviceChartType, setDeviceChartType] = useState(CHART__TYPE__PIE);
 
-  const getPopularURLs = async () => {
-    const popularURLResponse: PopularURLApiResponse = getPopularURLStats({
-      userId: getUserId()!!,
-    });
-    setPopularUrls(popularURLResponse.popular_urls);
-  };
+  const fetchData = async () => {
+    const userId = getUserId();
 
-  const getGeographicalData = async () => {
-    const geographicalApiResponse: GeographicalApiResponse =
-      getGeographicalStats({
-        userId: getUserId()!!,
+    if (!userId) {
+      logout();
+      navigate(LOGIN_URL, { replace: true });
+      return;
+    }
+
+    const endTime = Date.now();
+
+    const dashboardStatisticsApiResponse: DashboardStatisticsApiResponse =
+      await getDashboardStatistics({
+        geographicalParams: {
+          userId: userId,
+          startTime: 0,
+          endTime: endTime,
+        },
+        popularUrlParam: {
+          userId: userId,
+          sortOrder: "desc",
+          limit: 10,
+          startTime: 0,
+          endTime: endTime,
+        },
+        deviceMetricsParam: {
+          userId: userId,
+          startTime: 0,
+          endTime: endTime,
+        },
       });
-    setContinents(geographicalApiResponse.continents);
-    setCountries(geographicalApiResponse.countries);
+
+    setLoading(false);
+
+    if (dashboardStatisticsApiResponse.success) {
+      handlePopularURLs(dashboardStatisticsApiResponse.popularUrls!!);
+      handleGeographicalData(
+        dashboardStatisticsApiResponse.geographicalStats!!
+      );
+      handleOSBrowserData(dashboardStatisticsApiResponse.deviceMetrics!!);
+    } else {
+      Modal.showModal({
+        icon: ModalIcon.ERROR,
+        message: dashboardStatisticsApiResponse.message,
+        onClose() {
+          navigate(DASHBOARD_URL, { replace: true });
+        },
+      });
+    }
   };
 
-  const getOSBrowserData = async () => {
-    const osBrowserResponse: DeviceMetricsApiResponse = getDeviceMetricsStats({
-      userId: getUserId()!!,
-    });
-    setOss(osBrowserResponse.oss);
-    setBrowsers(osBrowserResponse.browsers);
+  const handlePopularURLs = (popularURLResponse: PopularURLApiResponse) => {
+    if (popularURLResponse.success) {
+      setPopularUrls(popularURLResponse.popular_urls);
+    } else {
+      setPopularUrls([]);
+    }
+  };
+
+  const processCountriesData = (countries: Country[]): Country[] => {
+    if (countries.length <= 10) {
+      return countries;
+    }
+
+    const sortedCountries = countries.sort(
+      (a, b) => b.hits_count - a.hits_count
+    );
+
+    const topNineCountries = sortedCountries.slice(0, 9);
+
+    const remainingCountriesHitsCount = sortedCountries
+      .slice(9)
+      .reduce((sum, pair) => sum + pair.hits_count, 0);
+
+    return [
+      ...topNineCountries,
+      { name: "Other", hits_count: remainingCountriesHitsCount },
+    ];
+  };
+
+  const handleGeographicalData = (
+    geographicalApiResponse: GeographicalApiResponse
+  ) => {
+    if (geographicalApiResponse) {
+      setContinents(geographicalApiResponse.continents);
+      setCountries(processCountriesData(geographicalApiResponse.countries));
+    } else {
+      setContinents([]);
+      setCountries([]);
+    }
+  };
+
+  const handleOSBrowserData = (osBrowserResponse: DeviceMetricsApiResponse) => {
+    if (osBrowserResponse.success) {
+      setOss(osBrowserResponse.oss);
+      setBrowsers(osBrowserResponse.browsers);
+    } else {
+      setOss([]);
+      setBrowsers([]);
+    }
   };
 
   useEffect(() => {
     document.title = "Statistics";
-
-    setTimeout(async () => {
-      await getPopularURLs();
-      await getGeographicalData();
-      await getOSBrowserData();
-      setLoading(false);
-    }, 1000);
+    setLoading(true);
+    fetchData();
   }, []);
 
   const renderPopularURLs = () => {
@@ -125,8 +203,8 @@ const DashboardStatistics = () => {
           <DoughnutChart
             datasetLabel="Continents"
             key="continents__stats"
-            data={continents.map((cont) => {
-              return { label: cont.name, value: cont.hits_count };
+            data={data.map((item) => {
+              return { label: item.name, value: item.hits_count };
             })}
             legendPosition="top"
             borderWidth={4}
@@ -152,7 +230,7 @@ const DashboardStatistics = () => {
           <PieChart
             datasetLabel="Continents"
             key={key}
-            data={continents}
+            data={data}
             legendPosition="top"
             borderWidth={4}
           />
