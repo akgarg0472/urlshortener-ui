@@ -25,9 +25,6 @@
   border: none;
   outline: none;
   padding: 2rem;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
   animation: modal__dialog__animation 200ms linear 1;
 }
 .modal__overlay .modal__dialog .modal__icon {

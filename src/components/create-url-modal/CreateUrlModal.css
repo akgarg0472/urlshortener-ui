@@ -13,9 +13,6 @@
   flex-direction: column;
   border: none;
   outline: none;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
   animation: create__short__url__modal__dialog__animation 200ms linear 1;
 }
 .create__short__url__modal__dialog .create__short__url__dialog__title__container {
