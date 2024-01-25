@@ -13,6 +13,7 @@ import {
   DASHBOARD_DEVICE_METRICS_API_URL_V1,
   DASHBOARD_MY_LINKS_API_URL_V1,
   DASHBOARD_SUMMARY_API_URL_V1,
+  DASHBOARD_UPDATE_PROFILE_API_URL_V1,
   DASHBOARD_URL_METRICS_API_URL_V1,
   GET_TOP_POPULAR_URLS_V1,
   GET_URL_GEOGRAPHICAL_DATA_V1,
@@ -275,6 +276,55 @@ export const getDashboardStatistics = async (
           ? "Invalid Request. Please try again"
           : `Error Fetching Statistics Data`,
     };
+  }
+};
+
+export const updateProfile = async (
+  profileId: string,
+  updateRequest: UpdateProfileRequest
+) => {
+  // const url =
+  // process.env.REACT_APP_BACKEND_BASE_URL +
+  // DASHBOARD_UPDATE_PROFILE_API_URL_V1.replace("$profileId", profileId);
+
+  const url =
+    "http://127.0.0.1:8080" +
+    DASHBOARD_UPDATE_PROFILE_API_URL_V1.replace("$profileId", profileId);
+
+  let profilePicture: File | null = null;
+
+  if (updateRequest.profile_picture) {
+    profilePicture = updateRequest.profile_picture;
+    delete updateRequest.profile_picture;
+  }
+
+  const requestBody = new Map();
+
+  for (const [key, value] of Object.entries(updateRequest)) {
+    if (key && value) {
+      requestBody.set(key, value);
+    }
+  }
+
+  try {
+    const formData = new FormData();
+    const reqBody = JSON.stringify(Object.fromEntries(requestBody));
+
+    if (profilePicture) {
+      formData.append("profile_picture", profilePicture);
+    }
+
+    formData.append("req_body", reqBody);
+
+    const response = await axios.patch(url, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    console.log(response);
+  } catch (err: any) {
+    console.log(err);
   }
 };
 

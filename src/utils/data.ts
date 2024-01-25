@@ -102,4 +102,9 @@ export const dashboardNavbarLinks: NavbarLink[] = [
     path: "/dashboard/profile",
     icon: "/assets/icons/user.png",
   },
+  {
+    text: "Update Profile",
+    path: "/dashboard/profile/update",
+    icon: "/assets/icons/user.png",
+  },
 ];

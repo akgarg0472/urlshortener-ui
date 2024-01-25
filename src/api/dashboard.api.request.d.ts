@@ -29,3 +29,15 @@ interface DashboardStatisticsRequest {
   popularUrlParam: TopPopularUrlRequest;
   deviceMetricsParam: DeviceMetricsApiRequest;
 }
+
+interface UpdateProfileRequest {
+  profile_picture?: File;
+  name?: string;
+  bio?: string;
+  phone?: string;
+  city?: string;
+  state?: string;
+  country?: string;
+  zipcode?: string;
+  business_details?: string;
+}

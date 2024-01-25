@@ -157,6 +157,16 @@
   display: flex;
   flex-direction: column;
 }
+.dashboard__page__content .profile__page__content__container .update__profile__form {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 3rem;
+}
 
 .dashboard__page__content .profile__page__right__section .personal__details__section {
   background: #ffffff;
@@ -242,4 +252,58 @@
   font-family: "Mulish", sans-serif;
   font-weight: 500;
   cursor: pointer;
+}
+
+.update__profile__form .update__profile__input__field {
+  width: 100%;
+  margin: 1rem;
+}
+.update__profile__form .image__container {
+  position: relative;
+  border-radius: 50%;
+  width: 13rem;
+  height: 13rem;
+  margin: 1.2rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+.update__profile__form .image__container .img__choooser {
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.5s ease;
+}
+.update__profile__form .image__container .img__choooser button {
+  cursor: pointer;
+}
+.update__profile__form .image__container .update__profile__img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.update__profile__form .image__container .update__profile__pic__select {
+  visibility: hidden;
+}
+.update__profile__form .image__container:hover .update__profile__img {
+  opacity: 0.3;
+}
+.update__profile__form .image__container:hover .img__choooser {
+  opacity: 1;
+}
+.update__profile__form .update__form__btn {
+  width: 20rem;
+  height: 4rem;
+  background: #5d44f8;
+  font-family: "Mulish", sans-serif;
+  font-size: 1.4rem;
+  border-radius: 0.6rem;
+  border: none;
+  margin-top: 2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  justify-content: center;
+  color: #ffffff;
 }/*# sourceMappingURL=Dashboard.css.map */

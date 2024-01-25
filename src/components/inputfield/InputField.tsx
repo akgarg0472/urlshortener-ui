@@ -40,6 +40,7 @@ const InputField = (props: InputFieldProps) => {
         <input
           className={`input__field`}
           id={props.id}
+          style={props.inputFieldStyle}
           type={getInputType(props.type)}
           onChange={props.onChange}
           placeholder={props.placeholder}

@@ -12,6 +12,7 @@ import {
   DASHBOARD_LINKS_URL,
   DASHBOARD_PROFILE_URL,
   DASHBOARD_STATISTICS_URL,
+  DASHBOARD_UPDATE_PROFILE_URL,
   DASHBOARD_URL,
   FORGOT_PASSWORD_URL,
   LOGIN_URL,
@@ -20,6 +21,7 @@ import {
 } from "../constants";
 import ProtectedRoute from "./ProtectedRoute";
 import ResetPassword from "../pages/auth/reset-password/ResetPassword";
+import DashboardUpdateProfile from "../pages/dashboard/DashboardUpdateProfile";
 
 const router = createBrowserRouter([
   {
@@ -72,6 +74,15 @@ const router = createBrowserRouter([
       <ProtectedRoute
         element={<DashboardProfile />}
         redirectTo={DASHBOARD_PROFILE_URL}
+      />
+    ),
+  },
+  {
+    path: DASHBOARD_UPDATE_PROFILE_URL,
+    element: (
+      <ProtectedRoute
+        element={<DashboardUpdateProfile />}
+        redirectTo={DASHBOARD_UPDATE_PROFILE_URL}
       />
     ),
   },

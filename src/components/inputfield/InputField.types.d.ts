@@ -9,6 +9,7 @@ interface InputFieldProps {
   style?: React.CSSProperties;
   isRequired?: boolean;
   onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+  inputFieldStyle?: React.CSSProperties;
 }
 
 interface HorizontalInputFieldProps {
@@ -22,4 +23,5 @@ interface HorizontalInputFieldProps {
   style?: React.CSSProperties;
   isRequired?: boolean;
   onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+  inputFieldStyle?: React.CSSProperties;
 }

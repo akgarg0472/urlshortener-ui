@@ -57,7 +57,7 @@ const Dashboard = () => {
     }
 
     const dashboardApiResponse: DashboardApiResponse = await getDashboard({
-      userId: userId,
+      userId: userId!!,
       startTime: 0,
       endTime: Date.now(),
     });

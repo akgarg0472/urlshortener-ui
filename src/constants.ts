@@ -7,6 +7,7 @@ export const DASHBOARD_URL: string = "/dashboard";
 export const DASHBOARD_LINKS_URL: string = "/dashboard/links";
 export const DASHBOARD_STATISTICS_URL: string = "/dashboard/statistics";
 export const DASHBOARD_PROFILE_URL: string = "/dashboard/profile";
+export const DASHBOARD_UPDATE_PROFILE_URL: string = "/dashboard/profile/update";
 export const MAKE_PAYMENT_URL = "/make-payment";
 
 export const HOME_WHY_CHOOSE_US: string = "Why Choose us";
@@ -30,6 +31,9 @@ export const DASH_STATISTICS_HEAD: string = "🔗 Statistics";
 export const DASH_STATISTICS_SUBHEAD: string =
   "A comprehensive statistical dataset featuring device metrics, including OS and browser details, with an analysis of hits per OS-browser combination. It also offers geographical data with total hits by continent, country, and city, alongside a ranking of the top 'n' most popular short URLs based on their hit counts";
 export const DASH_PROFILE_HEAD: string = "🔗 Profile";
+export const DASH_UPDATE_PROFILE_HEAD: string = "🔗 Update Profile";
+export const DASH_UPDATE_PROFILE_SUBHEAD: string =
+  "The update profile page is a place where you can update information about yourself and your activities on the platform. It typically includes your username, profile picture, a bio or description.";
 export const DASH_PROFILE_SUBHEAD: string =
   "The profile page is your virtual representation, a place where you can share information about yourself and your activities on the platform. It typically includes your username, profile picture, a bio or description.";
 export const DASH_OS_HEAD: string = "OS Statistics";
