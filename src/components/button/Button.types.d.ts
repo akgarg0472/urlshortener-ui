@@ -22,4 +22,5 @@ interface RegularButtonProps {
   isHidden?: boolean;
   type?: "button" | "submit" | "reset" | undefined;
   reference?: React.RefObject<HTMLButtonElement>;
+  isDisabled?: boolean;
 }

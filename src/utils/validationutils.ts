@@ -19,4 +19,21 @@ const validatePassword = (password: string): boolean => {
   return /^(?=.*[A-Za-z])(?=.*\d).{8,}$/.test(password);
 };
 
+export const validateUpdateProfileRequest = (
+  originalData: ProfileData,
+  updateRequest: UpdateProfileRequest
+): boolean => {
+  return (
+    updateRequest.profile_picture !== null ||
+    updateRequest.name !== originalData.name ||
+    updateRequest.bio !== originalData.bio ||
+    updateRequest.phone !== originalData.phone ||
+    updateRequest.city !== originalData.city ||
+    updateRequest.state !== originalData.state ||
+    updateRequest.country !== originalData.country ||
+    updateRequest.zipcode !== originalData.zipcode ||
+    updateRequest.business_details !== originalData.businessDetails
+  );
+};
+
 export { validateEmail, validatePassword, validateString };

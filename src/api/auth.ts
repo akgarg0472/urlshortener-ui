@@ -25,16 +25,10 @@ const doSignup = async (
   const url = process.env.REACT_APP_BACKEND_BASE_URL + SIGNUP_API_URL_V1;
 
   const requestBody = {
-    first_name: props.firstName,
-    last_name: props.lastName,
-    email: props.email,
-    password: props.password,
-    confirm_password: props.confirmPassword,
-    phone_number: props.phoneNumber,
-    city: props.city,
-    zipcode: props.zipcode,
-    country: props.country,
-    business_details: props.businessDetails,
+    name: props.name.trim(),
+    email: props.email.trim(),
+    password: props.password.trim(),
+    confirm_password: props.confirmPassword.trim(),
   };
 
   try {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { RefObject, useEffect, useRef, useState } from "react";
 import DashboardNavbar from "../../components/dashboard-navbar/DashboardNavbar";
 import DashboardHeadSubHead from "../../components/dashboardheadsubhead/DashboardHeadSubHead";
 import {
@@ -7,20 +7,17 @@ import {
 } from "../../constants";
 import "./Dashboard.css";
 import InputField from "../../components/inputfield/InputField";
-import HorizontalInputField from "../../components/inputfield/HorizontalInputField";
 import RegularButton from "../../components/button/RegularButton";
-import { updateProfile } from "../../api/dashboard";
+import { getProfile, updateProfile } from "../../api/user";
+import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+import { validateUpdateProfileRequest } from "../../utils/validationutils";
+import Modal from "../../components/modal/Modal";
+import { ModalIcon } from "../../components/modal/Modal.enums";
 
 const DashboardUpdateProfile = () => {
-  useEffect(() => {
-    document.title = "Update Profile";
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-  }, []);
-
   const defaultProfileData: ProfileData = {
-    profilePicture: "/assets/icons/john-doe.png",
+    profilePicture: process.env.REACT_APP_DEFAULT_PROFILE_PICTURE!!,
     name: "",
     bio: "",
     phone: "",
@@ -32,25 +29,76 @@ const DashboardUpdateProfile = () => {
   };
 
   const [originalData, setOriginalData] =
-    React.useState<ProfileData>(defaultProfileData);
+    useState<ProfileData>(defaultProfileData);
   const [updatedData, setUpdatedData] =
-    React.useState<ProfileData>(defaultProfileData);
-  const [newProfilePicture, setNewProfilePicture] = React.useState<File>();
+    useState<ProfileData>(defaultProfileData);
+  const [newProfilePicture, setNewProfilePicture] = useState<File>();
+  const [loading, setLoading] = useState<boolean>(true);
+  const profilePictureChooserBtnRef: RefObject<HTMLInputElement> = useRef(null);
+  const { getUserId } = useAuth();
+  const navigate = useNavigate();
 
-  const [loading, setLoading] = React.useState<boolean>(true);
+  useEffect(() => {
+    console.log("update profile re-rendered");
+    fetchProfile(getUserId()!!);
+  }, []);
 
-  const profilePictureChooserBtnRef: React.RefObject<HTMLInputElement> =
-    React.useRef(null);
+  const fetchProfile = async (userId: string) => {
+    const profile = await getProfile(userId);
+
+    if (!profile.success) {
+      Modal.showModal({
+        icon: ModalIcon.ERROR,
+        title: `Error ${profile?.httpCode}`,
+        message: profile?.message,
+      });
+      return;
+    }
+
+    setOriginalData({
+      profilePicture: profile.profile_picture
+        ? profile.profile_picture
+        : process.env.REACT_APP_DEFAULT_PROFILE_PICTURE!!,
+      name: profile.name ? profile.name : "",
+      bio: profile.bio ? profile.bio : "",
+      phone: profile.phone ? profile.phone : "",
+      city: profile.city ? profile.city : "",
+      state: profile.state ? profile.state : "",
+      country: profile.country ? profile.country : "",
+      zipcode: profile.zipcode ? profile.zipcode : "",
+      businessDetails: profile.business_details ? profile.business_details : "",
+    });
+
+    setUpdatedData(() => {
+      return {
+        profilePicture: profile.profile_picture
+          ? profile.profile_picture
+          : process.env.REACT_APP_DEFAULT_PROFILE_PICTURE!!,
+        name: profile.name ? profile.name : "",
+        bio: profile.bio ? profile.bio : "",
+        phone: profile.phone ? profile.phone : "",
+        city: profile.city ? profile.city : "",
+        state: profile.state ? profile.state : "",
+        country: profile.country ? profile.country : "",
+        zipcode: profile.zipcode ? profile.zipcode : "",
+        businessDetails: profile.business_details
+          ? profile.business_details
+          : "",
+      };
+    });
+
+    setLoading(false);
+  };
 
   const handleImageFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
 
-    if (files?.length == 1) {
+    if (files?.length === 1) {
       const file = files.item(0);
 
       if (file) {
         if (!file.type.startsWith("image/")) {
-          alert("Please select a valid image file.");
+          alert("Please select valid image file.");
           return;
         }
 
@@ -76,7 +124,7 @@ const DashboardUpdateProfile = () => {
     }
   };
 
-  const handleProfileSubmitButtonClick = () => {
+  const handleProfileSubmitButtonClick = async () => {
     const updateProfileRequest: UpdateProfileRequest = {
       profile_picture: newProfilePicture,
       name: updatedData.name,
@@ -89,30 +137,35 @@ const DashboardUpdateProfile = () => {
       business_details: updatedData.businessDetails,
     };
 
-    updateProfile("1", updateProfileRequest);
+    if (validateUpdateProfileRequest(originalData, updateProfileRequest)) {
+      setLoading(true);
+
+      const updateResponse = await updateProfile(
+        getUserId()!!,
+        updateProfileRequest
+      );
+
+      if (!updateResponse.success) {
+        setLoading(false);
+
+        Modal.showModal({
+          icon: ModalIcon.ERROR,
+          title: `Error ${updateResponse?.httpCode}`,
+          message: updateResponse?.message,
+        });
+        return;
+      }
+
+      setTimeout(() => {
+        setLoading(false);
+
+        Modal.showModal({
+          icon: ModalIcon.SUCCESS,
+          message: updateResponse.message,
+        });
+      }, 2000);
+    }
   };
-
-  useEffect(() => {
-    console.log("update profile re-rendered");
-
-    setOriginalData({
-      profilePicture: "/assets/icons/john-doe.png",
-      name: "John Doe",
-      bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      phone: "+1 1234567890",
-      city: "City",
-      state: "State",
-      country: "Country",
-      zipcode: "12345",
-      businessDetails: "This is lorem business details",
-    });
-
-    setUpdatedData(() => {
-      return {
-        ...originalData,
-      };
-    });
-  }, []);
 
   return (
     <React.Fragment>
@@ -299,6 +352,7 @@ const DashboardUpdateProfile = () => {
                 content="Update"
                 className="update__form__btn"
                 onClick={handleProfileSubmitButtonClick}
+                isDisabled={loading}
               />
             </div>
           </div>

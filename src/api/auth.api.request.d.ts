@@ -1,14 +1,8 @@
 interface SignupApiRequestProps {
-  firstName: string;
-  lastName: string;
+  name: string;
   email: string;
   password: string;
   confirmPassword: string;
-  phoneNumber: string;
-  city: string;
-  zipcode: string;
-  country: string;
-  businessDetails: string;
 }
 
 interface LoginApiRequestProps {

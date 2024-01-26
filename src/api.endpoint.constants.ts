@@ -14,6 +14,7 @@ export const DASHBOARD_URL_METRICS_API_URL_V1 =
   "/api/v1/statistics/url-metrics";
 export const DASHBOARD_DEVICE_METRICS_API_URL_V1 =
   "/api/v1/statistics/device-metrics";
+export const DASHBOARD_GET_PROFILE_API_URL_V1 = "/api/v1/profile/$profileId";
 export const DASHBOARD_UPDATE_PROFILE_API_URL_V1 = "/api/v1/profile/$profileId";
 export const GET_TOP_POPULAR_URLS_V1 = "/api/v1/statistics/popular-urls";
 export const GET_URL_GEOGRAPHICAL_DATA_V1 =

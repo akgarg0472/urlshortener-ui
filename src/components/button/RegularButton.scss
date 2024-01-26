@@ -8,6 +8,11 @@
   animation: button__loader__spin 1500ms linear infinite;
 }
 
+.disabled__reg__btn {
+  cursor: not-allowed !important;
+  background-color: #cccccc !important;
+}
+
 .regular__button__disabled {
   cursor: progress !important;
 }

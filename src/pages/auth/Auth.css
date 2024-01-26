@@ -360,6 +360,24 @@
   font-family: "Mulish", sans-serif;
   font-size: 1.6rem;
 }
+.signup__form__container .signup__form__btns__container .signup__signup__btn,
+.signup__form__container .login__form__btns__container .signup__signup__btn,
+.signup__form__container .forgot__password__form__btns__container .signup__signup__btn,
+.signup__form__container .reset__password__form__btns__container .signup__signup__btn,
+.login__form__container .signup__form__btns__container .signup__signup__btn,
+.login__form__container .login__form__btns__container .signup__signup__btn,
+.login__form__container .forgot__password__form__btns__container .signup__signup__btn,
+.login__form__container .reset__password__form__btns__container .signup__signup__btn,
+.forgot__password__form__container .signup__form__btns__container .signup__signup__btn,
+.forgot__password__form__container .login__form__btns__container .signup__signup__btn,
+.forgot__password__form__container .forgot__password__form__btns__container .signup__signup__btn,
+.forgot__password__form__container .reset__password__form__btns__container .signup__signup__btn,
+.reset__password__form__container .signup__form__btns__container .signup__signup__btn,
+.reset__password__form__container .login__form__btns__container .signup__signup__btn,
+.reset__password__form__container .forgot__password__form__btns__container .signup__signup__btn,
+.reset__password__form__container .reset__password__form__btns__container .signup__signup__btn {
+  width: 100%;
+}
 .signup__form__container .login__links__container,
 .login__form__container .login__links__container,
 .forgot__password__form__container .login__links__container,
@@ -421,11 +439,6 @@
 
 .login__form__container .login__form {
   margin-top: 1.4rem;
-}
-
-.signup__input__field {
-  width: 24rem;
-  margin-top: 2.4rem;
 }
 
 .signup__input__field__full,

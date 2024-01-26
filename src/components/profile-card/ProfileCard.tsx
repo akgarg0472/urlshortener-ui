@@ -19,7 +19,7 @@ const ProfileCard = () => {
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 1000);
   }, []);
 
   const [isLoading, setIsLoading] = useState(true);
