@@ -23,6 +23,7 @@ import {
   DASH_COUNTRY_SUBHEAD,
   DASH_PREV_SEVEN_DAYS_HEAD,
   DASH_PREV_SEVEN_DAYS_SUBHEAD,
+  LOGIN_URL,
   PREV_SEVEN_DAYS_DATASET_LABEL,
 } from "../../constants";
 import { getCurrentDateTime } from "../../utils/datetimeutils";
@@ -52,7 +53,8 @@ const Dashboard = () => {
     const userId = getUserId();
 
     if (!userId) {
-      doLogout();
+      logout();
+      navigate(LOGIN_URL, { replace: true });
       return;
     }
 
@@ -68,8 +70,16 @@ const Dashboard = () => {
       dashboardApiResponse.httpCode === 401 ||
       dashboardApiResponse.httpCode === 403
     ) {
-      doLogout();
+      logout();
+      navigate("/login", { replace: true });
       return;
+    }
+
+    if (!dashboardApiResponse.success) {
+      Modal.showModal({
+        icon: ModalIcon.ERROR,
+        message: dashboardApiResponse.message,
+      });
     }
 
     setTodayStats(dashboardApiResponse.current_day_stats);
@@ -77,11 +87,6 @@ const Dashboard = () => {
     setPrevSevenDayHitsData(dashboardApiResponse.prev_seven_days_hits);
     setContinents(dashboardApiResponse.continents);
     setCountries(dashboardApiResponse.countries);
-  };
-
-  const doLogout = () => {
-    logout();
-    navigate("/login", { replace: true });
   };
 
   return (

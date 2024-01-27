@@ -1,3 +1,7 @@
+import Modal from "../components/modal/Modal";
+import { ModalIcon } from "../components/modal/Modal.enums";
+import { validatePasswordAndConfirmPassword } from "./authutils";
+
 const validateString = (str: string | null | undefined): boolean => {
   if (!str) {
     return false;
@@ -36,4 +40,25 @@ export const validateUpdateProfileRequest = (
   );
 };
 
-export { validateEmail, validatePassword, validateString };
+const validChangePasswordReq = (pwdFields: any): boolean => {
+  if (!validatePassword(pwdFields.currentPassword)) {
+    Modal.showModal({
+      icon: ModalIcon.ERROR,
+      title: "Error",
+      message: "Please provide valid current password",
+    });
+    return false;
+  }
+
+  return validatePasswordAndConfirmPassword(
+    pwdFields.newPassword,
+    pwdFields.confirmNewPassword
+  );
+};
+
+export {
+  validateEmail,
+  validatePassword,
+  validateString,
+  validChangePasswordReq,
+};

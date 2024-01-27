@@ -2,10 +2,11 @@ import React, { RefObject, useEffect, useRef, useState } from "react";
 import DashboardNavbar from "../../components/dashboard-navbar/DashboardNavbar";
 import DashboardHeadSubHead from "../../components/dashboardheadsubhead/DashboardHeadSubHead";
 import {
+  DASHBOARD_URL,
   DASH_UPDATE_PROFILE_HEAD,
   DASH_UPDATE_PROFILE_SUBHEAD,
+  LOGIN_URL,
 } from "../../constants";
-import "./Dashboard.css";
 import InputField from "../../components/inputfield/InputField";
 import RegularButton from "../../components/button/RegularButton";
 import { getProfile, updateProfile } from "../../api/user";
@@ -14,6 +15,10 @@ import { useNavigate } from "react-router-dom";
 import { validateUpdateProfileRequest } from "../../utils/validationutils";
 import Modal from "../../components/modal/Modal";
 import { ModalIcon } from "../../components/modal/Modal.enums";
+import DropdownSelector from "../../components/dropdownselector/DropdownSelector";
+import { signupCountryDropdown } from "../../utils/dropdownutils";
+
+import "./Dashboard.css";
 
 const DashboardUpdateProfile = () => {
   const defaultProfileData: ProfileData = {
@@ -35,16 +40,29 @@ const DashboardUpdateProfile = () => {
   const [newProfilePicture, setNewProfilePicture] = useState<File>();
   const [loading, setLoading] = useState<boolean>(true);
   const profilePictureChooserBtnRef: RefObject<HTMLInputElement> = useRef(null);
-  const { getUserId } = useAuth();
+  const { getUserId, logout } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("update profile re-rendered");
-    fetchProfile(getUserId()!!);
+    fetchProfile();
   }, []);
 
-  const fetchProfile = async (userId: string) => {
+  const fetchProfile = async () => {
+    const userId = getUserId();
+
+    if (!userId) {
+      logout();
+      navigate(LOGIN_URL, { replace: true });
+      return;
+    }
+
     const profile = await getProfile(userId);
+
+    if (profile.httpCode === 401 || profile.httpCode === 403) {
+      logout();
+      navigate("/login", { replace: true });
+      return;
+    }
 
     if (!profile.success) {
       Modal.showModal({
@@ -55,7 +73,7 @@ const DashboardUpdateProfile = () => {
       return;
     }
 
-    setOriginalData({
+    const fetchedProfile: ProfileData = {
       profilePicture: profile.profile_picture
         ? profile.profile_picture
         : process.env.REACT_APP_DEFAULT_PROFILE_PICTURE!!,
@@ -67,26 +85,10 @@ const DashboardUpdateProfile = () => {
       country: profile.country ? profile.country : "",
       zipcode: profile.zipcode ? profile.zipcode : "",
       businessDetails: profile.business_details ? profile.business_details : "",
-    });
+    };
 
-    setUpdatedData(() => {
-      return {
-        profilePicture: profile.profile_picture
-          ? profile.profile_picture
-          : process.env.REACT_APP_DEFAULT_PROFILE_PICTURE!!,
-        name: profile.name ? profile.name : "",
-        bio: profile.bio ? profile.bio : "",
-        phone: profile.phone ? profile.phone : "",
-        city: profile.city ? profile.city : "",
-        state: profile.state ? profile.state : "",
-        country: profile.country ? profile.country : "",
-        zipcode: profile.zipcode ? profile.zipcode : "",
-        businessDetails: profile.business_details
-          ? profile.business_details
-          : "",
-      };
-    });
-
+    setOriginalData(fetchedProfile);
+    setUpdatedData(fetchedProfile);
     setLoading(false);
   };
 
@@ -145,6 +147,12 @@ const DashboardUpdateProfile = () => {
         updateProfileRequest
       );
 
+      if (updateResponse.httpCode === 401 || updateResponse.httpCode === 403) {
+        logout();
+        navigate("/login", { replace: true });
+        return;
+      }
+
       if (!updateResponse.success) {
         setLoading(false);
 
@@ -156,14 +164,15 @@ const DashboardUpdateProfile = () => {
         return;
       }
 
-      setTimeout(() => {
-        setLoading(false);
+      setLoading(false);
 
-        Modal.showModal({
-          icon: ModalIcon.SUCCESS,
-          message: updateResponse.message,
-        });
-      }, 2000);
+      Modal.showModal({
+        icon: ModalIcon.SUCCESS,
+        message: updateResponse.message,
+        onClose() {
+          navigate(DASHBOARD_URL, { replace: true });
+        },
+      });
     }
   };
 
@@ -297,21 +306,23 @@ const DashboardUpdateProfile = () => {
                 }}
               />
 
-              <InputField
+              <DropdownSelector
+                classes="update__profile__input__field"
                 id="profile.country"
-                text={updatedData.country}
-                title="Country"
-                type="text"
-                className="update__profile__input__field"
-                inputFieldStyle={{ height: "4rem" }}
-                onChange={(e) => {
+                onChange={(newCountry) => {
                   setUpdatedData((prev) => {
                     return {
                       ...prev,
-                      country: e.target.value,
+                      country: newCountry,
                     };
                   });
                 }}
+                key="update__profile__country"
+                title="Country"
+                value={updatedData.country}
+                dropdownValues={signupCountryDropdown}
+                dropdownSelectStyle={{ height: "4rem" }}
+                style={{ margin: "0", marginTop: "1rem" }}
               />
 
               <InputField

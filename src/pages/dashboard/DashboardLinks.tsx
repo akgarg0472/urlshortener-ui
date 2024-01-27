@@ -14,6 +14,8 @@ import {
   LOGIN_URL,
 } from "../../constants";
 import "./Dashboard.css";
+import Modal from "../../components/modal/Modal";
+import { ModalIcon } from "../../components/modal/Modal.enums";
 
 const DashboardLinks = () => {
   const { getUserId, logout } = useAuth();
@@ -39,7 +41,8 @@ const DashboardLinks = () => {
     const userId = getUserId();
 
     if (!userId) {
-      doLogout();
+      logout();
+      navigate(LOGIN_URL, { replace: true });
       return;
     }
 
@@ -51,11 +54,22 @@ const DashboardLinks = () => {
       limit: limit,
     });
 
+    setLoading(false);
+
     if (
       myLinksApiResponse.httpCode === 401 ||
       myLinksApiResponse.httpCode === 403
     ) {
-      doLogout();
+      logout();
+      navigate("/login", { replace: true });
+      return;
+    }
+
+    if (!myLinksApiResponse.success) {
+      Modal.showModal({
+        icon: ModalIcon.ERROR,
+        message: myLinksApiResponse.message,
+      });
       return;
     }
 
@@ -67,8 +81,6 @@ const DashboardLinks = () => {
     setShowLoadMoreButton(
       limit * myLinksApiResponse.next_offset < myLinksApiResponse.total_records
     );
-
-    setLoading(false);
   };
 
   const loadMoreUrls = () => {

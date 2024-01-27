@@ -9,6 +9,7 @@ interface DropdownSelectorProps {
   isOneLiner?: boolean;
   dropdownValues: DropdownDataType[];
   height?: DropdownSelectorHeight;
+  dropdownSelectStyle?: React.CSSProperties;
 }
 
 interface DropdownDataType {

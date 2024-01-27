@@ -22,7 +22,6 @@ import NoDataAvailable from "../../components/no-data-available/NoDataAvailable"
 import PieChart from "../../components/pie-chart/PieChart";
 import useAuth from "../../hooks/useAuth";
 import {
-  DASHBOARD_URL,
   DASH_BROWSER_HEAD,
   DASH_CONTINET_HEAD,
   DASH_COUNTRY_HEAD,
@@ -38,14 +37,13 @@ import {
   dashboardChartTypeDropdown,
 } from "../../utils/dropdownutils";
 import DropdownSelector from "../../components/dropdownselector/DropdownSelector";
-
-import "./Dashboard.css";
 import { DropdownSelectorHeight } from "../../components/dropdownselector/DropdownSelector.enums";
 import { getDashboardStatistics } from "../../api/dashboard";
 import Modal from "../../components/modal/Modal";
 import { ModalIcon } from "../../components/modal/Modal.enums";
 import { useNavigate } from "react-router-dom";
-import { count } from "console";
+
+import "./Dashboard.css";
 
 const DashboardStatistics = () => {
   const { getUserId, logout } = useAuth();
@@ -94,21 +92,26 @@ const DashboardStatistics = () => {
 
     setLoading(false);
 
-    if (dashboardStatisticsApiResponse.success) {
-      handlePopularURLs(dashboardStatisticsApiResponse.popularUrls!!);
-      handleGeographicalData(
-        dashboardStatisticsApiResponse.geographicalStats!!
-      );
-      handleOSBrowserData(dashboardStatisticsApiResponse.deviceMetrics!!);
-    } else {
+    if (
+      dashboardStatisticsApiResponse.httpCode === 401 ||
+      dashboardStatisticsApiResponse.httpCode === 403
+    ) {
+      logout();
+      navigate(LOGIN_URL, { replace: true });
+      return;
+    }
+
+    if (!dashboardStatisticsApiResponse.success) {
       Modal.showModal({
         icon: ModalIcon.ERROR,
         message: dashboardStatisticsApiResponse.message,
-        onClose() {
-          navigate(DASHBOARD_URL, { replace: true });
-        },
       });
+      return;
     }
+
+    handlePopularURLs(dashboardStatisticsApiResponse.popularUrls!!);
+    handleGeographicalData(dashboardStatisticsApiResponse.geographicalStats!!);
+    handleOSBrowserData(dashboardStatisticsApiResponse.deviceMetrics!!);
   };
 
   const handlePopularURLs = (popularURLResponse: PopularURLApiResponse) => {

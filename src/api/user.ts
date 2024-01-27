@@ -1,14 +1,17 @@
 import axios from "axios";
 import {
+  DASHBOARD_DELETE_PROFILE_API_URL_V1,
   DASHBOARD_GET_PROFILE_API_URL_V1,
+  DASHBOARD_UPDATE_PASSWORD_API_URL_V1,
   DASHBOARD_UPDATE_PROFILE_API_URL_V1,
 } from "../api.endpoint.constants";
-import { GetProfileResponse, UpdateProfileResponse } from "./apiModals";
 import {
-  axiosNwErrorResponse,
-  errorResponse,
-  isAxiosNetworkError,
-} from "../utils/errorutils";
+  DeleteProfileResponse,
+  GetProfileResponse,
+  UpdatePasswordResponse,
+  UpdateProfileResponse,
+} from "./apiModals";
+import { axiosNwErrorResponse, isAxiosNetworkError } from "../utils/errorutils";
 
 export const getProfile = async (
   profileId: string
@@ -26,13 +29,14 @@ export const getProfile = async (
       httpCode: apiResponse.status,
       success: apiResponse.data.status_code === 200,
       id: data.id,
+      email: data.email,
       name: data.name,
       bio: data.bio,
       profile_picture: data.profile_picture,
       phone: data.phone,
       city: data.city,
       state: data.state,
-      country: data.city,
+      country: data.country,
       zipcode: data.zipcode,
       last_login: data.last_login,
       last_password_changed: data.last_password_changed,
@@ -42,19 +46,7 @@ export const getProfile = async (
       updated_at: data.updated_at,
     };
   } catch (err: any) {
-    if (isAxiosNetworkError(err)) {
-      return axiosNwErrorResponse();
-    }
-
-    if (err.response && err.response.data) {
-      return errorResponse(err);
-    }
-
-    return {
-      success: false,
-      httpCode: 500,
-      message: "Fetch Profile Failed",
-    };
+    return errResp(err, "Error Fetching Profile");
   }
 };
 
@@ -103,25 +95,75 @@ export const updateProfile = async (
       message: response.data.message,
     };
   } catch (err: any) {
-    if (isAxiosNetworkError(err)) {
-      return axiosNwErrorResponse();
-    }
+    return errResp(err, "Profile updation Failed");
+  }
+};
 
-    if (err.response?.data) {
-      const resp = err.response.data;
-      console.log(resp);
+export const updatePassword = async (
+  profileId: string,
+  request: UpdatePasswordRequest
+): Promise<UpdatePasswordResponse> => {
+  const url =
+    process.env.REACT_APP_BACKEND_BASE_URL +
+    DASHBOARD_UPDATE_PASSWORD_API_URL_V1.replace("$profileId", profileId);
 
-      return {
-        httpCode: resp.status_code,
-        success: false,
-        message: resp.errors,
-      };
-    }
+  try {
+    const body = {
+      current_password: request.currentPassword,
+      new_password: request.newPassword,
+      confirm_password: request.confirmPassword,
+    };
+
+    const updatePasswordResp = await axios.patch(url, body);
 
     return {
+      httpCode: updatePasswordResp.status,
+      success: updatePasswordResp.data.status_code === 200,
+      message: updatePasswordResp.data.message,
+    };
+  } catch (err: any) {
+    return errResp(err, "Error updating password");
+  }
+};
+
+export const deleteProfile = async (
+  profileId: string
+): Promise<DeleteProfileResponse> => {
+  const url =
+    process.env.REACT_APP_BACKEND_BASE_URL +
+    DASHBOARD_DELETE_PROFILE_API_URL_V1.replace("$profileId", profileId);
+
+  try {
+    const deleteResponse = await axios.delete(url);
+
+    return {
+      httpCode: deleteResponse.status,
+      success: deleteResponse.data.status_code === 200,
+      message: deleteResponse.data.message,
+    };
+  } catch (err) {
+    return errResp(err, "Profile deletion Failed");
+  }
+};
+
+const errResp = (err: any, defaultErrorMsg: string) => {
+  if (isAxiosNetworkError(err)) {
+    return axiosNwErrorResponse();
+  }
+
+  if (err.response?.data) {
+    const resp = err.response.data;
+
+    return {
+      httpCode: resp.status_code,
       success: false,
-      httpCode: 500,
-      message: "Profile update Failed",
+      message: resp.errors,
     };
   }
+
+  return {
+    success: false,
+    httpCode: 500,
+    message: defaultErrorMsg,
+  };
 };

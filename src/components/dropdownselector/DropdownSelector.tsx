@@ -36,6 +36,7 @@ const DropdownSelector = (props: DropdownSelectorProps) => {
           id={props.id}
           onChange={(event) => props.onChange(event.target.value)}
           value={props.value}
+          style={props.dropdownSelectStyle}
         >
           {props.dropdownValues.map((data, index) => {
             return (

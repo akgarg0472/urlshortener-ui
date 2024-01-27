@@ -3,17 +3,13 @@ import {
   ApiErrorResponse,
   DashboardApiResponse,
   DashboardStatisticsApiResponse,
-  DeviceMetricsApiResponse,
-  GeographicalApiResponse,
   MyLinksApiResponse,
-  PopularURLApiResponse,
   UrlMetricApiResponse,
 } from "./apiModals";
 import {
   DASHBOARD_DEVICE_METRICS_API_URL_V1,
   DASHBOARD_MY_LINKS_API_URL_V1,
   DASHBOARD_SUMMARY_API_URL_V1,
-  DASHBOARD_UPDATE_PROFILE_API_URL_V1,
   DASHBOARD_URL_METRICS_API_URL_V1,
   GET_TOP_POPULAR_URLS_V1,
   GET_URL_GEOGRAPHICAL_DATA_V1,
@@ -254,6 +250,8 @@ export const getDashboardStatistics = async (
       deviceMetrics: { ...result[2].data, success: true },
     };
   } catch (err: any) {
+    console.log("Dashboard Statistics Response", err);
+
     if (isAxiosNetworkError(err)) {
       const axiosNetworkErrorResponse: ApiErrorResponse =
         axiosNwErrorResponse();
@@ -265,16 +263,20 @@ export const getDashboardStatistics = async (
       };
     }
 
-    const errorHttpCode: number =
-      err.response && err.response.data ? err.response.data.status_code : 500;
+    if (err.response && err.response.data) {
+      const errResp = errorResponse(err);
+
+      return {
+        success: errResp.success,
+        httpCode: errResp.httpCode,
+        message: errResp.message,
+      };
+    }
 
     return {
       success: false,
-      httpCode: errorHttpCode,
-      message:
-        errorHttpCode === 400
-          ? "Invalid Request. Please try again"
-          : `Error Fetching Statistics Data`,
+      httpCode: 500,
+      message: "Error fetching statistics data",
     };
   }
 };

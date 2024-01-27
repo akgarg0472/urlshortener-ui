@@ -1,92 +1,6 @@
 import Modal from "../components/modal/Modal";
 import { ModalIcon } from "../components/modal/Modal.enums";
-import {
-  validateEmail,
-  validatePassword,
-  validateString,
-} from "./validationutils";
-
-const validateSignupPage1 = (
-  lastName: string,
-  email: string,
-  password: string,
-  confirmPassword: string
-): boolean => {
-  if (!validateString(lastName)) {
-    Modal.showModal({
-      icon: ModalIcon.ERROR,
-      title: "Error",
-      message: "Please provide valid last name",
-    });
-
-    return false;
-  }
-
-  if (!validateString(email)) {
-    Modal.showModal({
-      icon: ModalIcon.ERROR,
-      title: "Error",
-      message: "Email is a required field",
-    });
-    return false;
-  }
-
-  if (!validateEmail(email)) {
-    Modal.showModal({
-      icon: ModalIcon.ERROR,
-      title: "Error",
-      message: "Please provide valid email",
-    });
-    return false;
-  }
-
-  return validatePasswordAndConfirmPassword(password, confirmPassword);
-};
-
-const validateSignupPage2 = (
-  phoneNumber: string,
-  city: string,
-  zipcode: string,
-  country: string
-): boolean => {
-  if (!validateString(phoneNumber) || phoneNumber.length < 10) {
-    Modal.showModal({
-      icon: ModalIcon.ERROR,
-      title: "Error",
-      message: "Please provide valid phone number",
-    });
-    return false;
-  }
-
-  if (!validateString(city)) {
-    Modal.showModal({
-      icon: ModalIcon.ERROR,
-      title: "Error",
-      message: "Please provide valid city",
-    });
-    return false;
-  }
-
-  if (!validateString(zipcode)) {
-    Modal.showModal({
-      icon: ModalIcon.ERROR,
-      title: "Error",
-      message: "Please provide valid zipcode",
-    });
-    return false;
-  }
-
-  if (!validateString(country)) {
-    Modal.showModal({
-      icon: ModalIcon.ERROR,
-      title: "Error",
-      message: "Please provide valid country",
-    });
-    return false;
-  }
-
-  return true;
-};
+import { validateEmail, validatePassword } from "./validationutils";
 
 const validateLoginPage = (email: string, password: string): boolean => {
   if (!validateEmail(email)) {
@@ -167,7 +81,6 @@ const validatePasswordAndConfirmPassword = (
 export {
   validateForgotPasswordPage,
   validateLoginPage,
-  validateSignupPage1,
-  validateSignupPage2,
   validateResetPasswordPage,
+  validatePasswordAndConfirmPassword,
 };

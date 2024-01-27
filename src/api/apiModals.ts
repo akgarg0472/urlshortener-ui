@@ -171,6 +171,7 @@ export interface DashboardStatisticsApiResponse extends ApiResponse {
 
 export interface GetProfileResponse extends ApiResponse {
   id?: string;
+  email?: string;
   profile_picture?: string;
   name?: string;
   bio?: string;
@@ -188,3 +189,5 @@ export interface GetProfileResponse extends ApiResponse {
 }
 
 export interface UpdateProfileResponse extends ApiResponse {}
+export interface DeleteProfileResponse extends ApiResponse {}
+export interface UpdatePasswordResponse extends ApiResponse {}
