@@ -1,16 +1,17 @@
 import React, { ReactNode, useEffect, useState } from "react";
-import { LatestHit, UrlMetricApiResponse } from "../../api/apiModals";
 import useAuth from "../../hooks/useAuth";
 import { convertTimestampToDateTime } from "../../utils/datetimeutils";
 import InternalLoader from "../loader/internal-loader/InternalLoader";
 import URLMetadata from "./URLMetadata/URLMetadata";
-
-import "./ShortUrlMetricModal.css";
 import {
   InternalLoaderSpeed,
   InternalLoaderSize,
 } from "../loader/Loader.enums";
-import { getUrlMetrics } from "../../api/dashboard";
+import { getUrlMetrics } from "../../api/dashboard/dashboard";
+import { LatestHit } from "../../api/dashboard/dashboard.api.modal";
+import { UrlMetricApiResponse } from "../../api/dashboard/dashboard.api.response";
+
+import "./ShortUrlMetricModal.css";
 
 const ShortUrlMetricModal = (props: ShortUrlMetricModalProps) => {
   const { getUserId } = useAuth();

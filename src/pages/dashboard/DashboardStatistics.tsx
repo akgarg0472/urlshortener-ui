@@ -1,15 +1,4 @@
 import React, { useEffect, useState } from "react";
-import {
-  Browser,
-  Continent,
-  Country,
-  DashboardStatisticsApiResponse,
-  DeviceMetricsApiResponse,
-  GeographicalApiResponse,
-  OS,
-  PopularURL,
-  PopularURLApiResponse,
-} from "../../api/apiModals";
 import DashboardStatsHeading from "../../components/DashboardStatsHeading/DashboardStatsHeading";
 import BarChart from "../../components/bar-chart/BarChart";
 import DashboardNavbar from "../../components/dashboard-navbar/DashboardNavbar";
@@ -38,10 +27,23 @@ import {
 } from "../../utils/dropdownutils";
 import DropdownSelector from "../../components/dropdownselector/DropdownSelector";
 import { DropdownSelectorHeight } from "../../components/dropdownselector/DropdownSelector.enums";
-import { getDashboardStatistics } from "../../api/dashboard";
+import { getDashboardStatistics } from "../../api/dashboard/dashboard";
 import Modal from "../../components/modal/Modal";
 import { ModalIcon } from "../../components/modal/Modal.enums";
 import { useNavigate } from "react-router-dom";
+import {
+  Browser,
+  Continent,
+  Country,
+  OS,
+  PopularURL,
+} from "../../api/dashboard/dashboard.api.modal";
+import {
+  DashboardStatisticsApiResponse,
+  DeviceMetricsApiResponse,
+  GeographicalApiResponse,
+  PopularURLApiResponse,
+} from "../../api/dashboard/dashboard.api.response";
 
 import "./Dashboard.css";
 

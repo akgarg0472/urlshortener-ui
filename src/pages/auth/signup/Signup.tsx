@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import RegularButton from "../../../components/button/RegularButton";
-import { SignupApiResponse } from "../../../api/apiModals";
-import { doSignup } from "../../../api/auth";
+import { doSignup } from "../../../api/auth/auth";
 import Loader from "../../../components/loader/Loader";
 import Modal from "../../../components/modal/Modal";
 import { LoaderSpeed } from "../../../components/loader/Loader.enums";
 import { ModalIcon } from "../../../components/modal/Modal.enums";
 import { useNavigate } from "react-router-dom";
 import { LOGIN_URL } from "../../../constants";
-
-import "../Auth.css";
 import InputField from "../../../components/inputfield/InputField";
 import { InputFieldType } from "../../../components/inputfield/InputField.enums";
+import { SignupApiResponse } from "../../../api/auth/auth.api.response";
+
+import "../Auth.css";
 
 const Signup = () => {
   useEffect(() => {

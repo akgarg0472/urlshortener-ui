@@ -1,23 +1,23 @@
 import axios from "axios";
 import {
-  ForgotPasswordApiResponse,
-  LoginApiResponse,
-  LogoutApiResponse,
-  ResetPasswordApiResponse,
-  SignupApiResponse,
-} from "./apiModals";
-import {
   FORGOT_PASSWORD_API_URL_V1,
   LOGIN_API_URL_V1,
   LOGOUT_API_URL_V1,
   RESET_PASSWORD_API_URL_V1,
   SIGNUP_API_URL_V1,
-} from "../api.endpoint.constants";
+} from "../../api.endpoint.constants";
 import {
   axiosNwErrorResponse,
   errorResponse,
   isAxiosNetworkError,
-} from "../utils/errorutils";
+} from "../../utils/errorutils";
+import {
+  ForgotPasswordApiResponse,
+  LoginApiResponse,
+  LogoutApiResponse,
+  ResetPasswordApiResponse,
+  SignupApiResponse,
+} from "./auth.api.response";
 
 const doSignup = async (
   props: SignupApiRequestProps

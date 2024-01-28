@@ -4,14 +4,17 @@ import {
   DASHBOARD_GET_PROFILE_API_URL_V1,
   DASHBOARD_UPDATE_PASSWORD_API_URL_V1,
   DASHBOARD_UPDATE_PROFILE_API_URL_V1,
-} from "../api.endpoint.constants";
+} from "../../api.endpoint.constants";
 import {
   DeleteProfileResponse,
   GetProfileResponse,
   UpdatePasswordResponse,
   UpdateProfileResponse,
-} from "./apiModals";
-import { axiosNwErrorResponse, isAxiosNetworkError } from "../utils/errorutils";
+} from "./user.api.response";
+import {
+  axiosNwErrorResponse,
+  isAxiosNetworkError,
+} from "../../utils/errorutils";
 
 export const getProfile = async (
   profileId: string

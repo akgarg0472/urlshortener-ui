@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import { LogoutApiResponse } from "../../api/apiModals";
-import { doLogout } from "../../api/auth";
+import { doLogout } from "../../api/auth/auth";
 import { dashboardNavbarLinks } from "../../utils/data";
 import LinkButton from "../button/LinkButton";
 import RegularButton from "../button/RegularButton";
@@ -12,6 +11,7 @@ import DashboardLink from "./dashboard-link/DashboardLink";
 import { ModalIcon } from "../modal/Modal.enums";
 
 import "./DashboardNavbar.css";
+import { LogoutApiResponse } from "../../api/auth/auth.api.response";
 
 const DashboardNavbar = () => {
   const location = useLocation();

@@ -1,4 +1,4 @@
-import { URL } from "../../api/apiModals";
+import { URL } from "../../api/base";
 
 export interface MyLinkProps {
   url: URL;

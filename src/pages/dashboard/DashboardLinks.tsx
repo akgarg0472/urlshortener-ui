@@ -1,27 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { MyLinksApiResponse, URL } from "../../api/apiModals";
-import { getMyLinks } from "../../api/dashboard";
+import { getMyLinks } from "../../api/dashboard/dashboard";
 import RegularButton from "../../components/button/RegularButton";
 import DashboardNavbar from "../../components/dashboard-navbar/DashboardNavbar";
 import DashboardHeadSubHead from "../../components/dashboardheadsubhead/DashboardHeadSubHead";
 import InternalLoader from "../../components/loader/internal-loader/InternalLoader";
 import MyLink from "../../components/mylink/MyLink";
 import useAuth from "../../hooks/useAuth";
+import Modal from "../../components/modal/Modal";
+import { ModalIcon } from "../../components/modal/Modal.enums";
+import { MyLinksApiResponse } from "../../api/dashboard/dashboard.api.response";
+import { USURL } from "../../api/dashboard/dashboard.api.modal";
 import {
   DASH_MY_LINKS_HEAD,
   DASH_MY_LINKS_SUBHEAD,
   LOGIN_URL,
 } from "../../constants";
+
 import "./Dashboard.css";
-import Modal from "../../components/modal/Modal";
-import { ModalIcon } from "../../components/modal/Modal.enums";
 
 const DashboardLinks = () => {
   const { getUserId, logout } = useAuth();
   const navigate = useNavigate();
 
-  const [urls, setUrls] = useState([] as URL[]);
+  const [urls, setUrls] = useState([] as USURL[]);
   const [nextOffset, setNextOffset] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
   const [showLoadMoreButton, setShowLoadMoreButton] = useState<boolean>(false);
@@ -31,11 +33,6 @@ const DashboardLinks = () => {
     document.title = "My Links";
     fetchMyLinks();
   }, []);
-
-  const doLogout = () => {
-    logout();
-    navigate("/login", { replace: true });
-  };
 
   const fetchMyLinks = async () => {
     const userId = getUserId();

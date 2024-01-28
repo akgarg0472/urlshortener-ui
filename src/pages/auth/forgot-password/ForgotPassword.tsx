@@ -6,13 +6,13 @@ import Loader from "../../../components/loader/Loader";
 import { validateForgotPasswordPage } from "../../../utils/authutils";
 import { LoaderSpeed } from "../../../components/loader/Loader.enums";
 import { InputFieldType } from "../../../components/inputfield/InputField.enums";
-import { ForgotPasswordApiResponse } from "../../../api/apiModals";
-import { doForgotPassword } from "../../../api/auth";
+import { doForgotPassword } from "../../../api/auth/auth";
 import Modal from "../../../components/modal/Modal";
 import { ModalIcon } from "../../../components/modal/Modal.enums";
+import { useNavigate } from "react-router-dom";
+import { ForgotPasswordApiResponse } from "../../../api/auth/auth.api.response";
 
 import "../Auth.css";
-import { useNavigate } from "react-router-dom";
 
 const ForgotPassword = () => {
   const navigate = useNavigate();

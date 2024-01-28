@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import DashboardStatsHeading from "../../components/DashboardStatsHeading/DashboardStatsHeading";
-import KVPair from "../../components/KVPair/KVPair";
 import DashboardNavbar from "../../components/dashboard-navbar/DashboardNavbar";
 import DashboardHeadSubHead from "../../components/dashboardheadsubhead/DashboardHeadSubHead";
 import InternalLoader from "../../components/loader/internal-loader/InternalLoader";
@@ -9,20 +8,18 @@ import {
   DASH_PROFILE_SUBHEAD,
   LOGIN_URL,
 } from "../../constants";
-import { getProfile } from "../../api/user";
+import { getProfile } from "../../api/user/user";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Modal from "../../components/modal/Modal";
 import { ModalIcon } from "../../components/modal/Modal.enums";
-import { convertTimestampToDateTime } from "../../utils/datetimeutils";
-
 import ProfileChangePassword from "../../components/dashboard-profile/ProfileChangePassword";
 import ProfileDeleteAccount from "../../components/dashboard-profile/ProfileDeleteAccount";
 import ProfileAccountInformation from "../../components/dashboard-profile/ProfileAccountInformation";
 import ProfileAddressInformation from "../../components/dashboard-profile/ProfileAddressInformation";
+import ProfilePersonalDetails from "../../components/dashboard-profile/ProfilePersonalDetails";
 
 import "./Dashboard.css";
-import ProfilePersonalDetails from "../../components/dashboard-profile/ProfilePersonalDetails";
 
 const DashboardProfile = () => {
   const { logout, getUserId } = useAuth();

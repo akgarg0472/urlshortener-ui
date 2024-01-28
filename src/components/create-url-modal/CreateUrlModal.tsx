@@ -7,10 +7,10 @@ import Modal from "../modal/Modal";
 import { ModalIcon } from "../modal/Modal.enums";
 import { InputFieldType } from "../inputfield/InputField.enums";
 import { InternalLoaderSize } from "../loader/Loader.enums";
-import { generateShortUrl } from "../../api/url";
+import { generateShortUrl } from "../../api/url/url";
+import { GenerateUrlResponse } from "../../api/dashboard/dashboard.api.response";
 
 import "./CreateUrlModal.css";
-import { GenerateUrlResponse } from "../../api/apiModals";
 
 const CreateUrlModal = (props: CreateUrlModalProps) => {
   const { getUserId } = useAuth();

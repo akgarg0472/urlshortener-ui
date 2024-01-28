@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  Continent,
-  Country,
-  DashboardApiResponse,
-  DashboardApiStat,
-  PrevSevenDaysHit,
-} from "../../api/apiModals";
-import { getDashboard } from "../../api/dashboard";
+import { getDashboard } from "../../api/dashboard/dashboard";
 import DailyHitsLineChart from "../../components/daily-hits-line-chart/DailyHitsLineChart";
 import DashboardNavbar from "../../components/dashboard-navbar/DashboardNavbar";
 import DashboardOverviewStats from "../../components/dashboard-overview-stats/DashboardOverviewStats";
@@ -27,9 +20,17 @@ import {
   PREV_SEVEN_DAYS_DATASET_LABEL,
 } from "../../constants";
 import { getCurrentDateTime } from "../../utils/datetimeutils";
-import "./Dashboard.css";
 import Modal from "../../components/modal/Modal";
 import { ModalIcon } from "../../components/modal/Modal.enums";
+import {
+  Continent,
+  Country,
+  DashboardApiStat,
+  PrevSevenDaysHit,
+} from "../../api/dashboard/dashboard.api.modal";
+import { DashboardApiResponse } from "../../api/dashboard/dashboard.api.response";
+
+import "./Dashboard.css";
 
 const Dashboard = () => {
   const { getUserId, logout, getName } = useAuth();

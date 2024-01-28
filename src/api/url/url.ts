@@ -1,11 +1,12 @@
 import axios from "axios";
-import { GENERATE_SHORT_URL_API_URL_V1 } from "../api.endpoint.constants";
-import { ApiErrorResponse, GenerateUrlResponse } from "./apiModals";
+import { GENERATE_SHORT_URL_API_URL_V1 } from "../../api.endpoint.constants";
 import {
   axiosNwErrorResponse,
   errorResponse,
   isAxiosNetworkError,
-} from "../utils/errorutils";
+} from "../../utils/errorutils";
+import { GenerateUrlResponse } from "../dashboard/dashboard.api.response";
+import { ApiErrorResponse } from "../base";
 
 export const generateShortUrl = async (
   props: GenerateUrlRequest

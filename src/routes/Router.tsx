@@ -10,6 +10,7 @@ import ErrorPage from "../pages/error/ErrorPage";
 import HomePage from "../pages/home/HomePage";
 import {
   DASHBOARD_LINKS_URL,
+  DASHBOARD_PAID_PLANS,
   DASHBOARD_PROFILE_URL,
   DASHBOARD_STATISTICS_URL,
   DASHBOARD_UPDATE_PROFILE_URL,
@@ -22,6 +23,7 @@ import {
 import ProtectedRoute from "./ProtectedRoute";
 import ResetPassword from "../pages/auth/reset-password/ResetPassword";
 import DashboardUpdateProfile from "../pages/dashboard/DashboardUpdateProfile";
+import DashboardPaidPlans from "../pages/dashboard/DashboardPaidPlans";
 
 const router = createBrowserRouter([
   {
@@ -85,6 +87,10 @@ const router = createBrowserRouter([
         redirectTo={DASHBOARD_UPDATE_PROFILE_URL}
       />
     ),
+  },
+  {
+    path: DASHBOARD_PAID_PLANS,
+    element: <DashboardPaidPlans />,
   },
   {
     path: "*",

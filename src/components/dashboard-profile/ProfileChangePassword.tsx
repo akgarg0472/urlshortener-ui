@@ -2,7 +2,7 @@ import React from "react";
 import HorizontalInputField from "../inputfield/HorizontalInputField";
 import DashboardStatsHeading from "../DashboardStatsHeading/DashboardStatsHeading";
 import { validChangePasswordReq } from "../../utils/validationutils";
-import { updatePassword } from "../../api/user";
+import { updatePassword } from "../../api/user/user";
 import useAuth from "../../hooks/useAuth";
 import { ModalIcon } from "../modal/Modal.enums";
 import Modal from "../modal/Modal";

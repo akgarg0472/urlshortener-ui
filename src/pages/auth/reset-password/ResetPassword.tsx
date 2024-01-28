@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-import { ResetPasswordApiResponse } from "../../../api/apiModals";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import RegularButton from "../../../components/button/RegularButton";
 import InputField from "../../../components/inputfield/InputField";
 import { InputFieldType } from "../../../components/inputfield/InputField.enums";
@@ -10,11 +9,12 @@ import Modal from "../../../components/modal/Modal";
 import { ModalIcon } from "../../../components/modal/Modal.enums";
 import useAuth from "../../../hooks/useAuth";
 import { validateResetPasswordPage } from "../../../utils/authutils";
-import { doResetPassword } from "../../../api/auth";
-
-import "../Auth.css";
+import { doResetPassword } from "../../../api/auth/auth";
 import { validateEmail, validateString } from "../../../utils/validationutils";
 import { LOGIN_URL } from "../../../constants";
+import { ResetPasswordApiResponse } from "../../../api/auth/auth.api.response";
+
+import "../Auth.css";
 
 const ResetPassword = () => {
   const navigate = useNavigate();

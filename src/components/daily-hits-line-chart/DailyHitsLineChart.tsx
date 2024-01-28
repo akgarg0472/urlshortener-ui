@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Line } from "react-chartjs-2";
-import { PrevSevenDaysHit } from "../../api/apiModals";
 import { convertTimestampToDate } from "../../utils/datetimeutils";
 import "./DailyHitsLineChart.css";
 

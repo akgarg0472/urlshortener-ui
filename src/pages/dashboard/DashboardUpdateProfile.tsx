@@ -9,7 +9,7 @@ import {
 } from "../../constants";
 import InputField from "../../components/inputfield/InputField";
 import RegularButton from "../../components/button/RegularButton";
-import { getProfile, updateProfile } from "../../api/user";
+import { getProfile, updateProfile } from "../../api/user/user";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { validateUpdateProfileRequest } from "../../utils/validationutils";

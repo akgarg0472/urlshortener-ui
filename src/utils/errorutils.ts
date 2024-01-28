@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ApiErrorResponse } from "../api/apiModals";
+import { ApiErrorResponse } from "../api/base";
 
 export const isAxiosNetworkError = (err: Error): boolean => {
   return axios.isAxiosError(err) && err.code === "ERR_NETWORK" && !err.response;

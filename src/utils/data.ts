@@ -19,6 +19,13 @@ interface CustomerTestimonial {
   review: string;
 }
 
+export interface PaidPlanData {
+  id: string;
+  heading: string;
+  summary: string;
+  points: string[];
+}
+
 export const homeWhyChooseUs: WhyChooseUs[] = [
   {
     id: "total__generated__links",
@@ -106,5 +113,31 @@ export const dashboardNavbarLinks: NavbarLink[] = [
     text: "Update Profile",
     path: "/dashboard/profile/update",
     icon: "/assets/icons/user.png",
+  },
+  {
+    text: "Premium Plans",
+    path: "/dashboard/plans",
+    icon: "/assets/icons/user.png",
+  },
+];
+
+export const dummyPremiumPlans = [
+  {
+    id: "plan_1",
+    heading: "Basic Plan",
+    summary: "Access to essential features",
+    points: ["Feature 1", "Feature 2"],
+  },
+  {
+    id: "plan_2",
+    heading: "Premium Plan",
+    summary: "Access to advanced features",
+    points: ["Feature 1", "Feature 2", "Feature 3"],
+  },
+  {
+    id: "plan_3",
+    heading: "Pro Plan",
+    summary: "Access to all features",
+    points: ["Feature 1", "Feature 2", "Feature 3", "Feature 4"],
   },
 ];

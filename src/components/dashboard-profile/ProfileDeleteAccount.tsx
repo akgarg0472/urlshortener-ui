@@ -4,7 +4,7 @@ import RegularButton from "../button/RegularButton";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { LOGIN_URL } from "../../constants";
-import { deleteProfile } from "../../api/user";
+import { deleteProfile } from "../../api/user/user";
 import Modal from "../modal/Modal";
 import { ModalIcon } from "../modal/Modal.enums";
 

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { LoginApiResponse } from "../../../api/apiModals";
-import { doLogin } from "../../../api/auth";
+import { doLogin } from "../../../api/auth/auth";
 import LinkButton from "../../../components/button/LinkButton";
 import RegularButton from "../../../components/button/RegularButton";
 import InputField from "../../../components/inputfield/InputField";
@@ -9,11 +8,12 @@ import Loader from "../../../components/loader/Loader";
 import Modal from "../../../components/modal/Modal";
 import useAuth from "../../../hooks/useAuth";
 import { validateLoginPage } from "../../../utils/authutils";
-
-import "../Auth.css";
 import { InputFieldType } from "../../../components/inputfield/InputField.enums";
 import { LoaderSpeed } from "../../../components/loader/Loader.enums";
 import { ModalIcon } from "../../../components/modal/Modal.enums";
+import { LoginApiResponse } from "../../../api/auth/auth.api.response";
+
+import "../Auth.css";
 
 const Login = () => {
   const navigation = useNavigate();

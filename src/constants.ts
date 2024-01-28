@@ -8,7 +8,7 @@ export const DASHBOARD_LINKS_URL: string = "/dashboard/links";
 export const DASHBOARD_STATISTICS_URL: string = "/dashboard/statistics";
 export const DASHBOARD_PROFILE_URL: string = "/dashboard/profile";
 export const DASHBOARD_UPDATE_PROFILE_URL: string = "/dashboard/profile/update";
-export const MAKE_PAYMENT_URL = "/make-payment";
+export const DASHBOARD_PAID_PLANS = "/dashboard/plans";
 
 export const HOME_WHY_CHOOSE_US: string = "Why Choose us";
 export const HOME_WHY_CHOOSE_US_DESC: string =
@@ -38,11 +38,6 @@ export const DASH_PROFILE_SUBHEAD: string =
   "The profile page is your virtual representation, a place where you can share information about yourself and your activities on the platform. It typically includes your username, profile picture, a bio or description.";
 export const DASH_OS_HEAD: string = "OS Statistics";
 export const DASH_BROWSER_HEAD: string = "Browser Statistics";
-export const DASH_PROFILE_DEFAULT_USERNAME: string = "John Doe";
-export const DASH_PROFILE_DEFAULT_BIO: string =
-  "Experienced Software Engg with a passion for innovation & problem-solving";
-export const DASH_PROFILE_DEFAULT_EMAIL: string = "john.doe@gmail.com";
-export const DASH_PROFILE_DEFAULT_LOCATION: string = "New York, United States";
-export const DASH_PROFILE_DEFAULT_GITHUB: string = "john.doe";
-export const DASH_PROFILE_DEFAULT_INSTAGRAM: string = "john.doe";
-export const DASH_PROFILE_DEFAULT_TWITTER: string = "doe.john1";
+export const DASH_PAID_PLANS_HEAD: string = "Premium Plans";
+export const DASH_PAID_PLANS_SUBHEAD: string =
+  "Explore our premium paid plans and get more exciting and amazing features";
