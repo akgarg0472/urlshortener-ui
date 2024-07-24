@@ -2,6 +2,7 @@ interface DashboardSummaryApiRequest {
   userId: string;
   startTime: number;
   endTime: number;
+  authToken?: string;
 }
 
 interface TopPopularUrlRequest {
@@ -10,18 +11,21 @@ interface TopPopularUrlRequest {
   limit: number;
   endTime: number;
   startTime: number;
+  authToken: string;
 }
 
 interface UrlGeographicalRequest {
   userId: string;
   startTime: number;
   endTime: number;
+  authToken: string;
 }
 
 interface DeviceMetricsApiRequest {
   userId: string;
   startTime: number;
   endTime: number;
+  authToken: string;
 }
 
 interface DashboardStatisticsRequest {

@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export interface ApiResponse {
   httpCode: number;
   message?: string;
@@ -9,3 +11,9 @@ export interface ApiErrorResponse {
   message: string;
   httpCode: number;
 }
+
+export const axiosInstance = axios.create({
+  headers: {
+    "ngrok-skip-browser-warning": "69420",
+  },
+});

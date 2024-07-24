@@ -1,4 +1,3 @@
-import axios from "axios";
 import { GENERATE_SHORT_URL_API_URL_V1 } from "../../api.endpoint.constants";
 import {
   axiosNwErrorResponse,
@@ -7,6 +6,7 @@ import {
 } from "../../utils/errorutils";
 import { GenerateUrlResponse } from "../dashboard/dashboard.api.response";
 import { ApiErrorResponse } from "../base";
+import { axiosInstance } from "../base";
 
 export const generateShortUrl = async (
   props: GenerateUrlRequest
@@ -15,12 +15,19 @@ export const generateShortUrl = async (
     process.env.REACT_APP_BACKEND_BASE_URL + GENERATE_SHORT_URL_API_URL_V1;
 
   try {
-    const generateShortUrlResponse = await axios.post(url, {
-      user_id: props.userId,
-      original_url: props.originalUrl,
-    });
-
-    console.log(generateShortUrlResponse.data);
+    const generateShortUrlResponse = await axiosInstance.post(
+      url,
+      {
+        user_id: props.userId,
+        original_url: props.originalUrl,
+      },
+      {
+        headers: {
+          "X-USER-ID": props.userId,
+          Authorization: `Bearer ${props.authToken}`,
+        },
+      }
+    );
 
     return {
       httpCode: generateShortUrlResponse.status,

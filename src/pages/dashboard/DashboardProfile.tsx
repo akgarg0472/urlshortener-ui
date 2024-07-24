@@ -22,7 +22,7 @@ import ProfilePersonalDetails from "../../components/dashboard-profile/ProfilePe
 import "./Dashboard.css";
 
 const DashboardProfile = () => {
-  const { logout, getUserId } = useAuth();
+  const { logout, getUserId, getAuthToken } = useAuth();
   const [loading, setLoading] = React.useState<boolean>(true);
   const navigate = useNavigate();
 
@@ -46,14 +46,15 @@ const DashboardProfile = () => {
 
   const fetchProfile = async () => {
     const userId = getUserId();
+    const authToken = getAuthToken();
 
-    if (!userId) {
+    if (!userId || !authToken) {
       logout();
       navigate(LOGIN_URL, { replace: true });
       return;
     }
 
-    const profile = await getProfile(userId);
+    const profile = await getProfile(userId, authToken);
 
     setLoading(false);
 

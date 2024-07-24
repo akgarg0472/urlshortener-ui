@@ -13,7 +13,7 @@ import { GenerateUrlResponse } from "../../api/dashboard/dashboard.api.response"
 import "./CreateUrlModal.css";
 
 const CreateUrlModal = (props: CreateUrlModalProps) => {
-  const { getUserId } = useAuth();
+  const { getUserId, getAuthToken } = useAuth();
 
   const generateShortUrlButtonRef = useRef<HTMLButtonElement>(null);
   const [loading, setLoading] = useState(false);
@@ -30,8 +30,9 @@ const CreateUrlModal = (props: CreateUrlModalProps) => {
     }
 
     const userId = getUserId();
+    const authToken = getAuthToken();
 
-    if (!userId) {
+    if (!userId || !authToken) {
       return;
     }
 
@@ -46,6 +47,7 @@ const CreateUrlModal = (props: CreateUrlModalProps) => {
       await generateShortUrl({
         originalUrl,
         userId,
+        authToken,
       });
 
     setLoading(false);

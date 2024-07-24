@@ -14,7 +14,7 @@ import { UrlMetricApiResponse } from "../../api/dashboard/dashboard.api.response
 import "./ShortUrlMetricModal.css";
 
 const ShortUrlMetricModal = (props: ShortUrlMetricModalProps) => {
-  const { getUserId } = useAuth();
+  const { getUserId, getAuthToken } = useAuth();
 
   const [loading, setLoading] = useState(true);
   const [totalHits, setTotalHits] = useState(0);
@@ -32,6 +32,7 @@ const ShortUrlMetricModal = (props: ShortUrlMetricModalProps) => {
       endTime: new Date().getTime(),
       startTime: 0,
       limit: 10,
+      authToken: getAuthToken()!!,
     });
 
     if (apiResponse.httpCode !== 200) {

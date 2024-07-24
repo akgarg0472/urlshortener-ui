@@ -48,7 +48,7 @@ import {
 import "./Dashboard.css";
 
 const DashboardStatistics = () => {
-  const { getUserId, logout } = useAuth();
+  const { getUserId, getAuthToken, logout } = useAuth();
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(true);
@@ -57,13 +57,14 @@ const DashboardStatistics = () => {
   const [countries, setCountries] = useState([] as Country[]);
   const [oss, setOss] = useState([] as OS[]);
   const [browsers, setBrowsers] = useState([] as Browser[]);
-  const [geoChartType, setGeoChartType] = useState(CHART__TYPE__PIE);
-  const [deviceChartType, setDeviceChartType] = useState(CHART__TYPE__PIE);
+  const [geoChartType, setGeoChartType] = useState(CHART_TYPE_BAR);
+  const [deviceChartType, setDeviceChartType] = useState(CHART_TYPE_BAR);
 
   const fetchData = async () => {
     const userId = getUserId();
+    const authToken = getAuthToken();
 
-    if (!userId) {
+    if (!userId || !authToken) {
       logout();
       navigate(LOGIN_URL, { replace: true });
       return;
@@ -77,6 +78,7 @@ const DashboardStatistics = () => {
           userId: userId,
           startTime: 0,
           endTime: endTime,
+          authToken: authToken,
         },
         popularUrlParam: {
           userId: userId,
@@ -84,11 +86,13 @@ const DashboardStatistics = () => {
           limit: 10,
           startTime: 0,
           endTime: endTime,
+          authToken: authToken,
         },
         deviceMetricsParam: {
           userId: userId,
           startTime: 0,
           endTime: endTime,
+          authToken: authToken,
         },
       });
 

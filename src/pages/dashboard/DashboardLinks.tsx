@@ -20,7 +20,7 @@ import {
 import "./Dashboard.css";
 
 const DashboardLinks = () => {
-  const { getUserId, logout } = useAuth();
+  const { getUserId, getAuthToken, logout } = useAuth();
   const navigate = useNavigate();
 
   const [urls, setUrls] = useState([] as USURL[]);
@@ -36,8 +36,9 @@ const DashboardLinks = () => {
 
   const fetchMyLinks = async () => {
     const userId = getUserId();
+    const authToken = getAuthToken();
 
-    if (!userId) {
+    if (!userId || !authToken) {
       logout();
       navigate(LOGIN_URL, { replace: true });
       return;
@@ -49,6 +50,7 @@ const DashboardLinks = () => {
       userId: userId,
       offset: nextOffset,
       limit: limit,
+      authToken: authToken,
     });
 
     setLoading(false);
@@ -100,14 +102,18 @@ const DashboardLinks = () => {
               <InternalLoader />
             ) : (
               <>
-                {urls.map((url, index) => (
-                  <MyLink
-                    url={url}
-                    serialNumber={index + 1}
-                    key={`${url.short_url}_${index}`} // todo: fix later
-                    userId={getUserId()!!}
-                  />
-                ))}
+                {urls.length === 0 ? (
+                  <span>No URLs to display</span>
+                ) : (
+                  urls.map((url, index) => (
+                    <MyLink
+                      url={url}
+                      serialNumber={index + 1}
+                      key={`${url.short_url}_${index}`} // todo: fix later
+                      userId={getUserId()!!}
+                    />
+                  ))
+                )}
               </>
             )}
           </div>

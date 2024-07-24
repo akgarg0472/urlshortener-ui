@@ -57,6 +57,17 @@ const useAuth = () => {
     return _auth.userId;
   };
 
+  const getAuthToken = () => {
+    const auth: string | null = localStorage.getItem(AUTH_OBJ_NAME);
+
+    if (auth === null) {
+      return null;
+    }
+
+    const _auth: AuthObject = JSON.parse(auth);
+    return _auth.authToken;
+  };
+
   const logout = () => {
     localStorage.removeItem(AUTH_OBJ_NAME);
   };
@@ -72,7 +83,15 @@ const useAuth = () => {
     return _auth.name;
   };
 
-  return { setAuth, getAuth, isUserLoggedIn, getUserId, logout, getName };
+  return {
+    setAuth,
+    getAuth,
+    isUserLoggedIn,
+    getUserId,
+    logout,
+    getName,
+    getAuthToken,
+  };
 };
 
 export default useAuth;

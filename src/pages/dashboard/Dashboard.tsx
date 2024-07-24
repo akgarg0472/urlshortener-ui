@@ -33,7 +33,7 @@ import { DashboardApiResponse } from "../../api/dashboard/dashboard.api.response
 import "./Dashboard.css";
 
 const Dashboard = () => {
-  const { getUserId, logout, getName } = useAuth();
+  const { getUserId, logout, getAuthToken } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -52,8 +52,9 @@ const Dashboard = () => {
 
   const fetchDashboard = async () => {
     const userId = getUserId();
+    const authToken = getAuthToken();
 
-    if (!userId) {
+    if (!userId || !authToken) {
       logout();
       navigate(LOGIN_URL, { replace: true });
       return;
@@ -63,6 +64,7 @@ const Dashboard = () => {
       userId: userId!!,
       startTime: 0,
       endTime: Date.now(),
+      authToken: authToken,
     });
 
     setLoading(false);

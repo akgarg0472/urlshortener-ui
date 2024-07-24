@@ -1,4 +1,5 @@
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
+import { axiosInstance } from "../base";
 import {
   DashboardApiResponse,
   DashboardStatisticsApiResponse,
@@ -31,7 +32,7 @@ export const getDashboard = async (
     process.env.REACT_APP_BACKEND_BASE_URL + DASHBOARD_SUMMARY_API_URL_V1;
 
   try {
-    const dashboardSummaryApiResponse = await axios.get(url, {
+    const dashboardSummaryApiResponse = await axiosInstance.get(url, {
       params: {
         userId: props.userId,
         endTime: props.endTime,
@@ -39,6 +40,10 @@ export const getDashboard = async (
         currentDayStartTime: getCurrentDayStartTimeInMs(),
         currentTime: new Date().getTime(),
         oneWeekOldTime: getOneWeekOldTimeInMsFromCurrentDate(),
+      },
+      headers: {
+        "X-USER-ID": props.userId,
+        Authorization: `Bearer ${props.authToken}`,
       },
     });
 
@@ -53,6 +58,8 @@ export const getDashboard = async (
       success: dashboardSummaryApiResponse.data.status_code === 200,
     };
   } catch (err: any) {
+    console.log(`response failed`);
+
     if (isAxiosNetworkError(err)) {
       const axiosNetworkErrorResponse: ApiErrorResponse =
         axiosNwErrorResponse();
@@ -101,23 +108,28 @@ export const getMyLinks = async (props: {
   userId: string;
   limit: number;
   offset: number;
+  authToken: string;
 }): Promise<MyLinksApiResponse> => {
   const url =
     process.env.REACT_APP_BACKEND_BASE_URL + DASHBOARD_MY_LINKS_API_URL_V1;
 
   try {
-    const myLinksApiResponse = await axios.get(url, {
+    const myLinksApiResponse = await axiosInstance.get(url, {
       params: {
         userId: props.userId,
         limit: props.limit,
         offset: props.offset,
+      },
+      headers: {
+        "X-USER-ID": props.userId,
+        Authorization: `Bearer ${props.authToken}`,
       },
     });
 
     return {
       httpCode: myLinksApiResponse.status,
       next_offset: myLinksApiResponse.data.next_offset,
-      success: myLinksApiResponse.data.status_code === 200,
+      success: myLinksApiResponse.status === 200,
       total_records: myLinksApiResponse.data.total_records,
       urls: myLinksApiResponse.data.urls,
     };
@@ -166,18 +178,23 @@ export const getUrlMetrics = async (props: {
   endTime: number;
   shortUrl: string;
   limit: number;
+  authToken: string;
 }): Promise<UrlMetricApiResponse> => {
   const url =
     process.env.REACT_APP_BACKEND_BASE_URL + DASHBOARD_URL_METRICS_API_URL_V1;
 
   try {
-    const urlMetricsApiResponse = await axios.get(url, {
+    const urlMetricsApiResponse = await axiosInstance.get(url, {
       params: {
         userId: props.userId,
         shortUrl: props.shortUrl,
         startTime: props.startTime,
         endTime: props.endTime,
         limit: props.limit,
+      },
+      headers: {
+        "X-USER-ID": props.userId,
+        Authorization: `Bearer ${props.authToken}`,
       },
     });
 
@@ -287,13 +304,20 @@ const geographicalApiPromise = (
   const geographicalStatsApiUrl =
     process.env.REACT_APP_BACKEND_BASE_URL + GET_URL_GEOGRAPHICAL_DATA_V1;
 
-  const geographicalApiPromiseResponse = axios.get(geographicalStatsApiUrl, {
-    params: {
-      userId: geographicRequest.userId,
-      startTime: geographicRequest.startTime,
-      endTime: geographicRequest.endTime,
-    },
-  });
+  const geographicalApiPromiseResponse = axiosInstance.get(
+    geographicalStatsApiUrl,
+    {
+      params: {
+        userId: geographicRequest.userId,
+        startTime: geographicRequest.startTime,
+        endTime: geographicRequest.endTime,
+      },
+      headers: {
+        "X-USER-ID": geographicRequest.userId,
+        Authorization: `Bearer ${geographicRequest.authToken}`,
+      },
+    }
+  );
 
   return geographicalApiPromiseResponse;
 };
@@ -305,11 +329,15 @@ const getDeviceMetricsStats = (
     process.env.REACT_APP_BACKEND_BASE_URL +
     DASHBOARD_DEVICE_METRICS_API_URL_V1;
 
-  const deviceMetricsApiResponse = axios.get(deviceStatsApiUrl, {
+  const deviceMetricsApiResponse = axiosInstance.get(deviceStatsApiUrl, {
     params: {
       userId: props.userId,
       startTime: props.startTime,
       endTime: props.endTime,
+    },
+    headers: {
+      "X-USER-ID": props.userId,
+      Authorization: `Bearer ${props.authToken}`,
     },
   });
 
@@ -322,13 +350,17 @@ const popularUrlsPromise = (
   const popularUrlsApiUrl =
     process.env.REACT_APP_BACKEND_BASE_URL + GET_TOP_POPULAR_URLS_V1;
 
-  const popularUrlApiResponse = axios.get(popularUrlsApiUrl, {
+  const popularUrlApiResponse = axiosInstance.get(popularUrlsApiUrl, {
     params: {
       userId: popularUrlRequest.userId,
       sortOrder: popularUrlRequest.sortOrder,
       limit: popularUrlRequest.limit,
       startTime: popularUrlRequest.startTime,
       endTime: popularUrlRequest.endTime,
+    },
+    headers: {
+      "X-USER-ID": popularUrlRequest.userId,
+      Authorization: `Bearer ${popularUrlRequest.authToken}`,
     },
   });
 

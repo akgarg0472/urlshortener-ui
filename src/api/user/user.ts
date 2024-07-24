@@ -1,4 +1,4 @@
-import axios from "axios";
+import { axiosInstance } from "../base";
 import {
   DASHBOARD_DELETE_PROFILE_API_URL_V1,
   DASHBOARD_GET_PROFILE_API_URL_V1,
@@ -17,14 +17,20 @@ import {
 } from "../../utils/errorutils";
 
 export const getProfile = async (
-  profileId: string
+  userId: string,
+  authToken: string
 ): Promise<GetProfileResponse> => {
   const url =
     process.env.REACT_APP_BACKEND_BASE_URL +
-    DASHBOARD_GET_PROFILE_API_URL_V1.replace("$profileId", profileId);
+    DASHBOARD_GET_PROFILE_API_URL_V1.replace("$profileId", userId);
 
   try {
-    const apiResponse = await axios.get(url);
+    const apiResponse = await axiosInstance.get(url, {
+      headers: {
+        "X-USER-ID": userId,
+        Authorization: `Bearer ${authToken}`,
+      },
+    });
 
     const data = apiResponse.data.data;
 
@@ -54,12 +60,13 @@ export const getProfile = async (
 };
 
 export const updateProfile = async (
-  profileId: string,
-  updateRequest: UpdateProfileRequest
+  userId: string,
+  updateRequest: UpdateProfileRequest,
+  authToken: string
 ): Promise<UpdateProfileResponse> => {
   const url =
     process.env.REACT_APP_BACKEND_BASE_URL +
-    DASHBOARD_UPDATE_PROFILE_API_URL_V1.replace("$profileId", profileId);
+    DASHBOARD_UPDATE_PROFILE_API_URL_V1.replace("$profileId", userId);
 
   let profilePicture: File | null = null;
 
@@ -86,9 +93,11 @@ export const updateProfile = async (
 
     formData.append("req_body", reqBody);
 
-    const response = await axios.patch(url, formData, {
+    const response = await axiosInstance.patch(url, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
+        "X-USER-ID": userId,
+        Authorization: `Bearer ${authToken}`,
       },
     });
 
@@ -117,7 +126,7 @@ export const updatePassword = async (
       confirm_password: request.confirmPassword,
     };
 
-    const updatePasswordResp = await axios.patch(url, body);
+    const updatePasswordResp = await axiosInstance.patch(url, body);
 
     return {
       httpCode: updatePasswordResp.status,
@@ -137,7 +146,7 @@ export const deleteProfile = async (
     DASHBOARD_DELETE_PROFILE_API_URL_V1.replace("$profileId", profileId);
 
   try {
-    const deleteResponse = await axios.delete(url);
+    const deleteResponse = await axiosInstance.delete(url);
 
     return {
       httpCode: deleteResponse.status,
