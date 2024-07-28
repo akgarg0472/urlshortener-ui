@@ -8,7 +8,9 @@ export const DASHBOARD_LINKS_URL: string = "/dashboard/links";
 export const DASHBOARD_STATISTICS_URL: string = "/dashboard/statistics";
 export const DASHBOARD_PROFILE_URL: string = "/dashboard/profile";
 export const DASHBOARD_UPDATE_PROFILE_URL: string = "/dashboard/profile/update";
-export const DASHBOARD_PAID_PLANS = "/dashboard/plans";
+export const DASHBOARD_PAID_PLANS: string = "/dashboard/plans";
+export const OAUTH_SUCCESS_GOOGLE: string = "/oauth/google/success";
+export const OAUTH_SUCCESS_GITHUB: string = "/oauth/github/success";
 
 export const HOME_WHY_CHOOSE_US: string = "Why Choose us";
 export const HOME_WHY_CHOOSE_US_DESC: string =

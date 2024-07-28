@@ -1,8 +1,10 @@
 import axios from "axios";
 import {
   FORGOT_PASSWORD_API_URL_V1,
+  GET_OAUTH_PROVIDERS_URL_V1,
   LOGIN_API_URL_V1,
   LOGOUT_API_URL_V1,
+  OAUTH_CALLBACK_URL_V1,
   RESET_PASSWORD_API_URL_V1,
   SIGNUP_API_URL_V1,
 } from "../../api.endpoint.constants";
@@ -15,9 +17,85 @@ import {
   ForgotPasswordApiResponse,
   LoginApiResponse,
   LogoutApiResponse,
+  OAuthCallbackResponse,
+  OAuthProviderResponse,
   ResetPasswordApiResponse,
   SignupApiResponse,
 } from "./auth.api.response";
+import { CardElement } from "@stripe/react-stripe-js";
+
+const doGetOAuthProvider = async (
+  props: GetOAuthProviderRequestProps
+): Promise<OAuthProviderResponse> => {
+  const url =
+    process.env.REACT_APP_BACKEND_BASE_URL + GET_OAUTH_PROVIDERS_URL_V1;
+
+  try {
+    const provider: string | undefined = props.provider;
+    const queryParams: Record<string, string> = {};
+
+    if (provider) {
+      queryParams.provider = provider;
+    }
+
+    const response = await axios.get(url, {
+      params: queryParams,
+    });
+
+    return {
+      httpCode: response.status,
+      success: response.data.success,
+      clients: response.data.clients,
+    };
+  } catch (err: any) {
+    if (isAxiosNetworkError(err)) {
+      return axiosNwErrorResponse();
+    }
+
+    return {
+      httpCode: 500,
+      success: false,
+      message: "Failed to fetch OAuth information. Please try again later",
+    };
+  }
+};
+
+const doOAuthCallback = async (
+  props: OAuthCallbackRequest
+): Promise<OAuthCallbackResponse> => {
+  const url = process.env.REACT_APP_BACKEND_BASE_URL + OAUTH_CALLBACK_URL_V1;
+
+  const requestBody = {
+    auth_code: props.authCode,
+    provider: props.provider,
+    state: props.state,
+    scope: props.scope,
+  };
+
+  try {
+    const callbackResponse = await axios.post(url, requestBody);
+
+    return {
+      httpCode: callbackResponse.status,
+      success: callbackResponse.data.success,
+      user_id: callbackResponse.data.user_id,
+      auth_token: callbackResponse.data.auth_token,
+      email: callbackResponse.data.email,
+      name: callbackResponse.data.name,
+      is_new_user: callbackResponse.data.is_new_user,
+    };
+  } catch (err: any) {
+    if (isAxiosNetworkError(err)) {
+      return axiosNwErrorResponse();
+    }
+
+    return {
+      httpCode: 500,
+      success: false,
+      message: "Failed to Login using OAuth. Please try again later",
+    };
+  }
+};
 
 const doSignup = async (
   props: SignupApiRequestProps
@@ -225,4 +303,12 @@ const doResetPassword = async (
   }
 };
 
-export { doSignup, doLogin, doLogout, doForgotPassword, doResetPassword };
+export {
+  doSignup,
+  doLogin,
+  doLogout,
+  doForgotPassword,
+  doResetPassword,
+  doGetOAuthProvider,
+  doOAuthCallback,
+};

@@ -24,3 +24,24 @@ export interface LogoutApiResponse extends ApiResponse {
   message: string;
   errors?: string;
 }
+
+export interface OAuthClient {
+  provider: string;
+  client_id: string;
+  base_url: string;
+  redirect_uri: string;
+  access_type: string;
+  scope: string;
+}
+
+export interface OAuthProviderResponse extends ApiResponse {
+  clients?: OAuthClient[];
+}
+
+export interface OAuthCallbackResponse extends ApiResponse {
+  user_id?: string;
+  auth_token?: string;
+  email?: string;
+  name?: string;
+  is_new_user?: boolean;
+}

@@ -17,6 +17,8 @@ import {
   DASHBOARD_URL,
   FORGOT_PASSWORD_URL,
   LOGIN_URL,
+  OAUTH_SUCCESS_GITHUB,
+  OAUTH_SUCCESS_GOOGLE,
   RESET_PASSWORD_URL,
   SIGNUP_URL,
 } from "../constants";
@@ -24,6 +26,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import ResetPassword from "../pages/auth/reset-password/ResetPassword";
 import DashboardUpdateProfile from "../pages/dashboard/DashboardUpdateProfile";
 import DashboardPaidPlans from "../pages/dashboard/DashboardPaidPlans";
+import OAuthSuccess from "../pages/auth/oauth/OAuthSuccess";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +48,14 @@ const router = createBrowserRouter([
   {
     path: RESET_PASSWORD_URL,
     element: <ResetPassword />,
+  },
+  {
+    path: OAUTH_SUCCESS_GOOGLE,
+    element: <OAuthSuccess />,
+  },
+  {
+    path: OAUTH_SUCCESS_GITHUB,
+    element: <OAuthSuccess />,
   },
   {
     path: DASHBOARD_URL,

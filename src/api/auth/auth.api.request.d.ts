@@ -25,3 +25,14 @@ interface ResetPasswordRequestProps {
   email: string;
   token: string;
 }
+
+interface GetOAuthProviderRequestProps {
+  provider?: string;
+}
+
+interface OAuthCallbackRequest {
+  state: string;
+  authCode: string;
+  scope: string;
+  provider: string;
+}

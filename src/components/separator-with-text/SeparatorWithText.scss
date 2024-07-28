@@ -1,0 +1,18 @@
+.separator_with_text {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  width: 100%;
+}
+
+.separator_with_text_line {
+  flex: 1;
+  border: 0;
+  border-top: 1px solid #ccc;
+}
+
+.separator_with_text span {
+  margin: 0 10px;
+  font-size: 14px;
+  color: #666;
+}

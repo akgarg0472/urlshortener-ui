@@ -1,4 +1,7 @@
 // Auth API endpoints
+export const GET_OAUTH_PROVIDERS_URL_V1: string =
+  "/api/v1/auth/oauth/providers";
+export const OAUTH_CALLBACK_URL_V1: string = "/api/v1/auth/oauth/callbacks";
 export const SIGNUP_API_URL_V1: string = "/api/v1/auth/signup";
 export const LOGIN_API_URL_V1: string = "/api/v1/auth/login";
 export const LOGOUT_API_URL_V1: string = "/api/v1/auth/logout";
