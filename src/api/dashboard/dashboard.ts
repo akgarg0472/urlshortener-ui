@@ -1,4 +1,3 @@
-import { AxiosResponse } from "axios";
 import { axiosInstance } from "../base";
 import {
   DashboardApiResponse,
@@ -24,6 +23,7 @@ import {
   isAxiosNetworkError,
 } from "../../utils/errorutils";
 import { ApiErrorResponse } from "../base";
+import { AxiosResponse } from "axios";
 
 export const getDashboard = async (
   props: DashboardSummaryApiRequest

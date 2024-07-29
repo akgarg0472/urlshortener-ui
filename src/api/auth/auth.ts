@@ -1,4 +1,3 @@
-import axios from "axios";
 import {
   FORGOT_PASSWORD_API_URL_V1,
   GET_OAUTH_PROVIDERS_URL_V1,
@@ -22,6 +21,7 @@ import {
   ResetPasswordApiResponse,
   SignupApiResponse,
 } from "./auth.api.response";
+import { axiosInstance } from "../base";
 
 const doGetOAuthProvider = async (
   props: GetOAuthProviderRequestProps
@@ -72,7 +72,7 @@ const doOAuthCallback = async (
   };
 
   try {
-    const callbackResponse = await axios.post(url, requestBody);
+    const callbackResponse = await axiosInstance.post(url, requestBody);
 
     return {
       httpCode: callbackResponse.status,
@@ -109,7 +109,7 @@ const doSignup = async (
   };
 
   try {
-    const signupApiResponse = await axios.post(url, requestBody);
+    const signupApiResponse = await axiosInstance.post(url, requestBody);
 
     return {
       httpCode: signupApiResponse.status,
@@ -168,7 +168,7 @@ const doLogin = async (
   };
 
   try {
-    const loginApiResponse = await axios.post(url, requestBody);
+    const loginApiResponse = await axiosInstance.post(url, requestBody);
 
     return {
       httpCode: 200,
@@ -205,7 +205,7 @@ const doLogout = async (
   };
 
   try {
-    const logoutApiResponse = await axios.post(url, requestBody);
+    const logoutApiResponse = await axiosInstance.post(url, requestBody);
 
     return {
       httpCode: 200,
@@ -240,7 +240,10 @@ const doForgotPassword = async (
   };
 
   try {
-    const forgotPasswordApiResponse = await axios.post(url, requestBody);
+    const forgotPasswordApiResponse = await axiosInstance.post(
+      url,
+      requestBody
+    );
 
     return {
       httpCode: forgotPasswordApiResponse.status,
@@ -278,7 +281,7 @@ const doResetPassword = async (
   };
 
   try {
-    const resetPasswordApiResponse = await axios.post(url, requestBody);
+    const resetPasswordApiResponse = await axiosInstance.post(url, requestBody);
 
     return {
       httpCode: resetPasswordApiResponse.status,
