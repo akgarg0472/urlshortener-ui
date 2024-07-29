@@ -25,5 +25,7 @@ yarn-error.log*
 # custom
 *.env
 *.css.map
+.env
+
 # Local Netlify folder
 .netlify
