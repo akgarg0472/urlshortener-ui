@@ -22,7 +22,6 @@ import {
   ResetPasswordApiResponse,
   SignupApiResponse,
 } from "./auth.api.response";
-import { CardElement } from "@stripe/react-stripe-js";
 
 const doGetOAuthProvider = async (
   props: GetOAuthProviderRequestProps

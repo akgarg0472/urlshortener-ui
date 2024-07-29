@@ -31,7 +31,7 @@ export const generateShortUrl = async (
 
     return {
       httpCode: generateShortUrlResponse.status,
-      success: generateShortUrlResponse.status == 201,
+      success: generateShortUrlResponse.status === 201,
       original_url: "",
       short_url: "",
     };

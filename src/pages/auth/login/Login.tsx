@@ -48,6 +48,7 @@ const Login = () => {
         replace: true,
       });
     }
+    // eslint-disable-next-line
   }, []);
 
   const handleLoginButtonClick = async () => {
@@ -91,7 +92,7 @@ const Login = () => {
         provider: "google",
       });
 
-      if (!oAuthProvider.clients || oAuthProvider.clients.length != 1) {
+      if (!oAuthProvider.clients || oAuthProvider.clients.length !== 1) {
         Modal.showModal({
           icon: ModalIcon.ERROR,
           message:
@@ -203,7 +204,7 @@ const Login = () => {
         provider: "github",
       });
 
-      if (!oAuthProvider.clients || oAuthProvider.clients.length != 1) {
+      if (!oAuthProvider.clients || oAuthProvider.clients.length !== 1) {
         Modal.showModal({
           icon: ModalIcon.ERROR,
           message:

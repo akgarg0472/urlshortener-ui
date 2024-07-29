@@ -1,12 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
 import LinkButton from "../button/LinkButton";
 import "./HomeNavbar.css";
 
 const HomeNavbar = () => {
-  const { isUserLoggedIn } = useAuth();
-
   return (
     <React.Fragment>
       <div className="home__navbar">

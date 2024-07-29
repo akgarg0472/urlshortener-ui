@@ -189,7 +189,7 @@ const DashboardStatistics = () => {
             return (
               <IconStats
                 icon="/assets/icons/popular_url.png"
-                label={`${process.env.REACT_APP_FRONTEND_BASE_URL}/${url.short_url}`}
+                label={`${process.env.REACT_APP_PREFIX_URL_FOR_SHORT_URL}/${url.short_url}`}
                 value={url.hits_count}
                 key={index}
               />
