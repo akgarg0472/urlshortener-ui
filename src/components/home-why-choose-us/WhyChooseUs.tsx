@@ -22,7 +22,7 @@ const WhyChooseUs = () => {
               icon={item.icon}
               title={item.title}
               description={item.description}
-              rightBorder={index != homeWhyChooseUs.length - 1}
+              rightBorder={index !== homeWhyChooseUs.length - 1}
             />
           ))}
         </div>

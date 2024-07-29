@@ -48,6 +48,7 @@ const ResetPassword = () => {
     });
 
     document.title = "Reset Password";
+    // eslint-disable-next-line
   }, []);
 
   const handleResetPasswordButtonClick = async () => {
