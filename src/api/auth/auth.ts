@@ -37,7 +37,7 @@ const doGetOAuthProvider = async (
       queryParams.provider = provider;
     }
 
-    const response = await axios.get(url, {
+    const response = await axiosInstance.get(url, {
       params: queryParams,
     });
 
