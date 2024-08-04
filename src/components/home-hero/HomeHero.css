@@ -49,4 +49,8 @@
   width: 50%;
   background-color: rgba(84, 101, 118, 0.1450980392);
   border-radius: 6px;
+}
+.home__hero__container .right__image__section img {
+  width: 100%;
+  height: 100%;
 }/*# sourceMappingURL=HomeHero.css.map */

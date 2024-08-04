@@ -20,7 +20,9 @@ const HomeHero = () => {
             referrerPolicy="no-referrer"
           />
         </div>
-        <div className="right__image__section"></div>
+        <div className="right__image__section">
+          <img src="/assets/urlshortener.webp" alt="URL Shortener Image" />
+        </div>
       </div>
     </React.Fragment>
   );
