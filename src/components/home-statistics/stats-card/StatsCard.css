@@ -1,0 +1,60 @@
+.stats__card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: #181819;
+  padding: 2.8rem;
+  margin: 1.2rem;
+  border: 1px solid rgb(38, 38, 38);
+  border-radius: 1.6rem;
+  background-color: #181819;
+  position: relative;
+}
+.stats__card .metric {
+  font-weight: 600;
+  font-size: 2.8rem;
+  color: var(--text-primary);
+}
+.stats__card .title {
+  margin-top: 1.2rem;
+  font-size: 1.6rem;
+  color: #a3a3a3;
+}
+.stats__card .icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4.8rem;
+  height: 4.8rem;
+  border-radius: 50%;
+  padding: 0.8rem;
+  transform: translate(25%, -25%);
+}
+.stats__card .live__title {
+  margin-top: 1.2rem;
+  display: flex;
+  align-items: center;
+}
+.stats__card .live__title .dot {
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  animation: home-dot-button-anim 2000ms linear infinite;
+}
+.stats__card .live__title .title {
+  margin-top: 0;
+  margin-left: 0.8rem;
+}
+
+.stats__card:hover {
+  border: 1px solid rgb(66, 65, 65);
+}
+
+@keyframes home-dot-button-anim {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}

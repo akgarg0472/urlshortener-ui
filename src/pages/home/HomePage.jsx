@@ -5,6 +5,8 @@ import HomeHero from "../../components/home-hero/HomeHero";
 import HomeNavbar from "../../components/home-navbar/HomeNavbar";
 import WhyChooseUs from "../../components/home-why-choose-us/WhyChooseUs";
 import HomePricing from "../../components/home-pricing/HomePricing";
+import HomeStatistics from "../../components/home-statistics/HomeStatistics";
+import HomeFAQ from "../../components/home-faq/HomeFAQ";
 
 const HomePage = () => {
   useEffect(() => {
@@ -17,7 +19,9 @@ const HomePage = () => {
       <HomeHero />
       <WhyChooseUs />
       <HomePricing />
+      <HomeStatistics />
       <CustomerTestinomial />
+      <HomeFAQ />
       <Footer />
     </React.Fragment>
   );

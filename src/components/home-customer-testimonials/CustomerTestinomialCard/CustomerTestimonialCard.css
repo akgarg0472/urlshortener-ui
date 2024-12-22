@@ -1,15 +1,13 @@
 .customer__testimonial__card {
-  height: 32rem;
-  margin: 0 0.8rem;
-  padding: 2.4rem 1.6rem;
-  box-shadow: var(--customer-testimonial-box-shadow);
+  height: 28rem;
+  margin: 0 1.2rem;
+  padding: 1.6rem 2.4rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   transition: all 250ms ease-in-out;
   border-radius: 6px;
-  background-color: #181819;
-  border: 1px solid rgb(38, 38, 38);
+  background-color: #f4f4f4;
   border-radius: 1.6rem;
 }
 .customer__testimonial__card .image__details__container {
@@ -17,8 +15,8 @@
   align-items: center;
 }
 .customer__testimonial__card .image__details__container .image {
-  width: 6.4rem;
-  height: 6.4rem;
+  width: 4.8rem;
+  height: 4.8rem;
   border-radius: 50%;
 }
 .customer__testimonial__card .image__details__container .name__designation__container {
@@ -28,19 +26,19 @@
 }
 .customer__testimonial__card .image__details__container .name__designation__container .name {
   font-size: 1.6rem;
-  color: var(--text-primary);
+  color: var(--text-secondary);
 }
 .customer__testimonial__card .image__details__container .name__designation__container .designation {
   font-size: 1.6rem;
   margin-top: 0.4rem;
-  color: #d4d4d4;
+  color: #333333;
 }
 .customer__testimonial__card .review {
   margin: 2.4rem 0 2.4rem 0;
   font-size: 1.5rem;
   position: relative;
   line-height: 2.4rem;
-  color: var(--text-primary);
+  color: var(--text-secondary);
   font-weight: 400;
 }
 

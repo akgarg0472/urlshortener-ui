@@ -22,6 +22,12 @@ export const HOME_CUSTOMER_TESTIMONIALS_DESC: string =
 export const HOME_PRICING: string = "Simple, Transparent Pricing";
 export const HOME_PRICING_DESC: string =
   "Choose the perfect plan for your link management needs. No hidden fees, no surprises.";
+export const HOME_STATISTICS: string = "Trusted by Millions";
+export const HOME_STATISTICS_DESC: string =
+  "Join the millions of users who trust our platform for their link shortening needs.";
+export const HOME_FAQ: string = "Frequently Asked Questions";
+export const HOME_FAQ_DESC: string =
+  "Everything you need to know about our URL shortening service.";
 export const DASH_PREV_SEVEN_DAYS_HEAD: string = "Previous 7 Days Hits";
 export const DASH_PREV_SEVEN_DAYS_SUBHEAD: string =
   "A visual snapshot of the total hits on our URLs over the past 7 days, helping you track recent usage pattern and engagement";

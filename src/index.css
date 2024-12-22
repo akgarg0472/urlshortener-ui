@@ -25,6 +25,11 @@
     #212028,
     transparent
   );
+  --gradient-background-image-dark-circle: radial-gradient(
+    circle at 50% 100%,
+    #212028,
+    transparent
+  );
 
   /* Dashboard variables */
   --dashboard-bg: #fff0;

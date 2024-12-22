@@ -7,3 +7,17 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
+.home__pricing__container .mbg__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1.2rem;
+}
+.home__pricing__container .mbg__container svg {
+  width: 2rem;
+  height: 2rem;
+}
+.home__pricing__container .mbg__container span {
+  margin-left: 0.6rem;
+  font-size: 1.6rem;
+}

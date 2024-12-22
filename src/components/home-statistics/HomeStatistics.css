@@ -1,0 +1,15 @@
+.home__statistics__container {
+  background-color: var(--bg-dark);
+  padding: 8rem 4.8rem;
+  background-image: var(--gradient-background-image-dark);
+}
+.home__statistics__container .stats__cards__container {
+  width: 75%;
+  margin: 4rem auto auto auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.home__statistics__container .live__stats__card {
+  grid-template-columns: repeat(2, 1fr);
+  width: 50%;
+}

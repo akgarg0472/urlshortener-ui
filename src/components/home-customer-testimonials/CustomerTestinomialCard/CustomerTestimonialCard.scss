@@ -1,19 +1,17 @@
-$card__height: 32rem;
-$image__dimension: 6.4rem;
+$card__height: 28rem;
+$image__dimension: 4.8rem;
 $before__after__dimension: 1.6rem;
 
 .customer__testimonial__card {
   height: $card__height;
-  margin: 0 0.8rem;
-  padding: 2.4rem 1.6rem;
-  box-shadow: var(--customer-testimonial-box-shadow);
+  margin: 0 1.2rem;
+  padding: 1.6rem 2.4rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   transition: all 250ms ease-in-out;
   border-radius: 6px;
-  background-color: #181819;
-  border: 1px solid rgb(38, 38, 38);
+  background-color: #f4f4f4;
   border-radius: 1.6rem;
 
   .image__details__container {
@@ -33,13 +31,13 @@ $before__after__dimension: 1.6rem;
 
       .name {
         font-size: 1.6rem;
-        color: var(--text-primary);
+        color: var(--text-secondary);
       }
 
       .designation {
         font-size: 1.6rem;
         margin-top: 0.4rem;
-        color: #d4d4d4;
+        color: #333333;
       }
     }
   }
@@ -49,7 +47,7 @@ $before__after__dimension: 1.6rem;
     font-size: 1.5rem;
     position: relative;
     line-height: 2.4rem;
-    color: var(--text-primary);
+    color: var(--text-secondary);
     font-weight: 400;
   }
 }

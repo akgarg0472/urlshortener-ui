@@ -15,11 +15,10 @@ const CustomerTestimonialCard = (props: CustomerTestimonialCardProps) => {
     <React.Fragment>
       <div className="customer__testimonial__card">
         <div className="image__details__container">
-          <div
+          <img
             className="image"
-            dangerouslySetInnerHTML={{
-              __html: props.image,
-            }}
+            src={props.image}
+            alt={`${props.name}_customer`}
           />
 
           <div className="name__designation__container">

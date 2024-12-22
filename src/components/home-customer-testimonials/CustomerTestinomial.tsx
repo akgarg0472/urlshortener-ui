@@ -16,7 +16,6 @@ const CustomerTestimonial = () => {
         <HomeHeading
           title={HOME_CUSTOMER_TESTIMONIALS}
           subtitle={HOME_CUSTOMER_TESTIMONIALS_DESC}
-          darkMode={true}
         />
 
         <div className="customer__testimonials__cards__container">

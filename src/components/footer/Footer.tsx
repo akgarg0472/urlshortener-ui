@@ -4,7 +4,9 @@ import "./Footer.css";
 const Footer = () => {
   return (
     <React.Fragment>
-      <div className="footer"></div>
+      <div className="footer">
+        &copy; 2024 URLShortener. All rights reserved.
+      </div>
     </React.Fragment>
   );
 };

@@ -36,6 +36,27 @@ type PricingPlan = {
   selected: boolean;
 };
 
+type HomeStats = {
+  id: string;
+  metric: string;
+  title: string;
+  icon: string;
+  iconBgColor: string;
+};
+
+type LiveHomeStats = {
+  id: string;
+  title: string;
+  metric: string;
+  iconColor: string;
+};
+
+type HomeAccordian = {
+  id: string;
+  title: string;
+  content: string;
+};
+
 export const homeWhyChooseUs: WhyChooseUs[] = [
   {
     id: "instant__link__generation",
@@ -131,24 +152,103 @@ export const homePricingPlans: PricingPlan[] = [
 export const homeCustomerTestimonials: CustomerTestimonial[] = [
   {
     id: "customer__testimonial__1",
-    image: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fff" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /></svg>`,
+    image: `/assets/icons/john-doe.png`,
     name: "John D.",
     designation: "Digital Marketer",
     review: `"This URL shortener has revolutionized our social media campaigns. The analytics are incredibly detailed, and the custom branding feature helps maintain our brand consistency."`,
   },
   {
     id: "customer__testimonial__2",
-    image: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fff" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /></svg>`,
+    image: `/assets/icons/john-doe.png`,
     name: "John D.",
     designation: "Digital Marketer",
     review: `"The QR code generation feature has been a game-changer for our product packaging. Integration was seamless, and the analytics help us track campaign performance effectively."`,
   },
   {
     id: "customer__testimonial__3",
-    image: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fff" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /></svg>`,
+    image: `/assets/icons/john-doe.png`,
     name: "John D.",
     designation: "Digital Marketer",
     review: `"I love how easy it is to create and manage multiple short links. The ability to customize links has helped me build better brand recognition across my social platforms."`,
+  },
+];
+
+export const homeStatistics: HomeStats[] = [
+  {
+    id: "links__shortened",
+    metric: "300M+",
+    title: "Links Shortened",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="rgba(99, 102, 241, 1)" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" /></svg>`,
+    iconBgColor: "rgba(99, 102, 241, 0.15)",
+  },
+  {
+    id: "active__users",
+    metric: "1M+",
+    title: "Active Users",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="rgba(168, 85, 247, 1)" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" /></svg>`,
+    iconBgColor: "rgba(168, 85, 247, 0.15)",
+  },
+  {
+    id: "system__uptime",
+    metric: "99.99%",
+    title: "Uptime",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="rgba(236, 72, 153, 1)" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0 0 12 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52 2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 0 1-2.031.352 5.988 5.988 0 0 1-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.971Zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0 2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 0 1-2.031.352 5.989 5.989 0 0 1-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.971Z" /></svg>`,
+    iconBgColor: "rgba(236, 72, 153, 0.15)",
+  },
+  {
+    id: "countries__served",
+    metric: "100+",
+    title: "Countries Served",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="rgba(34, 197, 94, 1)" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" /></svg>`,
+    iconBgColor: "rgba(34, 197, 94, 0.15)",
+  },
+];
+
+export const liveDataStatistics: LiveHomeStats[] = [
+  {
+    id: "links__shortened__last__24__hours",
+    title: "Links shortened in last 24 hours",
+    metric: "1,234,567",
+    iconColor: "rgba(34, 197, 94, 1)",
+  },
+  {
+    id: "active__users__right__now",
+    title: "Active users right now",
+    metric: "12,345",
+    iconColor: "rgba(99, 102, 241, 1)",
+  },
+];
+
+export const faqQuestions: HomeAccordian[] = [
+  {
+    id: "faq__what__is__url__shortener",
+    title: "What is URL Shortener?",
+    content: `A URL shortener is a tool that creates a short, unique URL that will redirect to the specific webpage you specify. It's useful for sharing links on social media, tracking click-through rates, and making URLs more manageable.`,
+  },
+  {
+    id: "faq__is_free_to_use",
+    title: "Is the service free to use?",
+    content: `Yes, we offer a free plan that includes basic features and up to 10 links per month. For additional features and higher usage limits, check out our Pro and Enterprise plans.`,
+  },
+  {
+    id: "faq__can_custom_url_be_created",
+    title: "Can I create custom short URLs?",
+    content: `Yes, with our Pro and Enterprise plans, you can customize your short URLs to include your brand or specific keywords.`,
+  },
+  {
+    id: "faq__how_to_track_link_performance",
+    title: "How can I track link performance?",
+    content: `Our dashboard provides detailed analytics for each link, including click-through rates, geographic locations, and referral sources.`,
+  },
+  {
+    id: "faq__does_expiry_option_exist",
+    title: "Does the URL have an expiration option?",
+    content: `Yes, you can set an expiration date for your short URLs. After the specified date, the link will no longer be active.`,
+  },
+  {
+    id: "faq__can_urls_be_deleted",
+    title: "Can I delete a shortened URL?",
+    content: `Yes, you can delete any URL you create from your account dashboard. Deleted URLs will no longer redirect to the original webpage.`,
   },
 ];
 

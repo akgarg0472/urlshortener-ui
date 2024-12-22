@@ -1,0 +1,12 @@
+.home__faq__container {
+  background-image: var(--gradient-background-image-dark-circle);
+  background-color: var(--bg-dark);
+  padding: 8rem 4.8rem;
+
+  .faq__accordian__container {
+    margin: 2.8rem auto auto auto;
+    display: grid;
+    width: 40%;
+    grid-template-columns: 1fr;
+  }
+}
