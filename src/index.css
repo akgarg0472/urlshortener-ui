@@ -9,6 +9,17 @@
 }
 
 :root {
+  --bg-primary: rgb(255, 255, 255);
+  --bg-secondary: rgb(250 250 250 / 90%);
+  --bg-dark: rgb(23, 23, 23);
+  --bg-dark-hover: rgb(13, 13, 13);
+
+  --text-primary: #ffffff;
+  --text-secondary: #222222;
+
+  /* Home Page variables */
+  --home-navbar-height: 8vh;
+
   /* Dashboard variables */
   --dashboard-bg: #fff0;
   --dashboard-navbar-heading-logo-color: #222222;
@@ -34,6 +45,7 @@
 html {
   font-size: 62.5%;
   scroll-behavior: smooth;
+  background-color: var(--bg-secondary);
 }
 
 .uss__button__disabled {

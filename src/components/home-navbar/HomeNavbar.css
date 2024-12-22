@@ -1,19 +1,22 @@
 .home__navbar {
   display: flex;
   justify-content: space-between;
-  height: 10rem;
-  padding: 0 8rem;
+  align-items: center;
+  height: var(--home-navbar-height);
+  padding: 2rem 8rem;
+  background-color: var(--bg-dark);
 }
 
 .logo__container {
-  height: 5rem;
+  height: var(--home-navbar-height)/2;
   display: flex;
   align-items: center;
-  margin-top: 2.5rem;
+  justify-content: center;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;
 }
 
 .logo__container .navbar__link {
-  color: #222222;
+  color: var(--text-primary);
   font-size: 2.4rem;
   font-family: "Libre Baskerville", serif;
   font-weight: 700;
@@ -24,14 +27,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 5rem;
-  margin-top: 2.5rem;
-  width: 26.4rem;
+  height: 4rem;
 }
 
 .signup__button,
 .login__button {
-  width: 12rem;
   border-radius: 0.6rem;
   height: 100%;
   display: flex;
@@ -41,20 +41,25 @@
   text-decoration: none;
   font-family: "Mulish", sans-serif;
   font-weight: 600;
-  border: 2px solid #222222;
+  padding: 1rem 2rem;
 }
 
 .signup__button {
-  background-color: #222222;
-  color: #ffffff;
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
 }
 
 .login__button {
-  background-color: #ffffff;
-  color: #222222;
+  margin: 0;
+  background-color: transparent;
+  color: var(--text-primary);
 }
 
-.signup__button,
 .login__button:hover {
   font-weight: 700;
-}/*# sourceMappingURL=HomeNavbar.css.map */
+}
+
+.signup__button:hover {
+  background-color: var(--bg-secondary);
+  transition: all 100ms linear;
+}

@@ -14,15 +14,15 @@ const HomeNavbar = () => {
         </div>
         <div className="auth__buttons__container">
           <LinkButton
-            text="Signup"
-            className="signup__button"
-            onClickLink="/signup"
-            referrerPolicy="no-referrer"
-          />
-          <LinkButton
             text="Login"
             className="login__button"
             onClickLink="/login"
+            referrerPolicy="no-referrer"
+          />
+          <LinkButton
+            text="Signup"
+            className="signup__button"
+            onClickLink="/signup"
             referrerPolicy="no-referrer"
           />
         </div>

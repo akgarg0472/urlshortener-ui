@@ -1,63 +1,92 @@
 .home__hero__container {
   display: flex;
-  width: 80%;
-  margin: 4rem auto;
-  height: 50vh;
+  width: 100%;
+  height: calc(100vh - var(--home-navbar-height));
+  background-color: var(--bg-primary);
 }
 
 .home__hero__container {
-  .left__heading__section {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  .main__heading {
+    font-size: 6rem;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI,
+      Roboto, Helvetica Neue, Arial, sans-serif;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+  }
+
+  .main__heading:nth-child(1) {
+    color: #222222;
+  }
+
+  .main__heading:nth-child(2) {
+    color: #5d44f8;
+    margin-top: -1rem;
+  }
+
+  .sub__heading {
     width: 50%;
+    text-align: center;
+    color: #333333;
+    font-size: 2rem;
+    font-family: "Mulish", sans-serif;
+    font-weight: 600;
+    margin: 1.6rem 0 0 0;
+  }
+
+  .get__started__btn {
+    text-decoration: none;
+    background-color: var(--bg-dark);
+    color: #ffffff;
+    font-family: "Mulish", sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    border-radius: 6px;
+    position: relative;
+    width: 20rem;
+    height: 5.6rem;
     display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    margin-top: 2rem;
+  }
 
-    .main__heading {
-      color: #2808f1;
-      font-size: 4rem;
-      font-family: "Mulish", sans-serif;
-      font-weight: 700;
-    }
+  .get__started__btn:hover {
+    background-color: var(--bg-dark-hover);
+  }
 
-    .sub__heading {
-      color: #333333;
-      font-size: 2rem;
-      width: 80%;
-      font-family: "Mulish", sans-serif;
-      font-weight: 600;
-      margin: 1.2rem 0;
-    }
+  .hero__options__container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.4rem;
+    margin-top: 2.4rem;
+    color: #333333;
 
-    .get__started__btn {
-      text-decoration: none;
-      background-color: #5d44f8;
-      color: #ffffff;
-      font-family: "Mulish", sans-serif;
-      font-size: 1.6rem;
-      font-weight: 700;
-      border-radius: 6px;
-      position: relative;
-      width: 20rem;
-      height: 5.6rem;
+    .hero__option {
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-top: 1.8rem;
+
+      img {
+        width: 2.4rem;
+        height: 2.4rem;
+      }
+
+      span {
+        font-size: 1.6rem;
+        margin-left: 0.8rem;
+      }
     }
 
-    .get__started__btn:hover {
-      background-color: #462cf5;
+    .hero__option:nth-child(2) {
+      margin-left: 2.4rem;
     }
-  }
-}
-
-.home__hero__container .right__image__section {
-  width: 50%;
-  background-color: #54657625;
-  border-radius: 6px;
-
-  img {
-    width: 100%;
-    height: 100%;
   }
 }

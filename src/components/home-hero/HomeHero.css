@@ -1,33 +1,42 @@
 .home__hero__container {
   display: flex;
-  width: 80%;
-  margin: 4rem auto;
-  height: 50vh;
+  width: 100%;
+  height: calc(100vh - var(--home-navbar-height));
+  background-color: var(--bg-primary);
 }
 
-.home__hero__container .left__heading__section {
-  width: 50%;
+.home__hero__container {
   display: flex;
+  align-items: center;
   flex-direction: column;
   justify-content: center;
 }
-.home__hero__container .left__heading__section .main__heading {
-  color: #2808f1;
-  font-size: 4rem;
-  font-family: "Mulish", sans-serif;
+.home__hero__container .main__heading {
+  font-size: 6rem;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;
   font-weight: 700;
+  margin: 0;
+  padding: 0;
 }
-.home__hero__container .left__heading__section .sub__heading {
+.home__hero__container .main__heading:nth-child(1) {
+  color: #222222;
+}
+.home__hero__container .main__heading:nth-child(2) {
+  color: #5d44f8;
+  margin-top: -1rem;
+}
+.home__hero__container .sub__heading {
+  width: 50%;
+  text-align: center;
   color: #333333;
   font-size: 2rem;
-  width: 80%;
   font-family: "Mulish", sans-serif;
   font-weight: 600;
-  margin: 1.2rem 0;
+  margin: 1.6rem 0 0 0;
 }
-.home__hero__container .left__heading__section .get__started__btn {
+.home__hero__container .get__started__btn {
   text-decoration: none;
-  background-color: #5d44f8;
+  background-color: var(--bg-dark);
   color: #ffffff;
   font-family: "Mulish", sans-serif;
   font-size: 1.6rem;
@@ -39,18 +48,33 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 1.8rem;
+  margin-top: 2rem;
 }
-.home__hero__container .left__heading__section .get__started__btn:hover {
-  background-color: #462cf5;
+.home__hero__container .get__started__btn:hover {
+  background-color: var(--bg-dark-hover);
 }
-
-.home__hero__container .right__image__section {
-  width: 50%;
-  background-color: rgba(84, 101, 118, 0.1450980392);
-  border-radius: 6px;
-}
-.home__hero__container .right__image__section img {
+.home__hero__container .hero__options__container {
   width: 100%;
-  height: 100%;
-}/*# sourceMappingURL=HomeHero.css.map */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.4rem;
+  margin-top: 2.4rem;
+  color: #333333;
+}
+.home__hero__container .hero__options__container .hero__option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.home__hero__container .hero__options__container .hero__option img {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+.home__hero__container .hero__options__container .hero__option span {
+  font-size: 1.6rem;
+  margin-left: 0.8rem;
+}
+.home__hero__container .hero__options__container .hero__option:nth-child(2) {
+  margin-left: 2.4rem;
+}

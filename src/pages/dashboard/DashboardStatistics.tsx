@@ -22,7 +22,6 @@ import {
 import {
   CHART_TYPE_BAR,
   CHART__TYPE__DOUGHNUT,
-  CHART__TYPE__PIE,
   dashboardChartTypeDropdown,
 } from "../../utils/dropdownutils";
 import DropdownSelector from "../../components/dropdownselector/DropdownSelector";
