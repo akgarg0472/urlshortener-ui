@@ -4,6 +4,7 @@ import CustomerTestinomial from "../../components/home-customer-testimonials/Cus
 import HomeHero from "../../components/home-hero/HomeHero";
 import HomeNavbar from "../../components/home-navbar/HomeNavbar";
 import WhyChooseUs from "../../components/home-why-choose-us/WhyChooseUs";
+import HomePricing from "../../components/home-pricing/HomePricing";
 
 const HomePage = () => {
   useEffect(() => {
@@ -15,6 +16,7 @@ const HomePage = () => {
       <HomeNavbar />
       <HomeHero />
       <WhyChooseUs />
+      <HomePricing />
       <CustomerTestinomial />
       <Footer />
     </React.Fragment>

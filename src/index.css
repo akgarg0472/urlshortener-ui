@@ -16,9 +16,15 @@
 
   --text-primary: #ffffff;
   --text-secondary: #222222;
+  --text-secondary-dark: #555555;
 
   /* Home Page variables */
   --home-navbar-height: 8vh;
+  --gradient-background-image-dark: radial-gradient(
+    ellipse at 50% 100%,
+    #212028,
+    transparent
+  );
 
   /* Dashboard variables */
   --dashboard-bg: #fff0;
@@ -46,6 +52,8 @@ html {
   font-size: 62.5%;
   scroll-behavior: smooth;
   background-color: var(--bg-secondary);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI,
+    Roboto, Helvetica Neue, Arial, sans-serif;
 }
 
 .uss__button__disabled {

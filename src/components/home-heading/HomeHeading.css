@@ -1,18 +1,23 @@
 .home__heading__container {
   width: 100%;
-  font-family: "Mulish", sans-serif;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;
   display: flex;
   align-items: center;
   flex-direction: column;
 }
-.home__heading__container .home__heading__title {
+.home__heading__container .home__heading__title,
+.home__heading__container .home__heading__title__dark {
   width: 80%;
   text-align: center;
   margin: auto;
   font-size: 3.6rem;
 }
-.home__heading__container .home__heading__subtitle {
-  width: 90%;
+.home__heading__container .home__heading__title__dark {
+  color: var(--text-primary);
+}
+.home__heading__container .home__heading__subtitle,
+.home__heading__container .home__heading__subtitle__dark {
+  width: 50%;
   margin-top: 1.2rem;
   font-size: 1.6rem;
   font-weight: 500;

@@ -1,0 +1,17 @@
+.plan__feature {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  margin-top: 1.6rem;
+
+  svg {
+    height: 2rem;
+    width: 2rem;
+  }
+
+  span {
+    margin-left: 1.6rem;
+    color: var(--text-secondary);
+    font-size: 1.6rem;
+  }
+}

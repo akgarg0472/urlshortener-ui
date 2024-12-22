@@ -12,10 +12,16 @@ export const DASHBOARD_PAID_PLANS: string = "/dashboard/plans";
 export const OAUTH_SUCCESS_GOOGLE: string = "/oauth/google/success";
 export const OAUTH_SUCCESS_GITHUB: string = "/oauth/github/success";
 
-export const HOME_WHY_CHOOSE_US: string = "Why Choose us";
+export const HOME_WHY_CHOOSE_US: string =
+  "Powerful Features for Smart Link Management";
 export const HOME_WHY_CHOOSE_US_DESC: string =
-  "At URLShortener, we prioritize simplicity, speed, and security. Our user-friendly platform empowers you to share links effortlessly, while our advanced technology safeguards your data.";
-export const HOME_CUSTOMER_TESTIMONIALS: string = "Customer Testimonials";
+  "Transform your long URLs into powerful marketing tools with our comprehensive suite of features designed for modern digital needs.";
+export const HOME_CUSTOMER_TESTIMONIALS: string = "What Our Users Say";
+export const HOME_CUSTOMER_TESTIMONIALS_DESC: string =
+  "Don't just take our word for it. Here's what professionals and businesses have to say about our URL shortening service.";
+export const HOME_PRICING: string = "Simple, Transparent Pricing";
+export const HOME_PRICING_DESC: string =
+  "Choose the perfect plan for your link management needs. No hidden fees, no surprises.";
 export const DASH_PREV_SEVEN_DAYS_HEAD: string = "Previous 7 Days Hits";
 export const DASH_PREV_SEVEN_DAYS_SUBHEAD: string =
   "A visual snapshot of the total hits on our URLs over the past 7 days, helping you track recent usage pattern and engagement";

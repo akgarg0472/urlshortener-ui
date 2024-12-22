@@ -1,0 +1,10 @@
+.home__pricing__container {
+  padding: 8rem 4.8rem;
+
+  .plans__container {
+    margin: 3.2rem auto;
+    width: 66%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

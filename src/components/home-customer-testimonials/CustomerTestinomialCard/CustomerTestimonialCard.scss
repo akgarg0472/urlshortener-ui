@@ -1,69 +1,56 @@
-$card__height: 44rem;
-$image__dimension: 9.6rem;
+$card__height: 32rem;
+$image__dimension: 6.4rem;
 $before__after__dimension: 1.6rem;
 
 .customer__testimonial__card {
-  width: 20%;
   height: $card__height;
-  font-family: "Mulish", sans-serif;
   margin: 0 0.8rem;
   padding: 2.4rem 1.6rem;
   box-shadow: var(--customer-testimonial-box-shadow);
-  font-weight: 700;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   transition: all 250ms ease-in-out;
   border-radius: 6px;
+  background-color: #181819;
+  border: 1px solid rgb(38, 38, 38);
+  border-radius: 1.6rem;
 
-  .image {
-    width: $image__dimension;
-    height: $image__dimension;
-    margin-bottom: 1.6rem;
-    border-radius: 50%;
-    margin: auto;
-  }
+  .image__details__container {
+    display: flex;
+    align-items: center;
 
-  .name {
-    font-size: 1.6rem;
-    text-align: center;
-  }
+    .image {
+      width: $image__dimension;
+      height: $image__dimension;
+      border-radius: 50%;
+    }
 
-  .designation {
-    font-size: 1.6rem;
-    margin-top: 0.4rem;
-    color: #757575;
-    text-align: center;
+    .name__designation__container {
+      display: flex;
+      flex-direction: column;
+      margin-left: 1.2rem;
+
+      .name {
+        font-size: 1.6rem;
+        color: var(--text-primary);
+      }
+
+      .designation {
+        font-size: 1.6rem;
+        margin-top: 0.4rem;
+        color: #d4d4d4;
+      }
+    }
   }
 
   .review {
-    margin: 2.4rem;
-    font-size: 1.4rem;
-    color: #333333;
+    margin: 2.4rem 0 2.4rem 0;
+    font-size: 1.5rem;
     position: relative;
-    text-align: justify;
-  }
-
-  .review::before {
-    content: "";
-    background: url("/public/assets/icons/startquote.png") center/cover
-      no-repeat;
-    position: absolute;
-    width: $before__after__dimension;
-    height: $before__after__dimension;
-    top: -$before__after__dimension;
-    left: -$before__after__dimension;
-  }
-
-  .review::after {
-    content: "";
-    background: url("/public/assets/icons/endquotes.png") center/cover no-repeat;
-    position: absolute;
-    width: $before__after__dimension;
-    height: $before__after__dimension;
-    right: -1.6rem;
-    bottom: 0;
+    line-height: 2.4rem;
+    color: var(--text-primary);
+    font-weight: 400;
   }
 }
 

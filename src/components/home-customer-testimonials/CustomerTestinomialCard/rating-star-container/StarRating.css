@@ -1,0 +1,13 @@
+.star__ratings {
+  display: flex;
+  align-items: center;
+}
+.star__ratings svg {
+  width: 2rem;
+  height: 2rem;
+}
+.star__ratings span {
+  color: var(--text-primary);
+  margin-left: 0.4rem;
+  font-size: 1.4rem;
+}

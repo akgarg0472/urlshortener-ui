@@ -1,37 +1,45 @@
 .why__choose__us__card {
-  width: 25%;
-  height: 6rem;
+  height: 20rem;
   padding: 2.8rem;
-  height: 24rem;
-  font-family: "Mulish", sans-serif;
+  margin: 1.2rem;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;
   display: flex;
-  position: relative;
-  align-items: center;
-  flex-direction: column;
+  align-content: center;
   justify-content: center;
-  text-align: center;
+  position: relative;
+  flex-direction: column;
+  border: 1px solid rgb(38, 38, 38);
+  border-radius: 1.6rem;
+  background-color: #181819;
+  position: relative;
 }
 .why__choose__us__card .icon {
+  position: absolute;
+  top: 0;
+  right: 0;
   width: 4.8rem;
   height: 4.8rem;
-  margin-bottom: 1.6rem;
+  transform: translate(25%, -25%);
+  border-radius: 50%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
 }
 .why__choose__us__card .title {
-  font-size: 3.2rem;
+  font-size: 2.4rem;
   font-weight: 600;
+  color: var(--text-primary);
 }
 .why__choose__us__card .description {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 400;
-  color: rgb(51, 51, 51);
+  color: #a3a3a3;
   margin-top: 1.4rem;
 }
 
-.wcus__right__border::after {
-  content: "";
-  position: absolute;
-  top: 20%;
-  right: 0;
-  height: 60%;
-  border-right: 1px solid rgba(0, 0, 0, 0.15);
+.why__choose__us__card:hover {
+  border: 1px solid rgb(66, 65, 65);
 }
