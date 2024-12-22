@@ -67,14 +67,14 @@
   align-items: center;
   justify-content: center;
 }
-.home__hero__container .hero__options__container .hero__option img {
-  width: 2.4rem;
-  height: 2.4rem;
+.home__hero__container .hero__options__container .hero__option svg {
+  width: 2rem;
+  height: 2rem;
 }
 .home__hero__container .hero__options__container .hero__option span {
   font-size: 1.6rem;
   margin-left: 0.8rem;
 }
 .home__hero__container .hero__options__container .hero__option:nth-child(2) {
-  margin-left: 2.4rem;
+  margin-left: 2.8rem;
 }

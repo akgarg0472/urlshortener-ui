@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import LinkButton from "../button/LinkButton";
+
 import "./HomeNavbar.css";
 
 const HomeNavbar = () => {
@@ -12,14 +13,17 @@ const HomeNavbar = () => {
             🔗 URLShortener
           </Link>
         </div>
+
         <div className="auth__buttons__container">
           <LinkButton
+            key="login__btn"
             text="Login"
             className="login__button"
             onClickLink="/login"
             referrerPolicy="no-referrer"
           />
           <LinkButton
+            key="signup__btn"
             text="Signup"
             className="signup__button"
             onClickLink="/signup"

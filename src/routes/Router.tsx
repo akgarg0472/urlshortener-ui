@@ -27,6 +27,7 @@ import ResetPassword from "../pages/auth/reset-password/ResetPassword";
 import DashboardUpdateProfile from "../pages/dashboard/DashboardUpdateProfile";
 import DashboardPaidPlans from "../pages/dashboard/DashboardPaidPlans";
 import OAuthSuccess from "../pages/auth/oauth/OAuthSuccess";
+import HomeNavbar from "../components/home-navbar/HomeNavbar";
 
 const router = createBrowserRouter([
   {
@@ -35,19 +36,22 @@ const router = createBrowserRouter([
   },
   {
     path: SIGNUP_URL,
-    element: <Signup />,
+    element: [<HomeNavbar key="navbar" />, <Signup key="signup__signup" />],
   },
   {
     path: LOGIN_URL,
-    element: <Login />,
+    element: [<HomeNavbar key="navbar" />, <Login key="login__login" />],
   },
   {
     path: FORGOT_PASSWORD_URL,
-    element: <ForgotPassword />,
+    element: [
+      <HomeNavbar key="navbar" />,
+      <ForgotPassword key="forgot__password__forgot__password" />,
+    ],
   },
   {
     path: RESET_PASSWORD_URL,
-    element: <ResetPassword />,
+    element: [<HomeNavbar key="navbar" />, <ResetPassword />],
   },
   {
     path: OAUTH_SUCCESS_GOOGLE,
@@ -105,7 +109,7 @@ const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <ErrorPage />,
+    element: [<HomeNavbar key="navbar" />, <ErrorPage key="error__page" />],
   },
 ]);
 

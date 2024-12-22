@@ -1,6 +1,8 @@
+import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
 import router from "./routes/Router";
+
 import "./index.css";
 
 const root = ReactDOM.createRoot(
@@ -8,7 +10,12 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  // <React.StrictMode>
-  <RouterProvider router={router} />
-  // </React.StrictMode>
+  <React.StrictMode>
+    <RouterProvider
+      router={router}
+      future={{
+        v7_startTransition: true,
+      }}
+    />
+  </React.StrictMode>
 );
