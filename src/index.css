@@ -12,7 +12,7 @@
   --bg-primary: rgb(255, 255, 255);
   --bg-secondary: rgb(250 250 250 / 90%);
   --bg-dark: rgb(23, 23, 23);
-  --bg-dark-hover: rgb(13, 13, 13);
+  --bg-dark-hover: rgba(13, 13, 13, 0.85);
 
   --text-primary: #ffffff;
   --text-secondary: #222222;
