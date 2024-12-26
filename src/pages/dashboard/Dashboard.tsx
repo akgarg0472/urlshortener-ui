@@ -280,7 +280,7 @@ const Dashboard = () => {
             <div className="popular__urls__container">
               <DashboardHeadSubHead
                 heading="Top Performing Links"
-                subheading="These are the top performing URLs for you my son!!"
+                subheading="Explore the highest performing URLs to maximize your impact!"
               />
               {loading ? <InternalLoader /> : renderPopularURLs()}
             </div>
