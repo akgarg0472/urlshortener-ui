@@ -58,8 +58,6 @@ export const getDashboard = async (
       success: dashboardSummaryApiResponse.data.status_code === 200,
     };
   } catch (err: any) {
-    console.log(`response failed`);
-
     if (isAxiosNetworkError(err)) {
       const axiosNetworkErrorResponse: ApiErrorResponse =
         axiosNwErrorResponse();
@@ -267,8 +265,6 @@ export const getDashboardStatistics = async (
       deviceMetrics: { ...result[2].data, success: true },
     };
   } catch (err: any) {
-    console.log("Dashboard Statistics Response", err);
-
     if (isAxiosNetworkError(err)) {
       const axiosNetworkErrorResponse: ApiErrorResponse =
         axiosNwErrorResponse();

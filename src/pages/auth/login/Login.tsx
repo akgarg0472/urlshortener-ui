@@ -156,8 +156,6 @@ const Login = () => {
             reqBody
           );
 
-          console.log(JSON.stringify(callbackResponse, null, 2));
-
           if (!callbackResponse.success) {
             Modal.showModal({
               icon: ModalIcon.ERROR,

@@ -11,9 +11,5 @@ export const getPublicApiKey = async (paymentGateway: string) => {
         gateway: paymentGateway,
       },
     });
-
-    console.log(getPublicKeyResponse.data);
-  } catch (err: any) {
-    console.log(err);
-  }
+  } catch (err: any) {}
 };
