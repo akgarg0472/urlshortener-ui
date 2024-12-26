@@ -9,7 +9,6 @@
   height: 2.4rem;
   display: flex;
   align-items: flex-end;
-  font-family: "Mulish", sans-serif;
   font-weight: 700;
   color: #757575;
   font-size: 1.3rem;
@@ -21,7 +20,6 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  font-family: "Mulish", sans-serif;
   font-weight: 600;
   font-size: 1.2rem;
 }

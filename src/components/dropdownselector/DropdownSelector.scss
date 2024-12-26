@@ -2,7 +2,6 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  font-family: "Mulish", sans-serif;
   transition: all 250ms ease-in-out;
 }
 
@@ -29,7 +28,6 @@
     border: 2px solid #00000015;
     padding: 0 0.8rem;
     height: 5.6rem;
-    font-family: "Mulish", sans-serif;
     font-weight: 400;
     font-size: 1.6rem;
     outline: none;
@@ -38,7 +36,6 @@
     line-height: 2rem;
 
     option {
-      font-family: "Mulish", sans-serif;
       font-size: 1.6rem;
       outline: none;
     }

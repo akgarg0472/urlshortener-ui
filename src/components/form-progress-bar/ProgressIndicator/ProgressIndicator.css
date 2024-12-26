@@ -7,7 +7,6 @@
   flex-direction: column;
 }
 .progress__indicator .progress__indicator__title {
-  font-family: "Mulish", sans-serif;
   font-size: 1.3rem;
   font-weight: 400;
   margin-top: 4px;
@@ -41,7 +40,6 @@
   background: rgba(117, 117, 117, 0.3137254902);
   border-radius: 1.5rem;
   color: #fff;
-  font-family: "Mulish", sans-serif;
   font-size: 1.4rem;
 }
 .progress__indicator .progress__indicator__upper__section .progress__indicator__filled__bar,

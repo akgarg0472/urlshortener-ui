@@ -14,7 +14,6 @@ $filled_progess_color: #5d44f8;
   flex-direction: column;
 
   .progress__indicator__title {
-    font-family: "Mulish", sans-serif;
     font-size: 1.3rem;
     font-weight: 400;
     margin-top: 4px;
@@ -54,7 +53,6 @@ $filled_progess_color: #5d44f8;
     background: #75757550;
     border-radius: $circle_dimension/2;
     color: #fff;
-    font-family: "Mulish", sans-serif;
     font-size: $progress__circle__text__size;
   }
 

@@ -14,7 +14,6 @@
   align-items: center;
   justify-content: center;
   color: var(--dashboard-navbar-heading-logo-color);
-  font-family: "Mulish", sans-serif;
   font-weight: 700;
   font-size: 1.6rem;
   text-decoration: none;
@@ -34,7 +33,6 @@
   border: none;
   outline: none;
   color: var(--dashboard-navbar-create-link-text);
-  font-family: "Mulish", sans-serif;
   font-weight: 700;
   cursor: pointer;
   margin-left: 4%;

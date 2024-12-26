@@ -25,7 +25,6 @@
 }
 
 .short__url__metric__modal__dialog .url__metric__dialog__title__container .title {
-  font-family: "Mulish", sans-serif;
   font-size: 1.4rem;
   font-weight: 700;
 }
@@ -59,14 +58,12 @@
 }
 .short__url__metric__modal__dialog .url__metadata__modal__content__wrapper .latest__hits .heading {
   font-size: 1.6rem;
-  font-family: "Mulish", sans-serif;
   font-weight: 700;
   color: #757575;
 }
 .short__url__metric__modal__dialog .url__metadata__modal__content__wrapper .latest__hits table {
   margin-top: 1.2rem;
   width: 100%;
-  font-family: "Mulish", sans-serif;
   font-size: 1.2rem;
   border-collapse: collapse;
 }

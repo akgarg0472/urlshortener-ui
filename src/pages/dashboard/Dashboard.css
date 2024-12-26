@@ -26,7 +26,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  font-family: "Mulish", sans-serif;
   padding: 1.6rem;
   margin: 1.2rem 0;
 }
@@ -77,7 +76,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 
 .dashboard__page__content .my__links__container {
@@ -92,7 +90,6 @@
   margin: 1.2rem 0;
 }
 .dashboard__page__content .my__links__load__more__btn {
-  font-family: "Mulish", sans-serif;
   font-weight: 700;
   border: none;
   outline: none;
@@ -100,39 +97,6 @@
   margin-top: 1.6rem;
   cursor: pointer;
   background: transparent;
-}
-.dashboard__page__content .geographical__stats__container,
-.dashboard__page__content .device__metrics__stats__container {
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  border-radius: 0.6rem;
-  box-shadow: var(--dashboard-content-box-shadow);
-  margin: 1.2rem 0;
-}
-.dashboard__page__content .geographical__stats__container .dropdown__selector__container,
-.dashboard__page__content .device__metrics__stats__container .dropdown__selector__container {
-  width: 40%;
-  display: flex;
-  padding: 3.2rem;
-}
-.dashboard__page__content .geographical__stats__container .stats__data__container,
-.dashboard__page__content .device__metrics__stats__container .stats__data__container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 1.6rem;
-}
-.dashboard__page__content .geographical__stats__container .stats__data__container .continent__container,
-.dashboard__page__content .geographical__stats__container .stats__data__container .country__container,
-.dashboard__page__content .geographical__stats__container .stats__data__container .os__container,
-.dashboard__page__content .geographical__stats__container .stats__data__container .browser__stats__container,
-.dashboard__page__content .device__metrics__stats__container .stats__data__container .continent__container,
-.dashboard__page__content .device__metrics__stats__container .stats__data__container .country__container,
-.dashboard__page__content .device__metrics__stats__container .stats__data__container .os__container,
-.dashboard__page__content .device__metrics__stats__container .stats__data__container .browser__stats__container {
-  width: 45%;
 }
 .dashboard__page__content .popular__urls__container {
   background-color: #ffffff;
@@ -212,7 +176,6 @@
   border: none;
   outline: none;
   color: #222222;
-  font-family: "Mulish", sans-serif;
   font-weight: 700;
   cursor: pointer;
   margin: 0 auto;
@@ -234,14 +197,12 @@
   display: flex;
   align-items: center;
   color: #757575;
-  font-family: "Mulish", sans-serif;
   font-weight: 600;
   font-size: 1.6rem;
 }
 .dashboard__page__content .profile__page__right__section .danger__zone__section .danger__zone__section__content .headings__section .subheading {
   display: flex;
   align-items: center;
-  font-family: "Mulish", sans-serif;
   font-weight: 600;
   font-size: 1.4rem;
   padding-right: 3.2rem;
@@ -254,7 +215,6 @@
   color: #ffffff;
   border: none;
   outline: none;
-  font-family: "Mulish", sans-serif;
   font-weight: 500;
   cursor: pointer;
 }
@@ -300,7 +260,6 @@
   width: 20rem;
   height: 4rem;
   background: #5d44f8;
-  font-family: "Mulish", sans-serif;
   font-size: 1.4rem;
   border-radius: 0.6rem;
   border: none;
@@ -332,7 +291,6 @@
   border-radius: 50%;
 }
 .profile__page__content__container .profile__page__left__section .personal__details__section .bio__container {
-  font-family: "Mulish", sans-serif;
   font-weight: 600;
   margin-top: 1.6rem;
   color: rgba(0, 0, 0, 0.5);

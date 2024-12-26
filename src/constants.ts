@@ -51,7 +51,11 @@ export const DASH_UPDATE_PROFILE_SUBHEAD: string =
 export const DASH_PROFILE_SUBHEAD: string =
   "The profile page is your virtual representation, a place where you can share information about yourself and your activities on the platform. It typically includes your username, profile picture, a bio or description.";
 export const DASH_OS_HEAD: string = "OS Statistics";
+export const DASH_OS_SUBHEAD: string =
+  "Provides detailed insights into the operating systems used by visitors when accessing or clicking the URL.";
 export const DASH_BROWSER_HEAD: string = "Browser Statistics";
+export const DASH_BROWSER_SUBHEAD: string =
+  "Offers a comprehensive overview of the browsers used by visitors to access or click the URL.";
 export const DASH_PAID_PLANS_HEAD: string = "Premium Plans";
 export const DASH_PAID_PLANS_SUBHEAD: string =
   "Explore our premium paid plans and get more exciting and amazing features";

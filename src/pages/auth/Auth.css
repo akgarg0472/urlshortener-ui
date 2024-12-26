@@ -74,7 +74,6 @@
 .forgot__password__form__container .forgot__password__instruction,
 .reset__password__form__container .forgot__password__instruction {
   font-size: 1.6rem;
-  font-family: "Mulish", sans-serif;
   color: #757575;
   margin-top: 1.6rem;
 }

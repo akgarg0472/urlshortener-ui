@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import DashboardNavbar from "../../components/dashboard-navbar/DashboardNavbar";
 import DashboardHeadSubHead from "../../components/dashboardheadsubhead/DashboardHeadSubHead";
 import { DASH_PAID_PLANS_HEAD, DASH_PAID_PLANS_SUBHEAD } from "../../constants";
-
-import "./Dashboard.css";
 import PaidPlan from "../../components/paid-plan/PaidPlan";
 import { PaidPlanData, dummyPremiumPlans } from "../../utils/data";
 import InternalLoader from "../../components/loader/internal-loader/InternalLoader";
+
+import "./Dashboard.css";
 
 const DashboardPaidPlans = () => {
   const [loading, setLoading] = useState<boolean>(false);

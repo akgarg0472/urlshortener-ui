@@ -13,11 +13,13 @@ import PieChart from "../../components/pie-chart/PieChart";
 import useAuth from "../../hooks/useAuth";
 import {
   DASH_BROWSER_HEAD,
+  DASH_BROWSER_SUBHEAD,
   DASH_CONTINET_HEAD,
   DASH_CONTINET_SUBHEAD,
   DASH_COUNTRY_HEAD,
   DASH_COUNTRY_SUBHEAD,
   DASH_OS_HEAD,
+  DASH_OS_SUBHEAD,
   DASH_PREV_SEVEN_DAYS_HEAD,
   DASH_PREV_SEVEN_DAYS_SUBHEAD,
   LOGIN_URL,
@@ -340,7 +342,10 @@ const Dashboard = () => {
             </div>
 
             <div className="os__stats__container">
-              <DashboardHeadSubHead heading={DASH_OS_HEAD} centered={true} />
+              <DashboardHeadSubHead
+                heading={DASH_OS_HEAD}
+                subheading={DASH_OS_SUBHEAD}
+              />
 
               {loading ? (
                 <InternalLoader />
@@ -365,7 +370,7 @@ const Dashboard = () => {
             <div className="browser__stats__container">
               <DashboardHeadSubHead
                 heading={DASH_BROWSER_HEAD}
-                centered={true}
+                subheading={DASH_BROWSER_SUBHEAD}
               />
 
               {loading ? (

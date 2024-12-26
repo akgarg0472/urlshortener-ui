@@ -30,7 +30,6 @@ $component__margin: 1.2rem 0;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    font-family: "Mulish", sans-serif;
     padding: 1.6rem;
     margin: $component__margin;
 
@@ -87,7 +86,6 @@ $component__margin: 1.2rem 0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
     }
   }
 }
@@ -106,7 +104,6 @@ $component__margin: 1.2rem 0;
   }
 
   .my__links__load__more__btn {
-    font-family: "Mulish", sans-serif;
     font-weight: 700;
     border: none;
     outline: none;
@@ -114,37 +111,6 @@ $component__margin: 1.2rem 0;
     margin-top: 1.6rem;
     cursor: pointer;
     background: transparent;
-  }
-
-  .geographical__stats__container,
-  .device__metrics__stats__container {
-    background-color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    border-radius: 0.6rem;
-    box-shadow: var(--dashboard-content-box-shadow);
-    margin: $component__margin;
-
-    .dropdown__selector__container {
-      width: 40%;
-      display: flex;
-      padding: 3.2rem;
-    }
-
-    .stats__data__container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      padding: 1.6rem;
-
-      .continent__container,
-      .country__container,
-      .os__container,
-      .browser__stats__container {
-        width: 45%;
-      }
-    }
   }
 
   .popular__urls__container {
@@ -236,7 +202,6 @@ $component__margin: 1.2rem 0;
         border: none;
         outline: none;
         color: #222222;
-        font-family: "Mulish", sans-serif;
         font-weight: 700;
         cursor: pointer;
         margin: 0 auto;
@@ -264,7 +229,6 @@ $component__margin: 1.2rem 0;
           display: flex;
           align-items: center;
           color: #757575;
-          font-family: "Mulish", sans-serif;
           font-weight: 600;
           font-size: 1.6rem;
         }
@@ -272,7 +236,6 @@ $component__margin: 1.2rem 0;
         .subheading {
           display: flex;
           align-items: center;
-          font-family: "Mulish", sans-serif;
           font-weight: 600;
           font-size: 1.4rem;
           padding-right: 3.2rem;
@@ -287,7 +250,6 @@ $component__margin: 1.2rem 0;
         color: #ffffff;
         border: none;
         outline: none;
-        font-family: "Mulish", sans-serif;
         font-weight: 500;
         cursor: pointer;
       }
@@ -345,7 +307,6 @@ $component__margin: 1.2rem 0;
     width: 20rem;
     height: 4rem;
     background: #5d44f8;
-    font-family: "Mulish", sans-serif;
     font-size: 1.4rem;
     border-radius: 0.6rem;
     border: none;
@@ -381,7 +342,6 @@ $component__margin: 1.2rem 0;
     }
 
     .bio__container {
-      font-family: "Mulish", sans-serif;
       font-weight: 600;
       margin-top: 1.6rem;
       color: rgba(0, 0, 0, 0.5);

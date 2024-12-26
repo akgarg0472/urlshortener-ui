@@ -1,8 +1,8 @@
 .dash__head__subhead__container {
   padding: 1.6rem;
+  width: 100%;
 
   .heading {
-    font-family: "Mulish", sans-serif;
     font-weight: 600;
     color: #000000;
     font-size: 1.8rem;
@@ -11,7 +11,6 @@
   .subheading {
     color: rgba(0, 0, 0, 0.5);
     font-size: 1.4rem;
-    font-family: "Mulish", sans-serif;
     font-weight: 500;
     margin-top: 0.4rem;
   }
