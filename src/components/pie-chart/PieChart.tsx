@@ -2,21 +2,25 @@ import { ArcElement, Chart as ChartJS, Legend, Tooltip } from "chart.js";
 import React, { useEffect, useState } from "react";
 import { Pie } from "react-chartjs-2";
 import { generateChartBgAndHoverColorArrays } from "../../utils/colorutils";
-import "./PieChart.css";
 import { Continent, Country } from "../../api/dashboard/dashboard.api.modal";
 
-interface PieChartProps {
-  data: Country[] | Continent[] | any[];
+import "./PieChart.css";
+
+type PieChartProps = {
+  data: Country[] | Continent[];
   datasetLabel: string;
   legendPosition: "top" | "bottom" | "left" | "right";
   borderWidth?: number;
-}
+};
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const PieChart = (props: PieChartProps) => {
   const [bgColors, setBgColors] = useState([] as string[]);
   const [hoverBgColors, setHoverBgColors] = useState([] as string[]);
+
+  let totalHits = 0;
+  props.data.forEach((d) => (totalHits += d.hits_count));
 
   useEffect(() => {
     const { backgroundColor, hoverBackgroundColor } =
@@ -42,12 +46,12 @@ const PieChart = (props: PieChartProps) => {
             ],
           }}
           options={{
-            // responsive: true,
-            // maintainAspectRatio: true,
+            responsive: true,
+            maintainAspectRatio: true,
             plugins: {
               legend: {
-                display: true,
                 position: props.legendPosition,
+                display: true,
               },
             },
           }}

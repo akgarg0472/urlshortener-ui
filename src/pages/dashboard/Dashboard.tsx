@@ -29,6 +29,7 @@ import {
 } from "../../api/dashboard/dashboard.api.modal";
 import { DashboardApiResponse } from "../../api/dashboard/dashboard.api.response";
 import DashboardStat from "../../components/dashboard-overview-stat/DashboardStat";
+import ChartPercentageStatsContainer from "../../components/chart-percentage-stats-container/ChartPercentageStatsContainer";
 
 import "./Dashboard.css";
 
@@ -160,13 +161,22 @@ const Dashboard = () => {
               {loading ? (
                 <InternalLoader />
               ) : (
-                <PieChart
-                  datasetLabel="Country"
-                  data={continents}
-                  legendPosition="top"
-                />
+                <React.Fragment>
+                  <PieChart
+                    datasetLabel="Country"
+                    data={continents}
+                    legendPosition="bottom"
+                  />
+
+                  <ChartPercentageStatsContainer
+                    data={continents.map((c) => {
+                      return { name: c.name, value: c.hits_count };
+                    })}
+                  />
+                </React.Fragment>
               )}
             </div>
+
             <div className="countries__stats__container">
               <DashboardHeadSubHead
                 heading={DASH_COUNTRY_HEAD}
@@ -176,11 +186,19 @@ const Dashboard = () => {
               {loading ? (
                 <InternalLoader />
               ) : (
-                <PieChart
-                  datasetLabel="Country"
-                  data={countries}
-                  legendPosition="top"
-                />
+                <React.Fragment>
+                  <PieChart
+                    datasetLabel="Country"
+                    data={countries}
+                    legendPosition="bottom"
+                  />
+
+                  <ChartPercentageStatsContainer
+                    data={countries.map((c) => {
+                      return { name: c.name, value: c.hits_count };
+                    })}
+                  />
+                </React.Fragment>
               )}
             </div>
           </div>

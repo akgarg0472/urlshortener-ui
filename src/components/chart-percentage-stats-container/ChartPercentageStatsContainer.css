@@ -1,0 +1,31 @@
+.chart__percentage__stats__container {
+  padding: 1rem;
+  width: 100%;
+  font-size: 1.6rem;
+}
+.chart__percentage__stats__container table {
+  width: 100%;
+  margin-top: 0.8rem;
+  text-align: center;
+  border-collapse: collapse;
+  border-radius: 0.6rem;
+}
+.chart__percentage__stats__container table th,
+.chart__percentage__stats__container table td {
+  padding: 1.4rem;
+  border: 1px solid #ddd;
+}
+.chart__percentage__stats__container table th {
+  background-color: #333333;
+  color: white;
+  font-weight: bold;
+}
+.chart__percentage__stats__container table td {
+  background-color: #fff;
+}
+.chart__percentage__stats__container table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.chart__percentage__stats__container table tr:hover {
+  background-color: #e9e9e9;
+}
