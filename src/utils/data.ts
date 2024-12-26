@@ -280,14 +280,9 @@ export const dashboardNavbarLinks: NavbarLink[] = [
     icon: "/assets/icons/dashboard.png",
   },
   {
-    text: "My Links",
+    text: "Link Management",
     path: "/dashboard/links",
     icon: "/assets/icons/urls.png",
-  },
-  {
-    text: "Statistics",
-    path: "/dashboard/statistics",
-    icon: "/assets/icons/statistics.png",
   },
   {
     text: "Profile",

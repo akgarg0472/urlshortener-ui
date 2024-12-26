@@ -5,7 +5,6 @@ import Signup from "../pages/auth/signup/Signup";
 import Dashboard from "../pages/dashboard/Dashboard";
 import DashboardLinks from "../pages/dashboard/DashboardLinks";
 import DashboardProfile from "../pages/dashboard/DashboardProfile";
-import DashboardStatistics from "../pages/dashboard/DashboardStatistics";
 import ErrorPage from "../pages/error/ErrorPage";
 import HomePage from "../pages/home/HomePage";
 import {
@@ -76,15 +75,15 @@ const router = createBrowserRouter([
       />
     ),
   },
-  {
-    path: DASHBOARD_STATISTICS_URL,
-    element: (
-      <ProtectedRoute
-        element={<DashboardStatistics />}
-        redirectTo={DASHBOARD_STATISTICS_URL}
-      />
-    ),
-  },
+  // {
+  //   path: DASHBOARD_STATISTICS_URL,
+  //   element: (
+  //     <ProtectedRoute
+  //       element={<DashboardStatistics />}
+  //       redirectTo={DASHBOARD_STATISTICS_URL}
+  //     />
+  //   ),
+  // },
   {
     path: DASHBOARD_PROFILE_URL,
     element: (
