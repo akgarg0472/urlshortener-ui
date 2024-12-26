@@ -66,4 +66,5 @@ export interface OS {
 export interface PopularURL {
   short_url: string;
   hits_count: number;
+  original_url: string;
 }

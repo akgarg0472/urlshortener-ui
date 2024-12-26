@@ -1,0 +1,52 @@
+.popular__url__container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.8rem 0;
+  font-size: 1.4rem;
+
+  .left__section {
+    display: flex;
+    max-width: 66%;
+    overflow: hidden;
+    white-space: nowrap;
+
+    .seq__number {
+      margin-right: 0.8rem;
+    }
+
+    .urls {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
+      span:nth-child(1) {
+        font-weight: 500;
+      }
+
+      span:nth-child(2) {
+        color: var(--text-secondary-dark);
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+
+  .clicks {
+    display: flex;
+    flex-direction: column;
+
+    span:nth-child(1) {
+      font-weight: 500;
+    }
+
+    span:nth-child(2) {
+      color: var(--text-secondary-dark);
+      text-align: right;
+    }
+  }
+}

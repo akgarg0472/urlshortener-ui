@@ -1,0 +1,44 @@
+.popular__url__container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.8rem 0;
+  font-size: 1.4rem;
+}
+.popular__url__container .left__section {
+  display: flex;
+  max-width: 66%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.popular__url__container .left__section .seq__number {
+  margin-right: 0.8rem;
+}
+.popular__url__container .left__section .urls {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.popular__url__container .left__section .urls span:nth-child(1) {
+  font-weight: 500;
+}
+.popular__url__container .left__section .urls span:nth-child(2) {
+  color: var(--text-secondary-dark);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.popular__url__container .clicks {
+  display: flex;
+  flex-direction: column;
+}
+.popular__url__container .clicks span:nth-child(1) {
+  font-weight: 500;
+}
+.popular__url__container .clicks span:nth-child(2) {
+  color: var(--text-secondary-dark);
+  text-align: right;
+}

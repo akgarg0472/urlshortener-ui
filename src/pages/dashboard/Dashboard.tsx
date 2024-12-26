@@ -47,6 +47,7 @@ import ChartPercentageStatsContainer from "../../components/chart-percentage-sta
 import NoDataAvailable from "../../components/no-data-available/NoDataAvailable";
 
 import "./Dashboard.css";
+import PopularUrl from "../../components/popular-url/PopularUrl";
 
 const Dashboard = () => {
   const { getUserId, logout, getAuthToken } = useAuth();
@@ -203,10 +204,12 @@ const Dashboard = () => {
         <div className="popular__urls__stats__container">
           {popularUrls.map((url: PopularURL, index: number) => {
             return (
-              <DashboardStat
-                title={`${process.env.REACT_APP_PREFIX_URL_FOR_SHORT_URL}/${url.short_url}`}
-                value={url.hits_count}
+              <PopularUrl
                 key={index}
+                shortUrl={`${process.env.REACT_APP_PREFIX_URL_FOR_SHORT_URL}/${url.short_url}`}
+                hitsCount={url.hits_count}
+                originalUrl={url.original_url}
+                seqNumber={index + 1}
               />
             );
           })}
@@ -255,32 +258,32 @@ const Dashboard = () => {
 
           <InvisibleContainer />
 
-          <div className="prev__seven__days__hits__container">
-            <DashboardHeadSubHead
-              heading={DASH_PREV_SEVEN_DAYS_HEAD}
-              subheading={DASH_PREV_SEVEN_DAYS_SUBHEAD}
-            />
+          <div className="prev__seven__and__popular__urls__container">
+            <div className="prev__seven__days__hits__container">
+              <DashboardHeadSubHead
+                heading={DASH_PREV_SEVEN_DAYS_HEAD}
+                subheading={DASH_PREV_SEVEN_DAYS_SUBHEAD}
+              />
 
-            {loading ? (
-              <InternalLoader />
-            ) : (
-              <>
-                <DailyHitsLineChart
-                  data={prevSevenDaysHitsData}
-                  datasetLabel={PREV_SEVEN_DAYS_DATASET_LABEL}
-                />
-              </>
-            )}
-          </div>
+              {loading ? (
+                <InternalLoader />
+              ) : (
+                <>
+                  <DailyHitsLineChart
+                    data={prevSevenDaysHitsData}
+                    datasetLabel={PREV_SEVEN_DAYS_DATASET_LABEL}
+                  />
+                </>
+              )}
+            </div>
 
-          <InvisibleContainer />
-
-          <div className="popular__urls__container">
-            <DashboardHeadSubHead
-              heading="Top Performing Links"
-              subheading="These are the top performing URLs for you my son!!"
-            />
-            {loading ? <InternalLoader /> : renderPopularURLs()}
+            <div className="popular__urls__container">
+              <DashboardHeadSubHead
+                heading="Top Performing Links"
+                subheading="These are the top performing URLs for you my son!!"
+              />
+              {loading ? <InternalLoader /> : renderPopularURLs()}
+            </div>
           </div>
 
           <InvisibleContainer />
