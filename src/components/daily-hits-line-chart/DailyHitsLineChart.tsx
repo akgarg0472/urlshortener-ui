@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import { convertTimestampToDate } from "../../utils/datetimeutils";
-import "./DailyHitsLineChart.css";
-
 import {
   CategoryScale,
   Chart as ChartJS,
@@ -14,6 +12,8 @@ import {
   Tooltip,
 } from "chart.js";
 import { generateChartBgAndBorderColorArrays } from "../../utils/colorutils";
+
+import "./DailyHitsLineChart.css";
 
 ChartJS.register(
   CategoryScale,

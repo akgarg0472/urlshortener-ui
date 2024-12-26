@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import DashboardStatsHeading from "../../components/DashboardStatsHeading/DashboardStatsHeading";
 import BarChart from "../../components/bar-chart/BarChart";
 import DashboardNavbar from "../../components/dashboard-navbar/DashboardNavbar";
-import IconStats from "../../components/dashboard-overview-stats/stats-with-icon/IconStats";
+import DashboardStat from "../../components/dashboard-overview-stat/DashboardStat";
 import DashboardHeadSubHead from "../../components/dashboardheadsubhead/DashboardHeadSubHead";
 import DoughnutChart from "../../components/doughnut-chart/DoughnutChart";
 import InvisibleContainer from "../../components/invisible-container/InvisibleContainer";
@@ -186,9 +186,8 @@ const DashboardStatistics = () => {
         <div className="popular__urls__stats__container">
           {popularUrls.map((url: PopularURL, index: number) => {
             return (
-              <IconStats
-                icon="/assets/icons/popular_url.png"
-                label={`${process.env.REACT_APP_PREFIX_URL_FOR_SHORT_URL}/${url.short_url}`}
+              <DashboardStat
+                title={`${process.env.REACT_APP_PREFIX_URL_FOR_SHORT_URL}/${url.short_url}`}
                 value={url.hits_count}
                 key={index}
               />

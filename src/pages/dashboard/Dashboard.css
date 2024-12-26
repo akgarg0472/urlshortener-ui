@@ -44,9 +44,9 @@
 }
 .dashboard__page__content .stats__overview__container {
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.4rem;
   margin: 1.2rem 0;
 }
 .dashboard__page__content .prev__seven__days__hits__container {

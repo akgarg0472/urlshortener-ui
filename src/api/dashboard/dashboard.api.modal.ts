@@ -1,7 +1,7 @@
 export interface DashboardApiStat {
   key: string;
   value: string;
-  icon: string;
+  suffix: string;
 }
 
 export interface Continent {

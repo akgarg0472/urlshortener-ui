@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { getDashboard } from "../../api/dashboard/dashboard";
 import DailyHitsLineChart from "../../components/daily-hits-line-chart/DailyHitsLineChart";
 import DashboardNavbar from "../../components/dashboard-navbar/DashboardNavbar";
-import DashboardOverviewStats from "../../components/dashboard-overview-stats/DashboardOverviewStats";
 import DashboardHeadSubHead from "../../components/dashboardheadsubhead/DashboardHeadSubHead";
 import InvisibleContainer from "../../components/invisible-container/InvisibleContainer";
 import InternalLoader from "../../components/loader/internal-loader/InternalLoader";
@@ -29,6 +28,7 @@ import {
   PrevSevenDaysHit,
 } from "../../api/dashboard/dashboard.api.modal";
 import { DashboardApiResponse } from "../../api/dashboard/dashboard.api.response";
+import DashboardStat from "../../components/dashboard-overview-stat/DashboardStat";
 
 import "./Dashboard.css";
 
@@ -111,19 +111,23 @@ const Dashboard = () => {
           </div>
 
           <div className="stats__overview__container">
-            <DashboardOverviewStats
-              headingText="Today's Stats"
-              data={todayStats.map((stat) => {
-                return { label: stat.key, value: stat.value, icon: stat.icon };
-              })}
-            />
+            {todayStats.map((stat, index) => (
+              <DashboardStat
+                key={index}
+                title={stat.key}
+                value={stat.value}
+                suffix={stat.suffix}
+              />
+            ))}
 
-            <DashboardOverviewStats
-              headingText="Lifetime Stats"
-              data={lifetimeStats.map((stat) => {
-                return { label: stat.key, value: stat.value, icon: stat.icon };
-              })}
-            />
+            {lifetimeStats.map((stat, index) => (
+              <DashboardStat
+                key={index}
+                title={stat.key}
+                value={stat.value}
+                suffix={stat.suffix}
+              />
+            ))}
           </div>
 
           <InvisibleContainer />
