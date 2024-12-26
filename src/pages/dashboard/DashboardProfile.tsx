@@ -89,6 +89,7 @@ const DashboardProfile = () => {
       businessDetails: profile.business_details ? profile.business_details : "",
       lastLogin: profile.last_login,
       createdAt: profile.created_at,
+      lastPasswordChangedAt: profile.last_password_changed,
     });
   };
 

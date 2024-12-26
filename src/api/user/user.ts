@@ -113,7 +113,8 @@ export const updateProfile = async (
 
 export const updatePassword = async (
   profileId: string,
-  request: UpdatePasswordRequest
+  request: UpdatePasswordRequest,
+  authToken: string
 ): Promise<UpdatePasswordResponse> => {
   const url =
     process.env.REACT_APP_BACKEND_BASE_URL +
@@ -126,7 +127,12 @@ export const updatePassword = async (
       confirm_password: request.confirmPassword,
     };
 
-    const updatePasswordResp = await axiosInstance.patch(url, body);
+    const updatePasswordResp = await axiosInstance.patch(url, body, {
+      headers: {
+        "X-USER-ID": profileId,
+        Authorization: `Bearer ${authToken}`,
+      },
+    });
 
     return {
       httpCode: updatePasswordResp.status,

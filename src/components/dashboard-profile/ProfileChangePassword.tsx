@@ -9,13 +9,14 @@ import Modal from "../modal/Modal";
 import RegularButton from "../button/RegularButton";
 
 const ProfileChangePassword = () => {
-  const { getUserId } = useAuth();
+  const { getUserId, getAuthToken } = useAuth();
 
   const [changePasswordFields, setChangePasswordFields] = React.useState({
     currentPassword: "",
     newPassword: "",
     confirmNewPassword: "",
   });
+
   const [disableChangePasswordButton, setDisableChangePasswordButton] =
     React.useState<boolean>(false);
 
@@ -29,7 +30,11 @@ const ProfileChangePassword = () => {
         confirmPassword: changePasswordFields.confirmNewPassword,
       };
 
-      const updatePassResp = await updatePassword(getUserId()!!, changePassReq);
+      const updatePassResp = await updatePassword(
+        getUserId()!!,
+        changePassReq,
+        getAuthToken()!
+      );
 
       setDisableChangePasswordButton(false);
 
