@@ -44,4 +44,5 @@ export interface OAuthCallbackResponse extends ApiResponse {
   email?: string;
   name?: string;
   is_new_user?: boolean;
+  message?: string;
 }

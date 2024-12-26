@@ -82,6 +82,7 @@ const doOAuthCallback = async (
       email: callbackResponse.data.email,
       name: callbackResponse.data.name,
       is_new_user: callbackResponse.data.is_new_user,
+      message: callbackResponse.data.Message,
     };
   } catch (err: any) {
     if (isAxiosNetworkError(err)) {

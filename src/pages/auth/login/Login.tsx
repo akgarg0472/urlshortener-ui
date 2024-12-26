@@ -156,6 +156,8 @@ const Login = () => {
             reqBody
           );
 
+          console.log(JSON.stringify(callbackResponse, null, 2));
+
           if (!callbackResponse.success) {
             Modal.showModal({
               icon: ModalIcon.ERROR,
@@ -174,7 +176,7 @@ const Login = () => {
           if (callbackResponse.is_new_user) {
             Modal.showModal({
               icon: ModalIcon.SUCCESS,
-              message: callbackResponse.message,
+              message: `🎉 Welcome to UrlShortener: ${callbackResponse.name}`,
               onClose() {
                 navigation("/dashboard");
               },
