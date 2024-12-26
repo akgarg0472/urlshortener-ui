@@ -24,7 +24,6 @@ const useAuth = () => {
 
       localStorage.setItem(AUTH_OBJ_NAME, JSON.stringify(auth));
     } catch (error) {
-      console.error(error);
       return false;
     }
 

@@ -90,9 +90,11 @@ const doOAuthCallback = async (
     }
 
     return {
-      httpCode: 500,
+      httpCode: err?.response?.status ?? 500,
       success: false,
-      message: "Failed to Login using OAuth. Please try again later",
+      message:
+        err.response?.data?.message ??
+        "Failed to Login using OAuth. Please try again later",
     };
   }
 };
