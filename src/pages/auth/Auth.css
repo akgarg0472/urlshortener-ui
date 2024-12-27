@@ -33,7 +33,6 @@
   width: 100%;
   text-align: center;
   font-size: 2.4rem;
-  font-family: "Libre Baskerville", serif;
   font-weight: 700;
 }
 .signup__form__container .reset__password__heading,
@@ -42,7 +41,6 @@
 .reset__password__form__container .reset__password__heading {
   width: 100%;
   font-size: 1.6rem;
-  font-family: "Libre Baskerville", serif;
   font-weight: 700;
   color: #333333;
 }
@@ -54,7 +52,6 @@
   text-align: left;
   font-size: 1.6rem;
   color: #757575;
-  font-family: "Libre Baskerville", serif;
   font-weight: 700;
 }
 .signup__form__container .login__heading,
@@ -62,7 +59,6 @@
 .forgot__password__form__container .login__heading,
 .reset__password__form__container .login__heading {
   width: 100%;
-  font-family: "Libre Baskerville", serif;
   font-size: 2.4rem;
   font-weight: 700;
   margin-top: 0.8rem;
@@ -263,7 +259,6 @@
   height: 4.8rem;
   border-radius: 0.6rem;
   border: none;
-  font-family: "Libre Baskerville", serif;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -360,7 +355,6 @@
 .reset__password__form__container .login__links__container .signup__link {
   color: rgba(0, 102, 255, 0.9);
   font-size: 1.4rem;
-  font-family: "Libre Baskerville", serif;
   font-weight: 700;
   text-decoration: none;
 }
@@ -369,7 +363,6 @@
 .forgot__password__form__container .login__links__container .signup__link__container .heading,
 .reset__password__form__container .login__links__container .signup__link__container .heading {
   font-size: 1.4rem;
-  font-family: "Libre Baskerville", serif;
   font-weight: 400;
   color: #222222;
 }

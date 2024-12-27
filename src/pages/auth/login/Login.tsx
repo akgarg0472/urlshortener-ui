@@ -118,8 +118,6 @@ const Login = () => {
         oAuthClient.scope
       )}`;
 
-      console.log("Google oauth URL:", googleOAuthUrl);
-
       const width = 700;
       const height = 800;
       const offsetX = 50;
