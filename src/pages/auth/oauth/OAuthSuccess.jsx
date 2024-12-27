@@ -16,7 +16,7 @@ const OAuthSuccess = () => {
 
   setTimeout(() => {
     window.close();
-  }, 10);
+  }, 1_00_000);
 
   return <React.Fragment></React.Fragment>;
 };
