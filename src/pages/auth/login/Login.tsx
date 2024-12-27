@@ -56,6 +56,7 @@ const Login = () => {
         clearInterval(popupInterval);
       }
     };
+    // eslint-disable-next-line
   }, []);
 
   const handleLoginButtonClick = async () => {
