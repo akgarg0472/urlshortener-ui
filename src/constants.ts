@@ -11,6 +11,8 @@ export const DASHBOARD_UPDATE_PROFILE_URL: string = "/dashboard/profile/update";
 export const DASHBOARD_PAID_PLANS: string = "/dashboard/plans";
 export const OAUTH_SUCCESS_GOOGLE: string = "/oauth/google/success";
 export const OAUTH_SUCCESS_GITHUB: string = "/oauth/github/success";
+export const OAUTH_SUCCESS_RESPONSE_KEY: string =
+  "oauth2_auth_success_response";
 
 export const HOME_WHY_CHOOSE_US: string =
   "Powerful Features for Smart Link Management";

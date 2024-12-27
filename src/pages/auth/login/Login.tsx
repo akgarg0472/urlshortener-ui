@@ -27,10 +27,12 @@ import LoginWithGoogleButton from "../../../components/button/oauth/LoginWithGoo
 import LoginWithGitHubButton from "../../../components/button/oauth/LoginWithGitHubButton";
 
 import "../Auth.css";
+import { OAUTH_SUCCESS_RESPONSE_KEY } from "../../../constants";
 
 const Login = () => {
   const navigation = useNavigate();
   const { setAuth, isUserLoggedIn } = useAuth();
+  let popupInterval: NodeJS.Timer | null = null;
 
   const [loginObject, setLoginObject] = useState<{
     email: string;
@@ -48,7 +50,12 @@ const Login = () => {
         replace: true,
       });
     }
-    // eslint-disable-next-line
+
+    return () => {
+      if (popupInterval) {
+        clearInterval(popupInterval);
+      }
+    };
   }, []);
 
   const handleLoginButtonClick = async () => {
@@ -118,10 +125,6 @@ const Login = () => {
       const left = window.innerWidth / 2 - width / 2 + offsetX;
       const top = window.innerHeight / 2 - height / 2 + offsetY;
 
-      const allowedOrigin = `${window.location.protocol.replace(":", "")}://${
-        window.location.hostname
-      }:${window.location.port}`;
-
       const popup = window.open(
         googleOAuthUrl,
         "oAuthPopup",
@@ -133,63 +136,73 @@ const Login = () => {
         return;
       }
 
-      const messageListener = async (event: any) => {
-        if (
-          event.origin === allowedOrigin &&
-          event.data.type === "oauth2_auth_success_response"
-        ) {
-          window.removeEventListener("message", messageListener);
-          const params = event.data.params;
+      const storageMessageListener = async (event: StorageEvent) => {
+        window.removeEventListener("storage", storageMessageListener);
 
-          if (params.error) {
-            return;
-          }
+        if (event.key !== OAUTH_SUCCESS_RESPONSE_KEY || !event.newValue) {
+          return;
+        }
 
-          const reqBody: OAuthCallbackRequest = {
-            state: params.state,
-            authCode: params.code,
-            scope: params.scope,
-            provider: "google",
-          };
+        localStorage.removeItem(OAUTH_SUCCESS_RESPONSE_KEY);
+        const params = JSON.parse(event.newValue);
 
-          const callbackResponse: OAuthCallbackResponse = await doOAuthCallback(
-            reqBody
-          );
+        if (params.error) {
+          Modal.showModal({
+            icon: ModalIcon.ERROR,
+            message: "Google Login Failed. Please try again later",
+          });
+          return;
+        }
 
-          if (!callbackResponse.success) {
-            Modal.showModal({
-              icon: ModalIcon.ERROR,
-              message: callbackResponse.message,
-            });
-            return;
-          }
+        const reqBody: OAuthCallbackRequest = {
+          state: params.state,
+          authCode: params.code,
+          scope: params.scope,
+          provider: "google",
+        };
 
-          setAuth(
-            callbackResponse.auth_token!,
-            callbackResponse.user_id!,
-            callbackResponse.email!,
-            callbackResponse.name!
-          );
+        const callbackResponse: OAuthCallbackResponse = await doOAuthCallback(
+          reqBody
+        );
 
-          if (callbackResponse.is_new_user) {
-            Modal.showModal({
-              icon: ModalIcon.SUCCESS,
-              message: `🎉 Welcome to UrlShortener: ${callbackResponse.name}`,
-              onClose() {
-                navigation("/dashboard");
-              },
-            });
-          } else {
-            navigation("/dashboard");
-          }
+        if (!callbackResponse.success) {
+          Modal.showModal({
+            icon: ModalIcon.ERROR,
+            message: callbackResponse.message,
+          });
+          return;
+        }
+
+        setAuth(
+          callbackResponse.auth_token!,
+          callbackResponse.user_id!,
+          callbackResponse.email!,
+          callbackResponse.name!
+        );
+
+        if (callbackResponse.is_new_user) {
+          Modal.showModal({
+            icon: ModalIcon.SUCCESS,
+            message: `🎉 Welcome to UrlShortener: ${callbackResponse.name}`,
+            onClose() {
+              navigation("/dashboard");
+            },
+          });
+        } else {
+          navigation("/dashboard");
         }
       };
 
-      popup.addEventListener("beforeunload", () => {
-        window.removeEventListener("message", messageListener);
-      });
+      popupInterval = setInterval(() => {
+        if (popup && popup.closed === true) {
+          if (popupInterval) {
+            clearInterval(popupInterval);
+          }
+          window.removeEventListener("storage", storageMessageListener);
+        }
+      }, 1000);
 
-      window.addEventListener("message", messageListener);
+      window.addEventListener("storage", storageMessageListener);
     } catch (error) {
       Modal.showModal({
         icon: ModalIcon.ERROR,
@@ -226,10 +239,6 @@ const Login = () => {
       const left = window.innerWidth / 2 - width / 2 + offsetX;
       const top = window.innerHeight / 2 - height / 2 + offsetY;
 
-      const allowedOrigin = `${window.location.protocol.replace(":", "")}://${
-        window.location.hostname
-      }:${window.location.port}`;
-
       const popup = window.open(
         githubOAuthUrl,
         "oAuthPopup",
@@ -241,63 +250,73 @@ const Login = () => {
         return;
       }
 
-      const messageListener = async (event: any) => {
-        if (
-          event.origin === allowedOrigin &&
-          event.data.type === "oauth2_auth_success_response"
-        ) {
-          window.removeEventListener("message", messageListener);
-          const params = event.data.params;
+      const storageMessageListener = async (event: StorageEvent) => {
+        window.removeEventListener("storage", storageMessageListener);
 
-          if (params.error) {
-            return;
-          }
+        if (event.key !== OAUTH_SUCCESS_RESPONSE_KEY || !event.newValue) {
+          return;
+        }
 
-          const reqBody: OAuthCallbackRequest = {
-            state: params.state,
-            authCode: params.code,
-            scope: params.scope,
-            provider: "github",
-          };
+        localStorage.removeItem(OAUTH_SUCCESS_RESPONSE_KEY);
+        const params = JSON.parse(event.newValue);
 
-          const callbackResponse: OAuthCallbackResponse = await doOAuthCallback(
-            reqBody
-          );
+        if (params.error) {
+          Modal.showModal({
+            icon: ModalIcon.ERROR,
+            message: "Google Login Failed. Please try again later",
+          });
+          return;
+        }
 
-          if (!callbackResponse.success) {
-            Modal.showModal({
-              icon: ModalIcon.ERROR,
-              message: callbackResponse.message,
-            });
-            return;
-          }
+        const reqBody: OAuthCallbackRequest = {
+          state: params.state,
+          authCode: params.code,
+          scope: params.scope,
+          provider: "github",
+        };
 
-          setAuth(
-            callbackResponse.auth_token!,
-            callbackResponse.user_id!,
-            callbackResponse.email!,
-            callbackResponse.name!
-          );
+        const callbackResponse: OAuthCallbackResponse = await doOAuthCallback(
+          reqBody
+        );
 
-          if (callbackResponse.is_new_user) {
-            Modal.showModal({
-              icon: ModalIcon.SUCCESS,
-              message: callbackResponse.message,
-              onClose() {
-                navigation("/dashboard");
-              },
-            });
-          } else {
-            navigation("/dashboard");
-          }
+        if (!callbackResponse.success) {
+          Modal.showModal({
+            icon: ModalIcon.ERROR,
+            message: callbackResponse.message,
+          });
+          return;
+        }
+
+        setAuth(
+          callbackResponse.auth_token!,
+          callbackResponse.user_id!,
+          callbackResponse.email!,
+          callbackResponse.name!
+        );
+
+        if (callbackResponse.is_new_user) {
+          Modal.showModal({
+            icon: ModalIcon.SUCCESS,
+            message: callbackResponse.message,
+            onClose() {
+              navigation("/dashboard");
+            },
+          });
+        } else {
+          navigation("/dashboard");
         }
       };
 
-      popup.addEventListener("beforeunload", () => {
-        window.removeEventListener("message", messageListener);
-      });
+      popupInterval = setInterval(() => {
+        if (popup && popup.closed === true) {
+          if (popupInterval) {
+            clearInterval(popupInterval);
+          }
+          window.removeEventListener("storage", storageMessageListener);
+        }
+      }, 1000);
 
-      window.addEventListener("message", messageListener);
+      window.addEventListener("storage", storageMessageListener);
     } catch (error) {
       Modal.showModal({
         icon: ModalIcon.ERROR,

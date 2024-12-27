@@ -1,22 +1,26 @@
 import React from "react";
 import { useSearchParams } from "react-router-dom";
+import { OAUTH_SUCCESS_RESPONSE_KEY } from "../../../constants";
 
 const OAuthSuccess = () => {
   const [searchParams] = useSearchParams();
   const queryParams = Object.fromEntries(searchParams.entries());
 
-  console.log("OAuth response:", JSON.stringify(queryParams));
-
-  if (window.opener) {
-    window.opener.postMessage(
-      { type: "oauth2_auth_success_response", params: queryParams },
-      "*"
+  if (queryParams.code) {
+    localStorage.setItem(
+      OAUTH_SUCCESS_RESPONSE_KEY,
+      JSON.stringify(queryParams)
+    );
+  } else {
+    localStorage.setItem(
+      OAUTH_SUCCESS_RESPONSE_KEY,
+      JSON.stringify({
+        error: "No auth code received from Google",
+      })
     );
   }
 
-  setTimeout(() => {
-    window.close();
-  }, 1_00_000);
+  window.close();
 
   return <React.Fragment></React.Fragment>;
 };
