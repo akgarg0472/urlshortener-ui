@@ -112,11 +112,13 @@ const Login = () => {
 
       const googleOAuthUrl = `${oAuthClient.base_url}?client_id=${
         oAuthClient.client_id
-      }&redirect_uri=${
+      }&redirect_uri=${encodeURIComponent(
         oAuthClient.redirect_uri
-      }&response_type=code&state=${uuidv4()}&scope=${encodeURIComponent(
+      )}&response_type=code&state=${uuidv4()}&scope=${encodeURIComponent(
         oAuthClient.scope
       )}`;
+
+      console.log("Google oauth URL:", googleOAuthUrl);
 
       const width = 700;
       const height = 800;
