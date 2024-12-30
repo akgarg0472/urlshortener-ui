@@ -4,13 +4,31 @@ import {
   getDashboard,
   getDashboardStatistics,
 } from "../../api/dashboard/dashboard";
+import {
+  Browser,
+  Continent,
+  Country,
+  DashboardApiStat,
+  OS,
+  PopularURL,
+  PrevSevenDaysHit,
+} from "../../api/dashboard/dashboard.api.modal";
+import {
+  DeviceMetricsApiResponse,
+  GeographicalApiResponse,
+  PopularURLApiResponse,
+} from "../../api/dashboard/dashboard.api.response";
+import ChartPercentageStatsContainer from "../../components/chart-percentage-stats-container/ChartPercentageStatsContainer";
 import DailyHitsLineChart from "../../components/daily-hits-line-chart/DailyHitsLineChart";
 import DashboardNavbar from "../../components/dashboard-navbar/DashboardNavbar";
+import DashboardStat from "../../components/dashboard-overview-stat/DashboardStat";
 import DashboardHeadSubHead from "../../components/dashboardheadsubhead/DashboardHeadSubHead";
 import InvisibleContainer from "../../components/invisible-container/InvisibleContainer";
 import InternalLoader from "../../components/loader/internal-loader/InternalLoader";
+import Modal from "../../components/modal/Modal";
+import { ModalIcon } from "../../components/modal/Modal.enums";
+import NoDataAvailable from "../../components/no-data-available/NoDataAvailable";
 import PieChart from "../../components/pie-chart/PieChart";
-import useAuth from "../../hooks/useAuth";
 import {
   DASH_BROWSER_HEAD,
   DASH_BROWSER_SUBHEAD,
@@ -25,31 +43,11 @@ import {
   LOGIN_URL,
   PREV_SEVEN_DAYS_DATASET_LABEL,
 } from "../../constants";
+import useAuth from "../../hooks/useAuth";
 import { getCurrentDateTime } from "../../utils/datetimeutils";
-import Modal from "../../components/modal/Modal";
-import { ModalIcon } from "../../components/modal/Modal.enums";
-import {
-  Browser,
-  Continent,
-  Country,
-  DashboardApiStat,
-  OS,
-  PopularURL,
-  PrevSevenDaysHit,
-} from "../../api/dashboard/dashboard.api.modal";
-import {
-  DashboardApiResponse,
-  DashboardStatisticsApiResponse,
-  DeviceMetricsApiResponse,
-  GeographicalApiResponse,
-  PopularURLApiResponse,
-} from "../../api/dashboard/dashboard.api.response";
-import DashboardStat from "../../components/dashboard-overview-stat/DashboardStat";
-import ChartPercentageStatsContainer from "../../components/chart-percentage-stats-container/ChartPercentageStatsContainer";
-import NoDataAvailable from "../../components/no-data-available/NoDataAvailable";
 
-import "./Dashboard.css";
 import PopularUrl from "../../components/popular-url/PopularUrl";
+import "./Dashboard.css";
 
 const Dashboard = () => {
   const { getUserId, logout, getAuthToken } = useAuth();
@@ -146,7 +144,7 @@ const Dashboard = () => {
   };
 
   const handlePopularURLs = (popularURLResponse: PopularURLApiResponse) => {
-    if (popularURLResponse.success) {
+    if (popularURLResponse?.success) {
       setPopularUrls(popularURLResponse.popular_urls);
     } else {
       setPopularUrls([]);
@@ -187,7 +185,7 @@ const Dashboard = () => {
   };
 
   const handleOSBrowserData = (osBrowserResponse: DeviceMetricsApiResponse) => {
-    if (osBrowserResponse.success) {
+    if (osBrowserResponse?.success) {
       setOss(osBrowserResponse.oss);
       setBrowsers(osBrowserResponse.browsers);
     } else {
