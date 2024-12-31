@@ -1,10 +1,4 @@
-import { axiosInstance } from "../base";
-import {
-  DashboardApiResponse,
-  DashboardStatisticsApiResponse,
-  MyLinksApiResponse,
-  UrlMetricApiResponse,
-} from "./dashboard.api.response";
+import { AxiosResponse } from "axios";
 import {
   DASHBOARD_DEVICE_METRICS_API_URL_V1,
   DASHBOARD_MY_LINKS_API_URL_V1,
@@ -22,8 +16,13 @@ import {
   errorResponse,
   isAxiosNetworkError,
 } from "../../utils/errorutils";
-import { ApiErrorResponse } from "../base";
-import { AxiosResponse } from "axios";
+import { ApiErrorResponse, axiosInstance } from "../base";
+import {
+  DashboardApiResponse,
+  DashboardStatisticsApiResponse,
+  MyLinksApiResponse,
+  UrlMetricApiResponse,
+} from "./dashboard.api.response";
 
 export const getDashboard = async (
   props: DashboardSummaryApiRequest
