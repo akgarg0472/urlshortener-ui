@@ -24,3 +24,6 @@ Dockerfile
 # Ignore test and coverage directories
 coverage
 tests
+
+# other
+.eslintrc.json
