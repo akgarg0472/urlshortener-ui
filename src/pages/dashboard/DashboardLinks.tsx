@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getMyLinks } from "../../api/dashboard/dashboard";
+import { USURL } from "../../api/dashboard/dashboard.api.modal";
+import { MyLinksApiResponse } from "../../api/dashboard/dashboard.api.response";
 import RegularButton from "../../components/button/RegularButton";
 import DashboardNavbar from "../../components/dashboard-navbar/DashboardNavbar";
 import DashboardHeadSubHead from "../../components/dashboardheadsubhead/DashboardHeadSubHead";
 import InternalLoader from "../../components/loader/internal-loader/InternalLoader";
-import MyLink from "../../components/mylink/MyLink";
-import useAuth from "../../hooks/useAuth";
 import Modal from "../../components/modal/Modal";
 import { ModalIcon } from "../../components/modal/Modal.enums";
-import { MyLinksApiResponse } from "../../api/dashboard/dashboard.api.response";
-import { USURL } from "../../api/dashboard/dashboard.api.modal";
+import MyLink from "../../components/mylink/MyLink";
 import {
   DASH_MY_LINKS_HEAD,
   DASH_MY_LINKS_SUBHEAD,
   LOGIN_URL,
 } from "../../constants";
+import useAuth from "../../hooks/useAuth";
 
 import "./Dashboard.css";
 
@@ -27,11 +27,12 @@ const DashboardLinks = () => {
   const [nextOffset, setNextOffset] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
   const [showLoadMoreButton, setShowLoadMoreButton] = useState<boolean>(false);
-  const [limit, setLimit] = useState<number>(10);
+  const [limit] = useState<number>(10);
 
   useEffect(() => {
     document.title = "My Links";
     fetchMyLinks();
+    // eslint-disable-next-line
   }, []);
 
   const fetchMyLinks = async () => {
@@ -110,7 +111,7 @@ const DashboardLinks = () => {
                       url={url}
                       serialNumber={index + 1}
                       key={`${url.short_url}_${index}`} // todo: fix later
-                      userId={getUserId()!!}
+                      userId={getUserId()!}
                     />
                   ))
                 )}

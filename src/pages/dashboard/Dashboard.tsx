@@ -68,6 +68,7 @@ const Dashboard = () => {
   useEffect(() => {
     document.title = "Dashboard";
     fetchDashboard();
+    // eslint-disable-next-line
   }, []);
 
   const fetchDashboard = async () => {
@@ -108,7 +109,7 @@ const Dashboard = () => {
         }),
 
         getDashboard({
-          userId: userId!!,
+          userId: userId!,
           startTime: 0,
           endTime: Date.now(),
           authToken: authToken,
@@ -138,9 +139,9 @@ const Dashboard = () => {
     setPrevSevenDayHitsData(dashboardApiResponse.prev_seven_days_hits);
     setContinents(dashboardApiResponse.continents);
     setCountries(dashboardApiResponse.countries);
-    handlePopularURLs(dashboardStatisticsApiResponse.popularUrls!!);
-    handleGeographicalData(dashboardStatisticsApiResponse.geographicalStats!!);
-    handleOSBrowserData(dashboardStatisticsApiResponse.deviceMetrics!!);
+    handlePopularURLs(dashboardStatisticsApiResponse.popularUrls!);
+    handleGeographicalData(dashboardStatisticsApiResponse.geographicalStats!);
+    handleOSBrowserData(dashboardStatisticsApiResponse.deviceMetrics!);
   };
 
   const handlePopularURLs = (popularURLResponse: PopularURLApiResponse) => {

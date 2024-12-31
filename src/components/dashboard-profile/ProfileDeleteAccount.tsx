@@ -1,10 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { deleteProfile } from "../../api/user/user";
+import { LOGIN_URL } from "../../constants";
+import useAuth from "../../hooks/useAuth";
 import DashboardStatsHeading from "../DashboardStatsHeading/DashboardStatsHeading";
 import RegularButton from "../button/RegularButton";
-import useAuth from "../../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
-import { LOGIN_URL } from "../../constants";
-import { deleteProfile } from "../../api/user/user";
 import Modal from "../modal/Modal";
 import { ModalIcon } from "../modal/Modal.enums";
 
@@ -15,7 +15,7 @@ const ProfileDeleteAccount = () => {
   const { getUserId, logout } = useAuth();
   const navigate = useNavigate();
 
-  const handleAccountDeleteButton = async (e: React.MouseEvent) => {
+  const handleAccountDeleteButton = async () => {
     const userId = getUserId();
 
     if (!userId) {

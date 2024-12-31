@@ -1,12 +1,12 @@
 import React from "react";
-import HorizontalInputField from "../inputfield/HorizontalInputField";
-import DashboardStatsHeading from "../DashboardStatsHeading/DashboardStatsHeading";
-import { validChangePasswordReq } from "../../utils/validationutils";
 import { updatePassword } from "../../api/user/user";
 import useAuth from "../../hooks/useAuth";
-import { ModalIcon } from "../modal/Modal.enums";
-import Modal from "../modal/Modal";
+import { validChangePasswordReq } from "../../utils/validationutils";
 import RegularButton from "../button/RegularButton";
+import DashboardStatsHeading from "../DashboardStatsHeading/DashboardStatsHeading";
+import HorizontalInputField from "../inputfield/HorizontalInputField";
+import Modal from "../modal/Modal";
+import { ModalIcon } from "../modal/Modal.enums";
 
 const ProfileChangePassword = () => {
   const { getUserId, getAuthToken } = useAuth();
@@ -20,7 +20,7 @@ const ProfileChangePassword = () => {
   const [disableChangePasswordButton, setDisableChangePasswordButton] =
     React.useState<boolean>(false);
 
-  const handleChangePasswordButtonClick = async (event: React.MouseEvent) => {
+  const handleChangePasswordButtonClick = async () => {
     if (validChangePasswordReq(changePasswordFields)) {
       setDisableChangePasswordButton(true);
 
@@ -31,7 +31,7 @@ const ProfileChangePassword = () => {
       };
 
       const updatePassResp = await updatePassword(
-        getUserId()!!,
+        getUserId()!,
         changePassReq,
         getAuthToken()!
       );

@@ -131,7 +131,7 @@ const Modal = () => {
     );
 
     if (modalOkButton != null) {
-      modalOkButton.onclick = (e) => {
+      modalOkButton.onclick = () => {
         closeModal();
 
         if (props.onClose) {
@@ -141,7 +141,7 @@ const Modal = () => {
     }
 
     if (modalCancelButton != null) {
-      modalCancelButton.onclick = (e) => {
+      modalCancelButton.onclick = () => {
         closeModal();
 
         if (props.onClose) {
@@ -155,7 +155,7 @@ const Modal = () => {
     }
 
     if (modalConfirmButton != null) {
-      modalConfirmButton.onclick = (e) => {
+      modalConfirmButton.onclick = () => {
         closeModal();
 
         if (props.onClose) {

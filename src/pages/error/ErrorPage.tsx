@@ -1,9 +1,11 @@
-import { useRouteError } from "react-router-dom";
+import React from "react";
 
 const ErrorPage = () => {
-  const error = useRouteError();
-
-  return <div>error</div>;
+  return (
+    <React.Fragment>
+      <div>error</div>
+    </React.Fragment>
+  );
 };
 
 export default ErrorPage;

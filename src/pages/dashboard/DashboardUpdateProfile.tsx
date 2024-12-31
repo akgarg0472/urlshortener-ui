@@ -22,7 +22,7 @@ import "./Dashboard.css";
 
 const DashboardUpdateProfile = () => {
   const defaultProfileData: ProfileData = {
-    profilePicture: process.env["REACT_APP_DEFAULT_PROFILE_PICTURE"]!!,
+    profilePicture: process.env["REACT_APP_DEFAULT_PROFILE_PICTURE"]!,
     name: "",
     bio: "",
     phone: "",
@@ -45,6 +45,7 @@ const DashboardUpdateProfile = () => {
 
   useEffect(() => {
     fetchProfile();
+    // eslint-disable-next-line
   }, []);
 
   const fetchProfile = async () => {
@@ -77,7 +78,7 @@ const DashboardUpdateProfile = () => {
     const fetchedProfile: ProfileData = {
       profilePicture: profile.profile_picture
         ? profile.profile_picture
-        : process.env["REACT_APP_DEFAULT_PROFILE_PICTURE"]!!,
+        : process.env["REACT_APP_DEFAULT_PROFILE_PICTURE"]!,
       name: profile.name ? profile.name : "",
       bio: profile.bio ? profile.bio : "",
       phone: profile.phone ? profile.phone : "",
@@ -144,9 +145,9 @@ const DashboardUpdateProfile = () => {
       setLoading(true);
 
       const updateResponse = await updateProfile(
-        getUserId()!!,
+        getUserId()!,
         updateProfileRequest,
-        getAuthToken()!!
+        getAuthToken()!
       );
 
       if (updateResponse.httpCode === 401 || updateResponse.httpCode === 403) {
@@ -201,7 +202,7 @@ const DashboardUpdateProfile = () => {
                 <img
                   className="update__profile__img"
                   src={updatedData.profilePicture}
-                  alt="Profile Picture"
+                  alt="Profile"
                 />
 
                 <div className="img__choooser">

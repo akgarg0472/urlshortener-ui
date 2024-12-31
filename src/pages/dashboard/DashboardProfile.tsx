@@ -28,7 +28,7 @@ const DashboardProfile = () => {
 
   const [profileData, setProfileData] = useState<ProfileData>({
     id: "",
-    profilePicture: process.env["REACT_APP_DEFAULT_PROFILE_PICTURE"]!!,
+    profilePicture: process.env["REACT_APP_DEFAULT_PROFILE_PICTURE"]!,
     name: "",
     bio: "",
     phone: "",
@@ -42,6 +42,7 @@ const DashboardProfile = () => {
   useEffect(() => {
     document.title = "Profile";
     fetchProfile();
+    // eslint-disable-next-line
   }, []);
 
   const fetchProfile = async () => {
@@ -74,11 +75,11 @@ const DashboardProfile = () => {
     }
 
     setProfileData({
-      id: profile.id!!,
+      id: profile.id!,
       email: profile.email,
       profilePicture: profile.profile_picture
         ? profile.profile_picture
-        : process.env["REACT_APP_DEFAULT_PROFILE_PICTURE"]!!,
+        : process.env["REACT_APP_DEFAULT_PROFILE_PICTURE"]!,
       name: profile.name ? profile.name : "",
       bio: profile.bio ? profile.bio : "",
       phone: profile.phone ? profile.phone : "",

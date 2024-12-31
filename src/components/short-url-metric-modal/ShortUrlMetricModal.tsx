@@ -1,15 +1,15 @@
 import React, { ReactNode, useEffect, useState } from "react";
-import useAuth from "../../hooks/useAuth";
-import { convertTimestampToDateTime } from "../../utils/datetimeutils";
-import InternalLoader from "../loader/internal-loader/InternalLoader";
-import URLMetadata from "./URLMetadata/URLMetadata";
-import {
-  InternalLoaderSpeed,
-  InternalLoaderSize,
-} from "../loader/Loader.enums";
 import { getUrlMetrics } from "../../api/dashboard/dashboard";
 import { LatestHit } from "../../api/dashboard/dashboard.api.modal";
 import { UrlMetricApiResponse } from "../../api/dashboard/dashboard.api.response";
+import useAuth from "../../hooks/useAuth";
+import { convertTimestampToDateTime } from "../../utils/datetimeutils";
+import InternalLoader from "../loader/internal-loader/InternalLoader";
+import {
+  InternalLoaderSize,
+  InternalLoaderSpeed,
+} from "../loader/Loader.enums";
+import URLMetadata from "./URLMetadata/URLMetadata";
 
 import "./ShortUrlMetricModal.css";
 
@@ -23,16 +23,17 @@ const ShortUrlMetricModal = (props: ShortUrlMetricModalProps) => {
 
   useEffect(() => {
     fetchUrlMetrics();
+    // eslint-disable-next-line
   }, []);
 
   const fetchUrlMetrics = async () => {
     const apiResponse: UrlMetricApiResponse = await getUrlMetrics({
-      userId: getUserId()!!,
+      userId: getUserId()!,
       shortUrl: props.shortUrl,
       endTime: new Date().getTime(),
       startTime: 0,
       limit: 10,
-      authToken: getAuthToken()!!,
+      authToken: getAuthToken()!,
     });
 
     if (apiResponse.httpCode !== 200) {

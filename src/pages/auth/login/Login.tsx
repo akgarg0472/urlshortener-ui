@@ -1,33 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 import {
   doGetOAuthProvider,
   doLogin,
   doOAuthCallback,
 } from "../../../api/auth/auth";
-import LinkButton from "../../../components/button/LinkButton";
-import RegularButton from "../../../components/button/RegularButton";
-import InputField from "../../../components/inputfield/InputField";
-import Loader from "../../../components/loader/Loader";
-import Modal from "../../../components/modal/Modal";
-import useAuth from "../../../hooks/useAuth";
-import { validateLoginPage } from "../../../utils/authutils";
-import { InputFieldType } from "../../../components/inputfield/InputField.enums";
-import { LoaderSpeed } from "../../../components/loader/Loader.enums";
-import { ModalIcon } from "../../../components/modal/Modal.enums";
 import {
   LoginApiResponse,
   OAuthCallbackResponse,
   OAuthClient,
   OAuthProviderResponse,
 } from "../../../api/auth/auth.api.response";
-import { v4 as uuidv4 } from "uuid";
-import SeparatorWithText from "../../../components/separator-with-text/SeparatorWithText";
-import LoginWithGoogleButton from "../../../components/button/oauth/LoginWithGoogleButton";
+import LinkButton from "../../../components/button/LinkButton";
 import LoginWithGitHubButton from "../../../components/button/oauth/LoginWithGitHubButton";
+import LoginWithGoogleButton from "../../../components/button/oauth/LoginWithGoogleButton";
+import RegularButton from "../../../components/button/RegularButton";
+import InputField from "../../../components/inputfield/InputField";
+import { InputFieldType } from "../../../components/inputfield/InputField.enums";
+import Loader from "../../../components/loader/Loader";
+import { LoaderSpeed } from "../../../components/loader/Loader.enums";
+import Modal from "../../../components/modal/Modal";
+import { ModalIcon } from "../../../components/modal/Modal.enums";
+import SeparatorWithText from "../../../components/separator-with-text/SeparatorWithText";
+import useAuth from "../../../hooks/useAuth";
+import { validateLoginPage } from "../../../utils/authutils";
 
-import "../Auth.css";
 import { OAUTH_SUCCESS_RESPONSE_KEY } from "../../../constants";
+import "../Auth.css";
 
 const Login = () => {
   const navigation = useNavigate();
@@ -162,9 +162,8 @@ const Login = () => {
           provider: "google",
         };
 
-        const callbackResponse: OAuthCallbackResponse = await doOAuthCallback(
-          reqBody
-        );
+        const callbackResponse: OAuthCallbackResponse =
+          await doOAuthCallback(reqBody);
 
         if (!callbackResponse.success) {
           Modal.showModal({
@@ -204,7 +203,7 @@ const Login = () => {
       }, 1000);
 
       window.addEventListener("storage", storageMessageListener);
-    } catch (error) {
+    } catch (_: any) {
       Modal.showModal({
         icon: ModalIcon.ERROR,
         message: "Failed to login using Google. Please try again later",
@@ -276,9 +275,8 @@ const Login = () => {
           provider: "github",
         };
 
-        const callbackResponse: OAuthCallbackResponse = await doOAuthCallback(
-          reqBody
-        );
+        const callbackResponse: OAuthCallbackResponse =
+          await doOAuthCallback(reqBody);
 
         if (!callbackResponse.success) {
           Modal.showModal({
@@ -318,7 +316,7 @@ const Login = () => {
       }, 1000);
 
       window.addEventListener("storage", storageMessageListener);
-    } catch (error) {
+    } catch (_: any) {
       Modal.showModal({
         icon: ModalIcon.ERROR,
         message: "Failed to login using Google. Please try again later",
@@ -403,7 +401,7 @@ const Login = () => {
             <br />
 
             <div className="signup__link__container">
-              <span className="heading">Doesn't have account? </span>
+              <span className="heading">{`Doesn't have account?`} </span>
               <LinkButton
                 text="Signup"
                 onClickLink="/signup"

@@ -1,17 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
-import ForgotPassword from "../pages/auth/forgot-password/ForgotPassword";
-import Login from "../pages/auth/login/Login";
-import Signup from "../pages/auth/signup/Signup";
-import Dashboard from "../pages/dashboard/Dashboard";
-import DashboardLinks from "../pages/dashboard/DashboardLinks";
-import DashboardProfile from "../pages/dashboard/DashboardProfile";
-import ErrorPage from "../pages/error/ErrorPage";
-import HomePage from "../pages/home/HomePage";
+import HomeNavbar from "../components/home-navbar/HomeNavbar";
 import {
   DASHBOARD_LINKS_URL,
   DASHBOARD_PAID_PLANS,
   DASHBOARD_PROFILE_URL,
-  DASHBOARD_STATISTICS_URL,
   DASHBOARD_UPDATE_PROFILE_URL,
   DASHBOARD_URL,
   FORGOT_PASSWORD_URL,
@@ -21,12 +13,19 @@ import {
   RESET_PASSWORD_URL,
   SIGNUP_URL,
 } from "../constants";
-import ProtectedRoute from "./ProtectedRoute";
-import ResetPassword from "../pages/auth/reset-password/ResetPassword";
-import DashboardUpdateProfile from "../pages/dashboard/DashboardUpdateProfile";
-import DashboardPaidPlans from "../pages/dashboard/DashboardPaidPlans";
+import ForgotPassword from "../pages/auth/forgot-password/ForgotPassword";
+import Login from "../pages/auth/login/Login";
 import OAuthSuccess from "../pages/auth/oauth/OAuthSuccess";
-import HomeNavbar from "../components/home-navbar/HomeNavbar";
+import ResetPassword from "../pages/auth/reset-password/ResetPassword";
+import Signup from "../pages/auth/signup/Signup";
+import Dashboard from "../pages/dashboard/Dashboard";
+import DashboardLinks from "../pages/dashboard/DashboardLinks";
+import DashboardPaidPlans from "../pages/dashboard/DashboardPaidPlans";
+import DashboardProfile from "../pages/dashboard/DashboardProfile";
+import DashboardUpdateProfile from "../pages/dashboard/DashboardUpdateProfile";
+import ErrorPage from "../pages/error/ErrorPage";
+import HomePage from "../pages/home/HomePage";
+import ProtectedRoute from "./ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -50,7 +49,10 @@ const router = createBrowserRouter([
   },
   {
     path: RESET_PASSWORD_URL,
-    element: [<HomeNavbar key="navbar" />, <ResetPassword />],
+    element: [
+      <HomeNavbar key="navbar" />,
+      <ResetPassword key="reset__password__element" />,
+    ],
   },
   {
     path: OAUTH_SUCCESS_GOOGLE,

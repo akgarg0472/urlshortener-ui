@@ -1,12 +1,11 @@
-import React from "react";
-import KVPair from "../KVPair/KVPair";
 import { convertTimestampToDateTime } from "../../utils/datetimeutils";
+import KVPair from "../KVPair/KVPair";
 
 const ProfilePersonalDetails = (props: ProfilePersonalDetailsProps) => {
   return (
     <div className="personal__details__section">
       <div className="profile__picture">
-        <img src={props.profilePicture} alt={`${props.name} profile picture`} />
+        <img src={props.profilePicture} alt={`${props.name} profile`} />
       </div>
 
       <div className="bio__container">{props.bio}</div>
@@ -22,7 +21,7 @@ const ProfilePersonalDetails = (props: ProfilePersonalDetailsProps) => {
 
       <KVPair
         _key="Email"
-        value={props.email!!}
+        value={props.email!}
         style={{
           width: "100%",
           height: "4rem",
@@ -40,7 +39,7 @@ const ProfilePersonalDetails = (props: ProfilePersonalDetailsProps) => {
 
       <KVPair
         _key="Joined on"
-        value={convertTimestampToDateTime(props.createdAt!!)}
+        value={convertTimestampToDateTime(props.createdAt!)}
         style={{
           width: "100%",
           height: "4rem",

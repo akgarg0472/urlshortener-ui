@@ -23,7 +23,7 @@ const useAuth = () => {
       };
 
       localStorage.setItem(AUTH_OBJ_NAME, JSON.stringify(auth));
-    } catch (error) {
+    } catch (_: any) {
       return false;
     }
 

@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { doForgotPassword } from "../../../api/auth/auth";
+import { ForgotPasswordApiResponse } from "../../../api/auth/auth.api.response";
 import LinkButton from "../../../components/button/LinkButton";
 import RegularButton from "../../../components/button/RegularButton";
 import InputField from "../../../components/inputfield/InputField";
-import Loader from "../../../components/loader/Loader";
-import { validateForgotPasswordPage } from "../../../utils/authutils";
-import { LoaderSpeed } from "../../../components/loader/Loader.enums";
 import { InputFieldType } from "../../../components/inputfield/InputField.enums";
-import { doForgotPassword } from "../../../api/auth/auth";
+import Loader from "../../../components/loader/Loader";
+import { LoaderSpeed } from "../../../components/loader/Loader.enums";
 import Modal from "../../../components/modal/Modal";
 import { ModalIcon } from "../../../components/modal/Modal.enums";
-import { useNavigate } from "react-router-dom";
-import { ForgotPasswordApiResponse } from "../../../api/auth/auth.api.response";
+import { validateForgotPasswordPage } from "../../../utils/authutils";
 
 import "../Auth.css";
 
@@ -61,8 +61,7 @@ const ForgotPassword = () => {
           <div className="forgot__password__heading">Forgot Password🔗</div>
 
           <div className="forgot__password__instruction">
-            Enter the email associated with your account and we'll send you a
-            link to reset your password
+            {`Enter the email associated with your account and we'll send you a link to reset your password`}
           </div>
 
           <form className="forgot__password__form">
@@ -100,7 +99,7 @@ const ForgotPassword = () => {
 
           <div className="login__links__container">
             <div className="signup__link__container">
-              <span className="heading">Doesn't have account? </span>
+              <span className="heading">{`Doesn't have account?`} </span>
               <LinkButton
                 text="Signup"
                 onClickLink="/signup"

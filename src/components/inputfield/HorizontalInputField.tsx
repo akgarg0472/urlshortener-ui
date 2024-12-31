@@ -33,8 +33,8 @@ const HorizontalInputField = (props: HorizontalInputFieldProps) => {
           placeholder={props.placeholder}
           value={props.text}
           onKeyDown={(event) => {
-            if (event.key === "Enter") {
-              props.onKeyDown && props.onKeyDown(event);
+            if (event.key === "Enter" && props.onKeyDown) {
+              props.onKeyDown(event);
             }
           }}
         />

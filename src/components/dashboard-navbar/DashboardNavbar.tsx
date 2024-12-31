@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
 import { doLogout } from "../../api/auth/auth";
+import useAuth from "../../hooks/useAuth";
 import { dashboardNavbarLinks } from "../../utils/data";
 import LinkButton from "../button/LinkButton";
 import RegularButton from "../button/RegularButton";
 import CreateUrlModal from "../create-url-modal/CreateUrlModal";
 import Modal from "../modal/Modal";
-import DashboardLink from "./dashboard-link/DashboardLink";
 import { ModalIcon } from "../modal/Modal.enums";
+import DashboardLink from "./dashboard-link/DashboardLink";
 
-import "./DashboardNavbar.css";
 import { LogoutApiResponse } from "../../api/auth/auth.api.response";
+import "./DashboardNavbar.css";
 
 const DashboardNavbar = () => {
   const location = useLocation();
@@ -22,8 +22,8 @@ const DashboardNavbar = () => {
 
   const handleLogout = async () => {
     const logoutApiResponse: LogoutApiResponse = await doLogout({
-      authToken: getAuth()?.authToken!,
-      userId: getAuth()?.userId!,
+      authToken: getAuth()!.authToken!,
+      userId: getAuth()!.userId!,
     });
 
     if (logoutApiResponse.success) {
