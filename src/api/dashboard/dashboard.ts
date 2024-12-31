@@ -28,7 +28,7 @@ export const getDashboard = async (
   props: DashboardSummaryApiRequest
 ): Promise<DashboardApiResponse> => {
   const url =
-    process.env.REACT_APP_BACKEND_BASE_URL + DASHBOARD_SUMMARY_API_URL_V1;
+    process.env["REACT_APP_BACKEND_BASE_URL"] + DASHBOARD_SUMMARY_API_URL_V1;
 
   try {
     const dashboardSummaryApiResponse = await axiosInstance.get(url, {
@@ -108,7 +108,7 @@ export const getMyLinks = async (props: {
   authToken: string;
 }): Promise<MyLinksApiResponse> => {
   const url =
-    process.env.REACT_APP_BACKEND_BASE_URL + DASHBOARD_MY_LINKS_API_URL_V1;
+    process.env["REACT_APP_BACKEND_BASE_URL"] + DASHBOARD_MY_LINKS_API_URL_V1;
 
   try {
     const myLinksApiResponse = await axiosInstance.get(url, {
@@ -178,7 +178,8 @@ export const getUrlMetrics = async (props: {
   authToken: string;
 }): Promise<UrlMetricApiResponse> => {
   const url =
-    process.env.REACT_APP_BACKEND_BASE_URL + DASHBOARD_URL_METRICS_API_URL_V1;
+    process.env["REACT_APP_BACKEND_BASE_URL"] +
+    DASHBOARD_URL_METRICS_API_URL_V1;
 
   try {
     const urlMetricsApiResponse = await axiosInstance.get(url, {
@@ -297,7 +298,7 @@ const geographicalApiPromise = (
   geographicRequest: UrlGeographicalRequest
 ): Promise<AxiosResponse> => {
   const geographicalStatsApiUrl =
-    process.env.REACT_APP_BACKEND_BASE_URL + GET_URL_GEOGRAPHICAL_DATA_V1;
+    process.env["REACT_APP_BACKEND_BASE_URL"] + GET_URL_GEOGRAPHICAL_DATA_V1;
 
   const geographicalApiPromiseResponse = axiosInstance.get(
     geographicalStatsApiUrl,
@@ -321,7 +322,7 @@ const getDeviceMetricsStats = (
   props: DeviceMetricsApiRequest
 ): Promise<AxiosResponse> => {
   const deviceStatsApiUrl =
-    process.env.REACT_APP_BACKEND_BASE_URL +
+    process.env["REACT_APP_BACKEND_BASE_URL"] +
     DASHBOARD_DEVICE_METRICS_API_URL_V1;
 
   const deviceMetricsApiResponse = axiosInstance.get(deviceStatsApiUrl, {
@@ -343,7 +344,7 @@ const popularUrlsPromise = (
   popularUrlRequest: TopPopularUrlRequest
 ): Promise<AxiosResponse> => {
   const popularUrlsApiUrl =
-    process.env.REACT_APP_BACKEND_BASE_URL + GET_TOP_POPULAR_URLS_V1;
+    process.env["REACT_APP_BACKEND_BASE_URL"] + GET_TOP_POPULAR_URLS_V1;
 
   const popularUrlApiResponse = axiosInstance.get(popularUrlsApiUrl, {
     params: {

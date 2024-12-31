@@ -12,6 +12,7 @@ import {
   errorResponse,
   isAxiosNetworkError,
 } from "../../utils/errorutils";
+import { axiosInstance } from "../base";
 import {
   ForgotPasswordApiResponse,
   LoginApiResponse,
@@ -21,13 +22,12 @@ import {
   ResetPasswordApiResponse,
   SignupApiResponse,
 } from "./auth.api.response";
-import { axiosInstance } from "../base";
 
 const doGetOAuthProvider = async (
   props: GetOAuthProviderRequestProps
 ): Promise<OAuthProviderResponse> => {
   const url =
-    process.env.REACT_APP_BACKEND_BASE_URL + GET_OAUTH_PROVIDERS_URL_V1;
+    process.env["REACT_APP_BACKEND_BASE_URL"] + GET_OAUTH_PROVIDERS_URL_V1;
 
   try {
     const provider: string | undefined = props.provider;
@@ -62,7 +62,7 @@ const doGetOAuthProvider = async (
 const doOAuthCallback = async (
   props: OAuthCallbackRequest
 ): Promise<OAuthCallbackResponse> => {
-  const url = process.env.REACT_APP_BACKEND_BASE_URL + OAUTH_CALLBACK_URL_V1;
+  const url = process.env["REACT_APP_BACKEND_BASE_URL"] + OAUTH_CALLBACK_URL_V1;
 
   const requestBody = {
     auth_code: props.authCode,
@@ -102,7 +102,7 @@ const doOAuthCallback = async (
 const doSignup = async (
   props: SignupApiRequestProps
 ): Promise<SignupApiResponse> => {
-  const url = process.env.REACT_APP_BACKEND_BASE_URL + SIGNUP_API_URL_V1;
+  const url = process.env["REACT_APP_BACKEND_BASE_URL"] + SIGNUP_API_URL_V1;
 
   const requestBody = {
     name: props.name.trim(),
@@ -163,7 +163,7 @@ const doSignup = async (
 const doLogin = async (
   props: LoginApiRequestProps
 ): Promise<LoginApiResponse> => {
-  const url = process.env.REACT_APP_BACKEND_BASE_URL + LOGIN_API_URL_V1;
+  const url = process.env["REACT_APP_BACKEND_BASE_URL"] + LOGIN_API_URL_V1;
 
   const requestBody = {
     email: props.email,
@@ -200,7 +200,7 @@ const doLogin = async (
 const doLogout = async (
   props: LogoutApiRequestProps
 ): Promise<LogoutApiResponse> => {
-  const url = process.env.REACT_APP_BACKEND_BASE_URL + LOGOUT_API_URL_V1;
+  const url = process.env["REACT_APP_BACKEND_BASE_URL"] + LOGOUT_API_URL_V1;
 
   const requestBody = {
     auth_token: props.authToken,
@@ -236,7 +236,7 @@ const doForgotPassword = async (
   props: ForgotPasswordRequestProps
 ): Promise<ForgotPasswordApiResponse> => {
   const url =
-    process.env.REACT_APP_BACKEND_BASE_URL + FORGOT_PASSWORD_API_URL_V1;
+    process.env["REACT_APP_BACKEND_BASE_URL"] + FORGOT_PASSWORD_API_URL_V1;
 
   const requestBody = {
     email: props.email,
@@ -274,7 +274,7 @@ const doResetPassword = async (
   props: ResetPasswordRequestProps
 ): Promise<ResetPasswordApiResponse> => {
   const url =
-    process.env.REACT_APP_BACKEND_BASE_URL + RESET_PASSWORD_API_URL_V1;
+    process.env["REACT_APP_BACKEND_BASE_URL"] + RESET_PASSWORD_API_URL_V1;
 
   const requestBody = {
     email: props.email,
@@ -309,11 +309,11 @@ const doResetPassword = async (
 };
 
 export {
-  doSignup,
+  doForgotPassword,
+  doGetOAuthProvider,
   doLogin,
   doLogout,
-  doForgotPassword,
-  doResetPassword,
-  doGetOAuthProvider,
   doOAuthCallback,
+  doResetPassword,
+  doSignup,
 };

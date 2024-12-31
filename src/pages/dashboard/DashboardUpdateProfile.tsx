@@ -1,28 +1,28 @@
 import React, { RefObject, useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { getProfile, updateProfile } from "../../api/user/user";
+import RegularButton from "../../components/button/RegularButton";
 import DashboardNavbar from "../../components/dashboard-navbar/DashboardNavbar";
 import DashboardHeadSubHead from "../../components/dashboardheadsubhead/DashboardHeadSubHead";
+import DropdownSelector from "../../components/dropdownselector/DropdownSelector";
+import InputField from "../../components/inputfield/InputField";
+import Modal from "../../components/modal/Modal";
+import { ModalIcon } from "../../components/modal/Modal.enums";
 import {
   DASHBOARD_URL,
   DASH_UPDATE_PROFILE_HEAD,
   DASH_UPDATE_PROFILE_SUBHEAD,
   LOGIN_URL,
 } from "../../constants";
-import InputField from "../../components/inputfield/InputField";
-import RegularButton from "../../components/button/RegularButton";
-import { getProfile, updateProfile } from "../../api/user/user";
 import useAuth from "../../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
-import { validateUpdateProfileRequest } from "../../utils/validationutils";
-import Modal from "../../components/modal/Modal";
-import { ModalIcon } from "../../components/modal/Modal.enums";
-import DropdownSelector from "../../components/dropdownselector/DropdownSelector";
 import { signupCountryDropdown } from "../../utils/dropdownutils";
+import { validateUpdateProfileRequest } from "../../utils/validationutils";
 
 import "./Dashboard.css";
 
 const DashboardUpdateProfile = () => {
   const defaultProfileData: ProfileData = {
-    profilePicture: process.env.REACT_APP_DEFAULT_PROFILE_PICTURE!!,
+    profilePicture: process.env["REACT_APP_DEFAULT_PROFILE_PICTURE"]!!,
     name: "",
     bio: "",
     phone: "",
@@ -77,7 +77,7 @@ const DashboardUpdateProfile = () => {
     const fetchedProfile: ProfileData = {
       profilePicture: profile.profile_picture
         ? profile.profile_picture
-        : process.env.REACT_APP_DEFAULT_PROFILE_PICTURE!!,
+        : process.env["REACT_APP_DEFAULT_PROFILE_PICTURE"]!!,
       name: profile.name ? profile.name : "",
       bio: profile.bio ? profile.bio : "",
       phone: profile.phone ? profile.phone : "",

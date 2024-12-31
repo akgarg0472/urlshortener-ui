@@ -1,4 +1,3 @@
-import { axiosInstance } from "../base";
 import {
   DASHBOARD_DELETE_PROFILE_API_URL_V1,
   DASHBOARD_GET_PROFILE_API_URL_V1,
@@ -6,22 +5,23 @@ import {
   DASHBOARD_UPDATE_PROFILE_API_URL_V1,
 } from "../../api.endpoint.constants";
 import {
+  axiosNwErrorResponse,
+  isAxiosNetworkError,
+} from "../../utils/errorutils";
+import { axiosInstance } from "../base";
+import {
   DeleteProfileResponse,
   GetProfileResponse,
   UpdatePasswordResponse,
   UpdateProfileResponse,
 } from "./user.api.response";
-import {
-  axiosNwErrorResponse,
-  isAxiosNetworkError,
-} from "../../utils/errorutils";
 
 export const getProfile = async (
   userId: string,
   authToken: string
 ): Promise<GetProfileResponse> => {
   const url =
-    process.env.REACT_APP_BACKEND_BASE_URL +
+    process.env["REACT_APP_BACKEND_BASE_URL"] +
     DASHBOARD_GET_PROFILE_API_URL_V1.replace("$profileId", userId);
 
   try {
@@ -65,7 +65,7 @@ export const updateProfile = async (
   authToken: string
 ): Promise<UpdateProfileResponse> => {
   const url =
-    process.env.REACT_APP_BACKEND_BASE_URL +
+    process.env["REACT_APP_BACKEND_BASE_URL"] +
     DASHBOARD_UPDATE_PROFILE_API_URL_V1.replace("$profileId", userId);
 
   let profilePicture: File | null = null;
@@ -117,7 +117,7 @@ export const updatePassword = async (
   authToken: string
 ): Promise<UpdatePasswordResponse> => {
   const url =
-    process.env.REACT_APP_BACKEND_BASE_URL +
+    process.env["REACT_APP_BACKEND_BASE_URL"] +
     DASHBOARD_UPDATE_PASSWORD_API_URL_V1.replace("$profileId", profileId);
 
   try {
@@ -148,7 +148,7 @@ export const deleteProfile = async (
   profileId: string
 ): Promise<DeleteProfileResponse> => {
   const url =
-    process.env.REACT_APP_BACKEND_BASE_URL +
+    process.env["REACT_APP_BACKEND_BASE_URL"] +
     DASHBOARD_DELETE_PROFILE_API_URL_V1.replace("$profileId", profileId);
 
   try {

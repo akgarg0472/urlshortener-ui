@@ -4,15 +4,14 @@ import {
   errorResponse,
   isAxiosNetworkError,
 } from "../../utils/errorutils";
+import { ApiErrorResponse, axiosInstance } from "../base";
 import { GenerateUrlResponse } from "../dashboard/dashboard.api.response";
-import { ApiErrorResponse } from "../base";
-import { axiosInstance } from "../base";
 
 export const generateShortUrl = async (
   props: GenerateUrlRequest
 ): Promise<GenerateUrlResponse> => {
   const url =
-    process.env.REACT_APP_BACKEND_BASE_URL + GENERATE_SHORT_URL_API_URL_V1;
+    process.env["REACT_APP_BACKEND_BASE_URL"] + GENERATE_SHORT_URL_API_URL_V1;
 
   try {
     const generateShortUrlResponse = await axiosInstance.post(

@@ -206,7 +206,7 @@ const Dashboard = () => {
             return (
               <PopularUrl
                 key={index}
-                shortUrl={`${process.env.REACT_APP_PREFIX_URL_FOR_SHORT_URL}/${url.short_url}`}
+                shortUrl={`${process.env["REACT_APP_PREFIX_URL_FOR_SHORT_URL"]}/${url.short_url}`}
                 hitsCount={url.hits_count}
                 originalUrl={url.original_url}
                 seqNumber={index + 1}

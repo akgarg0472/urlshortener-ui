@@ -1,46 +1,147 @@
-# Getting Started with Create React App
+# 🖥️ URL Shortener UI
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository contains the front-end UI code for **URL Shortener** project, built with **React**, **TypeScript**, and **CSS**. The front-end communicates with a back-end API to shorten and manage URLs.
 
-## Available Scripts
+### 📦 Tech Stack:
 
-In the project directory, you can run:
+- **React**: JavaScript library for building user interfaces.
+- **TypeScript**: Superset of JavaScript, providing static types for better development experience.
+- **CSS**: Styling for the application UI.
 
-### `npm start`
+## 🚀 Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Prerequisites
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- [Node.js](https://nodejs.org/en/) (Recommended version: 18.x)
+- [npm](https://www.npmjs.com/) (Node Package Manager) or [yarn](https://yarnpkg.com/)
+- [Docker](https://www.docker.com/) (optional, for containerized deployment)
 
-### `npm test`
+### 🛠️ Development Setup
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Clone the repository**:
 
-### `npm run build`
+   ```bash
+   git clone https://github.com/akgarg0472/urlshortener-ui.git
+   cd urlshortener-ui
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. **Install dependencies**:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   Using npm:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```bash
+   npm install
+   ```
 
-### `npm run eject`
+   Or using yarn:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+   ```bash
+   yarn install
+   ```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. **Start the development server**:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+   Using npm:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+   ```bash
+   npm start
+   ```
 
-## Learn More
+   Or using yarn:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   ```bash
+   yarn start
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+   This will start the application on http://localhost:3000.
+
+4. Access the app in your browser at `http://localhost:3000`.
+
+## 🌱 Environment Variables
+
+The following environment variables are used in this project to configure various aspects of the app:
+
+- **`REACT_APP_PREFIX_URL_FOR_SHORT_URL`**:  
+  The base URL for the shortened URLs.  
+  Example: `localhost:8765`
+
+- **`REACT_APP_STRIPE_PUBLISHABLE_KEY`**:  
+  The Stripe publishable key used for Stripe payment integrations (not in use for now).  
+  Example: `pk_test_xxxxx`
+
+- **`REACT_APP_BACKEND_BASE_URL`**:  
+  The base URL of the back-end API that the front-end communicates with.  
+  Example: `http://127.0.0.1:8765`
+
+- **`REACT_APP_DEFAULT_PROFILE_PICTURE`**:  
+  The default profile picture URL used in the app when a user doesn't upload a custom image.  
+  Example: `https://res.cloudinary.com/dmdbqq7fp/profile-pictures/default.png`
+
+Make sure to configure these variables in your `.env` file to ensure proper functionality of the application.
+
+## 🛠️ Docker Setup (Optional)
+
+For containerized deployment, this project comes with a Docker setup. The `Dockerfile` is already configured to build and run the application.
+
+The `Dockerfile` defines the build and runtime configuration for the container. You can build and run the React app in a Docker container using the following steps.
+
+1. **Build the Docker image**:
+
+   In the root of the project directory, run the following command:
+
+   ```bash
+   docker build -t akgarg0472/urlshortener-ui:1.0.0 .
+   ```
+
+2. **Run the Docker container**:
+
+   Once the image is built, you can run the container, mapping the app to port `3000` on your host:
+
+   ```bash
+   docker run -p 3000:80 akgarg0472/urlshortener-ui:1.0.0
+   ```
+
+   The React app will now be served through **Nginx** on port `3000` of your local machine.
+
+3. **Access the app**:
+
+   Open a browser and navigate to `http://localhost:3000` to see the app running.
+
+## 🔧 Development Tools
+
+This project uses the following tools and dependencies for development:
+
+- **Node.js**: JavaScript runtime used for running the development server and building the app.
+- **npm** or **yarn**: Package managers used to manage dependencies and run scripts.
+- **React**: Front-end JavaScript library for building the user interface.
+- **TypeScript**: Superset of JavaScript that adds static types for better development experience.
+- **Docker**: Containerization platform for running the app in isolated environments.
+- **Nginx**: Web server used to serve the production build of the React app in the Docker container.
+- **VS Code** or other IDEs: Popular text editors for writing and editing code with extensions for React and TypeScript.
+
+### Back-end
+
+The UI communicates with a back-end service to shorten URLs and display results. The back-end API should be configured to handle requests for shortening and managing URLs.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit issues and pull requests.
+
+### How to contribute:
+
+- Fork the repository
+- Create a new branch (`git checkout -b feature/your-feature-name`)
+- Commit your changes (`git commit -am 'Add new feature'`)
+- Push to the branch (`git push origin feature/your-feature-name`)
+- Open a pull request
+
+## 🔗 References
+
+Here are some useful resources for understanding and working with the technologies used in this project:
+
+- **React**: [https://reactjs.org/](https://reactjs.org/) - The JavaScript library used for building the user interface.
+- **TypeScript**: [https://www.typescriptlang.org/](https://www.typescriptlang.org/) - The superset of JavaScript that adds static typing to your code.
+- **Docker**: [https://www.docker.com/](https://www.docker.com/) - Platform for developing, shipping, and running applications inside containers.
+- **Nginx**: [https://www.nginx.com/](https://www.nginx.com/) - Web server used to serve static files in this project.
+- **Node.js**: [https://nodejs.org/en/](https://nodejs.org/en/) - JavaScript runtime built on Chrome's V8 JavaScript engine, used for the app's development environment.
+- **Create React App**: [https://reactjs.org/docs/create-a-new-react-app.html](https://reactjs.org/docs/create-a-new-react-app.html) - The tool used for bootstrapping the React application.

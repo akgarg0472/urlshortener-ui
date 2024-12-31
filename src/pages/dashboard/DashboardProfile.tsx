@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { getProfile } from "../../api/user/user";
 import DashboardStatsHeading from "../../components/DashboardStatsHeading/DashboardStatsHeading";
 import DashboardNavbar from "../../components/dashboard-navbar/DashboardNavbar";
+import ProfileAccountInformation from "../../components/dashboard-profile/ProfileAccountInformation";
+import ProfileAddressInformation from "../../components/dashboard-profile/ProfileAddressInformation";
+import ProfileChangePassword from "../../components/dashboard-profile/ProfileChangePassword";
+import ProfileDeleteAccount from "../../components/dashboard-profile/ProfileDeleteAccount";
+import ProfilePersonalDetails from "../../components/dashboard-profile/ProfilePersonalDetails";
 import DashboardHeadSubHead from "../../components/dashboardheadsubhead/DashboardHeadSubHead";
 import InternalLoader from "../../components/loader/internal-loader/InternalLoader";
+import Modal from "../../components/modal/Modal";
+import { ModalIcon } from "../../components/modal/Modal.enums";
 import {
   DASH_PROFILE_HEAD,
   DASH_PROFILE_SUBHEAD,
   LOGIN_URL,
 } from "../../constants";
-import { getProfile } from "../../api/user/user";
-import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import Modal from "../../components/modal/Modal";
-import { ModalIcon } from "../../components/modal/Modal.enums";
-import ProfileChangePassword from "../../components/dashboard-profile/ProfileChangePassword";
-import ProfileDeleteAccount from "../../components/dashboard-profile/ProfileDeleteAccount";
-import ProfileAccountInformation from "../../components/dashboard-profile/ProfileAccountInformation";
-import ProfileAddressInformation from "../../components/dashboard-profile/ProfileAddressInformation";
-import ProfilePersonalDetails from "../../components/dashboard-profile/ProfilePersonalDetails";
 
 import "./Dashboard.css";
 
@@ -28,7 +28,7 @@ const DashboardProfile = () => {
 
   const [profileData, setProfileData] = useState<ProfileData>({
     id: "",
-    profilePicture: process.env.REACT_APP_DEFAULT_PROFILE_PICTURE!!,
+    profilePicture: process.env["REACT_APP_DEFAULT_PROFILE_PICTURE"]!!,
     name: "",
     bio: "",
     phone: "",
@@ -78,7 +78,7 @@ const DashboardProfile = () => {
       email: profile.email,
       profilePicture: profile.profile_picture
         ? profile.profile_picture
-        : process.env.REACT_APP_DEFAULT_PROFILE_PICTURE!!,
+        : process.env["REACT_APP_DEFAULT_PROFILE_PICTURE"]!!,
       name: profile.name ? profile.name : "",
       bio: profile.bio ? profile.bio : "",
       phone: profile.phone ? profile.phone : "",
