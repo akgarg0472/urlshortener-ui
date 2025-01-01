@@ -136,7 +136,6 @@ const doSignup = async (
       if (err.response.status === 409) {
         return {
           success: false,
-          // message: "",
           errors: response.message || response.error_message,
           httpCode: response.error_code || response.status_code,
         };
@@ -145,16 +144,18 @@ const doSignup = async (
       let errors = "Signup request failed";
 
       if (err.response.status === 400) {
-        errors = `Params ${Object.keys(response.errors).join(
-          ", "
-        )} are missing`;
+        if (typeof response.errors === "object" && response.errors !== null) {
+          errors = `Params ${Object.keys(response.errors).join(", ")} are missing`;
+        } else if (typeof response.errors === "string") {
+          errors = response.errors;
+        }
       }
 
       return {
         success: false,
         message: response.message || response.error_message,
         httpCode: response.error_code || response.status_code,
-        errors,
+        errors: errors,
       };
     }
 

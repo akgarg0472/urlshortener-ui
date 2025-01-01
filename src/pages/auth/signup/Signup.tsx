@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
-import RegularButton from "../../../components/button/RegularButton";
-import { doSignup } from "../../../api/auth/auth";
-import Loader from "../../../components/loader/Loader";
-import Modal from "../../../components/modal/Modal";
-import { LoaderSpeed } from "../../../components/loader/Loader.enums";
-import { ModalIcon } from "../../../components/modal/Modal.enums";
 import { useNavigate } from "react-router-dom";
-import { LOGIN_URL } from "../../../constants";
+import { doSignup } from "../../../api/auth/auth";
+import { SignupApiResponse } from "../../../api/auth/auth.api.response";
+import RegularButton from "../../../components/button/RegularButton";
 import InputField from "../../../components/inputfield/InputField";
 import { InputFieldType } from "../../../components/inputfield/InputField.enums";
-import { SignupApiResponse } from "../../../api/auth/auth.api.response";
+import Loader from "../../../components/loader/Loader";
+import { LoaderSpeed } from "../../../components/loader/Loader.enums";
+import Modal from "../../../components/modal/Modal";
+import { ModalIcon } from "../../../components/modal/Modal.enums";
+import { LOGIN_URL } from "../../../constants";
 
+import { validatePasswordAndConfirmPassword } from "../../../utils/authutils";
+import { validateEmail } from "../../../utils/validationutils";
 import "../Auth.css";
 
 const Signup = () => {
@@ -26,6 +28,19 @@ const Signup = () => {
   const [confirmPassword, setConfirmPassword] = useState<string>("");
 
   const handleSignupButtonClick = async () => {
+    if (!validateEmail(email)) {
+      Modal.showModal({
+        icon: ModalIcon.ERROR,
+        title: "Validation Failed",
+        message: "Please provide a valid email",
+      });
+      return;
+    }
+
+    if (!validatePasswordAndConfirmPassword(password, confirmPassword)) {
+      return;
+    }
+
     Loader.showLoader({
       speed: LoaderSpeed.MEDIUM,
     });
@@ -38,6 +53,8 @@ const Signup = () => {
     });
 
     Loader.hideLoader();
+
+    console.log(signupApiResponse);
 
     if (signupApiResponse.success) {
       Modal.showModal({
