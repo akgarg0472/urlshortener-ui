@@ -14,8 +14,16 @@ RUN npm run build
 # Step 2: Serve the React app using Nginx
 FROM nginx:alpine
 
+COPY --from=build /app/nginx.conf /etc/nginx/nginx.conf
+
 COPY --from=build /app/build /usr/share/nginx/html
 
-EXPOSE 80
+COPY --from=build /app/public/env-config.js.template /usr/share/nginx/html/env-config.js.template
 
-CMD ["nginx", "-g", "daemon off;"]
+COPY --from=build /app/entrypoint.sh /entrypoint.sh
+
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
+
+EXPOSE 80

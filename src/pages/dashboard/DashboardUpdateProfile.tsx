@@ -18,11 +18,15 @@ import useAuth from "../../hooks/useAuth";
 import { signupCountryDropdown } from "../../utils/dropdownutils";
 import { validateUpdateProfileRequest } from "../../utils/validationutils";
 
+import { getEnv } from "../../utils/envutils";
 import "./Dashboard.css";
 
 const DashboardUpdateProfile = () => {
   const defaultProfileData: ProfileData = {
-    profilePicture: process.env["REACT_APP_DEFAULT_PROFILE_PICTURE"]!,
+    profilePicture: getEnv(
+      "REACT_APP_DEFAULT_PROFILE_PICTURE",
+      "https://res.cloudinary.com/dmdbqq7fp/profile-pictures/default.png"
+    )!,
     name: "",
     bio: "",
     phone: "",
@@ -78,7 +82,10 @@ const DashboardUpdateProfile = () => {
     const fetchedProfile: ProfileData = {
       profilePicture: profile.profile_picture
         ? profile.profile_picture
-        : process.env["REACT_APP_DEFAULT_PROFILE_PICTURE"]!,
+        : getEnv(
+            "REACT_APP_DEFAULT_PROFILE_PICTURE",
+            "https://res.cloudinary.com/dmdbqq7fp/profile-pictures/default.png"
+          )!,
       name: profile.name ? profile.name : "",
       bio: profile.bio ? profile.bio : "",
       phone: profile.phone ? profile.phone : "",

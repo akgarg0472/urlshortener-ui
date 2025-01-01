@@ -1,4 +1,5 @@
 import { GENERATE_SHORT_URL_API_URL_V1 } from "../../api.endpoint.constants";
+import { getEnv } from "../../utils/envutils";
 import {
   axiosNwErrorResponse,
   errorResponse,
@@ -11,7 +12,8 @@ export const generateShortUrl = async (
   props: GenerateUrlRequest
 ): Promise<GenerateUrlResponse> => {
   const url =
-    process.env["REACT_APP_BACKEND_BASE_URL"] + GENERATE_SHORT_URL_API_URL_V1;
+    getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765") +
+    GENERATE_SHORT_URL_API_URL_V1;
 
   try {
     const generateShortUrlResponse = await axiosInstance.post(

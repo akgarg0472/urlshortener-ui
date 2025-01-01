@@ -10,7 +10,7 @@ Dockerfile
 
 # Ignore logs and local development environment files
 *.log
-*.env
+.env
 .env.example
 
 # Ignore git-related files

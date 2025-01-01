@@ -4,6 +4,7 @@ import {
   DASHBOARD_UPDATE_PASSWORD_API_URL_V1,
   DASHBOARD_UPDATE_PROFILE_API_URL_V1,
 } from "../../api.endpoint.constants";
+import { getEnv } from "../../utils/envutils";
 import {
   axiosNwErrorResponse,
   isAxiosNetworkError,
@@ -21,7 +22,7 @@ export const getProfile = async (
   authToken: string
 ): Promise<GetProfileResponse> => {
   const url =
-    process.env["REACT_APP_BACKEND_BASE_URL"] +
+    getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765") +
     DASHBOARD_GET_PROFILE_API_URL_V1.replace("$profileId", userId);
 
   try {
@@ -65,7 +66,7 @@ export const updateProfile = async (
   authToken: string
 ): Promise<UpdateProfileResponse> => {
   const url =
-    process.env["REACT_APP_BACKEND_BASE_URL"] +
+    getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765") +
     DASHBOARD_UPDATE_PROFILE_API_URL_V1.replace("$profileId", userId);
 
   let profilePicture: File | null = null;
@@ -117,7 +118,7 @@ export const updatePassword = async (
   authToken: string
 ): Promise<UpdatePasswordResponse> => {
   const url =
-    process.env["REACT_APP_BACKEND_BASE_URL"] +
+    getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765") +
     DASHBOARD_UPDATE_PASSWORD_API_URL_V1.replace("$profileId", profileId);
 
   try {
@@ -148,7 +149,7 @@ export const deleteProfile = async (
   profileId: string
 ): Promise<DeleteProfileResponse> => {
   const url =
-    process.env["REACT_APP_BACKEND_BASE_URL"] +
+    getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765") +
     DASHBOARD_DELETE_PROFILE_API_URL_V1.replace("$profileId", profileId);
 
   try {

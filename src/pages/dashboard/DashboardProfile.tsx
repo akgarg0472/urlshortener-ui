@@ -19,6 +19,7 @@ import {
 } from "../../constants";
 import useAuth from "../../hooks/useAuth";
 
+import { getEnv } from "../../utils/envutils";
 import "./Dashboard.css";
 
 const DashboardProfile = () => {
@@ -28,7 +29,10 @@ const DashboardProfile = () => {
 
   const [profileData, setProfileData] = useState<ProfileData>({
     id: "",
-    profilePicture: process.env["REACT_APP_DEFAULT_PROFILE_PICTURE"]!,
+    profilePicture: getEnv(
+      "REACT_APP_DEFAULT_PROFILE_PICTURE",
+      "https://res.cloudinary.com/dmdbqq7fp/profile-pictures/default.png"
+    )!,
     name: "",
     bio: "",
     phone: "",
@@ -79,7 +83,10 @@ const DashboardProfile = () => {
       email: profile.email,
       profilePicture: profile.profile_picture
         ? profile.profile_picture
-        : process.env["REACT_APP_DEFAULT_PROFILE_PICTURE"]!,
+        : getEnv(
+            "REACT_APP_DEFAULT_PROFILE_PICTURE",
+            "https://res.cloudinary.com/dmdbqq7fp/profile-pictures/default.png"
+          ),
       name: profile.name ? profile.name : "",
       bio: profile.bio ? profile.bio : "",
       phone: profile.phone ? profile.phone : "",

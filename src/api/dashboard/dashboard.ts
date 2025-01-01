@@ -11,6 +11,7 @@ import {
   getCurrentDayStartTimeInMs,
   getOneWeekOldTimeInMsFromCurrentDate,
 } from "../../utils/datetimeutils";
+import { getEnv } from "../../utils/envutils";
 import {
   axiosNwErrorResponse,
   errorResponse,
@@ -28,7 +29,8 @@ export const getDashboard = async (
   props: DashboardSummaryApiRequest
 ): Promise<DashboardApiResponse> => {
   const url =
-    process.env["REACT_APP_BACKEND_BASE_URL"] + DASHBOARD_SUMMARY_API_URL_V1;
+    getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765") +
+    DASHBOARD_SUMMARY_API_URL_V1;
 
   try {
     const dashboardSummaryApiResponse = await axiosInstance.get(url, {
@@ -108,7 +110,8 @@ export const getMyLinks = async (props: {
   authToken: string;
 }): Promise<MyLinksApiResponse> => {
   const url =
-    process.env["REACT_APP_BACKEND_BASE_URL"] + DASHBOARD_MY_LINKS_API_URL_V1;
+    getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765") +
+    DASHBOARD_MY_LINKS_API_URL_V1;
 
   try {
     const myLinksApiResponse = await axiosInstance.get(url, {
@@ -178,7 +181,7 @@ export const getUrlMetrics = async (props: {
   authToken: string;
 }): Promise<UrlMetricApiResponse> => {
   const url =
-    process.env["REACT_APP_BACKEND_BASE_URL"] +
+    getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765") +
     DASHBOARD_URL_METRICS_API_URL_V1;
 
   try {
@@ -298,7 +301,8 @@ const geographicalApiPromise = (
   geographicRequest: UrlGeographicalRequest
 ): Promise<AxiosResponse> => {
   const geographicalStatsApiUrl =
-    process.env["REACT_APP_BACKEND_BASE_URL"] + GET_URL_GEOGRAPHICAL_DATA_V1;
+    getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765") +
+    GET_URL_GEOGRAPHICAL_DATA_V1;
 
   const geographicalApiPromiseResponse = axiosInstance.get(
     geographicalStatsApiUrl,
@@ -322,7 +326,7 @@ const getDeviceMetricsStats = (
   props: DeviceMetricsApiRequest
 ): Promise<AxiosResponse> => {
   const deviceStatsApiUrl =
-    process.env["REACT_APP_BACKEND_BASE_URL"] +
+    getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765") +
     DASHBOARD_DEVICE_METRICS_API_URL_V1;
 
   const deviceMetricsApiResponse = axiosInstance.get(deviceStatsApiUrl, {
@@ -344,7 +348,8 @@ const popularUrlsPromise = (
   popularUrlRequest: TopPopularUrlRequest
 ): Promise<AxiosResponse> => {
   const popularUrlsApiUrl =
-    process.env["REACT_APP_BACKEND_BASE_URL"] + GET_TOP_POPULAR_URLS_V1;
+    getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765") +
+    GET_TOP_POPULAR_URLS_V1;
 
   const popularUrlApiResponse = axiosInstance.get(popularUrlsApiUrl, {
     params: {

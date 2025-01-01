@@ -29,6 +29,7 @@ import Modal from "../../components/modal/Modal";
 import { ModalIcon } from "../../components/modal/Modal.enums";
 import NoDataAvailable from "../../components/no-data-available/NoDataAvailable";
 import PieChart from "../../components/pie-chart/PieChart";
+import PopularUrl from "../../components/popular-url/PopularUrl";
 import {
   DASH_BROWSER_HEAD,
   DASH_BROWSER_SUBHEAD,
@@ -45,8 +46,8 @@ import {
 } from "../../constants";
 import useAuth from "../../hooks/useAuth";
 import { getCurrentDateTime } from "../../utils/datetimeutils";
+import { getEnv } from "../../utils/envutils";
 
-import PopularUrl from "../../components/popular-url/PopularUrl";
 import "./Dashboard.css";
 
 const Dashboard = () => {
@@ -207,7 +208,7 @@ const Dashboard = () => {
             return (
               <PopularUrl
                 key={index}
-                shortUrl={`${process.env["REACT_APP_PREFIX_URL_FOR_SHORT_URL"]}/${url.short_url}`}
+                shortUrl={`${getEnv("REACT_APP_PREFIX_URL_FOR_SHORT_URL", "http://127.0.0.1:8765")}/${url.short_url}`}
                 hitsCount={url.hits_count}
                 originalUrl={url.original_url}
                 seqNumber={index + 1}
