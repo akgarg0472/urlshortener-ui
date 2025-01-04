@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { convertUtcTimeStringToLocalTime } from "../../utils/datetimeutils";
 import ShortUrlMetricModal from "../short-url-metric-modal/ShortUrlMetricModal";
 import "./MyLink.css";
 import { MyLinkProps } from "./MyLink.types";
@@ -13,7 +14,7 @@ const MyLink = (props: MyLinkProps) => {
           onClose={() => {
             setShowDialog(false);
           }}
-          createdAt={props.url.created_at}
+          createdAt={convertUtcTimeStringToLocalTime(props.url.created_at)}
           originalUrl={props.url.original_url}
           shortUrl={props.url.short_url}
           createdByIp={props.url.ip_address}
@@ -40,7 +41,7 @@ const MyLink = (props: MyLinkProps) => {
               >
                 Short URL:&nbsp;
               </span>
-              {props.url.short_url}
+              {`${props.url.short_url}`}
             </div>
 
             <div className="original__url__container">
@@ -65,7 +66,7 @@ const MyLink = (props: MyLinkProps) => {
             >
               Created At:&nbsp;
             </span>
-            {props.url.created_at}
+            {convertUtcTimeStringToLocalTime(props.url.created_at)}
           </div>
 
           <div className="ip__address__container">

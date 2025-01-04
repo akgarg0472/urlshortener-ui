@@ -40,7 +40,7 @@ export const DASH_CONTINET_SUBHEAD: string =
 export const DASH_COUNTRY_HEAD: string = "Countries";
 export const DASH_COUNTRY_SUBHEAD: string =
   "Represents detailed geographical information, offering a comprehensive view of countries where URL is accessed or clicked";
-export const DASH_MY_LINKS_HEAD: string = "🔗 My Links";
+export const DASH_MY_LINKS_HEAD: string = "🔗 Generated Links";
 export const DASH_MY_LINKS_SUBHEAD: string =
   "An informative dataset featuring original URLs, shortened URLs, timestamps indicating when the URLs were shortened, and the respective IP addresses from which the shortening occurred";
 export const DASH_STATISTICS_HEAD: string = "🔗 Statistics";

@@ -2,17 +2,18 @@
   padding: 1rem;
   width: 100%;
   font-size: 1.6rem;
+  border-radius: 0.6rem;
 }
 .chart__percentage__stats__container table {
   width: 100%;
   margin-top: 0.8rem;
   text-align: center;
   border-collapse: collapse;
-  border-radius: 0.6rem;
+  overflow: hidden;
 }
 .chart__percentage__stats__container table th,
 .chart__percentage__stats__container table td {
-  padding: 1.4rem;
+  padding: 1rem 1.4rem;
   border: 1px solid #ddd;
 }
 .chart__percentage__stats__container table th {
@@ -21,7 +22,7 @@
   font-weight: bold;
 }
 .chart__percentage__stats__container table td {
-  background-color: #fff;
+  border-radius: 0.6rem;
 }
 .chart__percentage__stats__container table tr:nth-child(even) {
   background-color: #f2f2f2;

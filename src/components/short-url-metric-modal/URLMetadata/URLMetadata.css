@@ -1,25 +1,28 @@
 .summ_url__metadata__container {
-  width: 26rem;
-  height: 4.8rem;
-  background: rgba(0, 0, 0, 0.1);
-  padding: 0 0.8rem;
+  width: 100%;
+  padding: 1.2rem;
   border-radius: 0.6rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  background: #f4f4f4;
 }
 .summ_url__metadata__container .title {
-  height: 2.4rem;
+  height: auto;
   display: flex;
   align-items: flex-end;
   font-weight: 700;
   color: #757575;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 .summ_url__metadata__container .value {
-  height: 2.4rem;
   display: flex;
   align-items: flex-start;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
+  margin-top: 0.4rem;
 }

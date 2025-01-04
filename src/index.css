@@ -55,8 +55,16 @@ html {
   font-size: 62.5%;
   scroll-behavior: smooth;
   background-color: var(--bg-secondary);
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI,
-    Roboto, Helvetica Neue, Arial, sans-serif;
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Helvetica Neue,
+    Arial,
+    sans-serif;
 }
 
 .uss__button__disabled {

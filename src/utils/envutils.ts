@@ -1,14 +1,20 @@
 export const getEnv = (key: string, defaultValue: string): string => {
-  const processEnv = typeof process !== "undefined" && process.env[key];
+  const processEnv = process.env[key];
+
+  if (process.env.NODE_ENV === "production") {
+    if (processEnv) {
+      return processEnv;
+    } else {
+      const windowEnv = window.env && window.env[key];
+
+      if (windowEnv) {
+        return windowEnv;
+      }
+    }
+  }
 
   if (processEnv) {
     return processEnv;
-  }
-
-  const windowEnv = window.env && window.env[key];
-
-  if (windowEnv) {
-    return windowEnv;
   }
 
   return defaultValue;

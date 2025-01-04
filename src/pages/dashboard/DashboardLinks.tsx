@@ -110,7 +110,7 @@ const DashboardLinks = () => {
                     <MyLink
                       url={url}
                       serialNumber={index + 1}
-                      key={`${url.short_url}_${index}`} // todo: fix later
+                      key={`${url.short_url}`}
                       userId={getUserId()!}
                     />
                   ))

@@ -208,7 +208,7 @@ const Dashboard = () => {
             return (
               <PopularUrl
                 key={index}
-                shortUrl={`${getEnv("REACT_APP_PREFIX_URL_FOR_SHORT_URL", "http://127.0.0.1:8765")}/${url.short_url}`}
+                shortUrl={`${getEnv("REACT_APP_PREFIX_URL_FOR_SHORT_URL", "localhost:8765").replace(/\/+$/, "")}/${url.short_url.replace(/^\/+/, "")}`}
                 hitsCount={url.hits_count}
                 originalUrl={url.original_url}
                 seqNumber={index + 1}

@@ -14,25 +14,29 @@
   border: none;
   outline: none;
   animation: create__short__url__modal__dialog__animation 200ms linear 1;
+  border-radius: 0.8rem;
 }
 .create__short__url__modal__dialog .create__short__url__dialog__title__container {
   height: 4.8rem;
-  background: rgba(0, 0, 0, 0.1);
+  background: var(--bg-dark, rgb(23, 23, 23));
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0.4rem 1.6rem;
+  border-top-left-radius: 0.8rem;
+  border-top-right-radius: 0.8rem;
 }
 .create__short__url__modal__dialog .create__short__url__dialog__title__container .title {
   font-size: 1.4rem;
   font-weight: 700;
+  color: var(--text-primary, #ffffff);
 }
 .create__short__url__modal__dialog .create__short__url__dialog__title__container .close__button__container {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.4rem;
-  height: 2.4rem;
+  width: 2rem;
+  height: 2rem;
   cursor: pointer;
 }
 .create__short__url__modal__dialog .create__short__url__dialog__title__container .close__button__container img {
@@ -46,15 +50,16 @@
   width: 75%;
   height: 100%;
   margin: auto;
+  font-size: 1.8rem;
 }
 .create__short__url__modal__dialog .short__url__dialog__container .generate__short__url__btn {
   width: 50%;
-  height: 4.8rem;
+  height: 5.6rem;
   border-radius: 0.6rem;
   border: none;
   outline: none;
   color: #222222;
-  font-weight: 700;
+  font-weight: 600;
   cursor: pointer;
   margin: 0 auto;
   margin-top: 3.2rem;

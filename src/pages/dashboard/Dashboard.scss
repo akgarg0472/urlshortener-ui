@@ -12,7 +12,6 @@ $component__margin: 1.2rem 0;
   width: 100%;
   overflow-y: auto;
   padding: 4rem 4rem 2rem 4rem;
-  background: #f6f6f8;
   background: var(--dashboard-bg, #f6f6f8);
 
   .prev__seven__and__popular__urls__container {
@@ -120,13 +119,14 @@ $component__margin: 1.2rem 0;
     border-radius: 0.6rem;
     box-shadow: var(--dashboard-content-box-shadow);
     margin: $component__margin;
+    padding: 1.2rem;
 
     .popular__urls__stats__container {
-      padding: 2.8rem;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      padding: 2.8rem;
     }
   }
 
@@ -349,5 +349,26 @@ $component__margin: 1.2rem 0;
       text-align: center;
       margin-bottom: 1.6rem;
     }
+  }
+
+  .profile__page__update__profile__btn {
+    width: 24rem;
+    background: #6251d2;
+    font-size: 1.4rem;
+    border-radius: 0.6rem;
+    border: none;
+    margin: auto;
+    margin-top: 2rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    justify-content: center;
+    color: #ffffff;
+    padding: 1.2rem 2rem;
+  }
+
+  .profile__page__update__profile__btn:hover {
+    background: #4e40a9;
   }
 }

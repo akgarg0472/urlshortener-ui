@@ -36,6 +36,19 @@ const shortMonths = [
   "Dec",
 ];
 
+export const convertUtcTimeStringToLocalTime = (utcString: string): string => {
+  const utcDate = new Date(utcString);
+
+  const day = utcDate.getDate().toString().padStart(2, "0");
+  const month = utcDate.toLocaleString("en-US", { month: "short" });
+  const year = utcDate.getFullYear();
+  const hours = utcDate.getHours() % 12 || 12;
+  const minutes = utcDate.getMinutes().toString().padStart(2, "0");
+  const ampm = utcDate.getHours() >= 12 ? "PM" : "AM";
+
+  return `${day}-${month}-${year}, ${hours}:${minutes} ${ampm}`;
+};
+
 export const getCurrentDateTime = (): string => {
   const currentDate = new Date();
   const day = daysOfWeek[currentDate.getDay()];
@@ -48,7 +61,6 @@ export const getCurrentDateTime = (): string => {
 export const convertTimestampToDate = (timestamp: number): string => {
   const date = new Date(timestamp);
   const month = months[date.getMonth()];
-
   return `${date.getDate()} ${month}`;
 };
 
@@ -57,10 +69,9 @@ export const convertTimestampToDateTime = (timestamp: number): string => {
   const day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
   const month = shortMonths[date.getMonth()];
   const year = date.getFullYear();
-  const hours = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours();
-  const minutes = date.getMinutes();
+  const hours = (date.getHours() % 12 || 12).toString().padStart(2, "0");
+  const minutes = date.getMinutes().toString().padStart(2, "0");
   const amPm = date.getHours() >= 12 ? "PM" : "AM";
-
   return `${day}-${month}-${year}, ${hours}:${minutes} ${amPm}`;
 };
 

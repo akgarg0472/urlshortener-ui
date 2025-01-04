@@ -30,7 +30,7 @@ const InputField = (props: InputFieldProps) => {
                 color: "red",
               }}
             >
-              *
+              &nbsp;*
             </span>
           ) : (
             ""

@@ -1,14 +1,14 @@
 import React, { useRef, useState } from "react";
+import { GenerateUrlResponse } from "../../api/dashboard/dashboard.api.response";
+import { generateShortUrl } from "../../api/url/url";
 import useAuth from "../../hooks/useAuth";
 import RegularButton from "../button/RegularButton";
 import InputField from "../inputfield/InputField";
+import { InputFieldType } from "../inputfield/InputField.enums";
 import InternalLoader from "../loader/internal-loader/InternalLoader";
+import { InternalLoaderSize } from "../loader/Loader.enums";
 import Modal from "../modal/Modal";
 import { ModalIcon } from "../modal/Modal.enums";
-import { InputFieldType } from "../inputfield/InputField.enums";
-import { InternalLoaderSize } from "../loader/Loader.enums";
-import { generateShortUrl } from "../../api/url/url";
-import { GenerateUrlResponse } from "../../api/dashboard/dashboard.api.response";
 
 import "./CreateUrlModal.css";
 
@@ -116,6 +116,7 @@ const CreateUrlModal = (props: CreateUrlModalProps) => {
               text={originalUrl}
               type={InputFieldType.TEXT}
               title="Original URL"
+              isRequired={true}
             />
 
             <RegularButton

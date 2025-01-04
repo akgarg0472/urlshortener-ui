@@ -19,6 +19,7 @@ import {
 } from "../../constants";
 import useAuth from "../../hooks/useAuth";
 
+import LinkButton from "../../components/button/LinkButton";
 import { getEnv } from "../../utils/envutils";
 import "./Dashboard.css";
 
@@ -127,6 +128,14 @@ const DashboardProfile = () => {
                 profilePicture={profileData.profilePicture}
                 createdAt={profileData.createdAt}
                 email={profileData.email}
+              />
+
+              <LinkButton
+                className="profile__page__update__profile__btn"
+                text="Update Profile"
+                referrerPolicy="no-referrer"
+                onClickLink="/dashboard/profile/update"
+                target=""
               />
             </div>
 

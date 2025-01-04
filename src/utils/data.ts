@@ -294,11 +294,11 @@ export const dashboardNavbarLinks: NavbarLink[] = [
     path: "/dashboard/profile/update",
     icon: "/assets/icons/user.png",
   },
-  {
-    text: "Premium Plans",
-    path: "/dashboard/plans",
-    icon: "/assets/icons/user.png",
-  },
+  // {
+  //   text: "Premium Plans",
+  //   path: "/dashboard/plans",
+  //   icon: "/assets/icons/user.png",
+  // },
 ];
 
 export const dummyPremiumPlans = [

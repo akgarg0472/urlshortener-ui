@@ -2,17 +2,18 @@
   padding: 1rem;
   width: 100%;
   font-size: 1.6rem;
+  border-radius: 0.6rem;
 
   table {
     width: 100%;
     margin-top: 0.8rem;
     text-align: center;
     border-collapse: collapse;
-    border-radius: 0.6rem;
+    overflow: hidden;
 
     th,
     td {
-      padding: 1.4rem;
+      padding: 1rem 1.4rem;
       border: 1px solid #ddd;
     }
 
@@ -23,7 +24,7 @@
     }
 
     td {
-      background-color: #fff;
+      border-radius: 0.6rem;
     }
 
     tr:nth-child(even) {

@@ -28,8 +28,10 @@ const doGetOAuthProvider = async (
   props: GetOAuthProviderRequestProps
 ): Promise<OAuthProviderResponse> => {
   const url =
-    getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765") +
-    GET_OAUTH_PROVIDERS_URL_V1;
+    getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765").replace(
+      /\/+$/,
+      ""
+    ) + GET_OAUTH_PROVIDERS_URL_V1;
 
   try {
     const provider: string | undefined = props.provider;
@@ -65,8 +67,10 @@ const doOAuthCallback = async (
   props: OAuthCallbackRequest
 ): Promise<OAuthCallbackResponse> => {
   const url =
-    getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765") +
-    OAUTH_CALLBACK_URL_V1;
+    getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765").replace(
+      /\/+$/,
+      ""
+    ) + OAUTH_CALLBACK_URL_V1;
 
   const requestBody = {
     auth_code: props.authCode,
@@ -107,8 +111,10 @@ const doSignup = async (
   props: SignupApiRequestProps
 ): Promise<SignupApiResponse> => {
   const url =
-    getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765") +
-    SIGNUP_API_URL_V1;
+    getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765").replace(
+      /\/+$/,
+      ""
+    ) + SIGNUP_API_URL_V1;
 
   const requestBody = {
     name: props.name.trim(),
@@ -171,8 +177,10 @@ const doLogin = async (
   props: LoginApiRequestProps
 ): Promise<LoginApiResponse> => {
   const url =
-    getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765") +
-    LOGIN_API_URL_V1;
+    getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765").replace(
+      /\/+$/,
+      ""
+    ) + LOGIN_API_URL_V1;
 
   const requestBody = {
     email: props.email,
@@ -188,6 +196,7 @@ const doLogin = async (
       success: true,
       token: loginApiResponse.data.auth_token,
       userId: loginApiResponse.data.user_id,
+      name: loginApiResponse.data.name,
     };
   } catch (err: any) {
     if (isAxiosNetworkError(err)) {
@@ -210,8 +219,10 @@ const doLogout = async (
   props: LogoutApiRequestProps
 ): Promise<LogoutApiResponse> => {
   const url =
-    getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765") +
-    LOGOUT_API_URL_V1;
+    getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765").replace(
+      /\/+$/,
+      ""
+    ) + LOGOUT_API_URL_V1;
 
   const requestBody = {
     auth_token: props.authToken,
@@ -247,8 +258,10 @@ const doForgotPassword = async (
   props: ForgotPasswordRequestProps
 ): Promise<ForgotPasswordApiResponse> => {
   const url =
-    getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765") +
-    FORGOT_PASSWORD_API_URL_V1;
+    getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765").replace(
+      /\/+$/,
+      ""
+    ) + FORGOT_PASSWORD_API_URL_V1;
 
   const requestBody = {
     email: props.email,
@@ -286,8 +299,10 @@ const doResetPassword = async (
   props: ResetPasswordRequestProps
 ): Promise<ResetPasswordApiResponse> => {
   const url =
-    getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765") +
-    RESET_PASSWORD_API_URL_V1;
+    getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765").replace(
+      /\/+$/,
+      ""
+    ) + RESET_PASSWORD_API_URL_V1;
 
   const requestBody = {
     email: props.email,

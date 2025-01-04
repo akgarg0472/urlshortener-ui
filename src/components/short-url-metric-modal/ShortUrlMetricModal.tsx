@@ -4,11 +4,14 @@ import { LatestHit } from "../../api/dashboard/dashboard.api.modal";
 import { UrlMetricApiResponse } from "../../api/dashboard/dashboard.api.response";
 import useAuth from "../../hooks/useAuth";
 import { convertTimestampToDateTime } from "../../utils/datetimeutils";
+import { getEnv } from "../../utils/envutils";
 import InternalLoader from "../loader/internal-loader/InternalLoader";
 import {
   InternalLoaderSize,
   InternalLoaderSpeed,
 } from "../loader/Loader.enums";
+import Modal from "../modal/Modal";
+import { ModalIcon } from "../modal/Modal.enums";
 import URLMetadata from "./URLMetadata/URLMetadata";
 
 import "./ShortUrlMetricModal.css";
@@ -38,6 +41,14 @@ const ShortUrlMetricModal = (props: ShortUrlMetricModalProps) => {
 
     if (apiResponse.httpCode !== 200) {
       closeModal();
+      Modal.showModal({
+        icon: ModalIcon.ERROR,
+        title: "Error",
+        message: apiResponse.message,
+        onClose() {
+          props.onClose();
+        },
+      });
       return;
     }
 
@@ -58,7 +69,10 @@ const ShortUrlMetricModal = (props: ShortUrlMetricModalProps) => {
         <div className="url__metadata__modal__content__wrapper">
           <div className="url__metadata__container">
             <URLMetadata title="Original URL" value={props.originalUrl} />
-            <URLMetadata title="Short URL" value={props.shortUrl} />
+            <URLMetadata
+              title="Short URL"
+              value={`${getEnv("REACT_APP_PREFIX_URL_FOR_SHORT_URL", "localhost:8765").replace(/\/+$/, "")}/${props.shortUrl}`}
+            />
             <URLMetadata title="Created At" value={props.createdAt} />
             <URLMetadata title="Created From IP" value={props.createdByIp} />
             <URLMetadata title="Total Hits" value={totalHits} />
@@ -80,7 +94,7 @@ const ShortUrlMetricModal = (props: ShortUrlMetricModalProps) => {
                   <th>OS</th>
                   <th>Browser</th>
                   <th>Country</th>
-                  <th>Redirect Duration</th>
+                  <th>Redirect Time</th>
                   <th>Timezone</th>
                 </tr>
 

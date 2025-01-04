@@ -1,6 +1,6 @@
 $modal__width: 60vw;
-$modal__height: 75vh;
-$modal__close__btn__dimension: 2.4rem;
+$modal__height: auto;
+$modal__close__btn__dimension: 2rem;
 
 .short__url__metric__modal__overlay {
   padding: 0;
@@ -18,14 +18,17 @@ $modal__close__btn__dimension: 2.4rem;
   border: none;
   outline: none;
   animation: short__url__metric__modal__dialog__animation 200ms linear 1;
+  overflow: hidden;
+  border-radius: 0.8rem;
 
   .url__metric__dialog__title__container {
     height: 4.8rem;
-    background: rgba(0, 0, 0, 0.1);
+    background: var(--bg-dark, rgb(23, 23, 23));
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0.4rem 1.6rem;
+    color: var(--text-primary, #ffffff);
   }
 }
 
@@ -56,11 +59,9 @@ $modal__close__btn__dimension: 2.4rem;
   overflow-y: auto;
 
   .url__metadata__container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 2.4rem;
-    flex-wrap: wrap;
   }
 
   .latest__hits {
@@ -85,7 +86,7 @@ $modal__close__btn__dimension: 2.4rem;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
-        padding: 0.4rem;
+        padding: 0.8rem;
       }
 
       td {
