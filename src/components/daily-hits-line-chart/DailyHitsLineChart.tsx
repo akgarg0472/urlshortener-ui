@@ -1,6 +1,3 @@
-import React, { useEffect } from "react";
-import { Line } from "react-chartjs-2";
-import { convertTimestampToDate } from "../../utils/datetimeutils";
 import {
   CategoryScale,
   Chart as ChartJS,
@@ -11,7 +8,10 @@ import {
   Title,
   Tooltip,
 } from "chart.js";
+import React, { useEffect } from "react";
+import { Line } from "react-chartjs-2";
 import { generateChartBgAndBorderColorArrays } from "../../utils/colorutils";
+import { convertTimestampToDateAndShortMonth } from "../../utils/datetimeutils";
 
 import "./DailyHitsLineChart.css";
 
@@ -31,6 +31,7 @@ const DailyHitsLineChart = (props: DailyHitsLineChartProps) => {
 
   useEffect(() => {
     const colors = generateChartBgAndBorderColorArrays(1);
+    console.log(props.data);
     setBgColor(colors.backgroundColor[0]);
     setBorderColor(colors.borderColor[0]);
   }, []);
@@ -42,7 +43,7 @@ const DailyHitsLineChart = (props: DailyHitsLineChartProps) => {
           id={`id__${props.datasetLabel}`}
           data={{
             labels: props.data.map((item) =>
-              convertTimestampToDate(item.timestamp)
+              convertTimestampToDateAndShortMonth(item.timestamp)
             ),
             datasets: [
               {

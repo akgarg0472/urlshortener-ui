@@ -51,7 +51,7 @@ import { getEnv } from "../../utils/envutils";
 import "./Dashboard.css";
 
 const Dashboard = () => {
-  const { getUserId, logout, getAuthToken } = useAuth();
+  const { getUserId, getName, logout, getAuthToken } = useAuth();
   const navigate = useNavigate();
 
   const [todayStats, setTodayStats] = useState([] as DashboardApiStat[]);
@@ -108,7 +108,6 @@ const Dashboard = () => {
             authToken: authToken,
           },
         }),
-
         getDashboard({
           userId: userId!,
           startTime: 0,
@@ -227,14 +226,12 @@ const Dashboard = () => {
 
         <div className="dashboard__page__content">
           <div className="heading__time__section">
-            <div className="heading">Dashboard</div>
+            <div className="heading">Welcome, {getName()}</div>
             <div className="timestamp">{getCurrentDateTime()}</div>
             <div className="description">
-              Effortlessly track, manage, and analyze your shortened links in
-              real-time. Gain instant click insights, customize your URLs, and
-              navigate with ease. Our intuitive dashboard combines efficiency
-              and simplicity, transforming your link management experience.
-              Elevate your tracking game today!
+              Track and manage your links effortlessly. Get real-time insights,
+              customize URLs, and simplify your link management with our
+              intuitive dashboard. Elevate your tracking experience today!
             </div>
           </div>
 

@@ -27,91 +27,98 @@ import ErrorPage from "../pages/error/ErrorPage";
 import HomePage from "../pages/home/HomePage";
 import ProtectedRoute from "./ProtectedRoute";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <HomePage />,
+    },
+    {
+      path: SIGNUP_URL,
+      element: [<HomeNavbar key="navbar" />, <Signup key="signup__signup" />],
+    },
+    {
+      path: LOGIN_URL,
+      element: [<HomeNavbar key="navbar" />, <Login key="login__login" />],
+    },
+    {
+      path: FORGOT_PASSWORD_URL,
+      element: [
+        <HomeNavbar key="navbar" />,
+        <ForgotPassword key="forgot__password__forgot__password" />,
+      ],
+    },
+    {
+      path: RESET_PASSWORD_URL,
+      element: [
+        <HomeNavbar key="navbar" />,
+        <ResetPassword key="reset__password__element" />,
+      ],
+    },
+    {
+      path: OAUTH_SUCCESS_GOOGLE,
+      element: <OAuthSuccess />,
+    },
+    {
+      path: OAUTH_SUCCESS_GITHUB,
+      element: <OAuthSuccess />,
+    },
+    {
+      path: DASHBOARD_URL,
+      element: (
+        <ProtectedRoute element={<Dashboard />} redirectTo={DASHBOARD_URL} />
+      ),
+    },
+    {
+      path: DASHBOARD_LINKS_URL,
+      element: (
+        <ProtectedRoute
+          element={<DashboardLinks />}
+          redirectTo={DASHBOARD_LINKS_URL}
+        />
+      ),
+    },
+    // {
+    //   path: DASHBOARD_STATISTICS_URL,
+    //   element: (
+    //     <ProtectedRoute
+    //       element={<DashboardStatistics />}
+    //       redirectTo={DASHBOARD_STATISTICS_URL}
+    //     />
+    //   ),
+    // },
+    {
+      path: DASHBOARD_PROFILE_URL,
+      element: (
+        <ProtectedRoute
+          element={<DashboardProfile />}
+          redirectTo={DASHBOARD_PROFILE_URL}
+        />
+      ),
+    },
+    {
+      path: DASHBOARD_UPDATE_PROFILE_URL,
+      element: (
+        <ProtectedRoute
+          element={<DashboardUpdateProfile />}
+          redirectTo={DASHBOARD_UPDATE_PROFILE_URL}
+        />
+      ),
+    },
+    {
+      path: DASHBOARD_PAID_PLANS,
+      element: <DashboardPaidPlans />,
+    },
+    {
+      path: "*",
+      element: [<HomeNavbar key="navbar" />, <ErrorPage key="error__page" />],
+    },
+  ],
   {
-    path: "/",
-    element: <HomePage />,
-  },
-  {
-    path: SIGNUP_URL,
-    element: [<HomeNavbar key="navbar" />, <Signup key="signup__signup" />],
-  },
-  {
-    path: LOGIN_URL,
-    element: [<HomeNavbar key="navbar" />, <Login key="login__login" />],
-  },
-  {
-    path: FORGOT_PASSWORD_URL,
-    element: [
-      <HomeNavbar key="navbar" />,
-      <ForgotPassword key="forgot__password__forgot__password" />,
-    ],
-  },
-  {
-    path: RESET_PASSWORD_URL,
-    element: [
-      <HomeNavbar key="navbar" />,
-      <ResetPassword key="reset__password__element" />,
-    ],
-  },
-  {
-    path: OAUTH_SUCCESS_GOOGLE,
-    element: <OAuthSuccess />,
-  },
-  {
-    path: OAUTH_SUCCESS_GITHUB,
-    element: <OAuthSuccess />,
-  },
-  {
-    path: DASHBOARD_URL,
-    element: (
-      <ProtectedRoute element={<Dashboard />} redirectTo={DASHBOARD_URL} />
-    ),
-  },
-  {
-    path: DASHBOARD_LINKS_URL,
-    element: (
-      <ProtectedRoute
-        element={<DashboardLinks />}
-        redirectTo={DASHBOARD_LINKS_URL}
-      />
-    ),
-  },
-  // {
-  //   path: DASHBOARD_STATISTICS_URL,
-  //   element: (
-  //     <ProtectedRoute
-  //       element={<DashboardStatistics />}
-  //       redirectTo={DASHBOARD_STATISTICS_URL}
-  //     />
-  //   ),
-  // },
-  {
-    path: DASHBOARD_PROFILE_URL,
-    element: (
-      <ProtectedRoute
-        element={<DashboardProfile />}
-        redirectTo={DASHBOARD_PROFILE_URL}
-      />
-    ),
-  },
-  {
-    path: DASHBOARD_UPDATE_PROFILE_URL,
-    element: (
-      <ProtectedRoute
-        element={<DashboardUpdateProfile />}
-        redirectTo={DASHBOARD_UPDATE_PROFILE_URL}
-      />
-    ),
-  },
-  {
-    path: DASHBOARD_PAID_PLANS,
-    element: <DashboardPaidPlans />,
-  },
-  {
-    path: "*",
-    element: [<HomeNavbar key="navbar" />, <ErrorPage key="error__page" />],
-  },
-]);
+    future: {
+      v7_relativeSplatPath: true,
+    },
+  }
+);
 
 export default router;

@@ -18,15 +18,16 @@
 }
 .dashboard__page__content .heading__time__section {
   background: #ffffff;
-  width: 64rem;
+  width: 45%;
   border-radius: 0.6rem;
   box-shadow: var(--dashboard-content-box-shadow);
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  padding: 1.6rem;
+  padding: 2rem;
   margin: 1.2rem 0;
+  margin-top: 0;
 }
 .dashboard__page__content .heading__time__section .heading {
   color: rgba(0, 0, 0, 0.8);

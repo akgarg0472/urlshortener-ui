@@ -1,5 +1,8 @@
 # 🖥️ URL Shortener UI
 
+![React Version](https://img.shields.io/badge/React-18-blue)
+![version](https://img.shields.io/badge/version-1.1.0-blue)
+
 This repository contains the front-end UI code for **URL Shortener** project, built with **React**, **TypeScript**, and **CSS**. The front-end communicates with a back-end API to shorten and manage URLs.
 
 ### 📦 Tech Stack:

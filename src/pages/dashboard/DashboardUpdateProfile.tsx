@@ -6,6 +6,7 @@ import DashboardNavbar from "../../components/dashboard-navbar/DashboardNavbar";
 import DashboardHeadSubHead from "../../components/dashboardheadsubhead/DashboardHeadSubHead";
 import DropdownSelector from "../../components/dropdownselector/DropdownSelector";
 import InputField from "../../components/inputfield/InputField";
+import Loader from "../../components/loader/Loader";
 import Modal from "../../components/modal/Modal";
 import { ModalIcon } from "../../components/modal/Modal.enums";
 import {
@@ -16,9 +17,9 @@ import {
 } from "../../constants";
 import useAuth from "../../hooks/useAuth";
 import { signupCountryDropdown } from "../../utils/dropdownutils";
+import { getEnv } from "../../utils/envutils";
 import { validateUpdateProfileRequest } from "../../utils/validationutils";
 
-import { getEnv } from "../../utils/envutils";
 import "./Dashboard.css";
 
 const DashboardUpdateProfile = () => {
@@ -156,6 +157,10 @@ const DashboardUpdateProfile = () => {
         updateProfileRequest,
         getAuthToken()!
       );
+
+      Loader.showLoader();
+
+      Loader.hideLoader();
 
       if (updateResponse.httpCode === 401 || updateResponse.httpCode === 403) {
         logout();

@@ -50,3 +50,17 @@ $dashboard__link__top__bottom__margin: 0.4rem;
     }
   }
 }
+
+.dashboard__link:hover {
+  background: var(--dashboard-navbar-link-active-bg);
+
+  .dashboard__link__img__container {
+    .dashboard__link__img {
+      background-color: var(--dashboard-navbar-link-active-img-color);
+    }
+  }
+
+  .dashboard__link__text {
+    color: var(--dashboard-navbar-link-txt-active);
+  }
+}

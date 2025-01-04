@@ -10,6 +10,7 @@ import {
 import {
   getCurrentDayStartTimeInMs,
   getOneWeekOldTimeInMsFromCurrentDate,
+  getUserTimezone,
 } from "../../utils/datetimeutils";
 import { getEnv } from "../../utils/envutils";
 import {
@@ -43,6 +44,7 @@ export const getDashboard = async (
         currentDayStartTime: getCurrentDayStartTimeInMs(),
         currentTime: new Date().getTime(),
         oneWeekOldTime: getOneWeekOldTimeInMsFromCurrentDate(),
+        timezone: getUserTimezone(),
       },
       headers: {
         "X-USER-ID": props.userId,

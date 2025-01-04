@@ -3,7 +3,10 @@
   background-image: none;
   border: 1px solid #747775;
   color: #1f1f1f;
-  transition: background-color 0.218s, border-color 0.218s, box-shadow 0.218s;
+  transition:
+    background-color 0.218s,
+    border-color 0.218s,
+    box-shadow 0.218s;
 }
 
 .google_login_button .google_logo {
@@ -13,9 +16,7 @@
 }
 
 .google_login_button:hover {
-  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+  box-shadow:
+    0 1px 2px 0 rgba(60, 64, 67, 0.3),
     0 1px 3px 1px rgba(60, 64, 67, 0.15);
-  // cursor: default;
-  // background-color: #ffffff61;
-  // border-color: #1f1f1f1f;
 }

@@ -58,9 +58,11 @@ export const getCurrentDateTime = (): string => {
   return `${day}, ${date} ${month} ${year}`;
 };
 
-export const convertTimestampToDate = (timestamp: number): string => {
+export const convertTimestampToDateAndShortMonth = (
+  timestamp: number
+): string => {
   const date = new Date(timestamp);
-  const month = months[date.getMonth()];
+  const month = shortMonths[date.getMonth()];
   return `${date.getDate()} ${month}`;
 };
 
@@ -86,4 +88,12 @@ export const getOneWeekOldTimeInMsFromCurrentDate = (): number => {
   currentDate.setHours(0, 0, 0, 0);
   const oneWeekAgoTimestamp = currentDate.getTime() - 7 * 24 * 60 * 60 * 1000;
   return oneWeekAgoTimestamp;
+};
+
+export const getUserTimezone = (): string => {
+  try {
+    return Intl.DateTimeFormat().resolvedOptions().timeZone;
+  } catch (e: any) {
+    return "UTC";
+  }
 };
