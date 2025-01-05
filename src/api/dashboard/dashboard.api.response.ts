@@ -20,8 +20,6 @@ export interface GenerateUrlResponse extends ApiResponse {
 export interface DashboardApiResponse extends ApiResponse {
   lifetime_stats: DashboardApiStat[];
   current_day_stats: DashboardApiStat[];
-  continents: Continent[];
-  countries: Country[];
   prev_seven_days_hits: PrevSevenDaysHit[];
   success: boolean;
 }

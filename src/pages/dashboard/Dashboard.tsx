@@ -120,7 +120,9 @@ const Dashboard = () => {
 
     if (
       dashboardApiResponse.httpCode === 401 ||
-      dashboardApiResponse.httpCode === 403
+      dashboardStatisticsApiResponse.httpCode === 401 ||
+      dashboardApiResponse.httpCode === 403 ||
+      dashboardStatisticsApiResponse.httpCode === 403
     ) {
       logout();
       navigate("/login", { replace: true });
@@ -137,8 +139,7 @@ const Dashboard = () => {
     setTodayStats(dashboardApiResponse.current_day_stats);
     setLifetimeStats(dashboardApiResponse.lifetime_stats);
     setPrevSevenDayHitsData(dashboardApiResponse.prev_seven_days_hits);
-    setContinents(dashboardApiResponse.continents);
-    setCountries(dashboardApiResponse.countries);
+
     handlePopularURLs(dashboardStatisticsApiResponse.popularUrls!);
     handleGeographicalData(dashboardStatisticsApiResponse.geographicalStats!);
     handleOSBrowserData(dashboardStatisticsApiResponse.deviceMetrics!);

@@ -31,7 +31,6 @@ const DailyHitsLineChart = (props: DailyHitsLineChartProps) => {
 
   useEffect(() => {
     const colors = generateChartBgAndBorderColorArrays(1);
-    console.log(props.data);
     setBgColor(colors.backgroundColor[0]);
     setBorderColor(colors.borderColor[0]);
   }, []);
