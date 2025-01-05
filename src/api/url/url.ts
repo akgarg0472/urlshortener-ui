@@ -23,6 +23,7 @@ export const generateShortUrl = async (
       {
         user_id: props.userId,
         original_url: props.originalUrl,
+        expires_at: props.expirationTime,
       },
       {
         headers: {

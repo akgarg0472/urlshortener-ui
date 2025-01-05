@@ -61,6 +61,13 @@ $modal__border__radius: 0.8rem;
     margin: auto;
     font-size: 1.8rem;
 
+    .input__fields__container {
+      display: grid;
+      width: 100%;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.4rem;
+    }
+
     .generate__short__url__btn {
       width: 50%;
       height: 5.6rem;

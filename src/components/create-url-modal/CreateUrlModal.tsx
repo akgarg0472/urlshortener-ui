@@ -1,6 +1,4 @@
 import React, { useRef, useState } from "react";
-import { GenerateUrlResponse } from "../../api/dashboard/dashboard.api.response";
-import { generateShortUrl } from "../../api/url/url";
 import useAuth from "../../hooks/useAuth";
 import RegularButton from "../button/RegularButton";
 import InputField from "../inputfield/InputField";
@@ -10,14 +8,18 @@ import { InternalLoaderSize } from "../loader/Loader.enums";
 import Modal from "../modal/Modal";
 import { ModalIcon } from "../modal/Modal.enums";
 
+import { GenerateUrlResponse } from "../../api/dashboard/dashboard.api.response";
+import { generateShortUrl } from "../../api/url/url";
+import { isValidAndFutureMillisecond } from "../../utils/datetimeutils";
 import "./CreateUrlModal.css";
 
 const CreateUrlModal = (props: CreateUrlModalProps) => {
   const { getUserId, getAuthToken } = useAuth();
 
   const generateShortUrlButtonRef = useRef<HTMLButtonElement>(null);
-  const [loading, setLoading] = useState(false);
-  const [originalUrl, setOriginalUrl] = useState("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [originalUrl, setOriginalUrl] = useState<string>("");
+  const [expirationDate, setExpirationDate] = useState<number | null>(null);
 
   const handleGenerateShortUrlButtonClick = async () => {
     if (!originalUrl) {
@@ -25,6 +27,15 @@ const CreateUrlModal = (props: CreateUrlModalProps) => {
         icon: ModalIcon.ERROR,
         title: "ERROR",
         message: "Please provide valid URL",
+      });
+      return;
+    }
+
+    if (!isValidAndFutureMillisecond(expirationDate)) {
+      Modal.showModal({
+        icon: ModalIcon.ERROR,
+        title: "ERROR",
+        message: "Please provide a valid future expiration date and time",
       });
       return;
     }
@@ -45,9 +56,10 @@ const CreateUrlModal = (props: CreateUrlModalProps) => {
 
     const generateShortUrlApiResponse: GenerateUrlResponse =
       await generateShortUrl({
-        originalUrl,
-        userId,
-        authToken,
+        originalUrl: originalUrl,
+        expirationTime: expirationDate,
+        userId: userId,
+        authToken: authToken,
       });
 
     setLoading(false);
@@ -109,15 +121,28 @@ const CreateUrlModal = (props: CreateUrlModalProps) => {
           </div>
 
           <div className="short__url__dialog__container">
-            <InputField
-              id="create__short__url__IF"
-              onChange={(e) => setOriginalUrl(e.target.value)}
-              placeholder="Enter Original URL"
-              text={originalUrl}
-              type={InputFieldType.TEXT}
-              title="Original URL"
-              isRequired={true}
-            />
+            <div className="input__fields__container">
+              <InputField
+                id="create__short__url__IF"
+                onChange={(e) => setOriginalUrl(e.target.value)}
+                placeholder="Enter Original URL"
+                text={originalUrl}
+                type={InputFieldType.TEXT}
+                title="Original URL"
+                isRequired={true}
+              />
+
+              <InputField
+                id="short__url__expiration__IF"
+                onChange={(e) => {
+                  setExpirationDate(new Date(e.target.value).getTime());
+                }}
+                placeholder="Expiration Time"
+                text={originalUrl}
+                type={InputFieldType.DATE_TIME}
+                title="Expiration Time"
+              />
+            </div>
 
             <RegularButton
               reference={generateShortUrlButtonRef}

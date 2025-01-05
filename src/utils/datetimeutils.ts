@@ -96,3 +96,16 @@ export const getUserTimezone = (): string => {
     return "UTC";
   }
 };
+
+export const isValidAndFutureMillisecond = (ms: number | null): boolean => {
+  if (ms === null) {
+    return true;
+  }
+
+  try {
+    return Date.now() < ms;
+    // eslint-disable-next-line
+  } catch (e: any) {
+    return false;
+  }
+};

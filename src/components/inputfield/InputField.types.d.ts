@@ -5,7 +5,7 @@ interface InputFieldProps {
   placeholder?: string;
   className?: string;
   id: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   style?: React.CSSProperties;
   isRequired?: boolean;
   onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;

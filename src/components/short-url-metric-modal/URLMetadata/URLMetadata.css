@@ -7,6 +7,8 @@
   justify-content: center;
   flex-direction: column;
   background: #f4f4f4;
+  overflow: hidden;
+  width: 100%;
 }
 .summ_url__metadata__container .title {
   height: auto;
@@ -17,6 +19,7 @@
   font-size: 1.2rem;
 }
 .summ_url__metadata__container .value {
+  width: 100%;
   display: flex;
   align-items: flex-start;
   text-overflow: ellipsis;

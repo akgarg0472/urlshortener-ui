@@ -1,6 +1,7 @@
 import React from "react";
-import "./InputField.css";
 import { InputFieldType } from "./InputField.enums";
+
+import "./InputField.css";
 
 const InputField = (props: InputFieldProps) => {
   const getInputType = (type: InputFieldType) => {
@@ -11,6 +12,8 @@ const InputField = (props: InputFieldProps) => {
         return "password";
       case InputFieldType.EMAIL:
         return "email";
+      case InputFieldType.DATE_TIME:
+        return "datetime-local";
     }
   };
 
@@ -44,7 +47,6 @@ const InputField = (props: InputFieldProps) => {
           type={getInputType(props.type)}
           onChange={props.onChange}
           placeholder={props.placeholder}
-          value={props.text}
           onKeyDown={(event) => {
             if (event.key === "Enter" && props.onKeyDown) {
               props.onKeyDown(event);
