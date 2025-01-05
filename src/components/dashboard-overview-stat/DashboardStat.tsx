@@ -34,6 +34,7 @@ const DashboardStat = (props: DashboardStatsProps) => {
             : "percentage__change__increase"
       );
     }
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -46,7 +47,7 @@ const DashboardStat = (props: DashboardStatsProps) => {
             <div className={`percentage__change ${percentageChangeClassName}`}>
               <span className="percentage">{percentChange}</span>
 
-              {percentChangeDirection > 0 ? (
+              {percentChangeDirection >= 0 ? (
                 <span className="direction__arrow">&#x2191;</span>
               ) : (
                 <span className="direction__arrow">&#x2193;</span>

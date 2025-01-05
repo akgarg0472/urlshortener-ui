@@ -19,7 +19,7 @@ const ChartPercentageStatsContainer = (
             <tr>
               <th>S.No.</th>
               <th>Name</th>
-              <th>Total</th>
+              <th>Count</th>
               <th>Percentage</th>
             </tr>
           </thead>

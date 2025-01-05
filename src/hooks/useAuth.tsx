@@ -23,6 +23,7 @@ const useAuth = () => {
       };
 
       localStorage.setItem(AUTH_OBJ_NAME, JSON.stringify(auth));
+      // eslint-disable-next-line
     } catch (_: any) {
       return false;
     }

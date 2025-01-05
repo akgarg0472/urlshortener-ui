@@ -203,6 +203,7 @@ const Login = () => {
       }, 1000);
 
       window.addEventListener("storage", storageMessageListener);
+      // eslint-disable-next-line
     } catch (_: any) {
       Modal.showModal({
         icon: ModalIcon.ERROR,
@@ -316,6 +317,7 @@ const Login = () => {
       }, 1000);
 
       window.addEventListener("storage", storageMessageListener);
+      // eslint-disable-next-line
     } catch (_: any) {
       Modal.showModal({
         icon: ModalIcon.ERROR,

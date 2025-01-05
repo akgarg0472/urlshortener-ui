@@ -38,14 +38,12 @@ const shortMonths = [
 
 export const convertUtcTimeStringToLocalTime = (utcString: string): string => {
   const utcDate = new Date(utcString);
-
   const day = utcDate.getDate().toString().padStart(2, "0");
   const month = utcDate.toLocaleString("en-US", { month: "short" });
   const year = utcDate.getFullYear();
   const hours = utcDate.getHours() % 12 || 12;
   const minutes = utcDate.getMinutes().toString().padStart(2, "0");
   const ampm = utcDate.getHours() >= 12 ? "PM" : "AM";
-
   return `${day}-${month}-${year}, ${hours}:${minutes} ${ampm}`;
 };
 
@@ -93,6 +91,7 @@ export const getOneWeekOldTimeInMsFromCurrentDate = (): number => {
 export const getUserTimezone = (): string => {
   try {
     return Intl.DateTimeFormat().resolvedOptions().timeZone;
+    // eslint-disable-next-line
   } catch (e: any) {
     return "UTC";
   }

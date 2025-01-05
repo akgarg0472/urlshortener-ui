@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import RegularButton from "../button/RegularButton";
 
-import "./PaidPlan.css";
 import { getPublicApiKey } from "../../api/payment/payment";
+import "./PaidPlan.css";
 
 const PaidPlan = (props: PaidPlanProps) => {
   const [apiOperation, setApiOperation] = useState<boolean>(false);
 
-  const handleButtonClick = async (e: React.MouseEvent) => {
+  const handleButtonClick = async () => {
     setApiOperation(true);
     setApiOperation(true);
     await getPublicApiKey("stripe");
