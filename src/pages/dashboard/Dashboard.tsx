@@ -4,15 +4,7 @@ import {
   getDashboard,
   getDashboardStatistics,
 } from "../../api/dashboard/dashboard";
-import {
-  Browser,
-  Continent,
-  Country,
-  DashboardApiStat,
-  OS,
-  PopularURL,
-  PrevSevenDaysHit,
-} from "../../api/dashboard/dashboard.api.modal";
+import * as apiModal from "../../api/dashboard/dashboard.api.modal";
 import {
   DeviceMetricsApiResponse,
   GeographicalApiResponse,
@@ -54,17 +46,22 @@ const Dashboard = () => {
   const { getUserId, getName, logout, getAuthToken } = useAuth();
   const navigate = useNavigate();
 
-  const [todayStats, setTodayStats] = useState([] as DashboardApiStat[]);
-  const [lifetimeStats, setLifetimeStats] = useState([] as DashboardApiStat[]);
-  const [prevSevenDaysHitsData, setPrevSevenDayHitsData] = useState(
-    [] as PrevSevenDaysHit[]
+  const [todayStats, setTodayStats] = useState<apiModal.DashboardApiStat[]>([]);
+  const [prevDayStats, setPrevDayStats] = useState<apiModal.DashboardApiStat[]>(
+    []
   );
-  const [continents, setContinents] = useState([] as Continent[]);
-  const [countries, setCountries] = useState([] as Country[]);
-  const [loading, setLoading] = useState(true);
-  const [popularUrls, setPopularUrls] = useState([] as PopularURL[]);
-  const [oss, setOss] = useState([] as OS[]);
-  const [browsers, setBrowsers] = useState([] as Browser[]);
+  const [lifetimeStats, setLifetimeStats] = useState<
+    apiModal.DashboardApiStat[]
+  >([]);
+  const [prevSevenDaysHitsData, setPrevSevenDayHitsData] = useState<
+    apiModal.PrevSevenDaysHit[]
+  >([]);
+  const [continents, setContinents] = useState<apiModal.Continent[]>([]);
+  const [countries, setCountries] = useState<apiModal.Country[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [popularUrls, setPopularUrls] = useState<apiModal.PopularURL[]>([]);
+  const [oss, setOss] = useState<apiModal.OS[]>([]);
+  const [browsers, setBrowsers] = useState<apiModal.Browser[]>([]);
 
   useEffect(() => {
     document.title = "Dashboard";
@@ -139,6 +136,7 @@ const Dashboard = () => {
     setTodayStats(dashboardApiResponse.current_day_stats);
     setLifetimeStats(dashboardApiResponse.lifetime_stats);
     setPrevSevenDayHitsData(dashboardApiResponse.prev_seven_days_hits);
+    setPrevDayStats(dashboardApiResponse.prev_day_stats);
 
     handlePopularURLs(dashboardStatisticsApiResponse.popularUrls!);
     handleGeographicalData(dashboardStatisticsApiResponse.geographicalStats!);
@@ -153,7 +151,9 @@ const Dashboard = () => {
     }
   };
 
-  const processCountriesData = (countries: Country[]): Country[] => {
+  const processCountriesData = (
+    countries: apiModal.Country[]
+  ): apiModal.Country[] => {
     if (countries.length <= 10) {
       return countries;
     }
@@ -204,7 +204,7 @@ const Dashboard = () => {
     return (
       <React.Fragment>
         <div className="popular__urls__stats__container">
-          {popularUrls.map((url: PopularURL, index: number) => {
+          {popularUrls.map((url: apiModal.PopularURL, index: number) => {
             return (
               <PopularUrl
                 key={index}
@@ -237,18 +237,19 @@ const Dashboard = () => {
           </div>
 
           <div className="stats__overview__container">
-            {todayStats.map((stat, index) => (
+            {todayStats.map((stat) => (
               <DashboardStat
-                key={index}
+                key={stat.id}
                 title={stat.key}
                 value={stat.value}
                 suffix={stat.suffix}
+                prevDayValue={prevDayStats.find((s) => s.id === stat.id)?.value}
               />
             ))}
 
-            {lifetimeStats.map((stat, index) => (
+            {lifetimeStats.map((stat) => (
               <DashboardStat
-                key={index}
+                key={stat.id}
                 title={stat.key}
                 value={stat.value}
                 suffix={stat.suffix}

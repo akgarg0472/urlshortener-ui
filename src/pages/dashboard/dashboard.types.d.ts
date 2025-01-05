@@ -1,4 +1,4 @@
-interface ProfileData {
+type ProfileData = {
   id?: string;
   email?: string;
   profilePicture: string;
@@ -14,4 +14,9 @@ interface ProfileData {
   lastPasswordChangedAt?: number;
   lastLogin?: number;
   createdAt?: number;
-}
+};
+
+type PercentageChange = {
+  percentage: number;
+  direction: 1 | -1 | 0;
+};

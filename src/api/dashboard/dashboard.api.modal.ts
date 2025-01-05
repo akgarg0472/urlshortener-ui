@@ -1,4 +1,5 @@
 export interface DashboardApiStat {
+  id: string;
   key: string;
   value: string;
   suffix: string;

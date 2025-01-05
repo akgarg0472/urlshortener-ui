@@ -55,6 +55,7 @@ export const getDashboard = async (
     return {
       httpCode: dashboardSummaryApiResponse.status,
       current_day_stats: dashboardSummaryApiResponse.data.current_day_stats,
+      prev_day_stats: dashboardSummaryApiResponse.data.prev_day_stats,
       lifetime_stats: dashboardSummaryApiResponse.data.lifetime_stats,
       prev_seven_days_hits:
         dashboardSummaryApiResponse.data.prev_seven_days_hits,
@@ -70,6 +71,7 @@ export const getDashboard = async (
         httpCode: axiosNetworkErrorResponse.httpCode,
         message: axiosNetworkErrorResponse.message,
         current_day_stats: [],
+        prev_day_stats: [],
         lifetime_stats: [],
         prev_seven_days_hits: [],
       };
@@ -83,6 +85,7 @@ export const getDashboard = async (
         httpCode: errResp.httpCode,
         message: errResp.message,
         current_day_stats: [],
+        prev_day_stats: [],
         lifetime_stats: [],
         prev_seven_days_hits: [],
       };
@@ -93,6 +96,7 @@ export const getDashboard = async (
       httpCode: 500,
       message: "Dashboard Fetch Failed",
       current_day_stats: [],
+      prev_day_stats: [],
       lifetime_stats: [],
       prev_seven_days_hits: [],
     };

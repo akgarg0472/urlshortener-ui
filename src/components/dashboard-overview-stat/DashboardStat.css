@@ -6,10 +6,42 @@
   flex-direction: column;
   border-radius: 0.6rem;
 }
-.dashboard__stats__container .title {
+.dashboard__stats__container .title__pc__container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.dashboard__stats__container .title__pc__container .title {
   color: rgba(51, 51, 51, 0.75);
   font-size: 1.6rem;
   font-weight: 600;
+  width: 50%;
+}
+.dashboard__stats__container .title__pc__container .percentage__change {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  padding: 0.4rem 0.8rem;
+  width: 20%;
+  border-radius: 0.4rem;
+  font-weight: 600;
+}
+.dashboard__stats__container .title__pc__container .percentage__change .direction__arrow {
+  margin-left: 1px;
+}
+.dashboard__stats__container .title__pc__container .percentage__change__decrease {
+  background-color: rgba(255, 107, 73, 0.2);
+  color: rgb(206, 73, 44);
+}
+.dashboard__stats__container .title__pc__container .percentage__change__increase {
+  background-color: rgba(34, 197, 94, 0.2);
+  color: rgb(39, 149, 79);
+}
+.dashboard__stats__container .title__pc__container .percentage__no__change {
+  background-color: rgba(255, 208, 68, 0.209);
+  color: rgb(164, 135, 50);
 }
 .dashboard__stats__container .value__container {
   font-size: 1.6rem;
