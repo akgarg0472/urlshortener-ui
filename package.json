@@ -1,6 +1,6 @@
 {
   "name": "urlshortener-ui",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "private": true,
   "dependencies": {
     "@stripe/react-stripe-js": "^2.3.1",
