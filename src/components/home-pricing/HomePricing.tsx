@@ -1,9 +1,9 @@
 import React from "react";
 
-import "./HomePricing.css";
-import HomeHeading from "../home-heading/HomeHeading";
 import { HOME_PRICING, HOME_PRICING_DESC } from "../../constants";
 import { homePricingPlans } from "../../utils/data";
+import HomeHeading from "../home-heading/HomeHeading";
+import "./HomePricing.css";
 import PriceCard from "./price-card/PriceCard";
 
 const HomePricing = () => {
@@ -19,8 +19,10 @@ const HomePricing = () => {
               name={plan.name}
               currency={plan.currency}
               price={plan.price}
+              validity={plan.validity}
               features={plan.features}
               selected={plan.selected}
+              description={plan.description}
             />
           ))}
         </div>

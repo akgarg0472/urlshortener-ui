@@ -1,15 +1,17 @@
 import React from "react";
+import Swal from "sweetalert2";
+import RegularButton from "../../button/RegularButton";
 import "./PriceCard.css";
 import PlanFeature from "./plan-feature/PlanFeature";
-import RegularButton from "../../button/RegularButton";
-import Swal from "sweetalert2";
 
 type PlanProps = {
   name: string;
   price: string;
+  validity: string;
   currency: string;
   features: string[];
   selected: boolean;
+  description: string;
 };
 
 const PriceCard = (plan: PlanProps) => {
@@ -19,6 +21,7 @@ const PriceCard = (plan: PlanProps) => {
         className={`price__card ${
           plan.selected ? "price__card__selected" : ""
         }`}
+        title={plan.description}
       >
         <span className="plan__name">{plan.name}</span>
         <div className="price">
@@ -26,7 +29,7 @@ const PriceCard = (plan: PlanProps) => {
             {plan.currency}
             {plan.price}
           </span>
-          <span className="duration">/month</span>
+          <span className="duration">/${plan.validity}</span>
         </div>
 
         <div className="features__container">

@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import HomeNavbar from "../components/home-navbar/HomeNavbar";
 import {
   DASHBOARD_LINKS_URL,
-  DASHBOARD_PAID_PLANS,
   DASHBOARD_PROFILE_URL,
   DASHBOARD_UPDATE_PROFILE_URL,
   DASHBOARD_URL,
@@ -20,7 +19,6 @@ import ResetPassword from "../pages/auth/reset-password/ResetPassword";
 import Signup from "../pages/auth/signup/Signup";
 import Dashboard from "../pages/dashboard/Dashboard";
 import DashboardLinks from "../pages/dashboard/DashboardLinks";
-import DashboardPaidPlans from "../pages/dashboard/DashboardPaidPlans";
 import DashboardProfile from "../pages/dashboard/DashboardProfile";
 import DashboardUpdateProfile from "../pages/dashboard/DashboardUpdateProfile";
 import ErrorPage from "../pages/error/ErrorPage";
@@ -78,15 +76,6 @@ const router = createBrowserRouter(
         />
       ),
     },
-    // {
-    //   path: DASHBOARD_STATISTICS_URL,
-    //   element: (
-    //     <ProtectedRoute
-    //       element={<DashboardStatistics />}
-    //       redirectTo={DASHBOARD_STATISTICS_URL}
-    //     />
-    //   ),
-    // },
     {
       path: DASHBOARD_PROFILE_URL,
       element: (
@@ -104,10 +93,6 @@ const router = createBrowserRouter(
           redirectTo={DASHBOARD_UPDATE_PROFILE_URL}
         />
       ),
-    },
-    {
-      path: DASHBOARD_PAID_PLANS,
-      element: <DashboardPaidPlans />,
     },
     {
       path: "*",

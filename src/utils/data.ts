@@ -31,8 +31,10 @@ type PricingPlan = {
   id: string;
   name: string;
   price: string;
+  validity: "month" | "annual";
   currency: string;
   features: string[];
+  description: string;
   selected: boolean;
 };
 
@@ -110,21 +112,24 @@ export const homeWhyChooseUs: WhyChooseUs[] = [
 
 export const homePricingPlans: PricingPlan[] = [
   {
-    name: "Free",
     id: "free_plan",
+    name: "Free",
     price: "0",
+    validity: "month",
     currency: "$",
     features: [
-      "Up to 10 links per month",
+      "Up to 50 links per month",
       "Basic Analytics",
       "Standard Support",
     ],
     selected: false,
+    description: "Free plan for basic usage",
   },
   {
     id: "pro_plan",
     name: "Pro",
     price: "19",
+    validity: "month",
     currency: "$",
     features: [
       "Unlimited links",
@@ -133,11 +138,13 @@ export const homePricingPlans: PricingPlan[] = [
       "Priority Support",
     ],
     selected: true,
+    description: "Pro plan for advanced users",
   },
   {
     id: "enterprise_plan",
     name: "Enterprise",
     price: "99",
+    validity: "month",
     currency: "$",
     features: [
       "Everything in Pro",
@@ -146,6 +153,7 @@ export const homePricingPlans: PricingPlan[] = [
       "24/7 Premium Support",
     ],
     selected: false,
+    description: "Enterprise plan for organizations",
   },
 ];
 
@@ -249,7 +257,7 @@ export const faqQuestions: HomeAccordian[] = [
   {
     id: "faq__is_free_to_use",
     title: "Is the service free to use?",
-    content: `Yes, we offer a free plan that includes basic features and up to 10 links per month. For additional features and higher usage limits, check out our Pro and Enterprise plans.`,
+    content: `Yes, we offer a free plan that includes basic features and up to 50 links per month. For additional features and higher usage limits, check out our Pro and Enterprise plans.`,
   },
   {
     id: "faq__can_custom_url_be_created",
@@ -294,11 +302,6 @@ export const dashboardNavbarLinks: NavbarLink[] = [
     path: "/dashboard/profile/update",
     icon: "/assets/icons/user.png",
   },
-  // {
-  //   text: "Premium Plans",
-  //   path: "/dashboard/plans",
-  //   icon: "/assets/icons/user.png",
-  // },
 ];
 
 export const dummyPremiumPlans = [
