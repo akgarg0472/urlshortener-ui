@@ -27,11 +27,11 @@ const CustomerTestimonialCard = (props: CustomerTestimonialCardProps) => {
           </div>
         </div>
 
-        <div className="review">{props.review}</div>
-
         <div className="star__rating__container">
           <StarRating count={5} />
         </div>
+
+        <div className="review">{props.review}</div>
       </div>
     </React.Fragment>
   );

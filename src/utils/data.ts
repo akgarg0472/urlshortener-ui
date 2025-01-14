@@ -132,7 +132,7 @@ export const homePricingPlans: PricingPlan[] = [
     validity: "month",
     currency: "$",
     features: [
-      "Unlimited links",
+      "Up to 5000 links",
       "Advanced Analytics",
       "Custom Domains",
       "Priority Support",
@@ -148,8 +148,8 @@ export const homePricingPlans: PricingPlan[] = [
     currency: "$",
     features: [
       "Everything in Pro",
+      "Unlimited links",
       "Advanced Security",
-      "Team Management",
       "24/7 Premium Support",
     ],
     selected: false,
@@ -291,6 +291,11 @@ export const dashboardNavbarLinks: NavbarLink[] = [
     text: "Link Management",
     path: "/dashboard/links",
     icon: "/assets/icons/urls.png",
+  },
+  {
+    text: "Subscriptions",
+    path: "/dashboard/subscriptions",
+    icon: "/assets/icons/subscription.png",
   },
   {
     text: "Profile",

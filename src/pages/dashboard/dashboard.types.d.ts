@@ -14,6 +14,7 @@ type ProfileData = {
   lastPasswordChangedAt?: number;
   lastLogin?: number;
   createdAt?: number;
+  updatedAt?: number;
 };
 
 type PercentageChange = {

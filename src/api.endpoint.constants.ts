@@ -30,3 +30,7 @@ export const DASHBOARD_DELETE_PROFILE_API_URL_V1 =
   "/api/v1/profiles/$profileId";
 export const PAYMENT_GET_PUBLIC_KEY_API_URL_V1: string =
   "/api/v1/payments/public-key";
+export const DASHBOARD_GET_ACTIVE_SUBSCRIPTION_API_URL_V1: string =
+  "/api/v1/subscriptions/active";
+export const DASHBOARD_GET_ALL_SUBSCRIPTION_API_URL_V1: string =
+  "/api/v1/subscriptions";

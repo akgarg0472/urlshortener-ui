@@ -1,7 +1,7 @@
 interface ProfileAccountInformationProps {
   lastLogin?: number;
   lastPasswordChangedAt?: number;
-  premiumAccount?: boolean;
+  createdAt?: number;
 }
 
 interface PersonalDetailsProps {

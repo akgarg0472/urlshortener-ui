@@ -17,6 +17,7 @@ import {
 } from "../../constants";
 import useAuth from "../../hooks/useAuth";
 
+import NoDataAvailable from "../../components/no-data-available/NoDataAvailable";
 import "./Dashboard.css";
 
 const DashboardLinks = () => {
@@ -104,7 +105,7 @@ const DashboardLinks = () => {
             ) : (
               <>
                 {urls.length === 0 ? (
-                  <span>No URLs to display</span>
+                  <NoDataAvailable text="No URLs found to display" />
                 ) : (
                   urls.map((url, index) => (
                     <MyLink

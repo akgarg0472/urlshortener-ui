@@ -152,13 +152,13 @@ const DashboardUpdateProfile = () => {
     if (validateUpdateProfileRequest(originalData, updateProfileRequest)) {
       setLoading(true);
 
+      Loader.showLoader();
+
       const updateResponse = await updateProfile(
         getUserId()!,
         updateProfileRequest,
         getAuthToken()!
       );
-
-      Loader.showLoader();
 
       Loader.hideLoader();
 

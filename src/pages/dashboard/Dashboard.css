@@ -318,3 +318,57 @@
 .profile__page__content__container .profile__page__left__section .profile__page__update__profile__btn:hover {
   background: #4e40a9;
 }
+
+.dashboard__page__content .active__subscription__pack__details__container {
+  background-color: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.6rem;
+}
+.dashboard__page__content .active__subscription__pack__details__container .content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.4rem;
+  padding: 1.6rem;
+  width: 100%;
+}
+.dashboard__page__content .active__subscription__pack__details__container .content .active__subs__details__container {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.dashboard__page__content .active__subscription__pack__details__container .content .active__pack__details__container {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.dashboard__page__content .subscription__history__container {
+  background-color: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.6rem;
+  margin-top: 2.4rem;
+}
+.dashboard__page__content .subscription__history__container .content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 1.6rem;
+  gap: 2.4rem;
+}
+.dashboard__page__content .subscription__history__container .btn__fetch__subs__history {
+  background-color: var(--bg-dark);
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.4rem;
+  font-weight: 700;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  cursor: pointer;
+  padding: 1.2rem 2.4rem;
+  transition: background-color 0.3s ease;
+}
+.dashboard__page__content .subscription__history__container .btn__fetch__subs__history:hover {
+  background-color: var(--bg-dark-hover);
+}

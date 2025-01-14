@@ -1,10 +1,13 @@
 import React from "react";
+
 import "./NoDataAvailable.css";
 
-const NoDataAvailable = () => {
+const NoDataAvailable = (props: { text?: string }) => {
   return (
     <React.Fragment>
-      <div className="no__data__available">Nothing to Show</div>
+      <div className="no__data__available">
+        {props.text ?? "No Data Available"}
+      </div>
     </React.Fragment>
   );
 };

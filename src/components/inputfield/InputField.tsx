@@ -17,6 +17,9 @@ const InputField = (props: InputFieldProps) => {
     }
   };
 
+  const conditionalProps =
+    props.type !== InputFieldType.DATE_TIME ? { value: props.text } : {};
+
   return (
     <React.Fragment>
       <div
@@ -52,6 +55,7 @@ const InputField = (props: InputFieldProps) => {
               props.onKeyDown(event);
             }
           }}
+          {...conditionalProps}
         />
       </div>
     </React.Fragment>

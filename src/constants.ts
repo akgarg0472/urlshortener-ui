@@ -8,7 +8,7 @@ export const DASHBOARD_LINKS_URL: string = "/dashboard/links";
 export const DASHBOARD_STATISTICS_URL: string = "/dashboard/statistics";
 export const DASHBOARD_PROFILE_URL: string = "/dashboard/profile";
 export const DASHBOARD_UPDATE_PROFILE_URL: string = "/dashboard/profile/update";
-export const DASHBOARD_PAID_PLANS: string = "/dashboard/plans";
+export const DASHBOARD_SUBSCRIPTIONS: string = "/dashboard/subscriptions";
 export const OAUTH_SUCCESS_GOOGLE: string = "/oauth/google/success";
 export const OAUTH_SUCCESS_GITHUB: string = "/oauth/github/success";
 export const OAUTH_SUCCESS_RESPONSE_KEY: string =
@@ -58,6 +58,10 @@ export const DASH_OS_SUBHEAD: string =
 export const DASH_BROWSER_HEAD: string = "Browser Statistics";
 export const DASH_BROWSER_SUBHEAD: string =
   "Offers a comprehensive overview of the browsers used by visitors to access or click the URL.";
-export const DASH_PAID_PLANS_HEAD: string = "Premium Plans";
-export const DASH_PAID_PLANS_SUBHEAD: string =
-  "Explore our premium paid plans and get more exciting and amazing features";
+export const DASH_ACTIVE_SUB_HEAD: string =
+  "Active Subscriptions & Pack Details";
+export const DASH_ACTIVE_SUB_SUBHEAD: string =
+  "View your current subscriptions and active packs, along with their status and usage details, all in one place.";
+export const DASH_SUBS_HISTORY_HEAD: string = "Subscription History";
+export const DASH_SUBS_HISTORY_SUBHEAD: string =
+  "A detailed record of all your past and active subscriptions, including statuses and renewal information.";

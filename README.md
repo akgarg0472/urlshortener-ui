@@ -1,7 +1,7 @@
 # 🖥️ URL Shortener UI
 
 ![React Version](https://img.shields.io/badge/React-18-blue)
-![version](https://img.shields.io/badge/version-1.4.1-blue)
+![version](https://img.shields.io/badge/version-1.5.0-blue)
 
 This repository contains the front-end UI code for **URL Shortener** project, built with **React**, **TypeScript**, and **CSS**. The front-end communicates with a back-end API to shorten and manage URLs.
 
@@ -67,10 +67,6 @@ The following environment variables are used in this project to configure variou
 - **`REACT_APP_PREFIX_URL_FOR_SHORT_URL`**:  
   The base URL for the shortened URLs.  
   Example: `localhost:8765`
-
-- **`REACT_APP_STRIPE_PUBLISHABLE_KEY`**:  
-  The Stripe publishable key used for Stripe payment integrations (not in use for now).  
-  Example: `pk_test_xxxxx`
 
 - **`REACT_APP_BACKEND_BASE_URL`**:  
   The base URL of the back-end API that the front-end communicates with.  

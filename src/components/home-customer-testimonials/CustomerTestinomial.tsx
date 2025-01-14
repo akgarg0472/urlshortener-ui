@@ -3,8 +3,8 @@ import {
   HOME_CUSTOMER_TESTIMONIALS,
   HOME_CUSTOMER_TESTIMONIALS_DESC,
 } from "../../constants";
-import HomeHeading from "../home-heading/HomeHeading";
 import { homeCustomerTestimonials } from "../../utils/data";
+import HomeHeading from "../home-heading/HomeHeading";
 import CustomerTestimonialCard from "./CustomerTestinomialCard/CustomerTestimonialCard";
 
 import "./CustomerTestimonial.css";

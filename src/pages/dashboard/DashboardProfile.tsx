@@ -98,6 +98,7 @@ const DashboardProfile = () => {
       businessDetails: profile.business_details ? profile.business_details : "",
       lastLogin: profile.last_login,
       createdAt: profile.created_at,
+      updatedAt: profile.updated_at,
       lastPasswordChangedAt: profile.last_password_changed,
     });
   };
@@ -161,11 +162,7 @@ const DashboardProfile = () => {
                 {loading ? (
                   <InternalLoader />
                 ) : (
-                  <ProfileAccountInformation
-                    lastLogin={profileData.lastLogin}
-                    lastPasswordChangedAt={profileData.lastPasswordChangedAt}
-                    premiumAccount={profileData.premiumAccount}
-                  />
+                  <ProfileAccountInformation {...profileData} />
                 )}
               </div>
 

@@ -14,6 +14,10 @@ $before__after__dimension: 1.6rem;
   background-color: #f4f4f4;
   border-radius: 1.6rem;
 
+  .star__rating__container {
+    margin: 1.6rem 0;
+  }
+
   .image__details__container {
     display: flex;
     align-items: center;
@@ -43,7 +47,6 @@ $before__after__dimension: 1.6rem;
   }
 
   .review {
-    margin: 2.4rem 0 2.4rem 0;
     font-size: 1.5rem;
     position: relative;
     line-height: 2.4rem;

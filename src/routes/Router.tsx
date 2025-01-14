@@ -3,6 +3,7 @@ import HomeNavbar from "../components/home-navbar/HomeNavbar";
 import {
   DASHBOARD_LINKS_URL,
   DASHBOARD_PROFILE_URL,
+  DASHBOARD_SUBSCRIPTIONS,
   DASHBOARD_UPDATE_PROFILE_URL,
   DASHBOARD_URL,
   FORGOT_PASSWORD_URL,
@@ -20,6 +21,7 @@ import Signup from "../pages/auth/signup/Signup";
 import Dashboard from "../pages/dashboard/Dashboard";
 import DashboardLinks from "../pages/dashboard/DashboardLinks";
 import DashboardProfile from "../pages/dashboard/DashboardProfile";
+import DashboardSubscription from "../pages/dashboard/DashboardSubscription";
 import DashboardUpdateProfile from "../pages/dashboard/DashboardUpdateProfile";
 import ErrorPage from "../pages/error/ErrorPage";
 import HomePage from "../pages/home/HomePage";
@@ -73,6 +75,15 @@ const router = createBrowserRouter(
         <ProtectedRoute
           element={<DashboardLinks />}
           redirectTo={DASHBOARD_LINKS_URL}
+        />
+      ),
+    },
+    {
+      path: DASHBOARD_SUBSCRIPTIONS,
+      element: (
+        <ProtectedRoute
+          element={<DashboardSubscription />}
+          redirectTo={DASHBOARD_PROFILE_URL}
         />
       ),
     },

@@ -54,13 +54,12 @@ const CreateUrlModal = (props: CreateUrlModalProps) => {
       generateShortUrlButtonRef.current.classList.add("uss__button__disabled");
     }
 
-    const generateShortUrlApiResponse: GenerateUrlResponse =
-      await generateShortUrl({
-        originalUrl: originalUrl,
-        expirationTime: expirationDate,
-        userId: userId,
-        authToken: authToken,
-      });
+    const apiResponse: GenerateUrlResponse = await generateShortUrl({
+      originalUrl: originalUrl,
+      expirationTime: expirationDate,
+      userId: userId,
+      authToken: authToken,
+    });
 
     setLoading(false);
 
@@ -71,7 +70,7 @@ const CreateUrlModal = (props: CreateUrlModalProps) => {
       );
     }
 
-    if (generateShortUrlApiResponse.success) {
+    if (apiResponse.success) {
       Modal.showModal({
         icon: ModalIcon.SUCCESS,
         title: "Success",
@@ -84,7 +83,7 @@ const CreateUrlModal = (props: CreateUrlModalProps) => {
       Modal.showModal({
         icon: ModalIcon.ERROR,
         title: "ERROR",
-        message: "Error generation short URL",
+        message: apiResponse.message ?? "Error generating short URL",
         onClose() {
           props.onClose();
         },
