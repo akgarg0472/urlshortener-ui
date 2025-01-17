@@ -22,3 +22,12 @@
   color: #d4d4d4;
   padding: 0 2.4rem 2.4rem 2.4rem;
 }
+
+@media screen and (max-width: 768px) {
+  .accordian .header {
+    font-size: 1.4rem;
+  }
+  .accordian .content {
+    font-size: 1.4rem;
+  }
+}

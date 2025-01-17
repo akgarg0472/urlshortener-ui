@@ -12,6 +12,7 @@ type PlanProps = {
   features: string[];
   selected: boolean;
   description: string;
+  defaultPack: boolean;
 };
 
 const PriceCard = (plan: PlanProps) => {
@@ -29,7 +30,7 @@ const PriceCard = (plan: PlanProps) => {
             {plan.currency}
             {plan.price}
           </span>
-          <span className="duration">/${plan.validity}</span>
+          <span className="duration">/{plan.validity}</span>
         </div>
 
         <div className="features__container">

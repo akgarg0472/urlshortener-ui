@@ -64,3 +64,51 @@
   font-size: 1.6rem;
   cursor: default;
 }
+
+@media screen and (max-width: 1366px) {
+  .price__card {
+    border-radius: 1.6rem;
+    padding: 3rem 2rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  .price__card .plan__name {
+    font-size: 2rem;
+  }
+  .price__card .price {
+    margin: 1.2rem 0 2.4rem 0;
+  }
+  .price__card .price .amount {
+    font-size: 2.8rem;
+  }
+  .price__card .price .duration {
+    font-size: 1.4rem;
+  }
+  .price__card .get__started__btn__container {
+    margin-top: 2.4rem;
+  }
+  .price__card .get__started__btn__container .get__started__btn {
+    width: 100%;
+    padding: 1rem 0;
+    font-size: 1.4rem;
+  }
+  .price__card__selected ::before {
+    font-size: 1.4rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  .price__card {
+    height: auto;
+    border-radius: 1.6rem;
+    padding: 2.8rem 2.4rem;
+  }
+  .price__card .price {
+    margin-bottom: 0.8rem;
+  }
+  .price__card .features__container {
+    margin: 0;
+  }
+  .price__card .get__started__btn__container {
+    margin-top: 2.4rem;
+  }
+}

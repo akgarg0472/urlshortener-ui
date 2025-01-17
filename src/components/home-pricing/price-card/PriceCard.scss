@@ -1,7 +1,5 @@
-$price__card__height: 45rem;
-
 .price__card {
-  height: $price__card__height;
+  height: 45rem;
   border-radius: 1.6rem;
   padding: 3.6rem 2.4rem;
   background-color: #f4f4f4;
@@ -59,7 +57,7 @@ $price__card__height: 45rem;
   border: 2px solid var(--bg-dark);
   position: relative;
   overflow: hidden;
-  height: $price__card__height + 1.6rem;
+  height: 45rem + 1.6rem;
 
   ::before {
     content: "Popular";
@@ -72,5 +70,68 @@ $price__card__height: 45rem;
     right: 0;
     font-size: 1.6rem;
     cursor: default;
+  }
+}
+
+@media screen and (max-width: 1366px) {
+  .price__card {
+    border-radius: 1.6rem;
+    padding: 3rem 2rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .price__card {
+    .plan__name {
+      font-size: 2rem;
+    }
+
+    .price {
+      margin: 1.2rem 0 2.4rem 0;
+
+      .amount {
+        font-size: 2.8rem;
+      }
+
+      .duration {
+        font-size: 1.4rem;
+      }
+    }
+
+    .get__started__btn__container {
+      margin-top: 2.4rem;
+
+      .get__started__btn {
+        width: 100%;
+        padding: 1rem 0;
+        font-size: 1.4rem;
+      }
+    }
+  }
+
+  .price__card__selected {
+    ::before {
+      font-size: 1.4rem;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .price__card {
+    height: auto;
+    border-radius: 1.6rem;
+    padding: 2.8rem 2.4rem;
+
+    .price {
+      margin-bottom: 0.8rem;
+    }
+
+    .features__container {
+      margin: 0;
+    }
+
+    .get__started__btn__container {
+      margin-top: 2.4rem;
+    }
   }
 }

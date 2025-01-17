@@ -58,3 +58,57 @@ $before__after__dimension: 1.6rem;
 .customer__testimonial__card:hover {
   transform: scale(1.05);
 }
+
+@media screen and (max-width: 1024px) {
+  .customer__testimonial__card {
+    .image__details__container {
+      .name__designation__container {
+        .name,
+        .designation {
+          font-size: 1.4rem;
+        }
+      }
+    }
+
+    .review {
+      font-size: 1.4rem;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .customer__testimonial__card {
+    .image__details__container {
+      .name__designation__container {
+        .name,
+        .designation {
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+    .review {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .customer__testimonial__card {
+    height: auto;
+    padding: 2.4rem;
+
+    .image__details__container {
+      .name__designation__container {
+        .name,
+        .designation {
+          font-size: 1.4rem;
+        }
+      }
+    }
+
+    .review {
+      font-size: 1.4rem;
+    }
+  }
+}

@@ -1,11 +1,17 @@
-$card__height: 20rem;
-
 .why__choose__us__card {
-  height: $card__height;
+  height: 20rem;
   padding: 2.8rem;
   margin: 1.2rem;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI,
-    Roboto, Helvetica Neue, Arial, sans-serif;
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Helvetica Neue,
+    Arial,
+    sans-serif;
   display: flex;
   align-content: center;
   justify-content: center;
@@ -46,4 +52,51 @@ $card__height: 20rem;
 
 .why__choose__us__card:hover {
   border: 1px solid rgb(66, 65, 65);
+}
+
+@media screen and (max-width: 1366px) {
+  .why__choose__us__card {
+    .title {
+      font-size: 2rem;
+    }
+
+    .description {
+      font-size: 1.4rem;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .why__choose__us__card {
+    height: 24rem;
+
+    .title {
+      font-size: 2rem;
+    }
+
+    .description {
+      font-size: 1.4rem;
+    }
+
+    .icon {
+      height: 4rem;
+      width: 4rem;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .why__choose__us__card {
+    height: 28rem;
+    padding: 2.4rem;
+
+    .title {
+      font-size: 2rem;
+    }
+
+    .description {
+      font-size: 1.4rem;
+      line-height: 2.4rem;
+    }
+  }
 }

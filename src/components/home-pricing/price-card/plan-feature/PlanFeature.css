@@ -13,3 +13,9 @@
   color: var(--text-secondary);
   font-size: 1.6rem;
 }
+
+@media screen and (max-width: 1024px) {
+  .plan__feature span {
+    font-size: 1.4rem;
+  }
+}

@@ -29,3 +29,28 @@ export type ActivePack = {
   privileges: string[];
   default_pack: boolean;
 };
+
+export type SubscriptionPack = {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  currency: string;
+  validity: string;
+  validity_duration: number;
+  features: string[];
+  selected: boolean;
+  default_pack: boolean;
+};
+
+export type GetSubscriptionPacksResponse = {
+  httpCode: number;
+  success: boolean;
+  message?: string;
+  packs: SubscriptionPack[] | null;
+  comparisons: {
+    headers: string[];
+    rows: any[][];
+  } | null;
+  errors: any | null;
+};

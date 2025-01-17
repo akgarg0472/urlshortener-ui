@@ -11,3 +11,27 @@
     gap: 1rem;
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .why__choose__us__cards__container {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .why__choose__us__container {
+    .why__choose__us__cards__container {
+      width: 100%;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .why__choose__us__container {
+    .why__choose__us__cards__container {
+      width: 100%;
+      gap: 0;
+    }
+  }
+}

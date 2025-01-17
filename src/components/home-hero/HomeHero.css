@@ -81,3 +81,57 @@
 .home__hero__container .hero__options__container .hero__option:nth-child(2) {
   margin-left: 2.8rem;
 }
+
+@media screen and (max-width: 1024px) {
+  .home__hero__container .main__heading {
+    font-size: 4.8rem;
+  }
+  .home__hero__container .sub__heading {
+    font-size: 1.8rem;
+  }
+  .home__hero__container .hero__options__container .hero__option svg {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+  .home__hero__container .hero__options__container .hero__option span {
+    font-size: 1.6rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  .home__hero__container .main__heading {
+    font-size: 4.8rem;
+  }
+  .home__hero__container .sub__heading {
+    width: 90%;
+    font-size: 1.8rem;
+  }
+  .home__hero__container .hero__options__container .hero__option svg {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+  .home__hero__container .hero__options__container .hero__option span {
+    font-size: 1.6rem;
+  }
+  .home__hero__container .get__started__btn {
+    font-size: 1.4rem;
+    width: 75%;
+    height: auto;
+    padding: 1.8rem 0;
+    border-radius: 12px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .home__hero__container .main__heading {
+    font-size: 4rem;
+  }
+  .home__hero__container .sub__heading {
+    font-size: 1.6rem;
+  }
+  .home__hero__container .hero__options__container .hero__option svg {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+  .home__hero__container .hero__options__container .hero__option span {
+    font-size: 1.4rem;
+  }
+}

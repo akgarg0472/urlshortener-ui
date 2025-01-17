@@ -105,3 +105,87 @@
     }
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .home__hero__container {
+    .main__heading {
+      font-size: 4.8rem;
+    }
+
+    .sub__heading {
+      font-size: 1.8rem;
+    }
+
+    .hero__options__container {
+      .hero__option {
+        svg {
+          width: 1.6rem;
+          height: 1.6rem;
+        }
+
+        span {
+          font-size: 1.6rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .home__hero__container {
+    .main__heading {
+      font-size: 4.8rem;
+    }
+
+    .sub__heading {
+      width: 90%;
+      font-size: 1.8rem;
+    }
+
+    .hero__options__container {
+      .hero__option {
+        svg {
+          width: 1.6rem;
+          height: 1.6rem;
+        }
+
+        span {
+          font-size: 1.6rem;
+        }
+      }
+    }
+
+    .get__started__btn {
+      font-size: 1.4rem;
+      width: 75%;
+      height: auto;
+      padding: 1.8rem 0;
+      border-radius: 12px;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .home__hero__container {
+    .main__heading {
+      font-size: 4rem;
+    }
+
+    .sub__heading {
+      font-size: 1.6rem;
+    }
+
+    .hero__options__container {
+      .hero__option {
+        svg {
+          width: 1.4rem;
+          height: 1.4rem;
+        }
+
+        span {
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
+}

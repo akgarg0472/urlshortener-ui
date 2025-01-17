@@ -34,3 +34,5 @@ export const DASHBOARD_GET_ACTIVE_SUBSCRIPTION_API_URL_V1: string =
   "/api/v1/subscriptions/active";
 export const DASHBOARD_GET_ALL_SUBSCRIPTION_API_URL_V1: string =
   "/api/v1/subscriptions";
+export const GET_ALL_SUBSCRIPTION_PACKS_URL_V1: string =
+  "/api/v1/subscriptions/packs";

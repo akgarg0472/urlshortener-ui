@@ -11,3 +11,10 @@
   margin-left: 0.4rem;
   font-size: 1.4rem;
 }
+
+@media screen and (max-width: 1024px) {
+  .star__ratings svg {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+}

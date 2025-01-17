@@ -13,6 +13,7 @@ export const OAUTH_SUCCESS_GOOGLE: string = "/oauth/google/success";
 export const OAUTH_SUCCESS_GITHUB: string = "/oauth/github/success";
 export const OAUTH_SUCCESS_RESPONSE_KEY: string =
   "oauth2_auth_success_response";
+export const SUBSCRIPTION_PLANS_URL: string = "/plans";
 
 export const HOME_WHY_CHOOSE_US: string =
   "Powerful Features for Smart Link Management";
@@ -65,3 +66,6 @@ export const DASH_ACTIVE_SUB_SUBHEAD: string =
 export const DASH_SUBS_HISTORY_HEAD: string = "Subscription History";
 export const DASH_SUBS_HISTORY_SUBHEAD: string =
   "A detailed record of all your past and active subscriptions, including statuses and renewal information.";
+export const HOME_COMPARE_PLAN: string = "Find the Right Pack for You";
+export const HOME_COMPARE_PLAN_SUBHEAD: string =
+  "Compare features, benefits, and pricing to choose what fits your needs.";

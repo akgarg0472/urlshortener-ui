@@ -1,0 +1,73 @@
+.compare__plans__container {
+  background-color: var(--bg-dark);
+  padding: 8rem 4.8rem;
+  background-image: var(--gradient-background-image-dark);
+
+  .plans__table__container {
+    width: 66%;
+    margin: auto;
+    margin-top: 5.6rem;
+
+    .plans__table {
+      font-size: 1.6rem;
+      width: 100%;
+      color: var(--text-primary);
+      border-collapse: collapse;
+      font-weight: 500;
+
+      th {
+        background-color: var(--bg-dark-hover);
+        padding: 2.4rem 1.2rem;
+      }
+
+      td {
+        padding: 2.4rem 1.2rem;
+        border-bottom: 1px solid rgb(75 85 99);
+      }
+
+      tr {
+        text-align: center;
+      }
+
+      tr {
+        td:nth-child(1) {
+          text-align: left;
+          padding-left: 1.6rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1366px) {
+  .compare__plans__container {
+    .plans__table__container {
+      width: 75%;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .compare__plans__container {
+    .plans__table__container {
+      width: 90%;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .compare__plans__container {
+    .plans__table__container {
+      width: 95%;
+
+      .plans__table {
+        font-size: 1.4rem;
+
+        th,
+        td {
+          padding: 1.6rem 1rem;
+        }
+      }
+    }
+  }
+}

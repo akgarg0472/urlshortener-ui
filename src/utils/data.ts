@@ -20,14 +20,7 @@ type CustomerTestimonial = {
   review: string;
 };
 
-export type PaidPlanData = {
-  id: string;
-  heading: string;
-  summary: string;
-  points: string[];
-};
-
-type PricingPlan = {
+export type PricingPlan = {
   id: string;
   name: string;
   price: string;
@@ -36,6 +29,19 @@ type PricingPlan = {
   features: string[];
   description: string;
   selected: boolean;
+  default_plan: boolean;
+};
+
+export type PaidPlanData = {
+  id: string;
+  heading: string;
+  summary: string;
+  points: string[];
+};
+
+export type PricePlanComparison = {
+  headers: string[];
+  rows: any[][];
 };
 
 type HomeStats = {
@@ -117,13 +123,10 @@ export const homePricingPlans: PricingPlan[] = [
     price: "0",
     validity: "month",
     currency: "$",
-    features: [
-      "Up to 50 links per month",
-      "Basic Analytics",
-      "Standard Support",
-    ],
+    features: ["Up to 50 links", "Basic Analytics", "Standard Support"],
     selected: false,
     description: "Free plan for basic usage",
+    default_plan: true,
   },
   {
     id: "pro_plan",
@@ -139,6 +142,7 @@ export const homePricingPlans: PricingPlan[] = [
     ],
     selected: true,
     description: "Pro plan for advanced users",
+    default_plan: false,
   },
   {
     id: "enterprise_plan",
@@ -154,6 +158,7 @@ export const homePricingPlans: PricingPlan[] = [
     ],
     selected: false,
     description: "Enterprise plan for organizations",
+    default_plan: false,
   },
 ];
 
@@ -309,23 +314,15 @@ export const dashboardNavbarLinks: NavbarLink[] = [
   },
 ];
 
-export const dummyPremiumPlans = [
-  {
-    id: "plan_1",
-    heading: "Basic Plan",
-    summary: "Access to essential features",
-    points: ["Feature 1", "Feature 2"],
-  },
-  {
-    id: "plan_2",
-    heading: "Premium Plan",
-    summary: "Access to advanced features",
-    points: ["Feature 1", "Feature 2", "Feature 3"],
-  },
-  {
-    id: "plan_3",
-    heading: "Pro Plan",
-    summary: "Access to all features",
-    points: ["Feature 1", "Feature 2", "Feature 3", "Feature 4"],
-  },
-];
+export const pricingPlanComparison: PricePlanComparison = {
+  headers: ["Feature", "Free", "Pro", "Enterprise"],
+  rows: [
+    ["Custom URLs", "Up to 50", "Up to 5000", "Unlimited"],
+    ["Custom Domains", "1", "50", "Unlimited"],
+    ["API Access", null, null, null],
+    ["Security", "Basic", "Advanced", "Enterprise"],
+    ["Premium Support", null, true, true],
+    ["Analytics dashboard", "Basic", "Advanced", "Advanced"],
+    ["24/7 Premium Support", null, null, true],
+  ],
+};

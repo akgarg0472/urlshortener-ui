@@ -26,3 +26,31 @@
     }
   }
 }
+
+@media screen and (max-width: 1366px) {
+  .home__pricing__container {
+    .plans__container {
+      margin: 3.2rem auto;
+      width: 80%;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .home__pricing__container {
+    padding: 4rem 2.4rem;
+
+    .plans__container {
+      margin: 2.4rem auto;
+      width: 90%;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .home__pricing__container {
+    .plans__container {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+}

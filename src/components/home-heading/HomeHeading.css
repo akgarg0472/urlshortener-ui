@@ -24,3 +24,14 @@
   text-align: center;
   color: rgb(117, 117, 117);
 }
+
+@media screen and (max-width: 768px) {
+  .home__heading__container .home__heading__title,
+  .home__heading__container .home__heading__title__dark {
+    width: 100%;
+  }
+  .home__heading__container .home__heading__subtitle,
+  .home__heading__container .home__heading__subtitle__dark {
+    width: 75%;
+  }
+}

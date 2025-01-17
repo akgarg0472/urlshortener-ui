@@ -1,19 +1,73 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
+import { GetSubscriptionPacksResponse } from "../../api/subscription/subs.api.response";
+import { getSubscriptionPacks } from "../../api/subscription/subscription";
 import { HOME_PRICING, HOME_PRICING_DESC } from "../../constants";
-import { homePricingPlans } from "../../utils/data";
+import {
+  homePricingPlans,
+  PricePlanComparison,
+  PricingPlan,
+  pricingPlanComparison,
+} from "../../utils/data";
+import { getCurrencySymbol } from "../../utils/priceutils";
 import HomeHeading from "../home-heading/HomeHeading";
-import "./HomePricing.css";
+import ComparePack from "./compare-pack/ComparePacks";
 import PriceCard from "./price-card/PriceCard";
 
-const HomePricing = () => {
+import "./HomePricing.css";
+
+const HomePricing = (props: { showComparePlans?: boolean }) => {
+  const [subscriptionPacks, setSubscriptionPacks] = useState<PricingPlan[]>([]);
+  const [packComparison, setPackComparison] = useState<PricePlanComparison>({
+    headers: [],
+    rows: [],
+  });
+
+  useEffect(() => {
+    fetchSubscriptionPacks();
+  }, []);
+
+  const fetchSubscriptionPacks = async () => {
+    const apiResponse: GetSubscriptionPacksResponse =
+      await getSubscriptionPacks(props.showComparePlans);
+
+    if (
+      !apiResponse.success ||
+      !apiResponse.packs ||
+      !apiResponse.comparisons
+    ) {
+      setSubscriptionPacks(homePricingPlans);
+      setPackComparison(pricingPlanComparison);
+      return;
+    }
+
+    setSubscriptionPacks(
+      apiResponse.packs.map((p) => {
+        const pack: PricingPlan = {
+          id: p.id,
+          name: p.name,
+          description: p.description,
+          currency: getCurrencySymbol(p.currency),
+          features: p.features,
+          price: p.price.toString(),
+          selected: p.selected,
+          validity: p.validity === "month" ? "month" : "annual",
+          default_plan: p.default_pack,
+        };
+        return pack;
+      })
+    );
+
+    setPackComparison(apiResponse.comparisons);
+  };
+
   return (
     <React.Fragment>
       <div className="home__pricing__container">
         <HomeHeading title={HOME_PRICING} subtitle={HOME_PRICING_DESC} />
 
         <div className="plans__container">
-          {homePricingPlans.map((plan) => (
+          {subscriptionPacks.map((plan) => (
             <PriceCard
               key={plan.id}
               name={plan.name}
@@ -23,6 +77,7 @@ const HomePricing = () => {
               features={plan.features}
               selected={plan.selected}
               description={plan.description}
+              defaultPack={plan.default_plan}
             />
           ))}
         </div>
@@ -46,6 +101,8 @@ const HomePricing = () => {
           <span>30-day money-back guarantee</span>
         </div>
       </div>
+
+      {props.showComparePlans && <ComparePack comparisons={packComparison} />}
     </React.Fragment>
   );
 };

@@ -1,6 +1,7 @@
 import {
   DASHBOARD_GET_ACTIVE_SUBSCRIPTION_API_URL_V1,
   DASHBOARD_GET_ALL_SUBSCRIPTION_API_URL_V1,
+  GET_ALL_SUBSCRIPTION_PACKS_URL_V1,
 } from "../../api.endpoint.constants";
 import { getEnv } from "../../utils/envutils";
 import {
@@ -12,6 +13,7 @@ import { ApiErrorResponse, axiosInstance } from "../base";
 import { GetSubscriptionRequest } from "./subs.api.request";
 import {
   getAllSubscriptionsResponse,
+  GetSubscriptionPacksResponse,
   GetSubscriptionResponse,
 } from "./subs.api.response";
 
@@ -133,6 +135,73 @@ export const getAllSubscriptions = async (
       httpCode: 500,
       message: "Failed to retrieve subscription details",
       subscriptions: null,
+    };
+  }
+};
+
+export const getSubscriptionPacks = async (
+  getComparison: boolean = false
+): Promise<GetSubscriptionPacksResponse> => {
+  // const url =
+  //   getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765").replace(
+  //     /\/+$/,
+  //     ""
+  //   ) + GET_ALL_SUBSCRIPTION_PACKS_URL_V1;
+
+  const url = "http://127.0.0.1:9099" + GET_ALL_SUBSCRIPTION_PACKS_URL_V1;
+
+  try {
+    const apiResponse = await axiosInstance.get(url, {
+      params: {
+        getComparison: getComparison,
+      },
+      headers: {
+        "X-REQUEST-ID": 1,
+      },
+    });
+
+    return {
+      httpCode: apiResponse.status,
+      success: apiResponse.status === 200,
+      packs: apiResponse.data.packs,
+      comparisons: apiResponse.data.comparisons,
+      errors: apiResponse.data.errors,
+    };
+  } catch (err: any) {
+    if (isAxiosNetworkError(err)) {
+      const axiosNetworkErrorResponse: ApiErrorResponse =
+        axiosNwErrorResponse();
+
+      return {
+        success: axiosNetworkErrorResponse.success,
+        httpCode: axiosNetworkErrorResponse.httpCode,
+        message: axiosNetworkErrorResponse.message,
+        packs: null,
+        comparisons: null,
+        errors: null,
+      };
+    }
+
+    if (err.response && err.response.data) {
+      const errResp = errorResponse(err);
+
+      return {
+        success: errResp.success,
+        httpCode: errResp.httpCode,
+        message: errResp.message,
+        packs: null,
+        comparisons: null,
+        errors: null,
+      };
+    }
+
+    return {
+      success: false,
+      httpCode: 500,
+      message: "Failed to retrieve subscription details",
+      packs: null,
+      comparisons: null,
+      errors: null,
     };
   }
 };

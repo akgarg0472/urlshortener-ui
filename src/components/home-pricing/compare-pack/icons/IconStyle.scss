@@ -1,0 +1,11 @@
+.svg__icon {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+@media screen and (max-width: 768px) {
+  .svg__icon {
+    width: 2rem;
+    height: 2rem;
+  }
+}

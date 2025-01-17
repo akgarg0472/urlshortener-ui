@@ -12,6 +12,7 @@ import {
   OAUTH_SUCCESS_GOOGLE,
   RESET_PASSWORD_URL,
   SIGNUP_URL,
+  SUBSCRIPTION_PLANS_URL,
 } from "../constants";
 import ForgotPassword from "../pages/auth/forgot-password/ForgotPassword";
 import Login from "../pages/auth/login/Login";
@@ -25,6 +26,7 @@ import DashboardSubscription from "../pages/dashboard/DashboardSubscription";
 import DashboardUpdateProfile from "../pages/dashboard/DashboardUpdateProfile";
 import ErrorPage from "../pages/error/ErrorPage";
 import HomePage from "../pages/home/HomePage";
+import SubscriptionPage from "../pages/plans/SubscriptionPage";
 import ProtectedRoute from "./ProtectedRoute";
 
 const router = createBrowserRouter(
@@ -104,6 +106,10 @@ const router = createBrowserRouter(
           redirectTo={DASHBOARD_UPDATE_PROFILE_URL}
         />
       ),
+    },
+    {
+      path: SUBSCRIPTION_PLANS_URL,
+      element: <SubscriptionPage />,
     },
     {
       path: "*",

@@ -9,3 +9,14 @@
   width: 40%;
   grid-template-columns: 1fr;
 }
+
+@media screen and (max-width: 1024px) {
+  .home__faq__container .faq__accordian__container {
+    width: 75%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .home__faq__container .faq__accordian__container {
+    width: 100%;
+  }
+}

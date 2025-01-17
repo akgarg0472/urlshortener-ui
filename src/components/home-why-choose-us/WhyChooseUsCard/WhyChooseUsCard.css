@@ -42,3 +42,40 @@
 .why__choose__us__card:hover {
   border: 1px solid rgb(66, 65, 65);
 }
+
+@media screen and (max-width: 1366px) {
+  .why__choose__us__card .title {
+    font-size: 2rem;
+  }
+  .why__choose__us__card .description {
+    font-size: 1.4rem;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .why__choose__us__card {
+    height: 24rem;
+  }
+  .why__choose__us__card .title {
+    font-size: 2rem;
+  }
+  .why__choose__us__card .description {
+    font-size: 1.4rem;
+  }
+  .why__choose__us__card .icon {
+    height: 4rem;
+    width: 4rem;
+  }
+}
+@media screen and (max-width: 600px) {
+  .why__choose__us__card {
+    height: 28rem;
+    padding: 2.4rem;
+  }
+  .why__choose__us__card .title {
+    font-size: 2rem;
+  }
+  .why__choose__us__card .description {
+    font-size: 1.4rem;
+    line-height: 2.4rem;
+  }
+}
