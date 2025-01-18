@@ -79,3 +79,8 @@
     line-height: 2.4rem;
   }
 }
+@media screen and (max-width: 480px) {
+  .why__choose__us__card {
+    height: auto;
+  }
+}

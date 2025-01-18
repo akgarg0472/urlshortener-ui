@@ -16,8 +16,16 @@ $login__signup__button__font__size: 1.6rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI,
-    Roboto, Helvetica Neue, Arial, sans-serif;
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Helvetica Neue,
+    Arial,
+    sans-serif;
 }
 
 .logo__container .navbar__link {
@@ -65,4 +73,43 @@ $login__signup__button__font__size: 1.6rem;
 .signup__button:hover {
   background-color: var(--bg-secondary);
   transition: all 100ms linear;
+}
+
+@media screen and (max-width: 768px) {
+  .home__navbar {
+    padding: 1.6rem 4rem;
+    height: auto;
+
+    .navbar__link {
+      font-size: 2rem;
+    }
+
+    .auth__buttons__container {
+      height: 3.6rem;
+
+      .login__button,
+      .signup__button {
+        font-size: 1.4rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .home__navbar {
+    padding: 1.6rem 3.2rem;
+
+    .navbar__link {
+      font-size: 1.6rem;
+    }
+
+    .auth__buttons__container {
+      height: 3.6rem;
+
+      .login__button,
+      .signup__button {
+        padding: 0.8rem 1.6rem;
+      }
+    }
+  }
 }

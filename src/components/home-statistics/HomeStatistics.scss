@@ -37,5 +37,9 @@
     .live__stats__card {
       margin-top: 0;
     }
+
+    .live__stats__card__container {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
 }

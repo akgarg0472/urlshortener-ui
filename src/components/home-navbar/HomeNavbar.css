@@ -61,3 +61,35 @@
   background-color: var(--bg-secondary);
   transition: all 100ms linear;
 }
+
+@media screen and (max-width: 768px) {
+  .home__navbar {
+    padding: 1.6rem 4rem;
+    height: auto;
+  }
+  .home__navbar .navbar__link {
+    font-size: 2rem;
+  }
+  .home__navbar .auth__buttons__container {
+    height: 3.6rem;
+  }
+  .home__navbar .auth__buttons__container .login__button,
+  .home__navbar .auth__buttons__container .signup__button {
+    font-size: 1.4rem;
+  }
+}
+@media screen and (max-width: 600px) {
+  .home__navbar {
+    padding: 1.6rem 3.2rem;
+  }
+  .home__navbar .navbar__link {
+    font-size: 1.6rem;
+  }
+  .home__navbar .auth__buttons__container {
+    height: 3.6rem;
+  }
+  .home__navbar .auth__buttons__container .login__button,
+  .home__navbar .auth__buttons__container .signup__button {
+    padding: 0.8rem 1.6rem;
+  }
+}

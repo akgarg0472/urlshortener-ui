@@ -242,14 +242,22 @@ export const liveDataStatistics: LiveHomeStats[] = [
   {
     id: "links__shortened__last__24__hours",
     title: "Links shortened in last 24 hours",
-    metric: "1,234,567",
-    iconColor: "rgba(34, 197, 94, 1)",
+    metric: (
+      Math.floor(Math.random() * 100000) +
+      1000000 +
+      Math.floor(Math.random() * 10000 - 5000)
+    ).toString(),
+    iconColor: "rgba(99, 102, 241, 1)",
   },
   {
-    id: "active__users__right__now",
-    title: "Active users right now",
-    metric: "12,345",
-    iconColor: "rgba(99, 102, 241, 1)",
+    id: "active__users__now",
+    title: "Active users",
+    metric: (
+      Math.floor(Math.random() * 1000) +
+      10000 +
+      Math.floor(Math.random() * 500 - 250)
+    ).toString(),
+    iconColor: "rgba(34, 197, 94, 1)",
   },
 ];
 

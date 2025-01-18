@@ -142,13 +142,11 @@ export const getAllSubscriptions = async (
 export const getSubscriptionPacks = async (
   getComparison: boolean = false
 ): Promise<GetSubscriptionPacksResponse> => {
-  // const url =
-  //   getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765").replace(
-  //     /\/+$/,
-  //     ""
-  //   ) + GET_ALL_SUBSCRIPTION_PACKS_URL_V1;
-
-  const url = "http://127.0.0.1:9099" + GET_ALL_SUBSCRIPTION_PACKS_URL_V1;
+  const url =
+    getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765").replace(
+      /\/+$/,
+      ""
+    ) + GET_ALL_SUBSCRIPTION_PACKS_URL_V1;
 
   try {
     const apiResponse = await axiosInstance.get(url, {

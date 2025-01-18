@@ -1,11 +1,11 @@
 import React from "react";
-import HomeHeading from "../home-heading/HomeHeading";
 import { HOME_STATISTICS, HOME_STATISTICS_DESC } from "../../constants";
+import { homeStatistics, liveDataStatistics } from "../../utils/data";
+import HomeHeading from "../home-heading/HomeHeading";
+import LiveStatsCard from "./live-stats-card/LiveStatsCard";
+import StatsCard from "./stats-card/StatsCard";
 
 import "./HomeStatistics.css";
-import { homeStatistics, liveDataStatistics } from "../../utils/data";
-import StatsCard from "./stats-card/StatsCard";
-import LiveStatsCard from "./live-stats-card/LiveStatsCard";
 
 const HomeStatistics = () => {
   return (
@@ -28,7 +28,7 @@ const HomeStatistics = () => {
           ))}
         </div>
 
-        <div className="stats__cards__container live__stats__card">
+        <div className="stats__cards__container live__stats__card__container live__stats__card">
           {liveDataStatistics.map((stats) => (
             <LiveStatsCard
               key={stats.id}
