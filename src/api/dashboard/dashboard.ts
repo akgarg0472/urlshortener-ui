@@ -255,22 +255,34 @@ export const getDashboardStatistics = async (
   try {
     const result = await Promise.all([
       popularUrlsPromise(props.popularUrlParam),
-      geographicalApiPromise(props.geographicalParams),
-      getDeviceMetricsStats(props.geographicalParams),
+      props.geographicalParams
+        ? geographicalApiPromise(props.geographicalParams)
+        : null,
+      props.deviceMetricsParam
+        ? getDeviceMetricsStats(props.deviceMetricsParam)
+        : null,
     ]);
 
-    const isSuccessResponse =
+    const isSuccessResponse: boolean =
       result[0].status === 200 &&
-      result[1].status === 200 &&
-      result[2].status === 200;
+      (result[1] ? result[1].status : 200) === 200 &&
+      (result[2] ? result[2].status : 200) === 200;
 
-    return {
+    const response: DashboardStatisticsApiResponse = {
       success: isSuccessResponse,
       httpCode: isSuccessResponse ? 200 : 500,
       popularUrls: { ...result[0].data, success: true },
-      geographicalStats: { ...result[1].data, success: true },
-      deviceMetrics: { ...result[2].data, success: true },
     };
+
+    if (result[1]) {
+      response.geographicalStats = { ...result[1].data, success: true };
+    }
+
+    if (result[2]) {
+      response.deviceMetrics = { ...result[2].data, success: true };
+    }
+
+    return response;
   } catch (err: any) {
     if (isAxiosNetworkError(err)) {
       const axiosNetworkErrorResponse: ApiErrorResponse =

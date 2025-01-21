@@ -29,9 +29,9 @@ interface DeviceMetricsApiRequest {
 }
 
 interface DashboardStatisticsRequest {
-  geographicalParams: UrlGeographicalRequest;
   popularUrlParam: TopPopularUrlRequest;
-  deviceMetricsParam: DeviceMetricsApiRequest;
+  geographicalParams: UrlGeographicalRequest | null;
+  deviceMetricsParam?: DeviceMetricsApiRequest | null;
 }
 
 interface UpdateProfileRequest {

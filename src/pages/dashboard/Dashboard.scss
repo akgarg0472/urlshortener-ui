@@ -86,6 +86,7 @@ $component__margin: 1.2rem 0;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
     }
   }
 }
@@ -431,5 +432,13 @@ $component__margin: 1.2rem 0;
 
   .btn__fetch__subs__history:hover {
     background-color: var(--bg-dark-hover);
+  }
+}
+
+@media screen and (max-width: 1366px) {
+  .dashboard__page__content .subscription__history__container {
+    .content {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
 }

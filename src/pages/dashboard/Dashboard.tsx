@@ -40,6 +40,14 @@ import useAuth from "../../hooks/useAuth";
 import { getCurrentDateTime } from "../../utils/datetimeutils";
 import { getEnv } from "../../utils/envutils";
 
+import { GetSubscriptionRequest } from "../../api/subscription/subs.api.request";
+import { GetSubscriptionResponse } from "../../api/subscription/subs.api.response";
+import { getActiveSubscription } from "../../api/subscription/subscription";
+import UpgradePlan from "../../components/updrade-plan/UpgradePlan";
+import {
+  isDeviceMetricsAllowed,
+  isGeographicalMetricsAllowed,
+} from "../../utils/subscriptonUtils";
 import "./Dashboard.css";
 
 const Dashboard = () => {
@@ -58,16 +66,46 @@ const Dashboard = () => {
   >([]);
   const [continents, setContinents] = useState<apiModal.Continent[]>([]);
   const [countries, setCountries] = useState<apiModal.Country[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   const [popularUrls, setPopularUrls] = useState<apiModal.PopularURL[]>([]);
   const [oss, setOss] = useState<apiModal.OS[]>([]);
   const [browsers, setBrowsers] = useState<apiModal.Browser[]>([]);
+  const [geographyMetricsAllowed, setGeographyMetricsAllowed] =
+    useState<boolean>(true);
+  const [deviceMetricsAllowed, setDeviceMetricsAllowed] =
+    useState<boolean>(true);
 
   useEffect(() => {
     document.title = "Dashboard";
     fetchDashboard();
     // eslint-disable-next-line
   }, []);
+
+  const fetchActiveSubscriptionDetails =
+    async (): Promise<GetSubscriptionResponse | null> => {
+      const userId = getUserId();
+      const authToken = getAuthToken();
+
+      if (!userId || !authToken) {
+        logout();
+        navigate(LOGIN_URL, { replace: true });
+        return null;
+      }
+
+      const req: GetSubscriptionRequest = {
+        userId: userId,
+        authToken: authToken,
+      };
+
+      const response: GetSubscriptionResponse =
+        await getActiveSubscription(req);
+
+      if (!response.success || !response.subscription || !response.pack) {
+        return null;
+      }
+
+      return response;
+    };
 
   const fetchDashboard = async () => {
     const userId = getUserId();
@@ -79,17 +117,40 @@ const Dashboard = () => {
       return;
     }
 
+    const activeSubscription = await fetchActiveSubscriptionDetails();
+
+    if (!activeSubscription) {
+      Modal.showModal({
+        icon: ModalIcon.ERROR,
+        message: "Failed to fetch active subscripton details",
+      });
+      return;
+    }
+
+    setLoading(true);
     const endTime = Date.now();
+
+    const geoMetricsAllowed: boolean = isGeographicalMetricsAllowed(
+      activeSubscription.pack
+    );
+    setGeographyMetricsAllowed(geoMetricsAllowed);
+
+    const deviceMetricsAllowed: boolean = isDeviceMetricsAllowed(
+      activeSubscription.pack
+    );
+    setDeviceMetricsAllowed(deviceMetricsAllowed);
 
     const [dashboardStatisticsApiResponse, dashboardApiResponse] =
       await Promise.all([
         getDashboardStatistics({
-          geographicalParams: {
-            userId: userId,
-            startTime: 0,
-            endTime: endTime,
-            authToken: authToken,
-          },
+          geographicalParams: geoMetricsAllowed
+            ? {
+                userId: userId,
+                startTime: 0,
+                endTime: endTime,
+                authToken: authToken,
+              }
+            : null,
           popularUrlParam: {
             userId: userId,
             sortOrder: "desc",
@@ -98,12 +159,14 @@ const Dashboard = () => {
             endTime: endTime,
             authToken: authToken,
           },
-          deviceMetricsParam: {
-            userId: userId,
-            startTime: 0,
-            endTime: endTime,
-            authToken: authToken,
-          },
+          deviceMetricsParam: deviceMetricsAllowed
+            ? {
+                userId: userId,
+                startTime: 0,
+                endTime: endTime,
+                authToken: authToken,
+              }
+            : null,
         }),
         getDashboard({
           userId: userId!,
@@ -131,16 +194,31 @@ const Dashboard = () => {
         icon: ModalIcon.ERROR,
         message: dashboardApiResponse.message,
       });
+    } else {
+      setTodayStats(dashboardApiResponse.current_day_stats);
+      setLifetimeStats(dashboardApiResponse.lifetime_stats);
+      setPrevSevenDayHitsData(dashboardApiResponse.prev_seven_days_hits);
+      setPrevDayStats(dashboardApiResponse.prev_day_stats);
     }
 
-    setTodayStats(dashboardApiResponse.current_day_stats);
-    setLifetimeStats(dashboardApiResponse.lifetime_stats);
-    setPrevSevenDayHitsData(dashboardApiResponse.prev_seven_days_hits);
-    setPrevDayStats(dashboardApiResponse.prev_day_stats);
+    if (!dashboardStatisticsApiResponse.success) {
+      Modal.showModal({
+        icon: ModalIcon.ERROR,
+        message: dashboardApiResponse.message,
+      });
+      return;
+    } else {
+      handlePopularURLs(dashboardStatisticsApiResponse.popularUrls!);
+      if (dashboardStatisticsApiResponse.geographicalStats) {
+        handleGeographicalData(
+          dashboardStatisticsApiResponse.geographicalStats
+        );
+      }
 
-    handlePopularURLs(dashboardStatisticsApiResponse.popularUrls!);
-    handleGeographicalData(dashboardStatisticsApiResponse.geographicalStats!);
-    handleOSBrowserData(dashboardStatisticsApiResponse.deviceMetrics!);
+      if (dashboardStatisticsApiResponse.deviceMetrics) {
+        handleOSBrowserData(dashboardStatisticsApiResponse.deviceMetrics);
+      }
+    }
   };
 
   const handlePopularURLs = (popularURLResponse: PopularURLApiResponse) => {
@@ -268,13 +346,15 @@ const Dashboard = () => {
 
               {loading ? (
                 <InternalLoader />
-              ) : (
-                <>
+              ) : prevDayStats.length > 0 ? (
+                <React.Fragment>
                   <DailyHitsLineChart
                     data={prevSevenDaysHitsData}
                     datasetLabel={PREV_SEVEN_DAYS_DATASET_LABEL}
                   />
-                </>
+                </React.Fragment>
+              ) : (
+                <NoDataAvailable />
               )}
             </div>
 
@@ -298,20 +378,36 @@ const Dashboard = () => {
 
               {loading ? (
                 <InternalLoader />
-              ) : (
+              ) : geographyMetricsAllowed ? (
                 <React.Fragment>
-                  <PieChart
-                    datasetLabel="Country"
-                    data={continents}
-                    legendPosition="bottom"
-                  />
+                  {continents.length > 0 ? (
+                    <React.Fragment>
+                      <PieChart
+                        datasetLabel="Country"
+                        data={continents}
+                        legendPosition="bottom"
+                      />
 
-                  <ChartPercentageStatsContainer
-                    data={continents.map((c) => {
-                      return { name: c.name, value: c.hits_count };
-                    })}
-                  />
+                      <ChartPercentageStatsContainer
+                        data={continents.map((c) => {
+                          return { name: c.name, value: c.hits_count };
+                        })}
+                      />
+                    </React.Fragment>
+                  ) : (
+                    <NoDataAvailable />
+                  )}
                 </React.Fragment>
+              ) : (
+                <UpgradePlan
+                  blurredContent={
+                    <ChartPercentageStatsContainer
+                      data={continents.map((c) => {
+                        return { name: c.name, value: c.hits_count };
+                      })}
+                    />
+                  }
+                />
               )}
             </div>
 
@@ -323,20 +419,36 @@ const Dashboard = () => {
 
               {loading ? (
                 <InternalLoader />
-              ) : (
-                <React.Fragment>
-                  <PieChart
-                    datasetLabel="Country"
-                    data={countries}
-                    legendPosition="bottom"
-                  />
+              ) : geographyMetricsAllowed ? (
+                countries.length > 0 ? (
+                  <>
+                    <PieChart
+                      datasetLabel="Country"
+                      data={countries}
+                      legendPosition="bottom"
+                    />
 
-                  <ChartPercentageStatsContainer
-                    data={countries.map((c) => {
-                      return { name: c.name, value: c.hits_count };
-                    })}
-                  />
-                </React.Fragment>
+                    <ChartPercentageStatsContainer
+                      data={countries.map((c) => ({
+                        name: c.name,
+                        value: c.hits_count,
+                      }))}
+                    />
+                  </>
+                ) : (
+                  <NoDataAvailable />
+                )
+              ) : (
+                <UpgradePlan
+                  blurredContent={
+                    <ChartPercentageStatsContainer
+                      data={countries.map((c) => ({
+                        name: c.name,
+                        value: c.hits_count,
+                      }))}
+                    />
+                  }
+                />
               )}
             </div>
 
@@ -348,24 +460,37 @@ const Dashboard = () => {
 
               {loading ? (
                 <InternalLoader />
-              ) : (
-                <React.Fragment>
-                  <PieChart
-                    datasetLabel="OS"
-                    data={oss}
-                    legendPosition="bottom"
-                    key="oss__stats"
-                  />
+              ) : deviceMetricsAllowed ? (
+                oss.length > 0 ? (
+                  <React.Fragment>
+                    <PieChart
+                      datasetLabel="OS"
+                      data={oss}
+                      legendPosition="bottom"
+                      key="oss__stats"
+                    />
 
-                  <ChartPercentageStatsContainer
-                    data={oss.map((o) => {
-                      return { name: o.name, value: o.hits_count };
-                    })}
-                  />
-                </React.Fragment>
+                    <ChartPercentageStatsContainer
+                      data={oss.map((o) => {
+                        return { name: o.name, value: o.hits_count };
+                      })}
+                    />
+                  </React.Fragment>
+                ) : (
+                  <NoDataAvailable />
+                )
+              ) : (
+                <UpgradePlan
+                  blurredContent={
+                    <ChartPercentageStatsContainer
+                      data={oss.map((o) => {
+                        return { name: o.name, value: o.hits_count };
+                      })}
+                    />
+                  }
+                />
               )}
             </div>
-
             <div className="browser__stats__container">
               <DashboardHeadSubHead
                 heading={DASH_BROWSER_HEAD}
@@ -374,21 +499,35 @@ const Dashboard = () => {
 
               {loading ? (
                 <InternalLoader />
-              ) : (
-                <React.Fragment>
-                  <PieChart
-                    datasetLabel="Browsers"
-                    data={browsers}
-                    legendPosition="bottom"
-                    key="browsers__stats"
-                  />
+              ) : deviceMetricsAllowed ? (
+                browsers.length > 0 ? (
+                  <React.Fragment>
+                    <PieChart
+                      datasetLabel="Browsers"
+                      data={browsers}
+                      legendPosition="bottom"
+                      key="browsers__stats"
+                    />
 
-                  <ChartPercentageStatsContainer
-                    data={browsers.map((b) => {
-                      return { name: b.name, value: b.hits_count };
-                    })}
-                  />
-                </React.Fragment>
+                    <ChartPercentageStatsContainer
+                      data={browsers.map((b) => {
+                        return { name: b.name, value: b.hits_count };
+                      })}
+                    />
+                  </React.Fragment>
+                ) : (
+                  <NoDataAvailable />
+                )
+              ) : (
+                <UpgradePlan
+                  blurredContent={
+                    <ChartPercentageStatsContainer
+                      data={browsers.map((b) => {
+                        return { name: b.name, value: b.hits_count };
+                      })}
+                    />
+                  }
+                />
               )}
             </div>
           </div>

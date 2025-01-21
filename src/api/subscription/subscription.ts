@@ -9,6 +9,10 @@ import {
   errorResponse,
   isAxiosNetworkError,
 } from "../../utils/errorutils";
+import {
+  encryptActiveSubscriptionDetails,
+  getCachedActiveSubscriptionDetails,
+} from "../../utils/subscriptonUtils";
 import { ApiErrorResponse, axiosInstance } from "../base";
 import { GetSubscriptionRequest } from "./subs.api.request";
 import {
@@ -27,6 +31,18 @@ export const getActiveSubscription = async (
     ) + DASHBOARD_GET_ACTIVE_SUBSCRIPTION_API_URL_V1;
 
   try {
+    const cachedData = getCachedActiveSubscriptionDetails(request.userId);
+
+    if (cachedData) {
+      return {
+        httpCode: 200,
+        success: true,
+        message: "Active subscription fetched",
+        subscription: cachedData.subscription,
+        pack: cachedData.pack,
+      };
+    }
+
     const apiResponse = await axiosInstance.get(url, {
       params: {
         userId: request.userId,
@@ -36,6 +52,11 @@ export const getActiveSubscription = async (
         Authorization: `Bearer ${request.authToken}`,
       },
     });
+
+    encryptActiveSubscriptionDetails(
+      apiResponse.data.subscription,
+      apiResponse.data.pack
+    );
 
     return {
       httpCode: apiResponse.status,
