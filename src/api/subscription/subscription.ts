@@ -11,7 +11,9 @@ import {
 } from "../../utils/errorutils";
 import {
   encryptActiveSubscriptionDetails,
+  encryptSubscriptionPackAndComparison,
   getCachedActiveSubscriptionDetails,
+  getCachedSubscriptionPacksAndComparison,
 } from "../../utils/subscriptonUtils";
 import { ApiErrorResponse, axiosInstance } from "../base";
 import { GetSubscriptionRequest } from "./subs.api.request";
@@ -170,6 +172,19 @@ export const getSubscriptionPacks = async (
     ) + GET_ALL_SUBSCRIPTION_PACKS_URL_V1;
 
   try {
+    // TODO: add caching layer
+    const cachedValue = getCachedSubscriptionPacksAndComparison();
+
+    if (cachedValue) {
+      return {
+        httpCode: 200,
+        success: true,
+        packs: cachedValue.packs,
+        comparisons: cachedValue.comparisons,
+        errors: null,
+      };
+    }
+
     const apiResponse = await axiosInstance.get(url, {
       params: {
         getComparison: getComparison,
@@ -178,6 +193,12 @@ export const getSubscriptionPacks = async (
         "X-REQUEST-ID": 1,
       },
     });
+
+    encryptSubscriptionPackAndComparison(
+      apiResponse.data.packs,
+      apiResponse.data.comparisons,
+      getComparison ? 300 * 1000 : 30 * 1000
+    );
 
     return {
       httpCode: apiResponse.status,

@@ -25,6 +25,7 @@ const HomePricing = (props: { showComparePlans?: boolean }) => {
 
   useEffect(() => {
     fetchSubscriptionPacks();
+    // eslint-disable-next-line
   }, []);
 
   const fetchSubscriptionPacks = async () => {

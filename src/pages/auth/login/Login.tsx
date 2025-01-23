@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import {
   doGetOAuthProvider,
@@ -23,15 +23,16 @@ import { LoaderSpeed } from "../../../components/loader/Loader.enums";
 import Modal from "../../../components/modal/Modal";
 import { ModalIcon } from "../../../components/modal/Modal.enums";
 import SeparatorWithText from "../../../components/separator-with-text/SeparatorWithText";
+import { DASHBOARD_URL, OAUTH_SUCCESS_RESPONSE_KEY } from "../../../constants";
 import useAuth from "../../../hooks/useAuth";
 import { validateLoginPage } from "../../../utils/authutils";
 
-import { OAUTH_SUCCESS_RESPONSE_KEY } from "../../../constants";
 import "../Auth.css";
 
 const Login = () => {
   const navigation = useNavigate();
   const { setAuth, isUserLoggedIn } = useAuth();
+  const [searchParams] = useSearchParams();
   let popupInterval: NodeJS.Timer | null = null;
 
   const [loginObject, setLoginObject] = useState<{
@@ -46,7 +47,8 @@ const Login = () => {
     document.title = "Login";
 
     if (isUserLoggedIn()) {
-      navigation("/dashboard", {
+      const redirecTo = searchParams.get("redirectTo");
+      navigation(redirecTo ? redirecTo : DASHBOARD_URL, {
         replace: true,
       });
     }
@@ -56,6 +58,7 @@ const Login = () => {
         clearInterval(popupInterval);
       }
     };
+
     // eslint-disable-next-line
   }, []);
 
@@ -87,7 +90,8 @@ const Login = () => {
       );
 
       if (isAuthCompleted) {
-        navigation("/dashboard", {
+        const redirecTo = searchParams.get("redirectTo");
+        navigation(redirecTo ? redirecTo : DASHBOARD_URL, {
           replace: true,
         });
       }
@@ -185,11 +189,17 @@ const Login = () => {
             icon: ModalIcon.SUCCESS,
             message: `🎉 Welcome to UrlShortener: ${callbackResponse.name}`,
             onClose() {
-              navigation("/dashboard");
+              const redirecTo = searchParams.get("redirectTo");
+              navigation(redirecTo ? redirecTo : DASHBOARD_URL, {
+                replace: true,
+              });
             },
           });
         } else {
-          navigation("/dashboard");
+          const redirecTo = searchParams.get("redirectTo");
+          navigation(redirecTo ? redirecTo : DASHBOARD_URL, {
+            replace: true,
+          });
         }
       };
 
@@ -299,11 +309,17 @@ const Login = () => {
             icon: ModalIcon.SUCCESS,
             message: callbackResponse.message,
             onClose() {
-              navigation("/dashboard");
+              const redirecTo = searchParams.get("redirectTo");
+              navigation(redirecTo ? redirecTo : DASHBOARD_URL, {
+                replace: true,
+              });
             },
           });
         } else {
-          navigation("/dashboard");
+          const redirecTo = searchParams.get("redirectTo");
+          navigation(redirecTo ? redirecTo : DASHBOARD_URL, {
+            replace: true,
+          });
         }
       };
 

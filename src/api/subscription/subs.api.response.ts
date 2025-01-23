@@ -43,14 +43,16 @@ export type SubscriptionPack = {
   default_pack: boolean;
 };
 
+export type SubscriptionPackComparison = {
+  headers: string[];
+  rows: any[][];
+};
+
 export type GetSubscriptionPacksResponse = {
   httpCode: number;
   success: boolean;
   message?: string;
   packs: SubscriptionPack[] | null;
-  comparisons: {
-    headers: string[];
-    rows: any[][];
-  } | null;
+  comparisons: SubscriptionPackComparison | null;
   errors: any | null;
 };

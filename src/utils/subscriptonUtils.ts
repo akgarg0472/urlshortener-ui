@@ -1,7 +1,13 @@
 import {
   ActivePack,
   ActiveSubscription,
+  SubscriptionPack,
+  SubscriptionPackComparison,
 } from "../api/subscription/subs.api.response";
+import { xorDecrypt, xorEncrypt } from "./encryptionUtils";
+
+const activeSubscriptionKey: string = "activeSubscriptionDetals";
+const subscriptionPacksAndComparisonKey: string = "subscriptionPacksComparison";
 
 export type CachedActiveSubscriptionDetails = {
   subscription: ActiveSubscription;
@@ -9,7 +15,11 @@ export type CachedActiveSubscriptionDetails = {
   expiry: number;
 };
 
-const activeSubscriptionKey: string = "activeSubscriptionDetals";
+export type CachedSubscriptionPacksAndComparison = {
+  packs: SubscriptionPack[] | null;
+  comparisons: SubscriptionPackComparison | null;
+  expiry: number;
+};
 
 export const encryptActiveSubscriptionDetails = (
   subscription: ActiveSubscription,
@@ -39,44 +49,12 @@ export const getCachedActiveSubscriptionDetails = (
     return null;
   }
 
-  const decryptedData: CachedActiveSubscriptionDetails =
-    decryptActiveSubscriptionDetails(cachedValue, userId);
+  const decryptedData: CachedActiveSubscriptionDetails = JSON.parse(
+    xorDecrypt(atob(cachedValue), userId)
+  );
 
   if (decryptedData.expiry < Date.now()) {
     return null;
-  }
-
-  return decryptedData;
-};
-
-const decryptActiveSubscriptionDetails = (
-  encryptedData: string,
-  encryptionKey: string
-): CachedActiveSubscriptionDetails => {
-  const encryptedStr = atob(encryptedData);
-  const decryptedData = xorDecrypt(encryptedStr, encryptionKey);
-  return JSON.parse(decryptedData);
-};
-
-const xorEncrypt = (data: any, key: string) => {
-  const keyLength = key.length;
-  let encryptedData = "";
-  for (let i = 0; i < data.length; i++) {
-    encryptedData += String.fromCharCode(
-      data.charCodeAt(i) ^ key.charCodeAt(i % keyLength)
-    );
-  }
-  return encryptedData;
-};
-
-const xorDecrypt = (data: any, key: string) => {
-  const keyLength = key.length;
-  let decryptedData = "";
-
-  for (let i = 0; i < data.length; i++) {
-    decryptedData += String.fromCharCode(
-      data.charCodeAt(i) ^ key.charCodeAt(i % keyLength)
-    );
   }
 
   return decryptedData;
@@ -105,3 +83,42 @@ export const isGeographicalMetricsAllowed = (
       privilege.includes("analytic") && privilege.includes("geograph")
   );
 };
+
+export const encryptSubscriptionPackAndComparison = (
+  packs: SubscriptionPack[],
+  comparisons: SubscriptionPackComparison | null,
+  ttl: number
+): void => {
+  const dataToEncrypt: CachedSubscriptionPacksAndComparison = {
+    packs: packs,
+    comparisons: comparisons,
+    expiry: Date.now() + ttl,
+  };
+
+  const encryptedData = btoa(
+    xorEncrypt(JSON.stringify(dataToEncrypt), subscriptionPacksAndComparisonKey)
+  );
+
+  sessionStorage.setItem(subscriptionPacksAndComparisonKey, encryptedData);
+};
+
+export const getCachedSubscriptionPacksAndComparison =
+  (): CachedSubscriptionPacksAndComparison | null => {
+    const cachedValue = sessionStorage.getItem(
+      subscriptionPacksAndComparisonKey
+    );
+
+    if (!cachedValue) {
+      return null;
+    }
+
+    const decryptedData: CachedSubscriptionPacksAndComparison = JSON.parse(
+      xorDecrypt(atob(cachedValue), subscriptionPacksAndComparisonKey)
+    );
+
+    if (decryptedData.expiry < Date.now()) {
+      return null;
+    }
+
+    return decryptedData;
+  };

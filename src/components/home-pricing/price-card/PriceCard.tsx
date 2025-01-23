@@ -1,8 +1,11 @@
 import React from "react";
-import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+import { LOGIN_URL, SUBSCRIPTION_PLANS_URL } from "../../../constants";
+import useAuth from "../../../hooks/useAuth";
 import RegularButton from "../../button/RegularButton";
-import "./PriceCard.css";
 import PlanFeature from "./plan-feature/PlanFeature";
+
+import "./PriceCard.css";
 
 type PlanProps = {
   name: string;
@@ -16,6 +19,20 @@ type PlanProps = {
 };
 
 const PriceCard = (plan: PlanProps) => {
+  const { isUserLoggedIn } = useAuth();
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    if (!isUserLoggedIn()) {
+      navigate(`${LOGIN_URL}?redirectTo=${SUBSCRIPTION_PLANS_URL}`, {
+        replace: true,
+      });
+      return;
+    }
+
+    console.log("User is logged in....");
+  };
+
   return (
     <React.Fragment>
       <div
@@ -42,14 +59,8 @@ const PriceCard = (plan: PlanProps) => {
         <div className="get__started__btn__container">
           <RegularButton
             className="get__started__btn"
-            content="Get Started"
-            onClick={() =>
-              Swal.fire({
-                icon: "info",
-                title: "Launching soon",
-                text: "We'll be launching this feature very soon. Stay tuned!",
-              })
-            }
+            content={isUserLoggedIn() ? "Buy Now" : "Get Started"}
+            onClick={handleButtonClick}
           />
         </div>
       </div>
