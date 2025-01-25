@@ -15,6 +15,7 @@ import DashboardNavbar from "../../components/dashboard-navbar/DashboardNavbar";
 import DashboardHeadSubHead from "../../components/dashboardheadsubhead/DashboardHeadSubHead";
 import KVPair from "../../components/KVPair/KVPair";
 import InternalLoader from "../../components/loader/internal-loader/InternalLoader";
+import { InternalLoaderSize } from "../../components/loader/Loader.enums";
 import Modal from "../../components/modal/Modal";
 import { ModalIcon } from "../../components/modal/Modal.enums";
 import NoDataAvailable from "../../components/no-data-available/NoDataAvailable";
@@ -29,12 +30,11 @@ import {
 import useAuth from "../../hooks/useAuth";
 import { convertTimestampToDateTime } from "../../utils/datetimeutils";
 
-import { InternalLoaderSize } from "../../components/loader/Loader.enums";
 import "./Dashboard.css";
 
 type ActiveSubscriptionPack = {
-  id: string;
-  name: string;
+  pack_id: string;
+  pack_name: string;
   default_pack: boolean;
 };
 

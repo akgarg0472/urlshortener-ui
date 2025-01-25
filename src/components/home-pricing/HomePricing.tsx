@@ -9,7 +9,6 @@ import {
   PricingPlan,
   pricingPlanComparison,
 } from "../../utils/data";
-import { getCurrencySymbol } from "../../utils/priceutils";
 import HomeHeading from "../home-heading/HomeHeading";
 import ComparePack from "./compare-pack/ComparePacks";
 import PriceCard from "./price-card/PriceCard";
@@ -48,7 +47,7 @@ const HomePricing = (props: { showComparePlans?: boolean }) => {
           id: p.id,
           name: p.name,
           description: p.description,
-          currency: getCurrencySymbol(p.currency),
+          currency: p.currency,
           features: p.features,
           price: p.price.toString(),
           selected: p.selected,
@@ -71,6 +70,7 @@ const HomePricing = (props: { showComparePlans?: boolean }) => {
           {subscriptionPacks.map((plan) => (
             <PriceCard
               key={plan.id}
+              packId={plan.id}
               name={plan.name}
               currency={plan.currency}
               price={plan.price}

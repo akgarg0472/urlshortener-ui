@@ -189,9 +189,6 @@ export const getSubscriptionPacks = async (
       params: {
         getComparison: getComparison,
       },
-      headers: {
-        "X-REQUEST-ID": 1,
-      },
     });
 
     encryptSubscriptionPackAndComparison(

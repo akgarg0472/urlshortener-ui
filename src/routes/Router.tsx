@@ -10,6 +10,7 @@ import {
   LOGIN_URL,
   OAUTH_SUCCESS_GITHUB,
   OAUTH_SUCCESS_GOOGLE,
+  PAYPAL_CALLBACK_URL,
   RESET_PASSWORD_URL,
   SIGNUP_URL,
   SUBSCRIPTION_PLANS_URL,
@@ -26,6 +27,7 @@ import DashboardSubscription from "../pages/dashboard/DashboardSubscription";
 import DashboardUpdateProfile from "../pages/dashboard/DashboardUpdateProfile";
 import ErrorPage from "../pages/error/ErrorPage";
 import HomePage from "../pages/home/HomePage";
+import { Paypal } from "../pages/payment/Paypal";
 import SubscriptionPage from "../pages/plans/SubscriptionPage";
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -112,8 +114,14 @@ const router = createBrowserRouter(
       element: <SubscriptionPage />,
     },
     {
+      path: PAYPAL_CALLBACK_URL,
+      element: (
+        <ProtectedRoute element={<Paypal />} redirectTo={DASHBOARD_URL} />
+      ),
+    },
+    {
       path: "*",
-      element: [<HomeNavbar key="navbar" />, <ErrorPage key="error__page" />],
+      element: <ErrorPage key="error__page" />,
     },
   ],
   {

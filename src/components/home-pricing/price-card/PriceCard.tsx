@@ -1,14 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { createPaypalOrder } from "../../../api/payment/payment";
+import { PaypalCreateOrderResponse } from "../../../api/payment/payment.api.response";
 import { LOGIN_URL, SUBSCRIPTION_PLANS_URL } from "../../../constants";
 import useAuth from "../../../hooks/useAuth";
 import RegularButton from "../../button/RegularButton";
 import PlanFeature from "./plan-feature/PlanFeature";
 
+import { getCurrencySymbol } from "../../../utils/priceutils";
+import { getActiveSubscriptionPackId } from "../../../utils/subscriptonUtils";
+import Loader from "../../loader/Loader";
+import { LoaderSpeed } from "../../loader/Loader.enums";
+import Modal from "../../modal/Modal";
+import { ModalIcon } from "../../modal/Modal.enums";
 import "./PriceCard.css";
 
 type PlanProps = {
   name: string;
+  packId: string;
   price: string;
   validity: string;
   currency: string;
@@ -19,10 +28,19 @@ type PlanProps = {
 };
 
 const PriceCard = (plan: PlanProps) => {
-  const { isUserLoggedIn } = useAuth();
+  const { isUserLoggedIn, getUserId, getAuthToken } = useAuth();
+  const [activePackId, setActivePackId] = useState<string | null>(null);
+  const [buttonText, setButtonText] = useState<string>("Get Started");
   const navigate = useNavigate();
 
-  const handleButtonClick = () => {
+  useEffect(() => {
+    setActivePackId(
+      isUserLoggedIn() ? getActiveSubscriptionPackId(getUserId()!) : null
+    );
+    setButtonText(isUserLoggedIn() ? "Buy Now" : "Get Started");
+  }, []);
+
+  const handleButtonClick = async () => {
     if (!isUserLoggedIn()) {
       navigate(`${LOGIN_URL}?redirectTo=${SUBSCRIPTION_PLANS_URL}`, {
         replace: true,
@@ -30,7 +48,33 @@ const PriceCard = (plan: PlanProps) => {
       return;
     }
 
-    console.log("User is logged in....");
+    Loader.showLoader({
+      speed: LoaderSpeed.HIGH,
+    });
+
+    const apiResponse: PaypalCreateOrderResponse = await createPaypalOrder({
+      amount: plan.price,
+      currencyCode: plan.currency,
+      description: "Test payment",
+      packId: plan.packId,
+      paymentMethod: "Card",
+      userId: getUserId()!,
+      authToken: getAuthToken()!,
+    });
+
+    Loader.hideLoader();
+
+    if (!apiResponse.success) {
+      Modal.showModal({
+        icon: ModalIcon.ERROR,
+        message: apiResponse.errors ?? apiResponse.message,
+      });
+      return;
+    }
+
+    if (apiResponse.approval_url) {
+      window.location.href = apiResponse.approval_url;
+    }
   };
 
   return (
@@ -44,7 +88,7 @@ const PriceCard = (plan: PlanProps) => {
         <span className="plan__name">{plan.name}</span>
         <div className="price">
           <span className="amount">
-            {plan.currency}
+            {getCurrencySymbol(plan.currency)}
             {plan.price}
           </span>
           <span className="duration">/{plan.validity}</span>
@@ -59,8 +103,9 @@ const PriceCard = (plan: PlanProps) => {
         <div className="get__started__btn__container">
           <RegularButton
             className="get__started__btn"
-            content={isUserLoggedIn() ? "Buy Now" : "Get Started"}
+            content={plan.packId === activePackId ? "Activated" : buttonText}
             onClick={handleButtonClick}
+            isDisabled={plan.defaultPack || activePackId === plan.packId}
           />
         </div>
       </div>

@@ -1,5 +1,15 @@
-import { ApiResponse } from "../base";
+export type PaypalCreateOrderResponse = {
+  httpCode: number;
+  message: string;
+  success: boolean;
+  payment_id?: string;
+  approval_url?: string;
+  errors?: any;
+};
 
-export interface GetPublicApiKeyResponse extends ApiResponse {
-  public_key: string;
-}
+export type PaypalCaptureOrderResponse = {
+  httpCode: number;
+  message: string;
+  success: boolean;
+  errors?: any;
+};

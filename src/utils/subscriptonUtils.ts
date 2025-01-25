@@ -102,6 +102,11 @@ export const encryptSubscriptionPackAndComparison = (
   sessionStorage.setItem(subscriptionPacksAndComparisonKey, encryptedData);
 };
 
+export const getActiveSubscriptionPackId = (userId: string): string | null => {
+  const data = getCachedActiveSubscriptionDetails(userId);
+  return data ? data.pack.pack_id : null;
+};
+
 export const getCachedSubscriptionPacksAndComparison =
   (): CachedSubscriptionPacksAndComparison | null => {
     const cachedValue = sessionStorage.getItem(

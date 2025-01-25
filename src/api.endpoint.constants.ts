@@ -28,11 +28,15 @@ export const DASHBOARD_UPDATE_PASSWORD_API_URL_V1 =
   "/api/v1/profiles/$profileId/password";
 export const DASHBOARD_DELETE_PROFILE_API_URL_V1 =
   "/api/v1/profiles/$profileId";
-export const PAYMENT_GET_PUBLIC_KEY_API_URL_V1: string =
-  "/api/v1/payments/public-key";
 export const DASHBOARD_GET_ACTIVE_SUBSCRIPTION_API_URL_V1: string =
   "/api/v1/subscriptions/active";
 export const DASHBOARD_GET_ALL_SUBSCRIPTION_API_URL_V1: string =
   "/api/v1/subscriptions";
 export const GET_ALL_SUBSCRIPTION_PACKS_URL_V1: string =
   "/api/v1/subscriptions/packs";
+export const CREATE_PAYMENT_ORDER_PAYPAL: string =
+  "/api/v1/payments/paypal/order";
+export const CAPTURE_PAYMENT_ORDER_PAYPAL: string =
+  "/api/v1/payments/paypal/capture";
+export const CANCEL_PAYMENT_ORDER_PAYPAL: string =
+  "/api/v1/payments/paypal/cancel";

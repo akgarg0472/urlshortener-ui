@@ -1,0 +1,95 @@
+.not__found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+
+  .not__found__content {
+    text-align: center;
+    background-color: #ffffff;
+    padding: 4rem 5rem;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-out;
+    position: relative;
+    z-index: 2;
+
+    .not__found__error__code {
+      font-size: 12rem;
+      font-weight: 600;
+      color: #ff6347;
+      margin: 0;
+      animation: zoomIn 500ms ease-in-out;
+    }
+
+    .not__found__message {
+      font-size: 2.4rem;
+      color: #333;
+      margin: 2rem 0;
+      font-weight: 600;
+      opacity: 0;
+      animation: fadeInText 1000ms ease-out forwards;
+    }
+
+    .not__found__suggestion {
+      font-size: 1.6rem;
+      color: #555;
+      margin: 1.2rem 0;
+      font-style: italic;
+    }
+
+    .not__found__link {
+      display: inline-block;
+      margin-top: 2.4rem;
+      font-size: 1.6rem;
+      padding: 1.4rem 3.2rem;
+      border-radius: 0.6rem;
+      text-decoration: none;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+      background: rgba(34, 34, 34, 0.9);
+      color: #ffffff;
+      transform: scale(1);
+      transition: all 0.3s ease;
+    }
+
+    .not__found__link:hover {
+      background: rgba(34, 34, 34, 1);
+    }
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInText {
+  0% {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

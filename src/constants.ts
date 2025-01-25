@@ -14,6 +14,7 @@ export const OAUTH_SUCCESS_GITHUB: string = "/oauth/github/success";
 export const OAUTH_SUCCESS_RESPONSE_KEY: string =
   "oauth2_auth_success_response";
 export const SUBSCRIPTION_PLANS_URL: string = "/plans";
+export const PAYPAL_CALLBACK_URL: string = "/dashboard/paypal/:status";
 
 export const HOME_WHY_CHOOSE_US: string =
   "Powerful Features for Smart Link Management";

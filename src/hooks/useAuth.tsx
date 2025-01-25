@@ -70,6 +70,7 @@ const useAuth = () => {
 
   const logout = () => {
     localStorage.removeItem(AUTH_OBJ_NAME);
+    sessionStorage.clear();
   };
 
   const getName = (): string => {

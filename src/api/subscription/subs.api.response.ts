@@ -23,8 +23,8 @@ export type ActiveSubscription = {
 };
 
 export type ActivePack = {
-  id: string;
-  name: string;
+  pack_id: string;
+  pack_name: string;
   features: string[];
   privileges: string[];
   default_pack: boolean;
