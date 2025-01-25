@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { convertUtcTimeStringToLocalTime } from "../../utils/datetimeutils";
 import ShortUrlMetricModal from "../short-url-metric-modal/ShortUrlMetricModal";
-import "./MyLink.css";
 import { MyLinkProps } from "./MyLink.types";
+
+import "./MyLink.css";
 
 const MyLink = (props: MyLinkProps) => {
   const [showDialog, setShowDialog] = useState(false);

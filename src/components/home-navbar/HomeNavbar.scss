@@ -35,6 +35,92 @@ $login__signup__button__font__size: 1.6rem;
   text-decoration: none;
 }
 
+.user__menu__container {
+  border-radius: 50%;
+  height: 100%;
+  width: auto;
+  font-weight: 600;
+  aspect-ratio: 1;
+  background-color: #5d44f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+
+  .text {
+    color: var(--text-primary, "#ffffff");
+    font-size: 2rem;
+  }
+
+  .dropdown {
+    position: absolute;
+    top: 105%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.6rem;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: var(--dashboard-content-hover-box-shadow);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-2rem);
+    pointer-events: none;
+    font-size: 1.4rem;
+    transition: all 0.125s ease;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -7px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 10px;
+      border-style: solid;
+      border-color: transparent transparent var(--bg-primary) transparent;
+    }
+
+    .user__name {
+      text-shadow: unset;
+      border-bottom: 1px solid #e0e0e0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-weight: bold !important;
+    }
+
+    a,
+    .user__name {
+      width: 100%;
+      padding: 1.6rem 4rem;
+      list-style-type: none;
+      color: inherit;
+      text-decoration: none;
+      background-color: var(--bg-primary);
+      font-weight: 500;
+      transition: background-color 0.2s ease;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &:hover {
+        background-color: aliceblue;
+      }
+    }
+  }
+
+  .dropdown__visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}
+
 .auth__buttons__container {
   display: flex;
   align-items: center;

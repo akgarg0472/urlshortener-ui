@@ -195,6 +195,7 @@ export const cancelPaypalPayment = async (
         },
       }
     );
+    // eslint-disable-next-line
   } catch (err: any) {
     // do nothing
   }

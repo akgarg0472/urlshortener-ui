@@ -38,6 +38,7 @@ export const Paypal = () => {
       default:
         navigate("/", { replace: true });
     }
+    // eslint-disable-next-line
   }, []);
 
   const handleSuccess = async () => {

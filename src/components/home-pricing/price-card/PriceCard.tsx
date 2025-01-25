@@ -38,6 +38,7 @@ const PriceCard = (plan: PlanProps) => {
       isUserLoggedIn() ? getActiveSubscriptionPackId(getUserId()!) : null
     );
     setButtonText(isUserLoggedIn() ? "Buy Now" : "Get Started");
+    // eslint-disable-next-line
   }, []);
 
   const handleButtonClick = async () => {
