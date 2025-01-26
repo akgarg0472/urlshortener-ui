@@ -43,8 +43,8 @@ const ShortUrlMetricModal = (props: ShortUrlMetricModalProps) => {
       closeModal();
       Modal.showModal({
         icon: ModalIcon.ERROR,
-        title: "Error",
-        message: apiResponse.message,
+        title: apiResponse.message || "ERROR",
+        message: apiResponse.errors ?? apiResponse.message,
         onClose() {
           props.onClose();
         },

@@ -65,9 +65,8 @@ export const isDeviceMetricsAllowed = (pack: ActivePack | null): boolean => {
     return false;
   }
 
-  return pack.privileges.some(
-    (privilege) =>
-      privilege.includes("analytic") && privilege.includes("device")
+  return pack.privileges.some((privilege) =>
+    privilege.includes("analytic:device")
   );
 };
 
@@ -78,9 +77,8 @@ export const isGeographicalMetricsAllowed = (
     return false;
   }
 
-  return pack.privileges.some(
-    (privilege) =>
-      privilege.includes("analytic") && privilege.includes("geograph")
+  return pack.privileges.some((privilege) =>
+    privilege.includes("analytic:geograph")
   );
 };
 

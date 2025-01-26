@@ -35,6 +35,7 @@ export interface UrlMetricApiResponse extends ApiResponse {
   total_hits: number;
   avg_redirect_duration: number;
   latest_hits: LatestHit[];
+  errors?: any;
 }
 
 export interface GeographicalApiResponse extends ApiResponse {

@@ -1,5 +1,5 @@
+import { Suspense, lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
-import HomeNavbar from "../components/home-navbar/HomeNavbar";
 import {
   DASHBOARD_LINKS_URL,
   DASHBOARD_PROFILE_URL,
@@ -15,113 +15,171 @@ import {
   SIGNUP_URL,
   SUBSCRIPTION_PLANS_URL,
 } from "../constants";
-import ForgotPassword from "../pages/auth/forgot-password/ForgotPassword";
-import Login from "../pages/auth/login/Login";
-import OAuthSuccess from "../pages/auth/oauth/OAuthSuccess";
-import ResetPassword from "../pages/auth/reset-password/ResetPassword";
-import Signup from "../pages/auth/signup/Signup";
-import Dashboard from "../pages/dashboard/Dashboard";
-import DashboardLinks from "../pages/dashboard/DashboardLinks";
-import DashboardProfile from "../pages/dashboard/DashboardProfile";
-import DashboardSubscription from "../pages/dashboard/DashboardSubscription";
-import DashboardUpdateProfile from "../pages/dashboard/DashboardUpdateProfile";
-import ErrorPage from "../pages/error/ErrorPage";
-import HomePage from "../pages/home/HomePage";
-import { Paypal } from "../pages/payment/Paypal";
-import SubscriptionPage from "../pages/plans/SubscriptionPage";
-import ProtectedRoute from "./ProtectedRoute";
+
+const HomeNavbar = lazy(() => import("../components/home-navbar/HomeNavbar"));
+const ForgotPassword = lazy(
+  () => import("../pages/auth/forgot-password/ForgotPassword")
+);
+const Login = lazy(() => import("../pages/auth/login/Login"));
+const OAuthSuccess = lazy(() => import("../pages/auth/oauth/OAuthSuccess"));
+const ResetPassword = lazy(
+  () => import("../pages/auth/reset-password/ResetPassword")
+);
+const Signup = lazy(() => import("../pages/auth/signup/Signup"));
+const Dashboard = lazy(() => import("../pages/dashboard/Dashboard"));
+const DashboardLinks = lazy(() => import("../pages/dashboard/DashboardLinks"));
+const DashboardProfile = lazy(
+  () => import("../pages/dashboard/DashboardProfile")
+);
+const DashboardSubscription = lazy(
+  () => import("../pages/dashboard/DashboardSubscription")
+);
+const DashboardUpdateProfile = lazy(
+  () => import("../pages/dashboard/DashboardUpdateProfile")
+);
+const ErrorPage = lazy(() => import("../pages/error/ErrorPage"));
+const HomePage = lazy(() => import("../pages/home/HomePage"));
+const Paypal = lazy(() => import("../pages/payment/Paypal"));
+const SubscriptionPage = lazy(() => import("../pages/plans/SubscriptionPage"));
+const ProtectedRoute = lazy(() => import("./ProtectedRoute"));
 
 const router = createBrowserRouter(
   [
     {
       path: "/",
-      element: <HomePage />,
+      element: (
+        <Suspense fallback={<div>Loading Home...</div>}>
+          <HomePage />
+        </Suspense>
+      ),
     },
     {
       path: SIGNUP_URL,
-      element: [<HomeNavbar key="navbar" />, <Signup key="signup__signup" />],
+      element: (
+        <Suspense fallback={<div>Loading Signup...</div>}>
+          <HomeNavbar />
+          <Signup />
+        </Suspense>
+      ),
     },
     {
       path: LOGIN_URL,
-      element: [<HomeNavbar key="navbar" />, <Login key="login__login" />],
+      element: (
+        <Suspense fallback={<div>Loading Login...</div>}>
+          <HomeNavbar />
+          <Login />
+        </Suspense>
+      ),
     },
     {
       path: FORGOT_PASSWORD_URL,
-      element: [
-        <HomeNavbar key="navbar" />,
-        <ForgotPassword key="forgot__password__forgot__password" />,
-      ],
+      element: (
+        <Suspense fallback={<div>Loading Forgot Password...</div>}>
+          <HomeNavbar />
+          <ForgotPassword />
+        </Suspense>
+      ),
     },
     {
       path: RESET_PASSWORD_URL,
-      element: [
-        <HomeNavbar key="navbar" />,
-        <ResetPassword key="reset__password__element" />,
-      ],
+      element: (
+        <Suspense fallback={<div>Loading Reset Password...</div>}>
+          <HomeNavbar />
+          <ResetPassword />
+        </Suspense>
+      ),
     },
     {
       path: OAUTH_SUCCESS_GOOGLE,
-      element: <OAuthSuccess />,
+      element: (
+        <Suspense fallback={<div>Loading...</div>}>
+          <OAuthSuccess />
+        </Suspense>
+      ),
     },
     {
       path: OAUTH_SUCCESS_GITHUB,
-      element: <OAuthSuccess />,
+      element: (
+        <Suspense fallback={<div>Loading...</div>}>
+          <OAuthSuccess />
+        </Suspense>
+      ),
     },
     {
       path: DASHBOARD_URL,
       element: (
-        <ProtectedRoute element={<Dashboard />} redirectTo={DASHBOARD_URL} />
+        <Suspense fallback={<div>Loading Dashboard...</div>}>
+          <ProtectedRoute element={<Dashboard />} redirectTo={DASHBOARD_URL} />
+        </Suspense>
       ),
     },
     {
       path: DASHBOARD_LINKS_URL,
       element: (
-        <ProtectedRoute
-          element={<DashboardLinks />}
-          redirectTo={DASHBOARD_LINKS_URL}
-        />
+        <Suspense fallback={<div>Loading Dashboard Links...</div>}>
+          <ProtectedRoute
+            element={<DashboardLinks />}
+            redirectTo={DASHBOARD_LINKS_URL}
+          />
+        </Suspense>
       ),
     },
     {
       path: DASHBOARD_SUBSCRIPTIONS,
       element: (
-        <ProtectedRoute
-          element={<DashboardSubscription />}
-          redirectTo={DASHBOARD_PROFILE_URL}
-        />
+        <Suspense fallback={<div>Loading Subscriptions...</div>}>
+          <ProtectedRoute
+            element={<DashboardSubscription />}
+            redirectTo={DASHBOARD_PROFILE_URL}
+          />
+        </Suspense>
       ),
     },
     {
       path: DASHBOARD_PROFILE_URL,
       element: (
-        <ProtectedRoute
-          element={<DashboardProfile />}
-          redirectTo={DASHBOARD_PROFILE_URL}
-        />
+        <Suspense fallback={<div>Loading Profile...</div>}>
+          <ProtectedRoute
+            element={<DashboardProfile />}
+            redirectTo={DASHBOARD_PROFILE_URL}
+          />
+        </Suspense>
       ),
     },
     {
       path: DASHBOARD_UPDATE_PROFILE_URL,
       element: (
-        <ProtectedRoute
-          element={<DashboardUpdateProfile />}
-          redirectTo={DASHBOARD_UPDATE_PROFILE_URL}
-        />
+        <Suspense fallback={<div>Loading Update Profile...</div>}>
+          <ProtectedRoute
+            element={<DashboardUpdateProfile />}
+            redirectTo={DASHBOARD_UPDATE_PROFILE_URL}
+          />
+        </Suspense>
       ),
     },
     {
       path: SUBSCRIPTION_PLANS_URL,
-      element: <SubscriptionPage />,
+      element: (
+        <Suspense fallback={<div>Loading Subscription Plans...</div>}>
+          <SubscriptionPage />
+        </Suspense>
+      ),
     },
     {
       path: PAYPAL_CALLBACK_URL,
       element: (
-        <ProtectedRoute element={<Paypal />} redirectTo={DASHBOARD_URL} />
+        <Suspense fallback={<div>Loading PayPal...</div>}>
+          <ProtectedRoute element={<Paypal />} redirectTo={DASHBOARD_URL} />
+        </Suspense>
       ),
     },
     {
       path: "*",
-      element: <ErrorPage key="error__page" />,
+      element: (
+        <Suspense fallback={<div>Loading Error Page...</div>}>
+          <ErrorPage />
+        </Suspense>
+      ),
     },
   ],
   {

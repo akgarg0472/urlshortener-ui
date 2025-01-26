@@ -19,7 +19,7 @@ enum PaypalCallbackStatus {
   SUCCESS = "success",
 }
 
-export const Paypal = () => {
+const Paypal = () => {
   const [searchParams] = useSearchParams();
   const { getUserId, getAuthToken } = useAuth();
   const { status } = useParams();
@@ -103,3 +103,5 @@ export const Paypal = () => {
 
   return <React.Fragment></React.Fragment>;
 };
+
+export default Paypal;

@@ -235,6 +235,7 @@ export const getUrlMetrics = async (props: {
         avg_redirect_duration: -1,
         latest_hits: [],
         total_hits: -1,
+        errors: err.response.data.errors,
       };
     }
 
