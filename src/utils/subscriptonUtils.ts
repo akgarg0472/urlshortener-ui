@@ -105,6 +105,30 @@ export const getActiveSubscriptionPackId = (userId: string): string | null => {
   return data ? data.pack.pack_id : null;
 };
 
+export const getAllowedCustomAlias = (userId: string): number => {
+  const cached = getCachedActiveSubscriptionDetails(userId);
+
+  if (!cached) {
+    return 0;
+  }
+
+  const privileges: string[] = cached.pack.privileges;
+
+  for (let i = 0; i < privileges.length; i++) {
+    const privilege: string = privileges[i];
+
+    try {
+      if (privilege.startsWith("custom_alias")) {
+        return parseInt(privilege.substring(privilege.indexOf(":") + 1), 10);
+      }
+    } catch {
+      // do nothing
+    }
+  }
+
+  return 0;
+};
+
 export const getCachedSubscriptionPacksAndComparison =
   (): CachedSubscriptionPacksAndComparison | null => {
     const cachedValue = sessionStorage.getItem(

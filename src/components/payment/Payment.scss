@@ -1,0 +1,38 @@
+.payment__container {
+  padding: 2.4rem;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+  position: relative;
+  overflow: hidden;
+
+  .payment__kv {
+    font-size: 1.4rem;
+    display: flex;
+
+    .key {
+      font-weight: 500;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .payment__container {
+    .payment__kv {
+      font-size: 1.3rem;
+      flex-direction: column;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .payment__container {
+    grid-template-columns: repeat(1, 1fr);
+
+    .payment__kv {
+      font-size: 1.2rem;
+      flex-direction: row;
+    }
+  }
+}

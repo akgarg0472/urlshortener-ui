@@ -2,6 +2,7 @@ import {
   CANCEL_PAYMENT_ORDER_PAYPAL,
   CAPTURE_PAYMENT_ORDER_PAYPAL,
   CREATE_PAYMENT_ORDER_PAYPAL,
+  PAYMENT_HISTORY_URL_V1,
 } from "../../api.endpoint.constants";
 import { getEnv } from "../../utils/envutils";
 import {
@@ -10,11 +11,13 @@ import {
 } from "../../utils/errorutils";
 import { axiosInstance } from "../base";
 import {
+  PaymentHistoryRequest,
   PaypalCancelPaymentRequest,
   PaypalCaptureOrderRequest,
   PaypalCreateOrderRequest,
 } from "./payment.api.request";
 import {
+  PaymentHistoryResponse,
   PaypalCaptureOrderResponse,
   PaypalCreateOrderResponse,
 } from "./payment.api.response";
@@ -196,7 +199,60 @@ export const cancelPaypalPayment = async (
       }
     );
     // eslint-disable-next-line
-  } catch (err: any) {
+  } catch {
     // do nothing
+  }
+};
+
+export const fetchPaymentHistory = async (
+  request: PaymentHistoryRequest
+): Promise<PaymentHistoryResponse> => {
+  const url =
+    getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765").replace(
+      /\/+$/,
+      ""
+    ) + PAYMENT_HISTORY_URL_V1;
+
+  try {
+    const response = await axiosInstance.get(url, {
+      headers: {
+        "X-USER-ID": request.userId,
+        Authorization: `Bearer ${request.authToken}`,
+      },
+      params: {
+        userId: request.userId,
+      },
+    });
+
+    return {
+      success: response.status === 200,
+      message: response.data.message,
+      payments: response.data.payments,
+    };
+  } catch (err: any) {
+    if (isAxiosNetworkError(err)) {
+      return axiosNwErrorResponse();
+    }
+
+    if (err.response && err.response.data) {
+      const response = err.response.data;
+
+      if (err.response.status === 409) {
+        return {
+          success: false,
+          message: response.message,
+        };
+      }
+
+      return {
+        success: false,
+        message: response.message,
+      };
+    }
+
+    return {
+      success: false,
+      message: "Capture payment request Failed",
+    };
   }
 };

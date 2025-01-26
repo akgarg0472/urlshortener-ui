@@ -179,12 +179,14 @@ const errResp = (err: any, defaultErrorMsg: string) => {
   }
 
   if (err.response?.data) {
+    console.log(err.response.data);
     const resp = err.response.data;
 
     return {
       httpCode: resp.status_code,
       success: false,
-      message: resp.errors,
+      message: resp.error_message,
+      errors: resp.errors,
     };
   }
 

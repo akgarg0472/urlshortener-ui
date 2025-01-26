@@ -26,12 +26,6 @@ import {
 export const getActiveSubscription = async (
   request: GetSubscriptionRequest
 ): Promise<GetSubscriptionResponse> => {
-  const url =
-    getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765").replace(
-      /\/+$/,
-      ""
-    ) + DASHBOARD_GET_ACTIVE_SUBSCRIPTION_API_URL_V1;
-
   try {
     const cachedData = getCachedActiveSubscriptionDetails(request.userId);
 
@@ -44,6 +38,12 @@ export const getActiveSubscription = async (
         pack: cachedData.pack,
       };
     }
+
+    const url =
+      getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765").replace(
+        /\/+$/,
+        ""
+      ) + DASHBOARD_GET_ACTIVE_SUBSCRIPTION_API_URL_V1;
 
     const apiResponse = await axiosInstance.get(url, {
       params: {

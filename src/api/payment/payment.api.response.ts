@@ -13,3 +13,28 @@ export type PaypalCaptureOrderResponse = {
   success: boolean;
   errors?: any;
 };
+
+export type PaymentHistoryResponse = {
+  message: string;
+  success: boolean;
+  payments?: PaymentDetail[];
+};
+
+export type PaymentDetail = {
+  id: string;
+  pack_id: string;
+  amount: number;
+  payment_status: PaymentStatus;
+  currency: string;
+  payment_method: string;
+  created_at: number;
+  updated_at: number;
+};
+
+export enum PaymentStatus {
+  CREATED,
+  PROCESSING,
+  COMPLETED,
+  CANCELLED,
+  FAILED,
+}

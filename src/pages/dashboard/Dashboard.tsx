@@ -154,7 +154,7 @@ const Dashboard = () => {
           popularUrlParam: {
             userId: userId,
             sortOrder: "desc",
-            limit: 10,
+            limit: 5,
             startTime: 0,
             endTime: endTime,
             authToken: authToken,

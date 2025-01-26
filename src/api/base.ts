@@ -4,6 +4,7 @@ export interface ApiResponse {
   httpCode: number;
   message?: string;
   success: boolean;
+  errors?: any;
 }
 
 export interface ApiErrorResponse {

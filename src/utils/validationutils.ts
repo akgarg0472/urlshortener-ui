@@ -23,6 +23,20 @@ const validatePassword = (password: string): boolean => {
   return /^(?=.*[A-Za-z])(?=.*\d).{8,}$/.test(password);
 };
 
+export const isValidURL = (url: string): boolean => {
+  try {
+    const parsedUrl = new URL(url);
+    const hostname = parsedUrl.hostname;
+    return (
+      ["http:", "https:"].includes(parsedUrl.protocol) &&
+      hostname.includes(".") &&
+      hostname.split(".").pop()!.length > 1
+    );
+  } catch {
+    return false;
+  }
+};
+
 export const validateUpdateProfileRequest = (
   originalData: ProfileData,
   updateRequest: UpdateProfileRequest

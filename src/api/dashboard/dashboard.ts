@@ -4,6 +4,7 @@ import {
   DASHBOARD_MY_LINKS_API_URL_V1,
   DASHBOARD_SUMMARY_API_URL_V1,
   DASHBOARD_URL_METRICS_API_URL_V1,
+  GET_METRIC_USAGE_URL_V1,
   GET_TOP_POPULAR_URLS_V1,
   GET_URL_GEOGRAPHICAL_DATA_V1,
 } from "../../api.endpoint.constants";
@@ -20,6 +21,7 @@ import {
 } from "../../utils/errorutils";
 import { ApiErrorResponse, axiosInstance } from "../base";
 import {
+  CustomAliasUsageResponse,
   DashboardApiResponse,
   DashboardStatisticsApiResponse,
   MyLinksApiResponse,
@@ -310,6 +312,67 @@ export const getDashboardStatistics = async (
       success: false,
       httpCode: 500,
       message: "Error fetching statistics data",
+    };
+  }
+};
+
+export const getUsageStatistics = async (
+  request: MetricUsageRequest
+): Promise<CustomAliasUsageResponse> => {
+  const url =
+    getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765").replace(
+      /\/+$/,
+      ""
+    ) + GET_METRIC_USAGE_URL_V1;
+
+  try {
+    const urlMetricsApiResponse = await axiosInstance.get(url, {
+      params: {
+        metricName: request.metricName,
+        userId: request.userId,
+        startTime: request.startTime,
+        endTime: request.endTime,
+      },
+      headers: {
+        "X-USER-ID": request.userId,
+        Authorization: `Bearer ${request.authToken}`,
+      },
+    });
+
+    return {
+      httpCode: urlMetricsApiResponse.status,
+      success: urlMetricsApiResponse.data.status_code === 200,
+      message: urlMetricsApiResponse.data.message,
+      key: urlMetricsApiResponse.data.key,
+      value: urlMetricsApiResponse.data.value,
+    };
+  } catch (err: any) {
+    if (isAxiosNetworkError(err)) {
+      const axiosNetworkErrorResponse: ApiErrorResponse =
+        axiosNwErrorResponse();
+
+      return {
+        success: axiosNetworkErrorResponse.success,
+        httpCode: axiosNetworkErrorResponse.httpCode,
+        message: axiosNetworkErrorResponse.message,
+      };
+    }
+
+    if (err.response && err.response.data) {
+      const errResp = errorResponse(err);
+
+      return {
+        success: errResp.success,
+        httpCode: errResp.httpCode,
+        message: errResp.message,
+        errors: err.response.data.errors,
+      };
+    }
+
+    return {
+      success: false,
+      httpCode: 500,
+      message: "Usage Metrics Fetch Failed",
     };
   }
 };

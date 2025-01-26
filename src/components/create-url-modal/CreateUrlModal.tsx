@@ -1,5 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { getUsageStatistics } from "../../api/dashboard/dashboard";
+import { GenerateUrlResponse } from "../../api/dashboard/dashboard.api.response";
+import { GetSubscriptionRequest } from "../../api/subscription/subs.api.request";
+import { GetSubscriptionResponse } from "../../api/subscription/subs.api.response";
+import { getActiveSubscription } from "../../api/subscription/subscription";
+import { generateShortUrl } from "../../api/url/url";
 import useAuth from "../../hooks/useAuth";
+import { isValidAndFutureMillisecond } from "../../utils/datetimeutils";
 import RegularButton from "../button/RegularButton";
 import InputField from "../inputfield/InputField";
 import { InputFieldType } from "../inputfield/InputField.enums";
@@ -8,9 +15,8 @@ import { InternalLoaderSize } from "../loader/Loader.enums";
 import Modal from "../modal/Modal";
 import { ModalIcon } from "../modal/Modal.enums";
 
-import { GenerateUrlResponse } from "../../api/dashboard/dashboard.api.response";
-import { generateShortUrl } from "../../api/url/url";
-import { isValidAndFutureMillisecond } from "../../utils/datetimeutils";
+import { getAllowedCustomAlias } from "../../utils/subscriptonUtils";
+import { isValidURL } from "../../utils/validationutils";
 import "./CreateUrlModal.css";
 
 const CreateUrlModal = (props: CreateUrlModalProps) => {
@@ -19,14 +25,57 @@ const CreateUrlModal = (props: CreateUrlModalProps) => {
   const generateShortUrlButtonRef = useRef<HTMLButtonElement>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [originalUrl, setOriginalUrl] = useState<string>("");
+  const [customAlias, setCustomAlias] = useState<string>("");
   const [expirationDate, setExpirationDate] = useState<number | null>(null);
+  const [showCustomAlias, setShowCustomAlias] = useState<boolean>(false);
+  const [fetchingUsage, setFetchingUsage] = useState<boolean>(true);
+
+  useEffect(() => {
+    fetchCustomAliasUsage();
+    // eslint-disable-next-line
+  }, []);
+
+  const fetchActiveSubscription =
+    async (): Promise<GetSubscriptionResponse> => {
+      const request: GetSubscriptionRequest = {
+        userId: getUserId()!,
+        authToken: getAuthToken()!,
+      };
+      return await getActiveSubscription(request);
+    };
+
+  const fetchCustomAliasUsage = async () => {
+    const subscription = await fetchActiveSubscription();
+    const userId: string = getUserId()!;
+
+    if (subscription.success && subscription.subscription) {
+      const request: MetricUsageRequest = {
+        metricName: "customAlias",
+        userId: userId,
+        authToken: getAuthToken()!,
+        startTime: subscription.subscription.activated_at,
+        endTime: Date.now(),
+      };
+      const response = await getUsageStatistics(request);
+
+      if (response.success && response.value !== undefined) {
+        const allowedCustomAlias: number = getAllowedCustomAlias(userId);
+
+        if (allowedCustomAlias > response.value) {
+          setShowCustomAlias(true);
+        }
+      }
+    }
+
+    setFetchingUsage(false);
+  };
 
   const handleGenerateShortUrlButtonClick = async () => {
-    if (!originalUrl) {
+    if (!isValidURL(originalUrl)) {
       Modal.showModal({
         icon: ModalIcon.ERROR,
         title: "ERROR",
-        message: "Please provide valid URL",
+        message: "Please provide valid original URL",
       });
       return;
     }
@@ -59,6 +108,7 @@ const CreateUrlModal = (props: CreateUrlModalProps) => {
       expirationTime: expirationDate,
       userId: userId,
       authToken: authToken,
+      customAlias: customAlias && customAlias !== "" ? customAlias : null,
     });
 
     setLoading(false);
@@ -80,10 +130,13 @@ const CreateUrlModal = (props: CreateUrlModalProps) => {
         },
       });
     } else {
+      console.log(JSON.stringify(apiResponse, null, 2));
       Modal.showModal({
         icon: ModalIcon.ERROR,
-        title: "ERROR",
-        message: apiResponse.message ?? "Error generating short URL",
+        message:
+          apiResponse.errors ??
+          apiResponse.message ??
+          "Error generating short URL",
         onClose() {
           props.onClose();
         },
@@ -104,7 +157,7 @@ const CreateUrlModal = (props: CreateUrlModalProps) => {
           }}
         >
           <div className="create__short__url__dialog__title__container">
-            <div className="title">Generate Short URL</div>
+            <div className="title">Create Short URL</div>
             <div
               className="close__button__container"
               onClick={() => {
@@ -120,42 +173,69 @@ const CreateUrlModal = (props: CreateUrlModalProps) => {
           </div>
 
           <div className="short__url__dialog__container">
-            <div className="input__fields__container">
-              <InputField
-                id="create__short__url__IF"
-                onChange={(e) => setOriginalUrl(e.target.value)}
-                placeholder="Enter Original URL"
-                text={originalUrl}
-                type={InputFieldType.TEXT}
-                title="Original URL"
-                isRequired={true}
-              />
+            {fetchingUsage ? (
+              <InternalLoader />
+            ) : (
+              <React.Fragment>
+                <div className="input__fields__container">
+                  <InputField
+                    id="create__short__url__IF"
+                    onChange={(e) => setOriginalUrl(e.target.value)}
+                    placeholder="Enter Original URL"
+                    text={originalUrl}
+                    type={InputFieldType.TEXT}
+                    title="Original URL"
+                    style={{
+                      width: "100%",
+                    }}
+                    isRequired={true}
+                  />
 
-              <InputField
-                id="short__url__expiration__IF"
-                onChange={(e) => {
-                  setExpirationDate(new Date(e.target.value).getTime());
-                }}
-                placeholder="Expiration Time"
-                text={originalUrl}
-                type={InputFieldType.DATE_TIME}
-                title="Expiration Time"
-              />
-            </div>
+                  {showCustomAlias ? (
+                    <InputField
+                      id="custom__alias__IF"
+                      onChange={(e) => setCustomAlias(e.target.value)}
+                      placeholder="Enter Custom alias"
+                      text={customAlias}
+                      type={InputFieldType.TEXT}
+                      title="Custom alias"
+                      style={{
+                        width: "100%",
+                      }}
+                      isRequired={false}
+                    />
+                  ) : null}
 
-            <RegularButton
-              reference={generateShortUrlButtonRef}
-              content={
-                loading ? (
-                  <InternalLoader size={InternalLoaderSize.SMALL} />
-                ) : (
-                  "Generate Short URL"
-                )
-              }
-              type="button"
-              onClick={handleGenerateShortUrlButtonClick}
-              className="generate__short__url__btn"
-            />
+                  <InputField
+                    id="short__url__expiration__IF"
+                    onChange={(e) => {
+                      setExpirationDate(new Date(e.target.value).getTime());
+                    }}
+                    placeholder="Expiration Time"
+                    text={originalUrl}
+                    type={InputFieldType.DATE_TIME}
+                    style={{
+                      width: "100%",
+                    }}
+                    title="Expiration Time"
+                  />
+                </div>
+
+                <RegularButton
+                  reference={generateShortUrlButtonRef}
+                  content={
+                    loading ? (
+                      <InternalLoader size={InternalLoaderSize.SMALL} />
+                    ) : (
+                      "Generate Short URL"
+                    )
+                  }
+                  type="button"
+                  onClick={handleGenerateShortUrlButtonClick}
+                  className="generate__short__url__btn"
+                />
+              </React.Fragment>
+            )}
           </div>
         </dialog>
       </div>

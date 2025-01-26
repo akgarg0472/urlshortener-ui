@@ -70,3 +70,6 @@ export const DASH_SUBS_HISTORY_SUBHEAD: string =
 export const HOME_COMPARE_PLAN: string = "Find the Right Pack for You";
 export const HOME_COMPARE_PLAN_SUBHEAD: string =
   "Compare features, benefits, and pricing to choose what fits your needs.";
+export const DASH_PAYMENT_HISTORY_HEAD: string = "Payment History";
+export const DASH_PAYMENT_HISTORY_SUBHEAD: string =
+  "A comprehensive record of all your past and recent payments, including transaction statuses and details.";

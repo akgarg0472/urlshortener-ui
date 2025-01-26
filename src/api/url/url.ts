@@ -24,6 +24,7 @@ export const generateShortUrl = async (
         user_id: props.userId,
         original_url: props.originalUrl,
         expires_at: props.expirationTime,
+        custom_alias: props.customAlias,
       },
       {
         headers: {
@@ -58,6 +59,7 @@ export const generateShortUrl = async (
         success: errResp.success,
         httpCode: errResp.httpCode,
         message: errResp.message,
+        errors: err.response.data.errors,
       };
     }
 

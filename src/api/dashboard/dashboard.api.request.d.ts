@@ -45,3 +45,11 @@ interface UpdateProfileRequest {
   zipcode?: string;
   business_details?: string;
 }
+
+interface MetricUsageRequest {
+  userId: string;
+  authToken: string;
+  metricName: string;
+  startTime: number;
+  endTime: number;
+}

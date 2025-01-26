@@ -91,8 +91,7 @@ export const getOneWeekOldTimeInMsFromCurrentDate = (): number => {
 export const getUserTimezone = (): string => {
   try {
     return Intl.DateTimeFormat().resolvedOptions().timeZone;
-    // eslint-disable-next-line
-  } catch (e: any) {
+  } catch {
     return "UTC";
   }
 };
@@ -104,8 +103,21 @@ export const isValidAndFutureMillisecond = (ms: number | null): boolean => {
 
   try {
     return Date.now() < ms;
-    // eslint-disable-next-line
-  } catch (e: any) {
+  } catch {
     return false;
   }
+};
+
+export const formatToBrowserTimeZoneIfValid = (
+  value: number | string
+): string | number => {
+  if (typeof value === "number" && value < 1000) {
+    return value;
+  }
+
+  const date = new Date(value);
+
+  return isNaN(date.getTime()) || date.getFullYear() <= 2024
+    ? value
+    : convertTimestampToDateTime(parseInt(value.toString()));
 };

@@ -236,143 +236,145 @@ const DashboardUpdateProfile = () => {
                 />
               </div>
 
-              <InputField
-                id="profile.name"
-                text={updatedData.name}
-                title="Name"
-                type="text"
-                className="update__profile__input__field"
-                inputFieldStyle={{ height: "4rem" }}
-                onChange={(e) => {
-                  setUpdatedData((prev) => {
-                    return {
-                      ...prev,
-                      name: e.target.value,
-                    };
-                  });
-                }}
-              />
+              <div className="content">
+                <InputField
+                  id="profile.name"
+                  text={updatedData.name}
+                  title="Name"
+                  type="text"
+                  className="update__profile__input__field"
+                  inputFieldStyle={{ height: "4rem" }}
+                  onChange={(e) => {
+                    setUpdatedData((prev) => {
+                      return {
+                        ...prev,
+                        name: e.target.value,
+                      };
+                    });
+                  }}
+                />
 
-              <InputField
-                id="profile.bio"
-                text={updatedData.bio}
-                title="Bio"
-                type="text"
-                className="update__profile__input__field"
-                inputFieldStyle={{ height: "4rem" }}
-                onChange={(e) => {
-                  setUpdatedData((prev) => {
-                    return {
-                      ...prev,
-                      bio: e.target.value,
-                    };
-                  });
-                }}
-              />
+                <InputField
+                  id="profile.bio"
+                  text={updatedData.bio}
+                  title="Bio"
+                  type="text"
+                  className="update__profile__input__field"
+                  inputFieldStyle={{ height: "4rem" }}
+                  onChange={(e) => {
+                    setUpdatedData((prev) => {
+                      return {
+                        ...prev,
+                        bio: e.target.value,
+                      };
+                    });
+                  }}
+                />
 
-              <InputField
-                id="profile.phone"
-                text={updatedData.phone}
-                title="Phone"
-                type="text"
-                className="update__profile__input__field"
-                inputFieldStyle={{ height: "4rem" }}
-                onChange={(e) => {
-                  setUpdatedData((prev) => {
-                    return {
-                      ...prev,
-                      phone: e.target.value,
-                    };
-                  });
-                }}
-              />
+                <InputField
+                  id="profile.phone"
+                  text={updatedData.phone}
+                  title="Phone"
+                  type="text"
+                  className="update__profile__input__field"
+                  inputFieldStyle={{ height: "4rem" }}
+                  onChange={(e) => {
+                    setUpdatedData((prev) => {
+                      return {
+                        ...prev,
+                        phone: e.target.value,
+                      };
+                    });
+                  }}
+                />
 
-              <InputField
-                id="profile.city"
-                text={updatedData.city}
-                title="City"
-                type="text"
-                className="update__profile__input__field"
-                inputFieldStyle={{ height: "4rem" }}
-                onChange={(e) => {
-                  setUpdatedData((prev) => {
-                    return {
-                      ...prev,
-                      city: e.target.value,
-                    };
-                  });
-                }}
-              />
+                <InputField
+                  id="profile.city"
+                  text={updatedData.city}
+                  title="City"
+                  type="text"
+                  className="update__profile__input__field"
+                  inputFieldStyle={{ height: "4rem" }}
+                  onChange={(e) => {
+                    setUpdatedData((prev) => {
+                      return {
+                        ...prev,
+                        city: e.target.value,
+                      };
+                    });
+                  }}
+                />
 
-              <InputField
-                id="profile.state"
-                text={updatedData.state}
-                title="State"
-                type="text"
-                className="update__profile__input__field"
-                inputFieldStyle={{ height: "4rem" }}
-                onChange={(e) => {
-                  setUpdatedData((prev) => {
-                    return {
-                      ...prev,
-                      state: e.target.value,
-                    };
-                  });
-                }}
-              />
+                <InputField
+                  id="profile.state"
+                  text={updatedData.state}
+                  title="State"
+                  type="text"
+                  className="update__profile__input__field"
+                  inputFieldStyle={{ height: "4rem" }}
+                  onChange={(e) => {
+                    setUpdatedData((prev) => {
+                      return {
+                        ...prev,
+                        state: e.target.value,
+                      };
+                    });
+                  }}
+                />
 
-              <DropdownSelector
-                classes="update__profile__input__field"
-                id="profile.country"
-                onChange={(newCountry) => {
-                  setUpdatedData((prev) => {
-                    return {
-                      ...prev,
-                      country: newCountry,
-                    };
-                  });
-                }}
-                key="update__profile__country"
-                title="Country"
-                value={updatedData.country}
-                dropdownValues={signupCountryDropdown}
-                dropdownSelectStyle={{ height: "4rem" }}
-                style={{ margin: "0", marginTop: "1rem" }}
-              />
+                <DropdownSelector
+                  classes="update__profile__input__field"
+                  id="profile.country"
+                  onChange={(newCountry) => {
+                    setUpdatedData((prev) => {
+                      return {
+                        ...prev,
+                        country: newCountry,
+                      };
+                    });
+                  }}
+                  key="update__profile__country"
+                  title="Country"
+                  value={updatedData.country}
+                  dropdownValues={signupCountryDropdown}
+                  dropdownSelectStyle={{ height: "4rem" }}
+                  style={{ margin: "0", marginTop: "1rem" }}
+                />
 
-              <InputField
-                id="profile.zipcode"
-                text={updatedData.zipcode}
-                title="Zipcode"
-                type="text"
-                className="update__profile__input__field"
-                inputFieldStyle={{ height: "4rem" }}
-                onChange={(e) => {
-                  setUpdatedData((prev) => {
-                    return {
-                      ...prev,
-                      zipcode: e.target.value,
-                    };
-                  });
-                }}
-              />
+                <InputField
+                  id="profile.zipcode"
+                  text={updatedData.zipcode}
+                  title="Zipcode"
+                  type="text"
+                  className="update__profile__input__field"
+                  inputFieldStyle={{ height: "4rem" }}
+                  onChange={(e) => {
+                    setUpdatedData((prev) => {
+                      return {
+                        ...prev,
+                        zipcode: e.target.value,
+                      };
+                    });
+                  }}
+                />
 
-              <InputField
-                id="profile.business_details"
-                text={updatedData.businessDetails}
-                title="Business Details"
-                type="text"
-                className="update__profile__input__field"
-                inputFieldStyle={{ height: "4rem" }}
-                onChange={(e) => {
-                  setUpdatedData((prev) => {
-                    return {
-                      ...prev,
-                      businessDetails: e.target.value,
-                    };
-                  });
-                }}
-              />
+                <InputField
+                  id="profile.business_details"
+                  text={updatedData.businessDetails}
+                  title="Business Details"
+                  type="text"
+                  className="update__profile__input__field"
+                  inputFieldStyle={{ height: "4rem" }}
+                  onChange={(e) => {
+                    setUpdatedData((prev) => {
+                      return {
+                        ...prev,
+                        businessDetails: e.target.value,
+                      };
+                    });
+                  }}
+                />
+              </div>
 
               <RegularButton
                 content="Update"

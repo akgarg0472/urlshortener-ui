@@ -19,6 +19,7 @@ import {
 } from "../../constants";
 import useAuth from "../../hooks/useAuth";
 
+import { GetProfileResponse } from "../../api/user/user.api.response";
 import LinkButton from "../../components/button/LinkButton";
 import { getEnv } from "../../utils/envutils";
 import "./Dashboard.css";
@@ -60,7 +61,9 @@ const DashboardProfile = () => {
       return;
     }
 
-    const profile = await getProfile(userId, authToken);
+    const profile: GetProfileResponse = await getProfile(userId, authToken);
+
+    console.log(JSON.stringify(profile));
 
     setLoading(false);
 
@@ -73,8 +76,8 @@ const DashboardProfile = () => {
     if (!profile.success) {
       Modal.showModal({
         icon: ModalIcon.ERROR,
-        title: `Error ${profile?.httpCode}`,
-        message: profile?.message,
+        message:
+          profile.errors ?? profile.message ?? `Error ${profile.httpCode}`,
       });
       return;
     }

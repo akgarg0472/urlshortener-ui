@@ -58,3 +58,12 @@ export interface DashboardStatisticsApiResponse extends ApiResponse {
   geographicalStats?: GeographicalApiResponse;
   deviceMetrics?: DeviceMetricsApiResponse;
 }
+
+export type CustomAliasUsageResponse = {
+  httpCode: number;
+  message?: string;
+  success: boolean;
+  errors?: any;
+  key?: string;
+  value?: number;
+};

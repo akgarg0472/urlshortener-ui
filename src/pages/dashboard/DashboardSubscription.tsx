@@ -23,6 +23,8 @@ import { Subscription } from "../../components/subscription/Subscription";
 import {
   DASH_ACTIVE_SUB_HEAD,
   DASH_ACTIVE_SUB_SUBHEAD,
+  DASH_PAYMENT_HISTORY_HEAD,
+  DASH_PAYMENT_HISTORY_SUBHEAD,
   DASH_SUBS_HISTORY_HEAD,
   DASH_SUBS_HISTORY_SUBHEAD,
   LOGIN_URL,
@@ -30,6 +32,13 @@ import {
 import useAuth from "../../hooks/useAuth";
 import { convertTimestampToDateTime } from "../../utils/datetimeutils";
 
+import { fetchPaymentHistory } from "../../api/payment/payment";
+import { PaymentHistoryRequest } from "../../api/payment/payment.api.request";
+import {
+  PaymentDetail,
+  PaymentHistoryResponse,
+} from "../../api/payment/payment.api.response";
+import { Payment } from "../../components/payment/Payment";
 import "./Dashboard.css";
 
 type ActiveSubscriptionPack = {
@@ -40,15 +49,6 @@ type ActiveSubscriptionPack = {
 
 const DashboardSubscription = () => {
   const { getUserId, logout, getAuthToken } = useAuth();
-  const [showFetchHistoryButton, setShowFetchHistoryButton] =
-    useState<boolean>(true);
-  const [showActiveSubsLoader, setShowActiveSubsLoader] =
-    useState<boolean>(false);
-  const [showSubsHistoryLoader, setShowSubHistoryLoader] =
-    useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState<string | undefined>(
-    undefined
-  );
   const navigate = useNavigate();
 
   const [activeSubscription, setActiveSubscription] =
@@ -56,9 +56,27 @@ const DashboardSubscription = () => {
   const [activePack, setActivePack] = useState<ActiveSubscriptionPack | null>(
     null
   );
+  const [showActiveSubsLoader, setShowActiveSubsLoader] =
+    useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string | undefined>(
+    undefined
+  );
+
+  const [
+    showFetchSubscriptionHistoryButton,
+    setShowFetchSubscriptionHistoryButton,
+  ] = useState<boolean>(true);
+  const [showSubsHistoryLoader, setShowSubHistoryLoader] =
+    useState<boolean>(false);
   const [subscriptions, setSubscriptions] = useState<
     ActiveSubscription[] | null
   >(null);
+
+  const [showFetchPaymentHistoryButton, setShowFetchPaymentHistoryButton] =
+    useState<boolean>(true);
+  const [showPaymentHistoryLoader, setShowPaymentHistoryLoader] =
+    useState<boolean>(false);
+  const [payments, setPayments] = useState<PaymentDetail[] | null>(null);
 
   useEffect(() => {
     fetchActiveSubscription();
@@ -133,7 +151,7 @@ const DashboardSubscription = () => {
     });
   };
 
-  const fetchAllSubscriptions = async () => {
+  const fetchAllSubscriptionHistory = async () => {
     const userId = getUserId();
     const authToken = getAuthToken();
 
@@ -144,7 +162,7 @@ const DashboardSubscription = () => {
     }
 
     setShowSubHistoryLoader(true);
-    setShowFetchHistoryButton(false);
+    setShowFetchSubscriptionHistoryButton(false);
 
     const req: GetSubscriptionRequest = {
       userId: userId,
@@ -161,7 +179,7 @@ const DashboardSubscription = () => {
         icon: ModalIcon.ERROR,
         message: response.message ?? "Failed to fetch subscription details",
       });
-      setShowFetchHistoryButton(true);
+      setShowFetchSubscriptionHistoryButton(true);
       return;
     }
 
@@ -180,6 +198,29 @@ const DashboardSubscription = () => {
 
       return prev;
     });
+  };
+
+  const fetchAllPaymentHistory = async () => {
+    const request: PaymentHistoryRequest = {
+      userId: getUserId()!,
+      authToken: getAuthToken()!,
+    };
+
+    setShowPaymentHistoryLoader(true);
+    const response: PaymentHistoryResponse = await fetchPaymentHistory(request);
+    setShowPaymentHistoryLoader(false);
+
+    if (!response.success || !response.payments) {
+      Modal.showModal({
+        icon: ModalIcon.ERROR,
+        message: response.message ?? "Failed to fetch payment history",
+      });
+      setShowFetchPaymentHistoryButton(true);
+      return;
+    }
+
+    setPayments(response.payments);
+    setShowFetchPaymentHistoryButton(false);
   };
 
   return (
@@ -301,13 +342,35 @@ const DashboardSubscription = () => {
                 ))}
             </div>
 
-            {showFetchHistoryButton && (
+            {showFetchSubscriptionHistoryButton && (
               <RegularButton
                 content="Fetch History"
                 className="btn__fetch__subs__history"
-                onClick={() => {
-                  fetchAllSubscriptions();
-                }}
+                onClick={fetchAllSubscriptionHistory}
+              />
+            )}
+          </div>
+
+          <div className="payment__history__container">
+            <DashboardHeadSubHead
+              heading={DASH_PAYMENT_HISTORY_HEAD}
+              subheading={DASH_PAYMENT_HISTORY_SUBHEAD}
+            />
+
+            {showPaymentHistoryLoader && <InternalLoader />}
+
+            <div className="content">
+              {payments &&
+                payments.map((payment) => (
+                  <Payment key={payment.id} {...payment} />
+                ))}
+            </div>
+
+            {showFetchPaymentHistoryButton && (
+              <RegularButton
+                content="Fetch History"
+                className="btn__fetch__payment__history"
+                onClick={fetchAllPaymentHistory}
               />
             )}
           </div>

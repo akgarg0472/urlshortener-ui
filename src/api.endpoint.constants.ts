@@ -20,6 +20,7 @@ export const DASHBOARD_DEVICE_METRICS_API_URL_V1 =
 export const GET_TOP_POPULAR_URLS_V1 = "/api/v1/statistics/popular-urls";
 export const GET_URL_GEOGRAPHICAL_DATA_V1 =
   "/api/v1/statistics/geographical-metrics";
+export const GET_METRIC_USAGE_URL_V1 = "/api/v1/statistics/usage";
 export const GENERATE_SHORT_URL_API_URL_V1 = "/api/v1/urlshortener";
 export const DASHBOARD_GET_PROFILE_API_URL_V1 = "/api/v1/profiles/$profileId";
 export const DASHBOARD_UPDATE_PROFILE_API_URL_V1 =
@@ -40,3 +41,4 @@ export const CAPTURE_PAYMENT_ORDER_PAYPAL: string =
   "/api/v1/payments/paypal/capture";
 export const CANCEL_PAYMENT_ORDER_PAYPAL: string =
   "/api/v1/payments/paypal/cancel";
+export const PAYMENT_HISTORY_URL_V1: string = "/api/v1/payments/history";

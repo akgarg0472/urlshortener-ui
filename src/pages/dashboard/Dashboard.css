@@ -118,7 +118,6 @@
 .dashboard__page__content .profile__page__content__container {
   display: flex;
   width: 100%;
-  min-height: 100%;
 }
 .dashboard__page__content .profile__page__content__container .profile__page__left__section {
   width: 33%;
@@ -129,14 +128,22 @@
   flex-direction: column;
 }
 .dashboard__page__content .profile__page__content__container .update__profile__form {
-  width: 50%;
+  width: 66%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: auto;
+  margin-top: 3.2rem;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   padding: 3rem;
+}
+.dashboard__page__content .profile__page__content__container .update__profile__form .content {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1.6rem;
 }
 
 .dashboard__page__content .profile__page__right__section .personal__details__section {
@@ -343,19 +350,24 @@
   width: 100%;
 }
 
-.dashboard__page__content .subscription__history__container {
+.dashboard__page__content .subscription__history__container,
+.dashboard__page__content .payment__history__container {
   background-color: white;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   padding: 1.6rem;
   margin-top: 2.4rem;
 }
-.dashboard__page__content .subscription__history__container .content {
+.dashboard__page__content .subscription__history__container .content,
+.dashboard__page__content .payment__history__container .content {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   margin: 1.6rem;
   gap: 2.4rem;
 }
-.dashboard__page__content .subscription__history__container .btn__fetch__subs__history {
+.dashboard__page__content .subscription__history__container .btn__fetch__subs__history,
+.dashboard__page__content .subscription__history__container .btn__fetch__payment__history,
+.dashboard__page__content .payment__history__container .btn__fetch__subs__history,
+.dashboard__page__content .payment__history__container .btn__fetch__payment__history {
   background-color: var(--bg-dark);
   text-decoration: none;
   color: #ffffff;
@@ -370,12 +382,23 @@
   padding: 1.2rem 2.4rem;
   transition: background-color 0.3s ease;
 }
-.dashboard__page__content .subscription__history__container .btn__fetch__subs__history:hover {
+.dashboard__page__content .subscription__history__container .btn__fetch__subs__history:hover,
+.dashboard__page__content .subscription__history__container .btn__fetch__payment__history:hover,
+.dashboard__page__content .payment__history__container .btn__fetch__subs__history:hover,
+.dashboard__page__content .payment__history__container .btn__fetch__payment__history:hover {
   background-color: var(--bg-dark-hover);
 }
 
 @media screen and (max-width: 1366px) {
   .dashboard__page__content .subscription__history__container .content {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .dashboard__page__content .payment__history__container .content {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+@media screen and (max-width: 1024px) {
+  .dashboard__page__content .active__subscription__pack__details__container .content {
     grid-template-columns: repeat(1, 1fr);
   }
 }

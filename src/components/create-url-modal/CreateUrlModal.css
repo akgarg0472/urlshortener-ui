@@ -5,8 +5,7 @@
 .create__short__url__modal__dialog {
   background: #ffffff;
   border-color: #ffffff;
-  width: 50vw;
-  height: 45vh;
+  width: 40vw;
   border-radius: 4px;
   margin: auto;
   display: flex;
@@ -47,29 +46,34 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 75%;
   height: 100%;
-  margin: auto;
+  margin: 0;
+  padding: 5.6rem;
   font-size: 1.8rem;
 }
 .create__short__url__modal__dialog .short__url__dialog__container .input__fields__container {
-  display: grid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   width: 100%;
-  grid-template-columns: repeat(2, 1fr);
   gap: 2.4rem;
 }
 .create__short__url__modal__dialog .short__url__dialog__container .generate__short__url__btn {
-  width: 50%;
-  height: 5.6rem;
+  padding: 1.8rem 5.4rem;
   border-radius: 0.6rem;
   border: none;
   outline: none;
-  color: #222222;
+  color: #fefefe;
   font-weight: 600;
   cursor: pointer;
   margin: 0 auto;
+  font-size: 1.4rem;
   margin-top: 3.2rem;
-  background: rgba(0, 0, 0, 0.05);
+  background: rgba(0, 0, 0, 0.85);
+}
+.create__short__url__modal__dialog .short__url__dialog__container .generate__short__url__btn:hover {
+  background: rgb(0, 0, 0);
 }
 
 @keyframes create__short__url__modal__dialog__animation {

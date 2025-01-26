@@ -20,3 +20,8 @@ export type PaypalCancelPaymentRequest = {
   authToken: string;
   paymentId: string;
 };
+
+export type PaymentHistoryRequest = {
+  userId: string;
+  authToken: string;
+};

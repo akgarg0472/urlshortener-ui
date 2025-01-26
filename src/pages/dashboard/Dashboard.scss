@@ -135,7 +135,6 @@ $component__margin: 1.2rem 0;
   .profile__page__content__container {
     display: flex;
     width: 100%;
-    min-height: 100%;
 
     .profile__page__left__section {
       width: 33%;
@@ -148,14 +147,23 @@ $component__margin: 1.2rem 0;
     }
 
     .update__profile__form {
-      width: 50%;
+      width: 66%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       margin: auto;
+      margin-top: 3.2rem;
       box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
       padding: 3rem;
+
+      .content {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        margin-top: 1.6rem;
+      }
     }
   }
 }
@@ -401,44 +409,66 @@ $component__margin: 1.2rem 0;
   }
 }
 
-.dashboard__page__content .subscription__history__container {
-  background-color: white;
-  box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
-  padding: 1.6rem;
-  margin-top: 2.4rem;
+.dashboard__page__content {
+  .subscription__history__container,
+  .payment__history__container {
+    background-color: white;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+    padding: 1.6rem;
+    margin-top: 2.4rem;
 
-  .content {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    margin: 1.6rem;
-    gap: 2.4rem;
-  }
+    .content {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      margin: 1.6rem;
+      gap: 2.4rem;
+    }
 
-  .btn__fetch__subs__history {
-    background-color: var(--bg-dark);
-    text-decoration: none;
-    color: #ffffff;
-    font-size: 1.4rem;
-    font-weight: 700;
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
-    cursor: pointer;
-    padding: 1.2rem 2.4rem;
-    transition: background-color 0.3s ease;
-  }
+    .btn__fetch__subs__history,
+    .btn__fetch__payment__history {
+      background-color: var(--bg-dark);
+      text-decoration: none;
+      color: #ffffff;
+      font-size: 1.4rem;
+      font-weight: 700;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      cursor: pointer;
+      padding: 1.2rem 2.4rem;
+      transition: background-color 0.3s ease;
 
-  .btn__fetch__subs__history:hover {
-    background-color: var(--bg-dark-hover);
+      &:hover {
+        background-color: var(--bg-dark-hover);
+      }
+    }
   }
 }
 
 @media screen and (max-width: 1366px) {
-  .dashboard__page__content .subscription__history__container {
-    .content {
-      grid-template-columns: repeat(1, 1fr);
+  .dashboard__page__content {
+    .subscription__history__container {
+      .content {
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
+
+    .payment__history__container {
+      .content {
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .dashboard__page__content {
+    .active__subscription__pack__details__container {
+      .content {
+        grid-template-columns: repeat(1, 1fr);
+      }
     }
   }
 }

@@ -1,5 +1,4 @@
-$modal__width: 50vw;
-$modal__height: 45vh;
+$modal__width: 40vw;
 $modal__close__btn__dimension: 2rem;
 $modal__border__radius: 0.8rem;
 
@@ -11,7 +10,6 @@ $modal__border__radius: 0.8rem;
   background: #ffffff;
   border-color: #ffffff;
   width: $modal__width;
-  height: $modal__height;
   border-radius: 4px;
   margin: auto;
   display: flex;
@@ -56,30 +54,36 @@ $modal__border__radius: 0.8rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 75%;
     height: 100%;
-    margin: auto;
+    margin: 0;
+    padding: 5.6rem;
     font-size: 1.8rem;
 
     .input__fields__container {
-      display: grid;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
       width: 100%;
-      grid-template-columns: repeat(2, 1fr);
       gap: 2.4rem;
     }
 
     .generate__short__url__btn {
-      width: 50%;
-      height: 5.6rem;
+      padding: 1.8rem 5.4rem;
       border-radius: 0.6rem;
       border: none;
       outline: none;
-      color: #222222;
+      color: #fefefe;
       font-weight: 600;
       cursor: pointer;
       margin: 0 auto;
+      font-size: 1.4rem;
       margin-top: 3.2rem;
-      background: rgba(0, 0, 0, 0.05);
+      background: rgba(0, 0, 0, 0.85);
+
+      &:hover {
+        background: rgba(0, 0, 0, 1);
+      }
     }
   }
 }
