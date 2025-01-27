@@ -1,7 +1,7 @@
 import {
   CANCEL_PAYMENT_ORDER_PAYPAL,
-  CAPTURE_PAYMENT_ORDER_PAYPAL,
   CREATE_PAYMENT_ORDER_PAYPAL,
+  GET_PAYMENT_DETAIL_URL_v1,
   PAYMENT_HISTORY_URL_V1,
 } from "../../api.endpoint.constants";
 import { getEnv } from "../../utils/envutils";
@@ -11,14 +11,14 @@ import {
 } from "../../utils/errorutils";
 import { axiosInstance } from "../base";
 import {
+  GetPaymentDetailRequest,
   PaymentHistoryRequest,
   PaypalCancelPaymentRequest,
-  PaypalCaptureOrderRequest,
   PaypalCreateOrderRequest,
 } from "./payment.api.request";
 import {
+  GetPaymentDetailResponse,
   PaymentHistoryResponse,
-  PaypalCaptureOrderResponse,
   PaypalCreateOrderResponse,
 } from "./payment.api.response";
 
@@ -100,34 +100,28 @@ export const createPaypalOrder = async (
   }
 };
 
-export const capturePaypalOrder = async (
-  request: PaypalCaptureOrderRequest
-): Promise<PaypalCaptureOrderResponse> => {
+export const getPaymentDetail = async (
+  request: GetPaymentDetailRequest
+): Promise<GetPaymentDetailResponse> => {
   const url =
     getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765").replace(
       /\/+$/,
       ""
-    ) + CAPTURE_PAYMENT_ORDER_PAYPAL;
+    ) + GET_PAYMENT_DETAIL_URL_v1;
 
   try {
-    const apiResponse = await axiosInstance.post(
-      url,
-      {
-        payment_id: request.paymentId,
-        payer_id: request.payerId,
+    const apiResponse = await axiosInstance.get(url + request.paymentId, {
+      headers: {
+        "X-USER-ID": request.userId,
+        Authorization: `Bearer ${request.authToken}`,
       },
-      {
-        headers: {
-          "X-USER-ID": request.userId,
-          Authorization: `Bearer ${request.authToken}`,
-        },
-      }
-    );
+    });
 
     return {
       httpCode: apiResponse.status,
       message: apiResponse.data.message,
       success: apiResponse.status === 200,
+      payment_detail: apiResponse.data.payment_detail,
     };
   } catch (err: any) {
     if (isAxiosNetworkError(err)) {
@@ -140,37 +134,22 @@ export const capturePaypalOrder = async (
       if (err.response.status === 409) {
         return {
           success: false,
-          errors: response.errors || response.message,
           httpCode: response.error_code || response.status_code,
           message: response.message,
         };
-      }
-
-      let errors = "Capture order request failed";
-
-      if (err.response.status === 400) {
-        if (typeof response.errors === "object" && response.errors !== null) {
-          console.log(response.errors);
-          errors = `${Object.values(response.errors).join(", ")}`;
-        } else if (typeof response.errors === "string") {
-          errors = response.errors;
-        }
-      } else {
-        errors = response.errors;
       }
 
       return {
         success: false,
         message: response.message,
         httpCode: response.error_code || response.status_code,
-        errors: errors,
       };
     }
 
     return {
       success: false,
       httpCode: 500,
-      message: "Capture payment request Failed",
+      message: "Get Payment detail request Failed",
     };
   }
 };

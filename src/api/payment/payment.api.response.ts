@@ -7,11 +7,11 @@ export type PaypalCreateOrderResponse = {
   errors?: any;
 };
 
-export type PaypalCaptureOrderResponse = {
+export type GetPaymentDetailResponse = {
   httpCode: number;
   message: string;
   success: boolean;
-  errors?: any;
+  payment_detail?: PaymentDetail;
 };
 
 export type PaymentHistoryResponse = {

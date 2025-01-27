@@ -8,11 +8,10 @@ export type PaypalCreateOrderRequest = {
   description: string;
 };
 
-export type PaypalCaptureOrderRequest = {
+export type GetPaymentDetailRequest = {
   userId: string;
   authToken: string;
   paymentId: string;
-  payerId: string;
 };
 
 export type PaypalCancelPaymentRequest = {

@@ -63,8 +63,6 @@ const DashboardProfile = () => {
 
     const profile: GetProfileResponse = await getProfile(userId, authToken);
 
-    console.log(JSON.stringify(profile));
-
     setLoading(false);
 
     if (profile.httpCode === 401 || profile.httpCode === 403) {

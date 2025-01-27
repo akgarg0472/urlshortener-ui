@@ -29,6 +29,8 @@ const CreateUrlModal = (props: CreateUrlModalProps) => {
   const [expirationDate, setExpirationDate] = useState<number | null>(null);
   const [showCustomAlias, setShowCustomAlias] = useState<boolean>(false);
   const [fetchingUsage, setFetchingUsage] = useState<boolean>(true);
+  const [customAliasThresholdCrossed, setCustomAliasThresholdCrossed] =
+    useState<boolean>(false);
 
   useEffect(() => {
     fetchCustomAliasUsage();
@@ -61,8 +63,12 @@ const CreateUrlModal = (props: CreateUrlModalProps) => {
       if (response.success && response.value !== undefined) {
         const allowedCustomAlias: number = getAllowedCustomAlias(userId);
 
-        if (allowedCustomAlias > response.value) {
-          setShowCustomAlias(true);
+        if (allowedCustomAlias !== -1) {
+          if (allowedCustomAlias > response.value) {
+            setShowCustomAlias(true);
+          } else {
+            setCustomAliasThresholdCrossed(true);
+          }
         }
       }
     }
@@ -130,7 +136,6 @@ const CreateUrlModal = (props: CreateUrlModalProps) => {
         },
       });
     } else {
-      console.log(JSON.stringify(apiResponse, null, 2));
       Modal.showModal({
         icon: ModalIcon.ERROR,
         message:
@@ -220,6 +225,13 @@ const CreateUrlModal = (props: CreateUrlModalProps) => {
                     title="Expiration Time"
                   />
                 </div>
+
+                {customAliasThresholdCrossed ? (
+                  <div className="custom__alias__quota__exceeded">
+                    Custom alias quota exceeded. Please upgrade your plan to use
+                    this feature.
+                  </div>
+                ) : null}
 
                 <RegularButton
                   reference={generateShortUrlButtonRef}

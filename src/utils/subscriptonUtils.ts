@@ -109,7 +109,7 @@ export const getAllowedCustomAlias = (userId: string): number => {
   const cached = getCachedActiveSubscriptionDetails(userId);
 
   if (!cached) {
-    return 0;
+    return -1;
   }
 
   const privileges: string[] = cached.pack.privileges;
@@ -126,7 +126,7 @@ export const getAllowedCustomAlias = (userId: string): number => {
     }
   }
 
-  return 0;
+  return -1;
 };
 
 export const getCachedSubscriptionPacksAndComparison =

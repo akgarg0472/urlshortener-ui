@@ -37,8 +37,7 @@ export const GET_ALL_SUBSCRIPTION_PACKS_URL_V1: string =
   "/api/v1/subscriptions/packs";
 export const CREATE_PAYMENT_ORDER_PAYPAL: string =
   "/api/v1/payments/paypal/order";
-export const CAPTURE_PAYMENT_ORDER_PAYPAL: string =
-  "/api/v1/payments/paypal/capture";
+export const GET_PAYMENT_DETAIL_URL_v1: string = "/api/v1/payments/";
 export const CANCEL_PAYMENT_ORDER_PAYPAL: string =
   "/api/v1/payments/paypal/cancel";
 export const PAYMENT_HISTORY_URL_V1: string = "/api/v1/payments/history";

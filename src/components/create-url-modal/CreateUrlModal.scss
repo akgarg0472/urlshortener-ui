@@ -68,6 +68,14 @@ $modal__border__radius: 0.8rem;
       gap: 2.4rem;
     }
 
+    .custom__alias__quota__exceeded {
+      margin-top: 1.6rem;
+      font-size: 1.4rem;
+      text-align: center;
+      color: #ff0000;
+      font-weight: 500;
+    }
+
     .generate__short__url__btn {
       padding: 1.8rem 5.4rem;
       border-radius: 0.6rem;

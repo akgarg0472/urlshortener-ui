@@ -2,12 +2,16 @@ import React, { useEffect } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import {
   cancelPaypalPayment,
-  capturePaypalOrder,
+  getPaymentDetail,
 } from "../../api/payment/payment";
 import {
+  GetPaymentDetailRequest,
   PaypalCancelPaymentRequest,
-  PaypalCaptureOrderRequest,
 } from "../../api/payment/payment.api.request";
+import {
+  PaymentDetail,
+  PaymentStatus,
+} from "../../api/payment/payment.api.response";
 import Loader from "../../components/loader/Loader";
 import Modal from "../../components/modal/Modal";
 import { ModalIcon } from "../../components/modal/Modal.enums";
@@ -43,39 +47,39 @@ const Paypal = () => {
 
   const handleSuccess = async () => {
     const paymentId = searchParams.get("token")!;
-    const payerId = searchParams.get("PayerID")!;
 
-    const request: PaypalCaptureOrderRequest = {
+    const request: GetPaymentDetailRequest = {
       userId: getUserId()!,
       authToken: getAuthToken()!,
       paymentId: paymentId,
-      payerId: payerId,
     };
 
     Loader.showLoader();
-    const response = await capturePaypalOrder(request);
-
-    console.log(JSON.stringify(response, null, 2));
-
+    const response = await getPaymentDetail(request);
     Loader.hideLoader();
 
     if (!response.success) {
-      Modal.showModal({
-        icon: ModalIcon.ERROR,
-        message: response.errors ?? response.message,
-        onClose() {
+      navigate(DASHBOARD_URL, { replace: true });
+    } else if (response.payment_detail) {
+      const paymentDetail: PaymentDetail = response.payment_detail;
+
+      switch (paymentDetail.payment_status) {
+        case PaymentStatus.CREATED:
+        case PaymentStatus.PROCESSING:
+          Modal.showModal({
+            icon: ModalIcon.SUCCESS,
+            title: "Payment Successful",
+            message: "Changes will be reflected in your account shortly.",
+            onClose() {
+              navigate(DASHBOARD_URL, { replace: true });
+            },
+          });
+          break;
+
+        default:
           navigate(DASHBOARD_URL, { replace: true });
-        },
-      });
-    } else {
-      Modal.showModal({
-        icon: ModalIcon.SUCCESS,
-        title: "Payment successful",
-        message: response.message,
-        onClose() {
-          navigate(DASHBOARD_URL, { replace: true });
-        },
-      });
+          break;
+      }
     }
   };
 
