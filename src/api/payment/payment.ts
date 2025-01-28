@@ -41,6 +41,8 @@ export const createPaypalOrder = async (
         payment_method: "Credit Card",
         pack_id: request.packId,
         description: request.description,
+        email: request.email,
+        name: request.name,
       },
       {
         headers: {

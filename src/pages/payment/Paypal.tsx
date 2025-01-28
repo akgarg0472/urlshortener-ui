@@ -63,22 +63,20 @@ const Paypal = () => {
     } else if (response.payment_detail) {
       const paymentDetail: PaymentDetail = response.payment_detail;
 
-      switch (paymentDetail.payment_status) {
-        case PaymentStatus.CREATED:
-        case PaymentStatus.PROCESSING:
-          Modal.showModal({
-            icon: ModalIcon.SUCCESS,
-            title: "Payment Successful",
-            message: "Changes will be reflected in your account shortly.",
-            onClose() {
-              navigate(DASHBOARD_URL, { replace: true });
-            },
-          });
-          break;
-
-        default:
-          navigate(DASHBOARD_URL, { replace: true });
-          break;
+      if (
+        paymentDetail.payment_status.toString() !==
+        PaymentStatus[PaymentStatus.COMPLETED]
+      ) {
+        Modal.showModal({
+          icon: ModalIcon.SUCCESS,
+          message:
+            "Your payment is received successfully and changes will be reflected in your account shortly.",
+          onClose() {
+            navigate(DASHBOARD_URL, { replace: true });
+          },
+        });
+      } else {
+        navigate(DASHBOARD_URL, { replace: true });
       }
     }
   };

@@ -4,15 +4,15 @@ import { createPaypalOrder } from "../../../api/payment/payment";
 import { PaypalCreateOrderResponse } from "../../../api/payment/payment.api.response";
 import { LOGIN_URL, SUBSCRIPTION_PLANS_URL } from "../../../constants";
 import useAuth from "../../../hooks/useAuth";
-import RegularButton from "../../button/RegularButton";
-import PlanFeature from "./plan-feature/PlanFeature";
-
 import { getCurrencySymbol } from "../../../utils/priceutils";
 import { getActiveSubscriptionPackId } from "../../../utils/subscriptonUtils";
+import RegularButton from "../../button/RegularButton";
 import Loader from "../../loader/Loader";
 import { LoaderSpeed } from "../../loader/Loader.enums";
 import Modal from "../../modal/Modal";
 import { ModalIcon } from "../../modal/Modal.enums";
+import PlanFeature from "./plan-feature/PlanFeature";
+
 import "./PriceCard.css";
 
 type PlanProps = {
@@ -28,7 +28,8 @@ type PlanProps = {
 };
 
 const PriceCard = (plan: PlanProps) => {
-  const { isUserLoggedIn, getUserId, getAuthToken } = useAuth();
+  const { isUserLoggedIn, getUserId, getAuthToken, getName, getEmail } =
+    useAuth();
   const [activePackId, setActivePackId] = useState<string | null>(null);
   const [buttonText, setButtonText] = useState<string>("Get Started");
   const navigate = useNavigate();
@@ -61,6 +62,8 @@ const PriceCard = (plan: PlanProps) => {
       paymentMethod: "Card",
       userId: getUserId()!,
       authToken: getAuthToken()!,
+      name: getName()!,
+      email: getEmail(),
     });
 
     Loader.hideLoader();

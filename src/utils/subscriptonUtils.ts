@@ -65,8 +65,9 @@ export const isDeviceMetricsAllowed = (pack: ActivePack | null): boolean => {
     return false;
   }
 
-  return pack.privileges.some((privilege) =>
-    privilege.includes("analytic:device")
+  return pack.privileges.some(
+    (privilege) =>
+      privilege.includes("analytic:device") || privilege.includes("analytic:*")
   );
 };
 
@@ -77,8 +78,10 @@ export const isGeographicalMetricsAllowed = (
     return false;
   }
 
-  return pack.privileges.some((privilege) =>
-    privilege.includes("analytic:geograph")
+  return pack.privileges.some(
+    (privilege) =>
+      privilege.includes("analytic:geograph") ||
+      privilege.includes("analytic:*")
   );
 };
 
@@ -118,6 +121,10 @@ export const getAllowedCustomAlias = (userId: string): number => {
     const privilege: string = privileges[i];
 
     try {
+      if (privilege === "custom_alias:unlimited") {
+        return Number.MAX_VALUE;
+      }
+
       if (privilege.startsWith("custom_alias")) {
         return parseInt(privilege.substring(privilege.indexOf(":") + 1), 10);
       }
@@ -127,6 +134,33 @@ export const getAllowedCustomAlias = (userId: string): number => {
   }
 
   return -1;
+};
+
+export const isUrlMetricAllowed = (userId: string): boolean | null => {
+  const cached = getCachedActiveSubscriptionDetails(userId);
+
+  if (!cached) {
+    return null;
+  }
+
+  const privileges: string[] = cached.pack.privileges;
+
+  for (let i = 0; i < privileges.length; i++) {
+    const privilege: string = privileges[i];
+
+    try {
+      if (
+        privilege.includes("url_metric") ||
+        privilege.includes("analytic:*")
+      ) {
+        return true;
+      }
+    } catch {
+      // do nothing
+    }
+  }
+
+  return false;
 };
 
 export const getCachedSubscriptionPacksAndComparison =

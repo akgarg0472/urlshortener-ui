@@ -6,6 +6,8 @@ export type PaypalCreateOrderRequest = {
   paymentMethod: string;
   packId: string;
   description: string;
+  email: string | null;
+  name: string;
 };
 
 export type GetPaymentDetailRequest = {

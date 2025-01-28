@@ -84,6 +84,17 @@ const useAuth = () => {
     return _auth.name;
   };
 
+  const getEmail = (): string | null => {
+    const auth: string | null = localStorage.getItem(AUTH_OBJ_NAME);
+
+    if (!auth) {
+      return null;
+    }
+
+    const _auth: AuthObject = JSON.parse(auth);
+    return _auth.email;
+  };
+
   return {
     setAuth,
     getAuth,
@@ -92,6 +103,7 @@ const useAuth = () => {
     logout,
     getName,
     getAuthToken,
+    getEmail,
   };
 };
 

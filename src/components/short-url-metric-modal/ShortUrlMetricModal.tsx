@@ -14,6 +14,7 @@ import Modal from "../modal/Modal";
 import { ModalIcon } from "../modal/Modal.enums";
 import URLMetadata from "./URLMetadata/URLMetadata";
 
+import { isUrlMetricAllowed } from "../../utils/subscriptonUtils";
 import "./ShortUrlMetricModal.css";
 
 const ShortUrlMetricModal = (props: ShortUrlMetricModalProps) => {
@@ -30,6 +31,25 @@ const ShortUrlMetricModal = (props: ShortUrlMetricModalProps) => {
   }, []);
 
   const fetchUrlMetrics = async () => {
+    const userId = getUserId();
+
+    if (!userId) {
+      closeModal();
+      return;
+    }
+
+    if (isUrlMetricAllowed(userId) === false) {
+      closeModal();
+      Modal.showModal({
+        icon: ModalIcon.ERROR,
+        message: "Please upgrade your plan to access this feature",
+        onClose() {
+          props.onClose();
+        },
+      });
+      return;
+    }
+
     const apiResponse: UrlMetricApiResponse = await getUrlMetrics({
       userId: getUserId()!,
       shortUrl: props.shortUrl,
