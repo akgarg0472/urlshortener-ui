@@ -17,6 +17,7 @@ import {
   PaypalCreateOrderRequest,
 } from "./payment.api.request";
 import {
+  CancelPaymentResponse,
   GetPaymentDetailResponse,
   PaymentHistoryResponse,
   PaypalCreateOrderResponse,
@@ -158,7 +159,7 @@ export const getPaymentDetail = async (
 
 export const cancelPaypalPayment = async (
   request: PaypalCancelPaymentRequest
-): Promise<void> => {
+): Promise<CancelPaymentResponse> => {
   const url =
     getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765").replace(
       /\/+$/,
@@ -166,7 +167,7 @@ export const cancelPaypalPayment = async (
     ) + CANCEL_PAYMENT_ORDER_PAYPAL;
 
   try {
-    await axiosInstance.post(
+    const response = await axiosInstance.post(
       url,
       {
         user_id: request.userId,
@@ -179,9 +180,35 @@ export const cancelPaypalPayment = async (
         },
       }
     );
-    // eslint-disable-next-line
-  } catch {
-    // do nothing
+    return {
+      success: response.status == 200,
+      message: response.data.message,
+    };
+  } catch (err: any) {
+    if (isAxiosNetworkError(err)) {
+      return axiosNwErrorResponse();
+    }
+
+    if (err.response && err.response.data) {
+      const response = err.response.data;
+
+      if (err.response.status === 409) {
+        return {
+          success: false,
+          message: response.message,
+        };
+      }
+
+      return {
+        success: false,
+        message: response.message,
+      };
+    }
+
+    return {
+      success: false,
+      message: "Cancel payment request Failed",
+    };
   }
 };
 

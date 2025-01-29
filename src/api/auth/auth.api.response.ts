@@ -5,6 +5,7 @@ export interface LoginApiResponse extends ApiResponse {
   token?: string;
   userId?: string;
   name?: string;
+  login_type?: string;
   errors?: string;
 }
 
@@ -45,4 +46,5 @@ export interface OAuthCallbackResponse extends ApiResponse {
   name?: string;
   is_new_user?: boolean;
   message?: string;
+  login_type?: string;
 }

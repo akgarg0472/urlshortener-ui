@@ -86,7 +86,8 @@ const Login = () => {
         loginResponse.token!,
         loginResponse.userId!,
         loginObject.email,
-        loginResponse.name!
+        loginResponse.name!,
+        loginResponse.login_type ?? null
       );
 
       if (isAuthCompleted) {
@@ -181,7 +182,8 @@ const Login = () => {
           callbackResponse.auth_token!,
           callbackResponse.user_id!,
           callbackResponse.email!,
-          callbackResponse.name!
+          callbackResponse.name!,
+          callbackResponse.login_type ?? null
         );
 
         if (callbackResponse.is_new_user) {
@@ -301,7 +303,8 @@ const Login = () => {
           callbackResponse.auth_token!,
           callbackResponse.user_id!,
           callbackResponse.email!,
-          callbackResponse.name!
+          callbackResponse.name!,
+          callbackResponse.login_type ?? null
         );
 
         if (callbackResponse.is_new_user) {
@@ -333,8 +336,7 @@ const Login = () => {
       }, 1000);
 
       window.addEventListener("storage", storageMessageListener);
-      // eslint-disable-next-line
-    } catch (_: any) {
+    } catch {
       Modal.showModal({
         icon: ModalIcon.ERROR,
         message: "Failed to login using Google. Please try again later",

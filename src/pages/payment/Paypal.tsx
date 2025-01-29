@@ -9,6 +9,7 @@ import {
   PaypalCancelPaymentRequest,
 } from "../../api/payment/payment.api.request";
 import {
+  CancelPaymentResponse,
   PaymentDetail,
   PaymentStatus,
 } from "../../api/payment/payment.api.response";
@@ -91,12 +92,12 @@ const Paypal = () => {
     };
 
     Loader.showLoader();
-    await cancelPaypalPayment(request);
+    const response: CancelPaymentResponse = await cancelPaypalPayment(request);
     Loader.hideLoader();
 
     Modal.showModal({
-      icon: ModalIcon.INFO,
-      message: "Your payment has been cancelled",
+      icon: response.success ? ModalIcon.INFO : ModalIcon.ERROR,
+      message: response.message,
       onClose() {
         navigate(DASHBOARD_URL, { replace: true });
       },

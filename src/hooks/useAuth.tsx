@@ -3,6 +3,7 @@ interface AuthObject {
   userId: string;
   email: string;
   name: string;
+  loginType: string | null;
 }
 
 const AUTH_OBJ_NAME: string = "auth";
@@ -12,7 +13,8 @@ const useAuth = () => {
     authToken: string,
     userId: string,
     email: string,
-    name: string
+    name: string,
+    loginType: string | null
   ): boolean => {
     try {
       const auth: AuthObject = {
@@ -20,11 +22,11 @@ const useAuth = () => {
         userId,
         email,
         name,
+        loginType,
       };
 
       localStorage.setItem(AUTH_OBJ_NAME, JSON.stringify(auth));
-      // eslint-disable-next-line
-    } catch (_: any) {
+    } catch {
       return false;
     }
 
@@ -95,6 +97,17 @@ const useAuth = () => {
     return _auth.email;
   };
 
+  const getLoginType = (): string | null => {
+    const auth: string | null = localStorage.getItem(AUTH_OBJ_NAME);
+
+    if (!auth) {
+      return null;
+    }
+
+    const _auth: AuthObject = JSON.parse(auth);
+    return _auth.loginType;
+  };
+
   return {
     setAuth,
     getAuth,
@@ -104,6 +117,7 @@ const useAuth = () => {
     getName,
     getAuthToken,
     getEmail,
+    getLoginType,
   };
 };
 

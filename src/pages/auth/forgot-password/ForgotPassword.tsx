@@ -37,8 +37,9 @@ const ForgotPassword = () => {
       if (!forgotPasswordApiResponse.success) {
         Modal.showModal({
           icon: ModalIcon.ERROR,
-          title: `Error ${forgotPasswordApiResponse.httpCode}`,
-          message: forgotPasswordApiResponse.message,
+          message:
+            forgotPasswordApiResponse.errors ??
+            forgotPasswordApiResponse.message,
         });
 
         return;

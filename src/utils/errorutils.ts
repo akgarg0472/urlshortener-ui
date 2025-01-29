@@ -20,5 +20,6 @@ export const errorResponse = (err: any): ApiErrorResponse => {
     success: false,
     message: response.message || response.error_message || response.description,
     httpCode: response.error_code || response.status_code || response.code,
+    errors: response.errors,
   };
 };

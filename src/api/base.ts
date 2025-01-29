@@ -11,6 +11,7 @@ export interface ApiErrorResponse {
   success: boolean;
   message: string;
   httpCode: number;
+  errors?: any;
 }
 
 export const axiosInstance = axios.create({

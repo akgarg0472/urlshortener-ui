@@ -91,6 +91,7 @@ const doOAuthCallback = async (
       name: callbackResponse.data.name,
       is_new_user: callbackResponse.data.is_new_user,
       message: callbackResponse.data.Message,
+      login_type: callbackResponse.data.login_type,
     };
   } catch (err: any) {
     if (isAxiosNetworkError(err)) {
@@ -197,6 +198,7 @@ const doLogin = async (
       token: loginApiResponse.data.auth_token,
       userId: loginApiResponse.data.user_id,
       name: loginApiResponse.data.name,
+      login_type: loginApiResponse.data.login_type,
     };
   } catch (err: any) {
     if (isAxiosNetworkError(err)) {

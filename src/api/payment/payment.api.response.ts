@@ -20,6 +20,11 @@ export type PaymentHistoryResponse = {
   payments?: PaymentDetail[];
 };
 
+export type CancelPaymentResponse = {
+  success: boolean;
+  message: string;
+};
+
 export type PaymentDetail = {
   id: string;
   pack_id: string;

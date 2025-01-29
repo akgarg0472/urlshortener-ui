@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getProfile } from "../../api/user/user";
+import { GetProfileResponse } from "../../api/user/user.api.response";
 import DashboardStatsHeading from "../../components/DashboardStatsHeading/DashboardStatsHeading";
+import LinkButton from "../../components/button/LinkButton";
 import DashboardNavbar from "../../components/dashboard-navbar/DashboardNavbar";
 import ProfileAccountInformation from "../../components/dashboard-profile/ProfileAccountInformation";
 import ProfileAddressInformation from "../../components/dashboard-profile/ProfileAddressInformation";
@@ -18,17 +20,17 @@ import {
   LOGIN_URL,
 } from "../../constants";
 import useAuth from "../../hooks/useAuth";
-
-import { GetProfileResponse } from "../../api/user/user.api.response";
-import LinkButton from "../../components/button/LinkButton";
 import { getEnv } from "../../utils/envutils";
+
 import "./Dashboard.css";
 
 const DashboardProfile = () => {
-  const { logout, getUserId, getAuthToken } = useAuth();
-  const [loading, setLoading] = React.useState<boolean>(true);
+  const { logout, getUserId, getAuthToken, getLoginType } = useAuth();
   const navigate = useNavigate();
 
+  const [loading, setLoading] = React.useState<boolean>(true);
+  const [showForgotPasswordSection, setShowForgotPasswordSection] =
+    useState<boolean>(true);
   const [profileData, setProfileData] = useState<ProfileData>({
     id: "",
     profilePicture: getEnv(
@@ -47,6 +49,13 @@ const DashboardProfile = () => {
 
   useEffect(() => {
     document.title = "Profile";
+
+    const loginType = getLoginType();
+
+    if (loginType !== null && loginType.includes("oauth")) {
+      setShowForgotPasswordSection(false);
+    }
+
     fetchProfile();
     // eslint-disable-next-line
   }, []);
@@ -167,7 +176,7 @@ const DashboardProfile = () => {
                 )}
               </div>
 
-              <ProfileChangePassword />
+              {showForgotPasswordSection ? <ProfileChangePassword /> : null}
 
               <ProfileDeleteAccount />
             </div>
