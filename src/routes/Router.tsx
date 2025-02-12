@@ -1,5 +1,6 @@
 import { Suspense, lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
+import { WaitLoader } from "../components/wait-loader/WaitLoader";
 import {
   DASHBOARD_LINKS_URL,
   DASHBOARD_PROFILE_URL,
@@ -48,7 +49,7 @@ const router = createBrowserRouter(
     {
       path: "/",
       element: (
-        <Suspense fallback={<div>Loading Home...</div>}>
+        <Suspense fallback={<WaitLoader key="wait__loader__home" />}>
           <HomePage />
         </Suspense>
       ),
@@ -56,7 +57,7 @@ const router = createBrowserRouter(
     {
       path: SIGNUP_URL,
       element: (
-        <Suspense fallback={<div>Loading Signup...</div>}>
+        <Suspense fallback={<WaitLoader key="wait__loader__signup" />}>
           <HomeNavbar />
           <Signup />
         </Suspense>
@@ -65,7 +66,7 @@ const router = createBrowserRouter(
     {
       path: LOGIN_URL,
       element: (
-        <Suspense fallback={<div>Loading Login...</div>}>
+        <Suspense fallback={<WaitLoader key="wait__loader__login" />}>
           <HomeNavbar />
           <Login />
         </Suspense>
@@ -74,7 +75,7 @@ const router = createBrowserRouter(
     {
       path: FORGOT_PASSWORD_URL,
       element: (
-        <Suspense fallback={<div>Loading Forgot Password...</div>}>
+        <Suspense fallback={<WaitLoader key="wait__loader__forgot-password" />}>
           <HomeNavbar />
           <ForgotPassword />
         </Suspense>
@@ -83,7 +84,7 @@ const router = createBrowserRouter(
     {
       path: RESET_PASSWORD_URL,
       element: (
-        <Suspense fallback={<div>Loading Reset Password...</div>}>
+        <Suspense fallback={<WaitLoader key="wait__loader__reset-password" />}>
           <HomeNavbar />
           <ResetPassword />
         </Suspense>
@@ -92,7 +93,7 @@ const router = createBrowserRouter(
     {
       path: OAUTH_SUCCESS_GOOGLE,
       element: (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<WaitLoader key="wait__loader__oauth-google" />}>
           <OAuthSuccess />
         </Suspense>
       ),
@@ -100,7 +101,7 @@ const router = createBrowserRouter(
     {
       path: OAUTH_SUCCESS_GITHUB,
       element: (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<WaitLoader key="wait__loader__oauth-github" />}>
           <OAuthSuccess />
         </Suspense>
       ),
@@ -108,7 +109,7 @@ const router = createBrowserRouter(
     {
       path: DASHBOARD_URL,
       element: (
-        <Suspense fallback={<div>Loading Dashboard...</div>}>
+        <Suspense fallback={<WaitLoader key="wait__loader__dashboard" />}>
           <ProtectedRoute element={<Dashboard />} redirectTo={DASHBOARD_URL} />
         </Suspense>
       ),
@@ -116,7 +117,7 @@ const router = createBrowserRouter(
     {
       path: DASHBOARD_LINKS_URL,
       element: (
-        <Suspense fallback={<div>Loading Dashboard Links...</div>}>
+        <Suspense fallback={<WaitLoader key="wait__loader__dashboard-links" />}>
           <ProtectedRoute
             element={<DashboardLinks />}
             redirectTo={DASHBOARD_LINKS_URL}
@@ -127,7 +128,7 @@ const router = createBrowserRouter(
     {
       path: DASHBOARD_SUBSCRIPTIONS,
       element: (
-        <Suspense fallback={<div>Loading Subscriptions...</div>}>
+        <Suspense fallback={<WaitLoader key="wait__loader__subscriptions" />}>
           <ProtectedRoute
             element={<DashboardSubscription />}
             redirectTo={DASHBOARD_PROFILE_URL}
@@ -138,7 +139,7 @@ const router = createBrowserRouter(
     {
       path: DASHBOARD_PROFILE_URL,
       element: (
-        <Suspense fallback={<div>Loading Profile...</div>}>
+        <Suspense fallback={<WaitLoader key="wait__loader__profile" />}>
           <ProtectedRoute
             element={<DashboardProfile />}
             redirectTo={DASHBOARD_PROFILE_URL}
@@ -149,7 +150,7 @@ const router = createBrowserRouter(
     {
       path: DASHBOARD_UPDATE_PROFILE_URL,
       element: (
-        <Suspense fallback={<div>Loading Update Profile...</div>}>
+        <Suspense fallback={<WaitLoader key="wait__loader__update-profile" />}>
           <ProtectedRoute
             element={<DashboardUpdateProfile />}
             redirectTo={DASHBOARD_UPDATE_PROFILE_URL}
@@ -160,7 +161,9 @@ const router = createBrowserRouter(
     {
       path: SUBSCRIPTION_PLANS_URL,
       element: (
-        <Suspense fallback={<div>Loading Subscription Plans...</div>}>
+        <Suspense
+          fallback={<WaitLoader key="wait__loader__subscription-plans" />}
+        >
           <SubscriptionPage />
         </Suspense>
       ),
@@ -168,7 +171,7 @@ const router = createBrowserRouter(
     {
       path: PAYPAL_CALLBACK_URL,
       element: (
-        <Suspense fallback={<div>Loading PayPal...</div>}>
+        <Suspense fallback={<WaitLoader key="wait__loader__paypal" />}>
           <ProtectedRoute element={<Paypal />} redirectTo={DASHBOARD_URL} />
         </Suspense>
       ),
@@ -176,7 +179,7 @@ const router = createBrowserRouter(
     {
       path: "*",
       element: (
-        <Suspense fallback={<div>Loading Error Page...</div>}>
+        <Suspense fallback={<WaitLoader key="wait__loader__error-page" />}>
           <ErrorPage />
         </Suspense>
       ),
