@@ -2,24 +2,30 @@ $serial__number__width: 4rem;
 $serial__number__height: 4rem;
 
 .my__link__container {
+  box-shadow: var(--dashboard-content-hover-box-shadow);
+  border-radius: 0.6rem;
+  padding: 1.2rem;
+  margin: 1.2rem;
   display: flex;
-  margin: 1.2rem 0;
   align-items: center;
-  justify-content: space-between;
-  padding: 0.6rem 0;
-  cursor: pointer;
 
-  .serial__urls__container {
-    width: 70%;
+  .content {
+    width: 100%;
     display: flex;
-  }
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
 
-  .metadata__container {
-    width: 25%;
+    .buttons__container {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+    }
   }
 }
 
-.my__link__container .serial__urls__container {
+.my__link__container {
   .serial__number__container {
     width: $serial__number__width;
     height: $serial__number__height;
@@ -34,23 +40,30 @@ $serial__number__height: 4rem;
       align-items: center;
       justify-content: center;
       border-radius: 50%;
-      background: rgba(51, 51, 51, 0.15);
+      background: rgba(51, 51, 51, 0.085);
       font-size: 1.3rem;
+      font-weight: 500;
     }
   }
 
-  .urls__container,
-  .metadata__container {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 100%;
-    font-weight: 500;
-    margin-left: 1.2rem;
+  .content {
+    .urls__container,
+    .metadata__container {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      width: 100%;
+      font-weight: 500;
+      margin-left: 1.2rem;
+    }
+
+    .buttons__container {
+      margin-left: 1.2rem;
+    }
   }
 }
 
-.my__link__container .serial__urls__container .urls__container {
+.my__link__container .content .urls__container {
   .short__url__container {
     font-size: 1.4rem;
   }
@@ -62,11 +75,26 @@ $serial__number__height: 4rem;
   }
 }
 
-.my__link__container .metadata__container {
+.my__link__container .content .metadata__container {
   font-weight: 500;
   font-size: 1.3rem;
 
   .ip__address__container {
     margin-top: 0.4rem;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .my__link__container {
+    padding: 2.4rem 1.6rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .my__link__container .content {
+    flex-direction: column;
+    margin-left: 1.2rem;
+    align-items: start;
+    gap: 1.2rem;
   }
 }

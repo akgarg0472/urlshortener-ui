@@ -80,8 +80,8 @@
 }
 
 .dashboard__page__content .my__links__container {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   padding: 1.6rem;
   background-color: #ffffff;
   border-radius: 0.6rem;
@@ -389,6 +389,12 @@
   background-color: var(--bg-dark-hover);
 }
 
+@media screen and (max-width: 1440px) {
+  .dashboard__page__content .my__links__container {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 0;
+  }
+}
 @media screen and (max-width: 1366px) {
   .dashboard__page__content .subscription__history__container .content {
     grid-template-columns: repeat(1, 1fr);
