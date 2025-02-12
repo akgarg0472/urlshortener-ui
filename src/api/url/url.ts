@@ -37,8 +37,8 @@ export const generateShortUrl = async (
     return {
       httpCode: generateShortUrlResponse.status,
       success: generateShortUrlResponse.status === 201,
-      original_url: "",
-      short_url: "",
+      original_url: generateShortUrlResponse.data.original_url,
+      short_url: generateShortUrlResponse.data.short_url,
     };
   } catch (err: any) {
     if (isAxiosNetworkError(err)) {
