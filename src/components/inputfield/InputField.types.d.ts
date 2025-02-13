@@ -10,6 +10,7 @@ interface InputFieldProps {
   isRequired?: boolean;
   onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   inputFieldStyle?: React.CSSProperties;
+  disabled?: boolean;
 }
 
 interface HorizontalInputFieldProps {

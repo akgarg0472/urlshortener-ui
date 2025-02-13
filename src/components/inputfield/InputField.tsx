@@ -55,6 +55,7 @@ const InputField = (props: InputFieldProps) => {
               props.onKeyDown(event);
             }
           }}
+          disabled={props.disabled}
           {...conditionalProps}
         />
       </div>

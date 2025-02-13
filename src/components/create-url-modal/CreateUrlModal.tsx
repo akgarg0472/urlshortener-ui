@@ -206,19 +206,25 @@ const CreateUrlModal = (props: CreateUrlModalProps) => {
                       isRequired={true}
                     />
 
-                    {showCustomAlias ? (
-                      <InputField
-                        id="custom__alias__IF"
-                        onChange={(e) => setCustomAlias(e.target.value)}
-                        placeholder="Enter Custom alias"
-                        text={customAlias}
-                        type={InputFieldType.TEXT}
-                        title="Custom alias"
-                        style={{
-                          width: "100%",
-                        }}
-                        isRequired={false}
-                      />
+                    <InputField
+                      id="custom__alias__IF"
+                      onChange={(e) => setCustomAlias(e.target.value)}
+                      placeholder="Enter Custom alias"
+                      text={customAlias}
+                      type={InputFieldType.TEXT}
+                      title="Custom alias"
+                      style={{
+                        width: "100%",
+                      }}
+                      isRequired={false}
+                      disabled={!showCustomAlias}
+                    />
+
+                    {customAliasThresholdCrossed ? (
+                      <div className="custom__alias__quota__exceeded">
+                        Custom alias quota exceeded. Please upgrade your plan to
+                        use this feature.
+                      </div>
                     ) : null}
 
                     <InputField
@@ -235,13 +241,6 @@ const CreateUrlModal = (props: CreateUrlModalProps) => {
                       title="Expiration Time"
                     />
                   </div>
-
-                  {customAliasThresholdCrossed ? (
-                    <div className="custom__alias__quota__exceeded">
-                      Custom alias quota exceeded. Please upgrade your plan to
-                      use this feature.
-                    </div>
-                  ) : null}
 
                   <RegularButton
                     reference={generateShortUrlButtonRef}
