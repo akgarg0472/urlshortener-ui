@@ -100,6 +100,12 @@ const Dashboard = () => {
       const response: GetSubscriptionResponse =
         await getActiveSubscription(req);
 
+      if (response.httpCode === 401) {
+        logout();
+        navigate(LOGIN_URL, { replace: true });
+        return null;
+      }
+
       if (!response.success || !response.subscription || !response.pack) {
         return null;
       }
