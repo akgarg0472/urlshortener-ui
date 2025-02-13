@@ -189,7 +189,7 @@ const Login = () => {
         if (callbackResponse.is_new_user) {
           Modal.showModal({
             icon: ModalIcon.SUCCESS,
-            message: `🎉 Welcome to UrlShortener: ${callbackResponse.name}`,
+            message: `🎉 Welcome to Cmpct: ${callbackResponse.name}`,
             onClose() {
               const redirecTo = searchParams.get("redirectTo");
               navigation(redirecTo ? redirecTo : DASHBOARD_URL, {

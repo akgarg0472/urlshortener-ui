@@ -59,7 +59,7 @@ const DashboardNavbar = () => {
         >
           <LinkButton
             className="heading__logo"
-            text="URLShortener 🔗"
+            text="Cmpct 🔗"
             referrerPolicy="no-referrer"
             onClickLink="/"
           />

@@ -1,3 +1,0 @@
-interface CreateUrlModalProps {
-  onClose: () => void;
-}

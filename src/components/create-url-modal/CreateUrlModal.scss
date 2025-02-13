@@ -69,10 +69,15 @@ $modal__border__radius: 0.8rem;
     }
 
     .custom__alias__quota__exceeded {
-      font-size: 1.4rem;
-      text-align: center;
-      color: #ff0000;
-      font-weight: 500;
+      display: flex;
+      width: 100%;
+      margin-top: -1.6rem;
+
+      span {
+        font-size: 1.4rem;
+        color: #ff0000;
+        font-weight: 500;
+      }
     }
 
     .generate__short__url__btn {

@@ -60,8 +60,12 @@
   gap: 2.4rem;
 }
 .create__short__url__modal__dialog .short__url__dialog__container .custom__alias__quota__exceeded {
+  display: flex;
+  width: 100%;
+  margin-top: -1.6rem;
+}
+.create__short__url__modal__dialog .short__url__dialog__container .custom__alias__quota__exceeded span {
   font-size: 1.4rem;
-  text-align: center;
   color: #ff0000;
   font-weight: 500;
 }

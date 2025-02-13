@@ -70,7 +70,13 @@ const validChangePasswordReq = (pwdFields: any): boolean => {
   );
 };
 
+const isAlphanumericString = (str: string): boolean => {
+  const regex = /^[a-zA-Z0-9]+$/;
+  return regex.test(str);
+};
+
 export {
+  isAlphanumericString,
   validateEmail,
   validatePassword,
   validateString,

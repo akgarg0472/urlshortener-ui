@@ -10,7 +10,8 @@ import WhyChooseUs from "../../components/home-why-choose-us/WhyChooseUs";
 
 const HomePage = () => {
   useEffect(() => {
-    document.title = "URLShortener - Home";
+    document.title =
+      "Cmpct URL Shortener: Free, Fast & Reliable Link Shortening";
   }, []);
 
   return (

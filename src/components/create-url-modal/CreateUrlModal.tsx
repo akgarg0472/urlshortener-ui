@@ -7,8 +7,9 @@ import { getActiveSubscription } from "../../api/subscription/subscription";
 import { generateShortUrl } from "../../api/url/url";
 import useAuth from "../../hooks/useAuth";
 import { isValidAndFutureMillisecond } from "../../utils/datetimeutils";
+import { getEnv } from "../../utils/envutils";
 import { getAllowedCustomAlias } from "../../utils/subscriptonUtils";
-import { isValidURL } from "../../utils/validationutils";
+import { isAlphanumericString, isValidURL } from "../../utils/validationutils";
 import RegularButton from "../button/RegularButton";
 import InputField from "../inputfield/InputField";
 import { InputFieldType } from "../inputfield/InputField.enums";
@@ -18,8 +19,11 @@ import Modal from "../modal/Modal";
 import { ModalIcon } from "../modal/Modal.enums";
 import { CreateUrlSuccess } from "./create-url-success/CreateUrlSuccess";
 
-import { getEnv } from "../../utils/envutils";
 import "./CreateUrlModal.css";
+
+interface CreateUrlModalProps {
+  onClose: () => void;
+}
 
 const CreateUrlModal = (props: CreateUrlModalProps) => {
   const { getUserId, getAuthToken } = useAuth();
@@ -94,6 +98,24 @@ const CreateUrlModal = (props: CreateUrlModalProps) => {
         icon: ModalIcon.ERROR,
         title: "ERROR",
         message: "Please provide a valid future expiration date and time",
+      });
+      return;
+    }
+
+    if (customAlias && !isAlphanumericString(customAlias)) {
+      Modal.showModal({
+        icon: ModalIcon.ERROR,
+        title: "ERROR",
+        message: "Custom alias should be alphanumeric only",
+      });
+      return;
+    }
+
+    if (customAlias && customAlias.length > 10) {
+      Modal.showModal({
+        icon: ModalIcon.ERROR,
+        title: "ERROR",
+        message: "Custom alias length should be less or equal to 10",
       });
       return;
     }
@@ -222,8 +244,10 @@ const CreateUrlModal = (props: CreateUrlModalProps) => {
 
                     {customAliasThresholdCrossed ? (
                       <div className="custom__alias__quota__exceeded">
-                        Custom alias quota exceeded. Please upgrade your plan to
-                        use this feature.
+                        <span>
+                          Custom alias quota exceeded. Please upgrade your plan
+                          to use this feature.
+                        </span>
                       </div>
                     ) : null}
 

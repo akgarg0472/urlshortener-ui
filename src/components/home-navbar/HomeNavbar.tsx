@@ -57,7 +57,7 @@ const HomeNavbar = () => {
       <div className="home__navbar">
         <div className="logo__container">
           <Link to="/" className="navbar__link">
-            🔗 URLShortener
+            🔗 Cmpct
           </Link>
         </div>
 

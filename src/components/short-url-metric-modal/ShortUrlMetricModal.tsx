@@ -4,7 +4,6 @@ import { LatestHit } from "../../api/dashboard/dashboard.api.modal";
 import { UrlMetricApiResponse } from "../../api/dashboard/dashboard.api.response";
 import useAuth from "../../hooks/useAuth";
 import { convertTimestampToDateTime } from "../../utils/datetimeutils";
-import { getEnv } from "../../utils/envutils";
 import InternalLoader from "../loader/internal-loader/InternalLoader";
 import {
   InternalLoaderSize,
@@ -52,7 +51,10 @@ const ShortUrlMetricModal = (props: ShortUrlMetricModalProps) => {
 
     const apiResponse: UrlMetricApiResponse = await getUrlMetrics({
       userId: getUserId()!,
-      shortUrl: props.shortUrl,
+      shortUrl:
+        props.shortUrl.lastIndexOf("/") !== -1
+          ? props.shortUrl.substring(props.shortUrl.lastIndexOf("/") + 1)
+          : props.shortUrl,
       endTime: new Date().getTime(),
       startTime: 0,
       limit: 10,
@@ -89,10 +91,7 @@ const ShortUrlMetricModal = (props: ShortUrlMetricModalProps) => {
         <div className="url__metadata__modal__content__wrapper">
           <div className="url__metadata__container">
             <URLMetadata title="Original URL" value={props.originalUrl} />
-            <URLMetadata
-              title="Short URL"
-              value={`${getEnv("REACT_APP_PREFIX_URL_FOR_SHORT_URL", "localhost:8765").replace(/\/+$/, "")}/${props.shortUrl}`}
-            />
+            <URLMetadata title="Short URL" value={props.shortUrl} />
             <URLMetadata title="Created At" value={props.createdAt} />
             <URLMetadata title="Created From IP" value={props.createdByIp} />
             <URLMetadata title="Total Hits" value={totalHits} />

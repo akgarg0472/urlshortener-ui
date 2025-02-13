@@ -99,7 +99,7 @@ $component__margin: 1.2rem 0;
     background-color: #ffffff;
     border-radius: 0.6rem;
     box-shadow: var(--dashboard-content-box-shadow);
-    height: 75vh;
+    max-height: 75vh;
     overflow-y: auto;
     margin: $component__margin;
   }
