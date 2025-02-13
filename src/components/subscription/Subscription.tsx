@@ -1,4 +1,5 @@
 import React from "react";
+import { formatToBrowserTimeZoneIfValid } from "../../utils/datetimeutils";
 
 import "./Subscription.css";
 
@@ -15,7 +16,9 @@ const SubscriptionKV = (props: { itemKey: string; value: any }) => {
     <React.Fragment>
       <div className="subs__kv">
         <span className="key">{props.itemKey}:&nbsp;</span>
-        <span className="value">{props.value}</span>
+        <span className="value">
+          {formatToBrowserTimeZoneIfValid(props.value)}
+        </span>
       </div>
     </React.Fragment>
   );

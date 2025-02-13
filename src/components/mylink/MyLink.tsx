@@ -18,6 +18,7 @@ const MyLink = (props: MyLinkProps) => {
     );
     const formattedUrl = prefixUrl.endsWith("/") ? prefixUrl : `${prefixUrl}/`;
     setShortUrl(`${formattedUrl}${props.url.short_url}`);
+    // eslint-disable-next-line
   }, []);
 
   const openLink = () => {
