@@ -1,9 +1,6 @@
 # Ignore node_modules to avoid copying local dependencies (handled in Dockerfile)
 node_modules
 
-# Ignore the build directory (we will build in the Docker image itself)
-build
-
 # Ignore Dockerfile itself and other unnecessary files
 Dockerfile
 .dockerignore
