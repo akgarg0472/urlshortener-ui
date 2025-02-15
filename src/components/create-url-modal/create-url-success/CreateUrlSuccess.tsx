@@ -23,7 +23,6 @@ export const CreateUrlSuccess = (props: CreateUrlSuccessProps) => {
   const qrRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
-    console.log("rendering CreateUrlSuccess");
     confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
   }, []);
 
