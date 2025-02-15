@@ -1,6 +1,6 @@
 {
   "name": "urlshortener-ui",
-  "version": "1.9.5",
+  "version": "1.9.6",
   "private": true,
   "dependencies": {
     "axios": "^1.7.9",
@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
     "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix",

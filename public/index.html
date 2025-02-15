@@ -1,26 +1,39 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="CMPCT is a fast and efficient URL shortener that allows you to shorten long URLs and share them easily across platforms."
+      content="CMPCT is a powerful and efficient URL shortener that helps you shorten, track, and manage links with ease. Optimize your sharing experience today!"
     />
 
-    <script src="/env-config.js"></script>
+    <!-- Preload and Prefetch Optimizations -->
+    <link rel="preconnect" href="https://ui.cmpct.xyz" />
+    <link rel="dns-prefetch" href="https://ui.cmpct.xyz" />
 
+    <!-- Favicon Support for Multiple Formats -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="%PUBLIC_URL%/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="%PUBLIC_URL%/favicon-16x16.png"
+    />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
-    <!-- Open Graph meta tags -->
-    <meta property="og:title" content="CMPCT - URL Shortener" />
+    <!-- Open Graph meta tags for social media preview -->
+    <meta property="og:title" content="CMPCT - Fast & Reliable URL Shortener" />
     <meta
       property="og:description"
-      content="CMPCT is a sleek, fast, and reliable URL shortener service that helps you shorten and track links effortlessly."
+      content="Shorten and manage your links effortlessly with CMPCT, the sleek and reliable URL shortener."
     />
     <meta
       property="og:image"
@@ -31,10 +44,13 @@
 
     <!-- Twitter Card meta tags -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="CMPCT - URL Shortener" />
+    <meta
+      name="twitter:title"
+      content="CMPCT - Fast & Reliable URL Shortener"
+    />
     <meta
       name="twitter:description"
-      content="CMPCT is a sleek, fast, and reliable URL shortener service that helps you shorten and track links effortlessly."
+      content="Shorten and manage your links effortlessly with CMPCT, the sleek and reliable URL shortener."
     />
     <meta
       name="twitter:image"
@@ -42,11 +58,29 @@
     />
     <meta name="twitter:url" content="https://ui.cmpct.xyz/" />
 
-    <title>Cmpct</title>
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "CMPCT",
+        "url": "https://ui.cmpct.xyz",
+        "description": "CMPCT is a sleek and fast URL shortener that helps you shorten and track links effortlessly."
+      }
+    </script>
+
+    <!-- Load environment configuration -->
+    <!-- Docker will replace this line during container startup -->
+    <!-- ::DOCKER_ENV_CONFIG:: -->
+
+    <title>CMPCT | Fast & Reliable URL Shortener</title>
   </head>
 
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>
+      JavaScript is required to use CMPCT. Please enable JavaScript in your
+      browser settings.
+    </noscript>
     <div id="root"></div>
   </body>
 </html>
