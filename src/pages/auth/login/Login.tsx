@@ -288,8 +288,14 @@ const Login = () => {
           provider: "github",
         };
 
+        Loader.showLoader({
+          speed: LoaderSpeed.HIGH,
+        });
+
         const callbackResponse: OAuthCallbackResponse =
           await doOAuthCallback(reqBody);
+
+        Loader.hideLoader();
 
         if (!callbackResponse.success) {
           Modal.showModal({
