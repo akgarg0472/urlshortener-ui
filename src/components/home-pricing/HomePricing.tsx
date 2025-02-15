@@ -4,15 +4,16 @@ import { GetSubscriptionPacksResponse } from "../../api/subscription/subs.api.re
 import { getSubscriptionPacks } from "../../api/subscription/subscription";
 import { HOME_PRICING, HOME_PRICING_DESC } from "../../constants";
 import {
-  homePricingPlans,
+  homePricingPlans as defaultHomePricingPlans,
+  pricingPlanComparison as defaultPricingPlanComparison,
   PricePlanComparison,
   PricingPlan,
-  pricingPlanComparison,
 } from "../../utils/data";
 import HomeHeading from "../home-heading/HomeHeading";
 import ComparePack from "./compare-pack/ComparePacks";
 import PriceCard from "./price-card/PriceCard";
 
+import InternalLoader from "../loader/internal-loader/InternalLoader";
 import "./HomePricing.css";
 
 const HomePricing = (props: { showComparePlans?: boolean }) => {
@@ -21,6 +22,7 @@ const HomePricing = (props: { showComparePlans?: boolean }) => {
     headers: [],
     rows: [],
   });
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     fetchSubscriptionPacks();
@@ -28,16 +30,20 @@ const HomePricing = (props: { showComparePlans?: boolean }) => {
   }, []);
 
   const fetchSubscriptionPacks = async () => {
+    setLoading(true);
+
     const apiResponse: GetSubscriptionPacksResponse =
       await getSubscriptionPacks(props.showComparePlans);
+
+    setLoading(false);
 
     if (
       !apiResponse.success ||
       !apiResponse.packs ||
       !apiResponse.comparisons
     ) {
-      setSubscriptionPacks(homePricingPlans);
-      setPackComparison(pricingPlanComparison);
+      setSubscriptionPacks(defaultHomePricingPlans);
+      setPackComparison(defaultPricingPlanComparison);
       return;
     }
 
@@ -67,20 +73,24 @@ const HomePricing = (props: { showComparePlans?: boolean }) => {
         <HomeHeading title={HOME_PRICING} subtitle={HOME_PRICING_DESC} />
 
         <div className="plans__container">
-          {subscriptionPacks.map((plan) => (
-            <PriceCard
-              key={plan.id}
-              packId={plan.id}
-              name={plan.name}
-              currency={plan.currency}
-              price={plan.price}
-              validity={plan.validity}
-              features={plan.features}
-              selected={plan.selected}
-              description={plan.description}
-              defaultPack={plan.default_plan}
-            />
-          ))}
+          {loading ? (
+            <InternalLoader />
+          ) : (
+            subscriptionPacks.map((plan) => (
+              <PriceCard
+                key={plan.id}
+                packId={plan.id}
+                name={plan.name}
+                currency={plan.currency}
+                price={plan.price}
+                validity={plan.validity}
+                features={plan.features}
+                selected={plan.selected}
+                description={plan.description}
+                defaultPack={plan.default_plan}
+              />
+            ))
+          )}
         </div>
 
         <div className="mbg__container">
