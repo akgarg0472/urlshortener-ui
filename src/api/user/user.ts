@@ -161,7 +161,11 @@ export const deleteProfile = async (
     ) + DASHBOARD_DELETE_PROFILE_API_URL_V1.replace("$profileId", profileId);
 
   try {
-    const deleteResponse = await axiosInstance.delete(url);
+    const deleteResponse = await axiosInstance.delete(url, {
+      headers: {
+        "X-USER-ID": profileId,
+      },
+    });
 
     return {
       httpCode: deleteResponse.status,
@@ -184,7 +188,7 @@ const errResp = (err: any, defaultErrorMsg: string) => {
     return {
       httpCode: resp.status_code,
       success: false,
-      message: resp.error_message,
+      message: resp.error_message ?? resp.message,
       errors: resp.errors,
     };
   }
