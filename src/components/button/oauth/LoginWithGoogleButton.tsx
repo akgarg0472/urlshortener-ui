@@ -1,6 +1,7 @@
 import React from "react";
-import "./LoginWithGoogleButton.css";
+
 import "./BaseOauthButton.css";
+import "./LoginWithGoogleButton.css";
 
 const LoginWithGoogleButton = (props: {
   onClickHandler: React.MouseEventHandler<HTMLButtonElement>;
@@ -10,6 +11,7 @@ const LoginWithGoogleButton = (props: {
       type="button"
       className="google_login_button oauth_button"
       onClick={props.onClickHandler}
+      title="Login With Google"
     >
       <svg
         className="google_logo"
@@ -38,7 +40,6 @@ const LoginWithGoogleButton = (props: {
         ></path>
         <path fill="none" d="M0 0h48v48H0z"></path>
       </svg>
-      Login with Google
     </button>
   );
 };

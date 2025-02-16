@@ -10,9 +10,9 @@ import { LoaderSpeed } from "../../../components/loader/Loader.enums";
 import Modal from "../../../components/modal/Modal";
 import { ModalIcon } from "../../../components/modal/Modal.enums";
 import { LOGIN_URL } from "../../../constants";
-
 import { validatePasswordAndConfirmPassword } from "../../../utils/authutils";
 import { validateEmail } from "../../../utils/validationutils";
+
 import "../Auth.css";
 
 const Signup = () => {

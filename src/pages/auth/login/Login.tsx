@@ -13,8 +13,6 @@ import {
   OAuthProviderResponse,
 } from "../../../api/auth/auth.api.response";
 import LinkButton from "../../../components/button/LinkButton";
-import LoginWithGitHubButton from "../../../components/button/oauth/LoginWithGitHubButton";
-import LoginWithGoogleButton from "../../../components/button/oauth/LoginWithGoogleButton";
 import RegularButton from "../../../components/button/RegularButton";
 import InputField from "../../../components/inputfield/InputField";
 import { InputFieldType } from "../../../components/inputfield/InputField.enums";
@@ -22,11 +20,13 @@ import Loader from "../../../components/loader/Loader";
 import { LoaderSpeed } from "../../../components/loader/Loader.enums";
 import Modal from "../../../components/modal/Modal";
 import { ModalIcon } from "../../../components/modal/Modal.enums";
-import SeparatorWithText from "../../../components/separator-with-text/SeparatorWithText";
 import { DASHBOARD_URL, OAUTH_SUCCESS_RESPONSE_KEY } from "../../../constants";
 import useAuth from "../../../hooks/useAuth";
 import { validateLoginPage } from "../../../utils/authutils";
 
+import LoginWithGitHubButton from "../../../components/button/oauth/LoginWithGitHubButton";
+import LoginWithGoogleButton from "../../../components/button/oauth/LoginWithGoogleButton";
+import SeparatorWithText from "../../../components/separator-with-text/SeparatorWithText";
 import "../Auth.css";
 
 const Login = () => {
@@ -437,15 +437,16 @@ const Login = () => {
             </div>
           </div>
 
-          <SeparatorWithText text="OR" />
+          <SeparatorWithText text="or" />
 
           <div
             style={{
               width: "100%",
               display: "flex",
-              flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
+              margin: "0",
+              padding: "0",
             }}
           >
             <LoginWithGoogleButton

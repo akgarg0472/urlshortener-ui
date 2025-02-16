@@ -36,15 +36,15 @@ const Modal = () => {
   const getIconSrc = (icon: ModalIcon): string => {
     switch (icon) {
       case ModalIcon.ERROR:
-        return "/assets/icons/error.png";
+        return "/assets/icons/error.webp";
       case ModalIcon.SUCCESS:
-        return "/assets/icons/success.png";
+        return "/assets/icons/success.webp";
       case ModalIcon.INFO:
-        return "/assets/icons/info.png";
+        return "/assets/icons/info.webp";
       case ModalIcon.WARNING:
-        return "/assets/icons/warning.png";
+        return "/assets/icons/warning.webp";
       case ModalIcon.CONFIRMATION:
-        return "/assets/icons/confirmation.png";
+        return "/assets/icons/confirmation.webp";
     }
   };
 
