@@ -12,13 +12,14 @@ const ProfileDeleteAccount = () => {
   const [disableDeleteBtn, setDisableDeleteBtn] =
     React.useState<boolean>(false);
 
-  const { getUserId, logout } = useAuth();
+  const { getUserId, getAuthToken, logout } = useAuth();
   const navigate = useNavigate();
 
   const handleAccountDeleteButton = async () => {
     const userId = getUserId();
+    const authToken = getAuthToken();
 
-    if (!userId) {
+    if (!userId || !authToken) {
       logout();
       navigate(LOGIN_URL, { replace: true });
       return;
@@ -26,7 +27,7 @@ const ProfileDeleteAccount = () => {
 
     setDisableDeleteBtn(true);
 
-    const deleteResp = await deleteProfile(userId);
+    const deleteResp = await deleteProfile(userId, authToken);
 
     setDisableDeleteBtn(false);
 

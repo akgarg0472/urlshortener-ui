@@ -152,7 +152,8 @@ export const updatePassword = async (
 };
 
 export const deleteProfile = async (
-  profileId: string
+  profileId: string,
+  authToken: string
 ): Promise<DeleteProfileResponse> => {
   const url =
     getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765").replace(
@@ -164,6 +165,7 @@ export const deleteProfile = async (
     const deleteResponse = await axiosInstance.delete(url, {
       headers: {
         "X-USER-ID": profileId,
+        Authorization: `Bearer ${authToken}`,
       },
     });
 
