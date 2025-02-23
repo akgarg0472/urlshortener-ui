@@ -1,7 +1,7 @@
 # 🖥️ URL Shortener UI
 
 ![React Version](https://img.shields.io/badge/React-18-blue)
-![version](https://img.shields.io/badge/version-1.9.9-blue)
+![version](https://img.shields.io/badge/version-1.9.10-blue)
 
 This repository contains the front-end UI code for **URL Shortener** project, built with **React**, **TypeScript**, and **CSS**. The front-end communicates with a back-end API to shorten and manage URLs.
 
@@ -64,16 +64,16 @@ This repository contains the front-end UI code for **URL Shortener** project, bu
 
 The following environment variables are used in this project to configure various aspects of the app:
 
-- **`REACT_APP_PREFIX_URL_FOR_SHORT_URL`**:  
-  The base URL for the shortened URLs.  
+- **`REACT_APP_PREFIX_URL_FOR_SHORT_URL`**:
+  The base URL for the shortened URLs.
   Example: `localhost:8765`
 
-- **`REACT_APP_BACKEND_BASE_URL`**:  
-  The base URL of the back-end API that the front-end communicates with.  
+- **`REACT_APP_BACKEND_BASE_URL`**:
+  The base URL of the back-end API that the front-end communicates with.
   Example: `http://127.0.0.1:8765`
 
-- **`REACT_APP_DEFAULT_PROFILE_PICTURE`**:  
-  The default profile picture URL used in the app when a user doesn't upload a custom image.  
+- **`REACT_APP_DEFAULT_PROFILE_PICTURE`**:
+  The default profile picture URL used in the app when a user doesn't upload a custom image.
   Example: `https://res.cloudinary.com/dmdbqq7fp/profile-pictures/default.png`
 
 Make sure to configure these variables in your `.env` file to ensure proper functionality of the application.

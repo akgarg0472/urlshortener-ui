@@ -1,4 +1,5 @@
 import axios, { InternalAxiosRequestConfig } from "axios";
+import { generateRequestId } from "../utils/requestIdGenerator";
 
 export interface ApiResponse {
   httpCode: number;
@@ -29,14 +30,3 @@ axiosInstance.interceptors.request.use(
     return Promise.reject(err);
   }
 );
-
-const generateRequestId = (length: number = 16): string => {
-  const characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  let result = "";
-  const charactersLength = characters.length;
-  for (let i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-  return result;
-};
