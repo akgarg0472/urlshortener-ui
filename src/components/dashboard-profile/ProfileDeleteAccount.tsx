@@ -15,7 +15,7 @@ const ProfileDeleteAccount = () => {
   const { getUserId, getAuthToken, logout } = useAuth();
   const navigate = useNavigate();
 
-  const handleAccountDeleteButton = async () => {
+  const deleteAccount = async () => {
     const userId = getUserId();
     const authToken = getAuthToken();
 
@@ -25,11 +25,10 @@ const ProfileDeleteAccount = () => {
       return;
     }
 
-    setDisableDeleteBtn(true);
-
     const deleteResp = await deleteProfile(userId, authToken);
 
     setDisableDeleteBtn(false);
+    Modal.closeModal();
 
     if (!deleteResp.success) {
       Modal.showModal({
@@ -47,6 +46,38 @@ const ProfileDeleteAccount = () => {
         },
       });
     }
+  };
+
+  const handleAccountDeleteButton = async () => {
+    setDisableDeleteBtn(true);
+
+    Modal.showModal({
+      message: "Are you sure you want to delete your account?",
+      onConfirm() {
+        Modal.closeModal();
+        Modal.showModal({
+          message:
+            "This action is permanent and cannot be undone. Are you absolutely sure?",
+          onConfirm() {
+            deleteAccount();
+          },
+          icon: ModalIcon.CONFIRMATION,
+          onClose() {
+            setDisableDeleteBtn(false);
+          },
+        });
+      },
+      onClose() {
+        setDisableDeleteBtn(false);
+      },
+      onCancel() {
+        console.log("modal cancelled");
+        setDisableDeleteBtn(false);
+      },
+      confirmText: "Yes",
+      cancelText: "No",
+      icon: ModalIcon.CONFIRMATION,
+    });
   };
 
   return (

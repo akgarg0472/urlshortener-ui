@@ -1,10 +1,10 @@
 .popular__url__container {
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 0.8rem 0;
   font-size: 1.4rem;
+  width: 100%;
 }
 .popular__url__container .left__section {
   display: flex;
@@ -30,6 +30,7 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  max-width: 50%;
 }
 .popular__url__container .clicks {
   display: flex;

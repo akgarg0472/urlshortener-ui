@@ -19,6 +19,7 @@ import Modal from "../modal/Modal";
 import { ModalIcon } from "../modal/Modal.enums";
 import { CreateUrlSuccess } from "./create-url-success/CreateUrlSuccess";
 
+import { Info } from "lucide-react";
 import "./CreateUrlModal.css";
 
 interface CreateUrlModalProps {
@@ -166,8 +167,8 @@ const CreateUrlModal = (props: CreateUrlModalProps) => {
       Modal.showModal({
         icon: ModalIcon.ERROR,
         message:
-          apiResponse.errors ??
           apiResponse.message ??
+          apiResponse.errors ??
           "Error generating short URL",
       });
     }
@@ -234,12 +235,14 @@ const CreateUrlModal = (props: CreateUrlModalProps) => {
                       placeholder="Enter Custom alias"
                       text={customAlias}
                       type={InputFieldType.TEXT}
-                      title="Custom alias"
+                      title="Custom Short URL"
                       style={{
                         width: "100%",
                       }}
                       isRequired={false}
                       disabled={!showCustomAlias}
+                      aboutIcon={<Info />}
+                      aboutIconTitle="Enter a custom short URL for easy access to this link. (Optional)"
                     />
 
                     {customAliasThresholdCrossed ? (
@@ -255,6 +258,7 @@ const CreateUrlModal = (props: CreateUrlModalProps) => {
                       id="short__url__expiration__IF"
                       onChange={(e) => {
                         setExpirationDate(new Date(e.target.value).getTime());
+                        e.currentTarget.blur();
                       }}
                       placeholder="Expiration Time"
                       text={originalUrl}
@@ -270,7 +274,7 @@ const CreateUrlModal = (props: CreateUrlModalProps) => {
                     reference={generateShortUrlButtonRef}
                     content={
                       loading ? (
-                        <InternalLoader size={InternalLoaderSize.SMALL} />
+                        <InternalLoader size={InternalLoaderSize.EXTRA_SMALL} />
                       ) : (
                         "Generate Short URL"
                       )

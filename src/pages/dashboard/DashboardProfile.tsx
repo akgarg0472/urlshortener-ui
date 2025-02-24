@@ -6,7 +6,6 @@ import DashboardStatsHeading from "../../components/DashboardStatsHeading/Dashbo
 import LinkButton from "../../components/button/LinkButton";
 import DashboardNavbar from "../../components/dashboard-navbar/DashboardNavbar";
 import ProfileAccountInformation from "../../components/dashboard-profile/ProfileAccountInformation";
-import ProfileAddressInformation from "../../components/dashboard-profile/ProfileAddressInformation";
 import ProfileChangePassword from "../../components/dashboard-profile/ProfileChangePassword";
 import ProfileDeleteAccount from "../../components/dashboard-profile/ProfileDeleteAccount";
 import ProfilePersonalDetails from "../../components/dashboard-profile/ProfilePersonalDetails";
@@ -22,6 +21,8 @@ import {
 import useAuth from "../../hooks/useAuth";
 import { getEnv } from "../../utils/envutils";
 
+import ProfileAddressInformation from "../../components/dashboard-profile/ProfileAddressInformation";
+import { InternalLoaderSize } from "../../components/loader/Loader.enums";
 import "./Dashboard.css";
 
 const DashboardProfile = () => {
@@ -155,7 +156,16 @@ const DashboardProfile = () => {
                 <DashboardStatsHeading heading="Address Details" />
 
                 {loading ? (
-                  <InternalLoader />
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      padding: "2.4rem",
+                    }}
+                  >
+                    <InternalLoader size={InternalLoaderSize.LARGE} />{" "}
+                  </div>
                 ) : (
                   <ProfileAddressInformation
                     city={profileData.city}
@@ -170,7 +180,16 @@ const DashboardProfile = () => {
                 <DashboardStatsHeading heading="Account Information" />
 
                 {loading ? (
-                  <InternalLoader />
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      padding: "2.4rem",
+                    }}
+                  >
+                    <InternalLoader size={InternalLoaderSize.LARGE} />
+                  </div>
                 ) : (
                   <ProfileAccountInformation {...profileData} />
                 )}

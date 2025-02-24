@@ -23,12 +23,12 @@ export const HOME_WHY_CHOOSE_US_DESC: string =
 export const HOME_CUSTOMER_TESTIMONIALS: string = "What Our Users Say";
 export const HOME_CUSTOMER_TESTIMONIALS_DESC: string =
   "Don't just take our word for it. Here's what professionals and businesses have to say about our URL shortening service.";
-export const HOME_PRICING: string = "Simple, Transparent Pricing";
+export const HOME_PRICING: string = "Simple, Clear Pricing";
 export const HOME_PRICING_DESC: string =
-  "Choose the perfect plan for your link management needs. No hidden fees, no surprises.";
-export const HOME_STATISTICS: string = "Trusted by Millions";
+  "Pick the right plan for your link management needs. Transparent pricing, no surprises.";
+export const HOME_STATISTICS: string = "Relied on by Millions";
 export const HOME_STATISTICS_DESC: string =
-  "Join the millions of users who trust our platform for their link shortening needs.";
+  "Become one of the millions who trust our platform for link shortening.";
 export const HOME_FAQ: string = "Frequently Asked Questions";
 export const HOME_FAQ_DESC: string =
   "Everything you need to know about our URL shortening service.";

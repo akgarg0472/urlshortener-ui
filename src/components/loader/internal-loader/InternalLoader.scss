@@ -1,5 +1,3 @@
-$internal__loader__width: 9rem;
-$internal__loader__height: 9rem;
 $border: 2px solid #5d44f8;
 $border__transparent: 2px solid transparent;
 
@@ -7,8 +5,6 @@ $border__transparent: 2px solid transparent;
   position: relative;
   left: 0;
   top: 0;
-  width: 100%;
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,23 +16,23 @@ $border__transparent: 2px solid transparent;
   }
 
   .internal__loader__size__extra__small {
-    width: $internal__loader__width/4;
-    height: $internal__loader__height/4;
+    width: 2rem;
+    height: 2rem;
   }
 
   .internal__loader__size__small {
-    width: $internal__loader__width/3;
-    height: $internal__loader__height/3;
+    width: 2.4rem;
+    height: 2.4rem;
   }
 
   .internal__loader__size__medium {
-    width: $internal__loader__width/2;
-    height: $internal__loader__height/2;
+    width: 3.2rem;
+    height: 3.2rem;
   }
 
   .internal__loader__size__large {
-    width: $internal__loader__width;
-    height: $internal__loader__height;
+    width: 4rem;
+    height: 4rem;
   }
 
   .internal__loader__speed__fast {

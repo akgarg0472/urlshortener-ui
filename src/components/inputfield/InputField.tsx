@@ -28,20 +28,31 @@ const InputField = (props: InputFieldProps) => {
         }`}
         style={props.style}
       >
-        <label className="input__field__label" htmlFor={props.id}>
-          {props.title}
-          {props.isRequired ? (
-            <span
-              style={{
-                color: "red",
-              }}
+        <div className="input__field__label__container">
+          <label className="input__field__label" htmlFor={props.id}>
+            {props.title}
+            {props.isRequired ? (
+              <span
+                style={{
+                  color: "red",
+                }}
+              >
+                &nbsp;*
+              </span>
+            ) : (
+              ""
+            )}
+          </label>
+
+          {props.aboutIcon ? (
+            <div
+              className="input__field__label__icon"
+              title={props.aboutIconTitle}
             >
-              &nbsp;*
-            </span>
-          ) : (
-            ""
-          )}
-        </label>
+              {props.aboutIcon}
+            </div>
+          ) : null}
+        </div>
 
         <input
           className={`input__field`}

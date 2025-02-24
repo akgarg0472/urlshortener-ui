@@ -270,12 +270,12 @@ export const faqQuestions: HomeAccordian[] = [
   {
     id: "faq__is_free_to_use",
     title: "Is the service free to use?",
-    content: `Yes, we offer a free plan that includes basic features and up to 50 links per month. For additional features and higher usage limits, check out our Pro and Enterprise plans.`,
+    content: `Yes, we offer a free plan that includes basic features and up to 50 links. For additional features and higher usage limits, check out our Pro and Enterprise plans.`,
   },
   {
     id: "faq__can_custom_url_be_created",
     title: "Can I create custom short URLs?",
-    content: `Yes, with our Pro and Enterprise plans, you can customize your short URLs to include your brand or specific keywords.`,
+    content: `Yes, with our Paid plans, you can customize your short URLs to include your brand or specific keywords.`,
   },
   {
     id: "faq__how_to_track_link_performance",
@@ -286,11 +286,6 @@ export const faqQuestions: HomeAccordian[] = [
     id: "faq__does_expiry_option_exist",
     title: "Does the URL have an expiration option?",
     content: `Yes, you can set an expiration date for your short URLs. After the specified date, the link will no longer be active.`,
-  },
-  {
-    id: "faq__can_urls_be_deleted",
-    title: "Can I delete a shortened URL?",
-    content: `Yes, you can delete any URL you create from your account dashboard. Deleted URLs will no longer redirect to the original webpage.`,
   },
 ];
 

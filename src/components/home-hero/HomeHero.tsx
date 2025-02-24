@@ -7,8 +7,8 @@ const HomeHero = () => {
   return (
     <React.Fragment>
       <div className="home__hero__container">
-        <div className="main__heading">Shorten Your Links,</div>
-        <div className="main__heading">Expand Your Reach</div>
+        <div className="main__heading">Transform Your Links,</div>
+        <div className="main__heading">Maximize Your Impact</div>
         <div className="sub__heading">
           Unlock the Power of Simplified Links with our Fast and Reliable URL
           Shortening Service

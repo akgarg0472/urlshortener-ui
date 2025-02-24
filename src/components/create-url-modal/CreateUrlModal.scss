@@ -4,6 +4,7 @@ $modal__border__radius: 0.8rem;
 
 .create__short__url__modal__overlay {
   padding: 0;
+  z-index: 1;
 }
 
 .create__short__url__modal__dialog {
@@ -81,7 +82,7 @@ $modal__border__radius: 0.8rem;
     }
 
     .generate__short__url__btn {
-      padding: 1.8rem 5.4rem;
+      padding: 0 5.4rem;
       border-radius: 0.6rem;
       border: none;
       outline: none;
@@ -89,6 +90,8 @@ $modal__border__radius: 0.8rem;
       font-weight: 600;
       cursor: pointer;
       margin: 0 auto;
+      width: 50%;
+      height: 4.8rem;
       font-size: 1.4rem;
       margin-top: 3.2rem;
       background: rgba(0, 0, 0, 0.85);
@@ -109,5 +112,11 @@ $modal__border__radius: 0.8rem;
   }
   100% {
     transform: scale(1);
+  }
+}
+
+@media screen and (max-width: 1366px) {
+  .generate__short__url__btn {
+    width: 100% !important;
   }
 }

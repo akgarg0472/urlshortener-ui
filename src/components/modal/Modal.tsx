@@ -70,7 +70,7 @@ const Modal = () => {
             ? "<div class='modal__message'>" + props.message + "</div>"
             : ""
         }
-            
+
         <div class="modal__btns__container">
           ${
             isShowOkButton(props)

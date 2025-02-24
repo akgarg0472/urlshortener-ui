@@ -11,7 +11,6 @@ import {
   PopularURLApiResponse,
 } from "../../api/dashboard/dashboard.api.response";
 import ChartPercentageStatsContainer from "../../components/chart-percentage-stats-container/ChartPercentageStatsContainer";
-import DailyHitsLineChart from "../../components/daily-hits-line-chart/DailyHitsLineChart";
 import DashboardNavbar from "../../components/dashboard-navbar/DashboardNavbar";
 import DashboardStat from "../../components/dashboard-overview-stat/DashboardStat";
 import DashboardHeadSubHead from "../../components/dashboardheadsubhead/DashboardHeadSubHead";
@@ -43,6 +42,7 @@ import { getEnv } from "../../utils/envutils";
 import { GetSubscriptionRequest } from "../../api/subscription/subs.api.request";
 import { GetSubscriptionResponse } from "../../api/subscription/subs.api.response";
 import { getActiveSubscription } from "../../api/subscription/subscription";
+import DailyHitsLineChart from "../../components/daily-hits-line-chart/DailyHitsLineChart";
 import UpgradePlan from "../../components/updrade-plan/UpgradePlan";
 import {
   isDeviceMetricsAllowed,
@@ -352,7 +352,7 @@ const Dashboard = () => {
 
               {loading ? (
                 <InternalLoader />
-              ) : prevDayStats.length > 0 ? (
+              ) : prevSevenDaysHitsData.length > 0 ? (
                 <React.Fragment>
                   <DailyHitsLineChart
                     data={prevSevenDaysHitsData}

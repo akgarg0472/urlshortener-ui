@@ -1,11 +1,33 @@
+import { useState } from "react";
 import { convertTimestampToDateTime } from "../../utils/datetimeutils";
 import KVPair from "../KVPair/KVPair";
+import InternalLoader from "../loader/internal-loader/InternalLoader";
 
 const ProfilePersonalDetails = (props: ProfilePersonalDetailsProps) => {
+  const [loadingImage, setLoadingImage] = useState<boolean>(true);
+
   return (
     <div className="personal__details__section">
-      <div className="profile__picture">
-        <img src={props.profilePicture} alt={`${props.name} profile`} />
+      <div className="profile__picture__container">
+        <div className="profile__picture">
+          {loadingImage ? (
+            <div
+              style={{
+                padding: "2.4rem",
+              }}
+            >
+              <InternalLoader />
+            </div>
+          ) : null}
+          <img
+            src={props.profilePicture}
+            onLoad={() => setLoadingImage(false)}
+            alt={`${props.name} profile`}
+            style={{
+              display: loadingImage ? "none" : "block",
+            }}
+          ></img>
+        </div>
       </div>
 
       <div className="bio__container">{props.bio}</div>

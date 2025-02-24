@@ -20,6 +20,9 @@ import { signupCountryDropdown } from "../../utils/dropdownutils";
 import { getEnv } from "../../utils/envutils";
 import { validateUpdateProfileRequest } from "../../utils/validationutils";
 
+import { Pencil } from "lucide-react";
+import InternalLoader from "../../components/loader/internal-loader/InternalLoader";
+import { InternalLoaderSize } from "../../components/loader/Loader.enums";
 import "./Dashboard.css";
 
 const DashboardUpdateProfile = () => {
@@ -45,6 +48,7 @@ const DashboardUpdateProfile = () => {
   const [newProfilePicture, setNewProfilePicture] = useState<File>();
   const [loading, setLoading] = useState<boolean>(true);
   const profilePictureChooserBtnRef: RefObject<HTMLInputElement> = useRef(null);
+  const [loadingImage, setLoadingImage] = useState<boolean>(true);
   const { getUserId, getAuthToken, logout } = useAuth();
   const navigate = useNavigate();
 
@@ -210,30 +214,63 @@ const DashboardUpdateProfile = () => {
             }}
           >
             <div className="update__profile__form">
-              <div className="image__container">
-                <img
-                  className="update__profile__img"
-                  src={updatedData.profilePicture}
-                  alt="Profile"
-                />
+              <div className="profile__picture__container">
+                <div className="image__container">
+                  {loadingImage ? (
+                    <div
+                      style={{
+                        padding: "2.4rem",
+                        height: "100%",
+                        width: "100%",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <InternalLoader size={InternalLoaderSize.LARGE} />
+                    </div>
+                  ) : null}
 
-                <div className="img__choooser">
-                  <button
-                    onClick={() => {
-                      profilePictureChooserBtnRef.current?.click();
+                  <img
+                    className="update__profile__img"
+                    src={updatedData.profilePicture}
+                    onLoad={() => setLoadingImage(false)}
+                    style={{
+                      display: loadingImage ? "none" : "block",
                     }}
-                  >
-                    Select Image
-                  </button>
-                </div>
+                    alt="Profile Picture"
+                  />
 
-                <input
-                  className="update__profile__pic__select"
-                  type="file"
-                  accept="image/*"
-                  ref={profilePictureChooserBtnRef}
-                  onChange={handleImageFileChange}
-                />
+                  <div className="img__choooser">
+                    <button
+                      onClick={() => {
+                        profilePictureChooserBtnRef.current?.click();
+                      }}
+                      style={{
+                        border: "none",
+                        outline: "none",
+                        background: "transparent",
+                        backgroundColor: "#fff",
+                        borderRadius: "50%",
+                        padding: "1.6rem",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                      title="Select Picture"
+                    >
+                      <Pencil />
+                    </button>
+                  </div>
+
+                  <input
+                    className="update__profile__pic__select"
+                    type="file"
+                    accept="image/*"
+                    ref={profilePictureChooserBtnRef}
+                    onChange={handleImageFileChange}
+                  />
+                </div>
               </div>
 
               <div className="content">

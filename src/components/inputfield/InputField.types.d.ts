@@ -11,6 +11,8 @@ interface InputFieldProps {
   onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   inputFieldStyle?: React.CSSProperties;
   disabled?: boolean;
+  aboutIcon?: React.JSX;
+  aboutIconTitle?: string;
 }
 
 interface HorizontalInputFieldProps {

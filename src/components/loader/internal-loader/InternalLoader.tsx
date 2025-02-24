@@ -1,6 +1,6 @@
 import React from "react";
-import "./InternalLoader.css";
 import { InternalLoaderSize, InternalLoaderSpeed } from "../Loader.enums";
+import "./InternalLoader.css";
 
 const getLoaderSize = (size?: InternalLoaderSize): string => {
   switch (size) {
