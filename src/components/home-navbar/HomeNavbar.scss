@@ -37,10 +37,7 @@ $login__signup__button__font__size: 1.6rem;
 
 .user__menu__container {
   border-radius: 50%;
-  height: 100%;
-  width: auto;
   font-weight: 600;
-  aspect-ratio: 1;
   background-color: #5d44f8;
   display: flex;
   align-items: center;
@@ -49,6 +46,8 @@ $login__signup__button__font__size: 1.6rem;
   position: relative;
   cursor: pointer;
   user-select: none;
+  width: 4rem;
+  height: 4rem;
 
   .text {
     color: var(--text-primary, "#ffffff");
@@ -58,6 +57,7 @@ $login__signup__button__font__size: 1.6rem;
   .dropdown {
     position: absolute;
     top: 105%;
+    right: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -165,6 +165,9 @@ $login__signup__button__font__size: 1.6rem;
   .home__navbar {
     padding: 1.6rem 4rem;
     height: auto;
+
+    .user__menu__container {
+    }
 
     .navbar__link {
       font-size: 2rem;

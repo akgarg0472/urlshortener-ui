@@ -166,10 +166,20 @@ const ShortUrlMetricModal = (props: ShortUrlMetricModalProps) => {
           </div>
 
           {loading ? (
-            <InternalLoader
-              speed={InternalLoaderSpeed.MEDIUM}
-              size={InternalLoaderSize.MEDIUM}
-            />
+            <div
+              style={{
+                padding: "2.4rem",
+                width: "100%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <InternalLoader
+                speed={InternalLoaderSpeed.FAST}
+                size={InternalLoaderSize.LARGE}
+              />
+            </div>
           ) : (
             renderModalContent()
           )}

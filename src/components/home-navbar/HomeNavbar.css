@@ -24,10 +24,7 @@
 
 .user__menu__container {
   border-radius: 50%;
-  height: 100%;
-  width: auto;
   font-weight: 600;
-  aspect-ratio: 1;
   background-color: #5d44f8;
   display: flex;
   align-items: center;
@@ -38,6 +35,8 @@
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+  width: 4rem;
+  height: 4rem;
 }
 .user__menu__container .text {
   color: var(--text-primary, "#ffffff");
@@ -46,6 +45,7 @@
 .user__menu__container .dropdown {
   position: absolute;
   top: 105%;
+  right: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
