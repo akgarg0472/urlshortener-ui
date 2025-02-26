@@ -13,7 +13,7 @@
 .login__form__container,
 .forgot__password__form__container,
 .reset__password__form__container {
-  width: 56rem;
+  width: 25%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -90,7 +90,7 @@
 .reset__password__form__container .forgot__password__form__btns__container,
 .reset__password__form__container .reset__password__form__btns__container {
   margin-top: 3.6rem;
-  width: 100%;
+  width: 95%;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -402,4 +402,37 @@
 .reset__password__input__field__full {
   width: 100%;
   margin-top: 2.4rem;
+}
+
+@media screen and (max-width: 1366px) {
+  .signup__form__container,
+  .login__form__container,
+  .forgot__password__form__container,
+  .reset__password__form__container {
+    width: 40%;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .signup__form__container,
+  .login__form__container,
+  .forgot__password__form__container,
+  .reset__password__form__container {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .signup__form__container,
+  .login__form__container,
+  .forgot__password__form__container,
+  .reset__password__form__container {
+    width: 66%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .signup__form__container,
+  .login__form__container,
+  .forgot__password__form__container,
+  .reset__password__form__container {
+    width: 90%;
+  }
 }

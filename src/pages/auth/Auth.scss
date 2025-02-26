@@ -1,4 +1,3 @@
-$signup__form__container__width: 56rem;
 $signup__form__side__margin: 3.2rem;
 $signup__form__top__bottom__margin: 3.6rem;
 $signup__form__top__margin: 2.4rem;
@@ -20,7 +19,7 @@ $signup__form__button__height: 4.8rem;
 .login__form__container,
 .forgot__password__form__container,
 .reset__password__form__container {
-  width: $signup__form__container__width;
+  width: 25%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -72,7 +71,7 @@ $signup__form__button__height: 4.8rem;
   .forgot__password__form__btns__container,
   .reset__password__form__btns__container {
     margin-top: $signup__form__top__bottom__margin;
-    width: 100%;
+    width: 95%;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -164,4 +163,40 @@ $signup__form__button__height: 4.8rem;
 .reset__password__input__field__full {
   width: 100%;
   margin-top: $signup__form__top__margin;
+}
+
+@media screen and (max-width: 1366px) {
+  .signup__form__container,
+  .login__form__container,
+  .forgot__password__form__container,
+  .reset__password__form__container {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .signup__form__container,
+  .login__form__container,
+  .forgot__password__form__container,
+  .reset__password__form__container {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .signup__form__container,
+  .login__form__container,
+  .forgot__password__form__container,
+  .reset__password__form__container {
+    width: 66%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .signup__form__container,
+  .login__form__container,
+  .forgot__password__form__container,
+  .reset__password__form__container {
+    width: 90%;
+  }
 }
