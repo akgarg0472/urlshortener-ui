@@ -21,6 +21,7 @@ import { getEnv } from "../../utils/envutils";
 import { validateUpdateProfileRequest } from "../../utils/validationutils";
 
 import { Pencil } from "lucide-react";
+import { SidebarToggleButton } from "../../components/dashboard-navbar/toggle-button/SidebarToggleButton";
 import InternalLoader from "../../components/loader/internal-loader/InternalLoader";
 import { InternalLoaderSize } from "../../components/loader/Loader.enums";
 import "./Dashboard.css";
@@ -201,9 +202,12 @@ const DashboardUpdateProfile = () => {
         <DashboardNavbar />
 
         <div className="dashboard__page__content">
+          <SidebarToggleButton />
+
           <DashboardHeadSubHead
             heading={DASH_UPDATE_PROFILE_HEAD}
             subheading={DASH_UPDATE_PROFILE_SUBHEAD}
+            removeLeftPadding={true}
           />
 
           <div

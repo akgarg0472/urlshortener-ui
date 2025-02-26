@@ -17,6 +17,7 @@ import {
 } from "../../constants";
 import useAuth from "../../hooks/useAuth";
 
+import { SidebarToggleButton } from "../../components/dashboard-navbar/toggle-button/SidebarToggleButton";
 import NoDataAvailable from "../../components/no-data-available/NoDataAvailable";
 import "./Dashboard.css";
 
@@ -94,9 +95,12 @@ const DashboardLinks = () => {
         <DashboardNavbar />
 
         <div className="dashboard__page__content">
+          <SidebarToggleButton />
+
           <DashboardHeadSubHead
             heading={DASH_MY_LINKS_HEAD}
             subheading={DASH_MY_LINKS_SUBHEAD}
+            removeLeftPadding={true}
           />
 
           <div className="my__links__container">

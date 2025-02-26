@@ -61,7 +61,10 @@ const MyLink = (props: MyLinkProps) => {
               {`${shortUrl}`}
             </div>
 
-            <div className="original__url__container">
+            <div
+              className="original__url__container"
+              title={props.url.original_url}
+            >
               <span
                 style={{
                   fontWeight: "bold",
@@ -69,7 +72,7 @@ const MyLink = (props: MyLinkProps) => {
               >
                 Original URL:&nbsp;
               </span>
-              {props.url.original_url}
+              <span>{props.url.original_url}</span>
             </div>
           </div>
 

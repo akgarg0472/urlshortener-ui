@@ -12,9 +12,9 @@
   background: var(--dashboard-bg, #f6f6f8);
 }
 .dashboard__page__content .prev__seven__and__popular__urls__container {
-  display: grid;
-  grid-template-columns: 50% 50%;
-  gap: 2.4rem;
+  display: flex;
+  width: 100%;
+  gap: 1.6rem;
 }
 .dashboard__page__content .heading__time__section {
   background: #ffffff;
@@ -56,21 +56,24 @@
 .dashboard__page__content .prev__seven__days__hits__container {
   box-shadow: var(--dashboard-content-box-shadow);
   background: #ffffff;
-  padding: 1.6rem;
+  padding: 1.2rem;
   margin: 1.2rem 0;
-  max-width: 100%;
+  width: 50%;
 }
 .dashboard__page__content .url__stats__container {
   margin: 1.2rem 0;
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 1.6rem;
 }
-.dashboard__page__content .url__stats__container .continents__stats__container,
-.dashboard__page__content .url__stats__container .countries__stats__container,
-.dashboard__page__content .url__stats__container .browser__stats__container,
-.dashboard__page__content .url__stats__container .os__stats__container {
+.dashboard__page__content .url__stats__container .geographic__metrics {
+  width: 100%;
+  display: flex;
+  gap: 1.6rem;
+}
+.dashboard__page__content .url__stats__container .geographic__metrics .continents__stats__container,
+.dashboard__page__content .url__stats__container .geographic__metrics .countries__stats__container {
   box-shadow: var(--dashboard-content-box-shadow);
   background: #ffffff;
   padding: 1.6rem;
@@ -78,11 +81,29 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 50%;
+}
+.dashboard__page__content .url__stats__container .device__metrics {
+  width: 100%;
+  display: flex;
+  gap: 1.6rem;
+}
+.dashboard__page__content .url__stats__container .device__metrics .browser__stats__container,
+.dashboard__page__content .url__stats__container .device__metrics .os__stats__container {
+  box-shadow: var(--dashboard-content-box-shadow);
+  background: #ffffff;
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
 }
 
 .dashboard__page__content .my__links__container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   padding: 1.6rem;
   background-color: #ffffff;
   border-radius: 0.6rem;
@@ -108,7 +129,7 @@
   box-shadow: var(--dashboard-content-box-shadow);
   margin: 1.2rem 0;
   padding: 1.2rem;
-  width: 100%;
+  width: 50%;
 }
 .dashboard__page__content .popular__urls__container .popular__urls__stats__container {
   display: flex;
@@ -409,6 +430,9 @@
   }
 }
 @media screen and (max-width: 1366px) {
+  .dashboard__page__content {
+    padding: 3rem 3rem 2rem 3rem;
+  }
   .dashboard__page__content .subscription__history__container .content {
     grid-template-columns: repeat(1, 1fr);
   }
@@ -416,12 +440,70 @@
     grid-template-columns: repeat(1, 1fr);
   }
 }
+@media screen and (max-width: 1280px) {
+  .dashboard__page__content .heading__time__section {
+    width: 50%;
+  }
+  .dashboard__page__content .profile__page__content__container .update__profile__form {
+    width: 80%;
+  }
+}
 @media screen and (max-width: 1024px) {
+  .dashboard__page__content .heading__time__section {
+    width: 66%;
+  }
+  .dashboard__page__content .stats__overview__container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .dashboard__page__content .prev__seven__and__popular__urls__container {
+    flex-direction: column;
+  }
+  .dashboard__page__content .prev__seven__and__popular__urls__container > div {
+    width: 100%;
+  }
+  .dashboard__page__content .url__stats__container .geographic__metrics,
+  .dashboard__page__content .url__stats__container .device__metrics {
+    flex-direction: column;
+  }
+  .dashboard__page__content .url__stats__container .geographic__metrics > div,
+  .dashboard__page__content .url__stats__container .device__metrics > div {
+    width: 100% !important;
+  }
   .dashboard__page__content .active__subscription__pack__details__container .content {
     grid-template-columns: repeat(1, 1fr);
   }
-  .dashboard__page__content .prev__seven__and__popular__urls__container {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
+  .dashboard__page__content .profile__page__content__container {
+    flex-direction: column;
+  }
+  .dashboard__page__content .profile__page__content__container .profile__page__left__section {
+    width: 80%;
+    margin: auto;
+  }
+  .dashboard__page__content .profile__page__content__container .profile__page__right__section {
+    width: 80%;
+    margin: auto;
+    margin-top: 2.4rem;
+  }
+}
+@media screen and (max-width: 900px) {
+  .dashboard__page__content .profile__page__content__container .profile__page__left__section {
+    width: 90%;
+    margin: auto;
+  }
+  .dashboard__page__content .profile__page__content__container .profile__page__right__section {
+    width: 90%;
+    margin: auto;
+    margin-top: 2.4rem;
+  }
+  .dashboard__page__content .profile__page__content__container .update__profile__form {
+    width: 90%;
+  }
+  .dashboard__page__content .profile__page__content__container .update__profile__form .content {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+@media screen and (max-width: 600px) {
+  .dashboard__page__content .heading__time__section {
+    width: 75%;
   }
 }

@@ -15,9 +15,9 @@ $component__margin: 1.2rem 0;
   background: var(--dashboard-bg, #f6f6f8);
 
   .prev__seven__and__popular__urls__container {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    gap: 2.4rem;
+    display: flex;
+    width: 100%;
+    gap: 1.6rem;
   }
 
   .heading__time__section {
@@ -65,37 +65,61 @@ $component__margin: 1.2rem 0;
   .prev__seven__days__hits__container {
     box-shadow: var(--dashboard-content-box-shadow);
     background: #ffffff;
-    padding: 1.6rem;
+    padding: 1.2rem;
     margin: $component__margin;
-    max-width: 100%;
+    width: 50%;
   }
 
   .url__stats__container {
     margin: $component__margin;
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-direction: column;
     gap: 1.6rem;
 
-    .continents__stats__container,
-    .countries__stats__container,
-    .browser__stats__container,
-    .os__stats__container {
-      box-shadow: var(--dashboard-content-box-shadow);
-      background: #ffffff;
-      padding: 1.6rem;
+    .geographic__metrics {
+      width: 100%;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      gap: 1.6rem;
+
+      .continents__stats__container,
+      .countries__stats__container {
+        box-shadow: var(--dashboard-content-box-shadow);
+        background: #ffffff;
+        padding: 1.6rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 50%;
+      }
+    }
+
+    .device__metrics {
+      width: 100%;
+      display: flex;
+      gap: 1.6rem;
+
+      .browser__stats__container,
+      .os__stats__container {
+        box-shadow: var(--dashboard-content-box-shadow);
+        background: #ffffff;
+        padding: 1.6rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 50%;
+      }
     }
   }
 }
 
 .dashboard__page__content {
   .my__links__container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     padding: 1.6rem;
     background-color: #ffffff;
     border-radius: 0.6rem;
@@ -123,7 +147,7 @@ $component__margin: 1.2rem 0;
     box-shadow: var(--dashboard-content-box-shadow);
     margin: $component__margin;
     padding: 1.2rem;
-    width: 100%;
+    width: 50%;
 
     .popular__urls__stats__container {
       display: flex;
@@ -471,6 +495,8 @@ $component__margin: 1.2rem 0;
 
 @media screen and (max-width: 1366px) {
   .dashboard__page__content {
+    padding: 3rem 3rem 2rem 3rem;
+
     .subscription__history__container {
       .content {
         grid-template-columns: repeat(1, 1fr);
@@ -485,17 +511,95 @@ $component__margin: 1.2rem 0;
   }
 }
 
+@media screen and (max-width: 1280px) {
+  .dashboard__page__content {
+    .heading__time__section {
+      width: 50%;
+    }
+
+    .profile__page__content__container .update__profile__form {
+      width: 80%;
+    }
+  }
+}
+
 @media screen and (max-width: 1024px) {
   .dashboard__page__content {
+    .heading__time__section {
+      width: 66%;
+    }
+
+    .stats__overview__container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .prev__seven__and__popular__urls__container {
+      flex-direction: column;
+
+      > div {
+        width: 100%;
+      }
+    }
+
+    .url__stats__container {
+      .geographic__metrics,
+      .device__metrics {
+        flex-direction: column;
+
+        > div {
+          width: 100% !important;
+        }
+      }
+    }
+
     .active__subscription__pack__details__container {
       .content {
         grid-template-columns: repeat(1, 1fr);
       }
     }
 
-    .prev__seven__and__popular__urls__container {
-      grid-template-columns: 1fr;
-      grid-template-rows: 1fr;
+    .profile__page__content__container {
+      flex-direction: column;
+
+      .profile__page__left__section {
+        width: 80%;
+        margin: auto;
+      }
+
+      .profile__page__right__section {
+        width: 80%;
+        margin: auto;
+        margin-top: 2.4rem;
+      }
     }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .dashboard__page__content .profile__page__content__container {
+    .profile__page__left__section {
+      width: 90%;
+      margin: auto;
+    }
+
+    .profile__page__right__section {
+      width: 90%;
+      margin: auto;
+      margin-top: 2.4rem;
+    }
+
+    .update__profile__form {
+      width: 90%;
+
+      .content {
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .dashboard__page__content .heading__time__section {
+    width: 75%;
   }
 }

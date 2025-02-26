@@ -76,3 +76,31 @@
 .dashboard__navbar .dashboard__navbar__bottom__btns__container .btn__img__container:hover {
   background: var(--dashboard-navbar-bottom-btns-hover-bg);
 }
+
+@media screen and (max-width: 1366px) {
+  .dashboard__navbar {
+    width: 20vw;
+  }
+}
+@media screen and (max-width: 1280px) {
+  .dashboard__navbar {
+    width: 25vw;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .dashboard__navbar {
+    width: 30vw;
+  }
+}
+@media screen and (max-width: 768px) {
+  .dashboard__navbar {
+    width: 40vw;
+    margin-left: -40vw;
+    position: fixed;
+    background-color: #fff;
+    z-index: 1;
+  }
+}
+.dashboard__navbar__visible {
+  margin-left: 0;
+}

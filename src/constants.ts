@@ -73,3 +73,5 @@ export const HOME_COMPARE_PLAN_SUBHEAD: string =
 export const DASH_PAYMENT_HISTORY_HEAD: string = "Payment History";
 export const DASH_PAYMENT_HISTORY_SUBHEAD: string =
   "A comprehensive record of all your past and recent payments, including transaction statuses and details.";
+export const SIDEBAR_NAVBAR_TOGGLE_DISPLAY_CLASS: string =
+  "dashboard__navbar__visible";

@@ -38,6 +38,7 @@ import {
   PaymentDetail,
   PaymentHistoryResponse,
 } from "../../api/payment/payment.api.response";
+import { SidebarToggleButton } from "../../components/dashboard-navbar/toggle-button/SidebarToggleButton";
 import { Payment } from "../../components/payment/Payment";
 import "./Dashboard.css";
 
@@ -229,6 +230,8 @@ const DashboardSubscription = () => {
         <DashboardNavbar />
 
         <div className="dashboard__page__content">
+          <SidebarToggleButton />
+
           <div className="active__subscription__pack__details__container">
             <DashboardHeadSubHead
               heading={DASH_ACTIVE_SUB_HEAD}

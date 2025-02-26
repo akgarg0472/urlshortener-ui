@@ -1,0 +1,10 @@
+.navbar__sidebar__toggle {
+  display: none;
+  margin-bottom: 0.6rem;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar__sidebar__toggle {
+    display: block;
+  }
+}

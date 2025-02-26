@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { doLogout } from "../../api/auth/auth";
+import { LogoutApiResponse } from "../../api/auth/auth.api.response";
 import useAuth from "../../hooks/useAuth";
 import { dashboardNavbarLinks } from "../../utils/data";
 import LinkButton from "../button/LinkButton";
@@ -10,15 +11,37 @@ import Modal from "../modal/Modal";
 import { ModalIcon } from "../modal/Modal.enums";
 import DashboardLink from "./dashboard-link/DashboardLink";
 
-import { LogoutApiResponse } from "../../api/auth/auth.api.response";
+import { SIDEBAR_NAVBAR_TOGGLE_DISPLAY_CLASS } from "../../constants";
 import "./DashboardNavbar.css";
 
 const DashboardNavbar = () => {
   const location = useLocation();
   const navigation = useNavigate();
   const { getAuth, logout } = useAuth();
-
   const [showCreateNewLinkModal, setShowCreateNewLinkModal] = useState(false);
+  const sidebarRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handleMouseClickOutsideNavbar = (event: MouseEvent) => {
+      if (
+        sidebarRef.current &&
+        !sidebarRef.current.contains(event.target as Node) &&
+        !(event.target as HTMLElement).classList.contains(
+          SIDEBAR_NAVBAR_TOGGLE_DISPLAY_CLASS
+        )
+      ) {
+        sidebarRef.current.classList.remove(
+          SIDEBAR_NAVBAR_TOGGLE_DISPLAY_CLASS
+        );
+      }
+    };
+
+    document.addEventListener("mousedown", handleMouseClickOutsideNavbar);
+
+    return () => {
+      document.removeEventListener("mousedown", handleMouseClickOutsideNavbar);
+    };
+  }, []);
 
   const handleLogout = async () => {
     const logoutApiResponse: LogoutApiResponse = await doLogout({
@@ -51,7 +74,7 @@ const DashboardNavbar = () => {
         <CreateUrlModal onClose={() => setShowCreateNewLinkModal(false)} />
       ) : null}
 
-      <div className="dashboard__navbar">
+      <div className="dashboard__navbar" ref={sidebarRef}>
         <div
           style={{
             width: "100%",

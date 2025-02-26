@@ -21,6 +21,7 @@ import {
 import useAuth from "../../hooks/useAuth";
 import { getEnv } from "../../utils/envutils";
 
+import { SidebarToggleButton } from "../../components/dashboard-navbar/toggle-button/SidebarToggleButton";
 import ProfileAddressInformation from "../../components/dashboard-profile/ProfileAddressInformation";
 import { InternalLoaderSize } from "../../components/loader/Loader.enums";
 import "./Dashboard.css";
@@ -120,9 +121,12 @@ const DashboardProfile = () => {
         <DashboardNavbar />
 
         <div className="dashboard__page__content">
+          <SidebarToggleButton />
+
           <DashboardHeadSubHead
             heading={DASH_PROFILE_HEAD}
             subheading={DASH_PROFILE_SUBHEAD}
+            removeLeftPadding={true}
           />
 
           <div

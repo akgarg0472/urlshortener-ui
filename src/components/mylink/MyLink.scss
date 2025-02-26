@@ -8,24 +8,11 @@ $serial__number__height: 4rem;
   margin: 1.2rem;
   display: flex;
   align-items: center;
+  overflow: hidden;
+  max-width: 100%;
+  overflow: hidden;
+  max-width: 100%;
 
-  .content {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0;
-    margin: 0;
-
-    .buttons__container {
-      display: flex;
-      flex-direction: row;
-      gap: 1rem;
-    }
-  }
-}
-
-.my__link__container {
   .serial__number__container {
     width: $serial__number__width;
     height: $serial__number__height;
@@ -47,33 +34,40 @@ $serial__number__height: 4rem;
   }
 
   .content {
+    margin: 0 0.6rem 0 1.2rem;
+    overflow: hidden;
+    width: 100%;
+
     .urls__container,
     .metadata__container {
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
       width: 100%;
+      display: flex;
+      flex-direction: column;
       font-weight: 500;
-      margin-left: 1.2rem;
+      margin-right: 1.2rem;
       padding: 1rem 0;
       line-height: 1.6rem;
     }
 
-    .buttons__container {
-      margin-left: 1.2rem;
+    .urls__container {
+      .short__url__container {
+        font-size: 1.4rem;
+      }
+
+      .original__url__container {
+        display: block;
+        font-size: 1.2rem;
+        max-width: 100%;
+        color: rgba(0, 0, 0, 0.5);
+        margin-top: 0.4rem;
+      }
     }
-  }
-}
 
-.my__link__container .content .urls__container {
-  .short__url__container {
-    font-size: 1.4rem;
-  }
-
-  .original__url__container {
-    margin-top: 0.4rem;
-    font-size: 1.2rem;
-    color: rgba(0, 0, 0, 0.5);
+    .buttons__container {
+      margin-top: 0.6rem;
+      display: flex;
+      gap: 1.2rem;
+    }
   }
 }
 
@@ -98,5 +92,11 @@ $serial__number__height: 4rem;
     margin-left: 1.2rem;
     align-items: start;
     gap: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .my__link__container .serial__number__container {
+    display: none;
   }
 }

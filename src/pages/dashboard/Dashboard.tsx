@@ -43,6 +43,7 @@ import { GetSubscriptionRequest } from "../../api/subscription/subs.api.request"
 import { GetSubscriptionResponse } from "../../api/subscription/subs.api.response";
 import { getActiveSubscription } from "../../api/subscription/subscription";
 import DailyHitsLineChart from "../../components/daily-hits-line-chart/DailyHitsLineChart";
+import { SidebarToggleButton } from "../../components/dashboard-navbar/toggle-button/SidebarToggleButton";
 import UpgradePlan from "../../components/updrade-plan/UpgradePlan";
 import {
   isDeviceMetricsAllowed,
@@ -310,6 +311,8 @@ const Dashboard = () => {
         <DashboardNavbar />
 
         <div className="dashboard__page__content">
+          <SidebarToggleButton />
+
           <div className="heading__time__section">
             <div className="heading">Welcome, {getName()}</div>
             <div className="timestamp">{getCurrentDateTime()}</div>
@@ -376,165 +379,170 @@ const Dashboard = () => {
           <InvisibleContainer />
 
           <div className="url__stats__container">
-            <div className="continents__stats__container">
-              <DashboardHeadSubHead
-                heading={DASH_CONTINET_HEAD}
-                subheading={DASH_CONTINET_SUBHEAD}
-              />
+            <div className="geographic__metrics">
+              <div className="continents__stats__container">
+                <DashboardHeadSubHead
+                  heading={DASH_CONTINET_HEAD}
+                  subheading={DASH_CONTINET_SUBHEAD}
+                />
 
-              {loading ? (
-                <InternalLoader />
-              ) : geographyMetricsAllowed ? (
-                <React.Fragment>
-                  {continents.length > 0 ? (
-                    <React.Fragment>
-                      <PieChart
-                        datasetLabel="Country"
-                        data={continents}
-                        legendPosition="bottom"
-                      />
+                {loading ? (
+                  <InternalLoader />
+                ) : geographyMetricsAllowed ? (
+                  <React.Fragment>
+                    {continents.length > 0 ? (
+                      <React.Fragment>
+                        <PieChart
+                          datasetLabel="Country"
+                          data={continents}
+                          legendPosition="bottom"
+                        />
 
+                        <ChartPercentageStatsContainer
+                          data={continents.map((c) => {
+                            return { name: c.name, value: c.hits_count };
+                          })}
+                        />
+                      </React.Fragment>
+                    ) : (
+                      <NoDataAvailable />
+                    )}
+                  </React.Fragment>
+                ) : (
+                  <UpgradePlan
+                    blurredContent={
                       <ChartPercentageStatsContainer
                         data={continents.map((c) => {
                           return { name: c.name, value: c.hits_count };
                         })}
                       />
+                    }
+                  />
+                )}
+              </div>
+
+              <div className="countries__stats__container">
+                <DashboardHeadSubHead
+                  heading={DASH_COUNTRY_HEAD}
+                  subheading={DASH_COUNTRY_SUBHEAD}
+                />
+
+                {loading ? (
+                  <InternalLoader />
+                ) : geographyMetricsAllowed ? (
+                  countries.length > 0 ? (
+                    <>
+                      <PieChart
+                        datasetLabel="Country"
+                        data={countries}
+                        legendPosition="bottom"
+                      />
+
+                      <ChartPercentageStatsContainer
+                        data={countries.map((c) => ({
+                          name: c.name,
+                          value: c.hits_count,
+                        }))}
+                      />
+                    </>
+                  ) : (
+                    <NoDataAvailable />
+                  )
+                ) : (
+                  <UpgradePlan
+                    blurredContent={
+                      <ChartPercentageStatsContainer
+                        data={countries.map((c) => ({
+                          name: c.name,
+                          value: c.hits_count,
+                        }))}
+                      />
+                    }
+                  />
+                )}
+              </div>
+            </div>
+
+            <div className="device__metrics">
+              <div className="os__stats__container">
+                <DashboardHeadSubHead
+                  heading={DASH_OS_HEAD}
+                  subheading={DASH_OS_SUBHEAD}
+                />
+
+                {loading ? (
+                  <InternalLoader />
+                ) : deviceMetricsAllowed ? (
+                  oss.length > 0 ? (
+                    <React.Fragment>
+                      <PieChart
+                        datasetLabel="OS"
+                        data={oss}
+                        legendPosition="bottom"
+                        key="oss__stats"
+                      />
+
+                      <ChartPercentageStatsContainer
+                        data={oss.map((o) => {
+                          return { name: o.name, value: o.hits_count };
+                        })}
+                      />
                     </React.Fragment>
                   ) : (
                     <NoDataAvailable />
-                  )}
-                </React.Fragment>
-              ) : (
-                <UpgradePlan
-                  blurredContent={
-                    <ChartPercentageStatsContainer
-                      data={continents.map((c) => {
-                        return { name: c.name, value: c.hits_count };
-                      })}
-                    />
-                  }
-                />
-              )}
-            </div>
-
-            <div className="countries__stats__container">
-              <DashboardHeadSubHead
-                heading={DASH_COUNTRY_HEAD}
-                subheading={DASH_COUNTRY_SUBHEAD}
-              />
-
-              {loading ? (
-                <InternalLoader />
-              ) : geographyMetricsAllowed ? (
-                countries.length > 0 ? (
-                  <>
-                    <PieChart
-                      datasetLabel="Country"
-                      data={countries}
-                      legendPosition="bottom"
-                    />
-
-                    <ChartPercentageStatsContainer
-                      data={countries.map((c) => ({
-                        name: c.name,
-                        value: c.hits_count,
-                      }))}
-                    />
-                  </>
+                  )
                 ) : (
-                  <NoDataAvailable />
-                )
-              ) : (
-                <UpgradePlan
-                  blurredContent={
-                    <ChartPercentageStatsContainer
-                      data={countries.map((c) => ({
-                        name: c.name,
-                        value: c.hits_count,
-                      }))}
-                    />
-                  }
+                  <UpgradePlan
+                    blurredContent={
+                      <ChartPercentageStatsContainer
+                        data={oss.map((o) => {
+                          return { name: o.name, value: o.hits_count };
+                        })}
+                      />
+                    }
+                  />
+                )}
+              </div>
+
+              <div className="browser__stats__container">
+                <DashboardHeadSubHead
+                  heading={DASH_BROWSER_HEAD}
+                  subheading={DASH_BROWSER_SUBHEAD}
                 />
-              )}
-            </div>
 
-            <div className="os__stats__container">
-              <DashboardHeadSubHead
-                heading={DASH_OS_HEAD}
-                subheading={DASH_OS_SUBHEAD}
-              />
+                {loading ? (
+                  <InternalLoader />
+                ) : deviceMetricsAllowed ? (
+                  browsers.length > 0 ? (
+                    <React.Fragment>
+                      <PieChart
+                        datasetLabel="Browsers"
+                        data={browsers}
+                        legendPosition="bottom"
+                        key="browsers__stats"
+                      />
 
-              {loading ? (
-                <InternalLoader />
-              ) : deviceMetricsAllowed ? (
-                oss.length > 0 ? (
-                  <React.Fragment>
-                    <PieChart
-                      datasetLabel="OS"
-                      data={oss}
-                      legendPosition="bottom"
-                      key="oss__stats"
-                    />
-
-                    <ChartPercentageStatsContainer
-                      data={oss.map((o) => {
-                        return { name: o.name, value: o.hits_count };
-                      })}
-                    />
-                  </React.Fragment>
+                      <ChartPercentageStatsContainer
+                        data={browsers.map((b) => {
+                          return { name: b.name, value: b.hits_count };
+                        })}
+                      />
+                    </React.Fragment>
+                  ) : (
+                    <NoDataAvailable />
+                  )
                 ) : (
-                  <NoDataAvailable />
-                )
-              ) : (
-                <UpgradePlan
-                  blurredContent={
-                    <ChartPercentageStatsContainer
-                      data={oss.map((o) => {
-                        return { name: o.name, value: o.hits_count };
-                      })}
-                    />
-                  }
-                />
-              )}
-            </div>
-            <div className="browser__stats__container">
-              <DashboardHeadSubHead
-                heading={DASH_BROWSER_HEAD}
-                subheading={DASH_BROWSER_SUBHEAD}
-              />
-
-              {loading ? (
-                <InternalLoader />
-              ) : deviceMetricsAllowed ? (
-                browsers.length > 0 ? (
-                  <React.Fragment>
-                    <PieChart
-                      datasetLabel="Browsers"
-                      data={browsers}
-                      legendPosition="bottom"
-                      key="browsers__stats"
-                    />
-
-                    <ChartPercentageStatsContainer
-                      data={browsers.map((b) => {
-                        return { name: b.name, value: b.hits_count };
-                      })}
-                    />
-                  </React.Fragment>
-                ) : (
-                  <NoDataAvailable />
-                )
-              ) : (
-                <UpgradePlan
-                  blurredContent={
-                    <ChartPercentageStatsContainer
-                      data={browsers.map((b) => {
-                        return { name: b.name, value: b.hits_count };
-                      })}
-                    />
-                  }
-                />
-              )}
+                  <UpgradePlan
+                    blurredContent={
+                      <ChartPercentageStatsContainer
+                        data={browsers.map((b) => {
+                          return { name: b.name, value: b.hits_count };
+                        })}
+                      />
+                    }
+                  />
+                )}
+              </div>
             </div>
           </div>
         </div>
