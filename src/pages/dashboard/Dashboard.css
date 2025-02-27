@@ -506,4 +506,19 @@
   .dashboard__page__content .heading__time__section {
     width: 75%;
   }
-}/*# sourceMappingURL=Dashboard.css.map */
+  .dashboard__page__content .profile__page__right__section .danger__zone__section .danger__zone__section__content .headings__section .heading {
+    font-size: 1.4rem;
+  }
+  .dashboard__page__content .profile__page__right__section .danger__zone__section .danger__zone__section__content .headings__section .subheading {
+    font-size: 1.2rem;
+  }
+  .dashboard__page__content .profile__page__right__section .danger__zone__section .danger__zone__section__content .delete__account__btn {
+    height: auto;
+    width: auto;
+    padding: 0.6rem 1.6rem;
+  }
+  .dashboard__page__content .profile__page__right__section .change__password__section .change__password__section__content .change__password__btn {
+    padding: 0 1.2rem;
+    width: auto;
+  }
+}

@@ -116,6 +116,26 @@ $bottom__btns__img__container__height: 4rem;
   }
 }
 
+@media screen and (max-width: 600px) {
+  .dashboard__navbar {
+    width: 50vw;
+    margin-left: -50vw;
+    position: fixed;
+    background-color: #fff;
+    z-index: 1;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .dashboard__navbar {
+    width: 66vw;
+    margin-left: -66vw;
+    position: fixed;
+    background-color: #fff;
+    z-index: 1;
+  }
+}
+
 .dashboard__navbar__visible {
   margin-left: 0;
 }

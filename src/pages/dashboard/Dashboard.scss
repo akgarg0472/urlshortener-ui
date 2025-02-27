@@ -599,7 +599,36 @@ $component__margin: 1.2rem 0;
 }
 
 @media screen and (max-width: 600px) {
-  .dashboard__page__content .heading__time__section {
-    width: 75%;
+  .dashboard__page__content {
+    .heading__time__section {
+      width: 75%;
+    }
+
+    .profile__page__right__section {
+      .danger__zone__section .danger__zone__section__content {
+        .headings__section {
+          .heading {
+            font-size: 1.4rem;
+          }
+
+          .subheading {
+            font-size: 1.2rem;
+          }
+        }
+
+        .delete__account__btn {
+          height: auto;
+          width: auto;
+          padding: 0.6rem 1.6rem;
+        }
+      }
+
+      .change__password__section
+        .change__password__section__content
+        .change__password__btn {
+        padding: 0 1.2rem;
+        width: auto;
+      }
+    }
   }
 }

@@ -123,6 +123,8 @@
 @media screen and (max-width: 600px) {
   .home__hero__container .main__heading {
     font-size: 4rem;
+    height: auto;
+    padding: 0.4rem;
   }
   .home__hero__container .sub__heading {
     font-size: 1.6rem;
@@ -134,4 +136,12 @@
   .home__hero__container .hero__options__container .hero__option span {
     font-size: 1.4rem;
   }
-}/*# sourceMappingURL=HomeHero.css.map */
+}
+@media screen and (max-width: 320px) {
+  .home__hero__container .main__heading {
+    font-size: 3.2rem;
+  }
+  .home__hero__container .sub__heading {
+    font-size: 1.4rem;
+  }
+}
