@@ -61,3 +61,12 @@
   transform: scale(1.025);
   box-shadow: var(--dashboard-content-hover-box-shadow);
 }
+
+@media screen and (max-width: 600px) {
+  .dashboard__stats__container .title__pc__container .title {
+    font-size: 1.4rem;
+  }
+  .dashboard__stats__container .title__pc__container .percentage__change {
+    font-size: 1.3rem;
+  }
+}

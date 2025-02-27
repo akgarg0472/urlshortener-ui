@@ -45,7 +45,7 @@
   background-color: rgb(254, 243, 199);
   color: rgb(146, 64, 14);
   padding: 0.6rem 1.2rem;
-  border-radius: 10rem;
+  border-radius: 0.6rem;
   font-weight: 500;
 }
 .upgrade__plan__container .content__overlay .body button {
@@ -61,4 +61,10 @@
 }
 .upgrade__plan__container .content__overlay .body button:hover {
   background-color: rgb(79, 70, 229);
+}
+
+@media screen and (max-width: 450px) {
+  .upgrade__plan__container .content__overlay .body {
+    flex-direction: column;
+  }
 }

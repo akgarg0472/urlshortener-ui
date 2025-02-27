@@ -44,7 +44,7 @@
         background-color: rgb(254, 243, 199);
         color: rgb(146, 64, 14);
         padding: 0.6rem 1.2rem;
-        border-radius: 10rem;
+        border-radius: 0.6rem;
         font-weight: 500;
       }
 
@@ -64,5 +64,11 @@
         }
       }
     }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .upgrade__plan__container .content__overlay .body {
+    flex-direction: column;
   }
 }

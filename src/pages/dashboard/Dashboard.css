@@ -479,6 +479,9 @@
     width: 80%;
     margin: auto;
   }
+  .dashboard__page__content .profile__page__content__container .profile__page__left__section .personal__details__section {
+    width: 100%;
+  }
   .dashboard__page__content .profile__page__content__container .profile__page__right__section {
     width: 80%;
     margin: auto;
@@ -504,21 +507,62 @@
 }
 @media screen and (max-width: 600px) {
   .dashboard__page__content .heading__time__section {
-    width: 75%;
+    width: 80%;
   }
-  .dashboard__page__content .profile__page__right__section .danger__zone__section .danger__zone__section__content .headings__section .heading {
-    font-size: 1.4rem;
+  .dashboard__page__content .heading__time__section .heading {
+    font-size: 2.8rem;
+  }
+  .dashboard__page__content .profile__page__content__container .update__profile__form {
+    margin-top: 0;
+  }
+  .dashboard__page__content .profile__page__content__container .update__profile__form .image__container {
+    width: 12rem;
+    height: 12rem;
+  }
+  .dashboard__page__content .profile__page__content__container .profile__page__left__section .personal__details__section .profile__picture__container .profile__picture img {
+    width: 12rem;
+    height: 12rem;
+  }
+  .dashboard__page__content .profile__page__right__section .personal__details__section .personal__details__section__content {
+    -moz-column-gap: 10%;
+         column-gap: 10%;
+  }
+  .dashboard__page__content .profile__page__right__section .danger__zone__section .danger__zone__section__content {
+    flex-direction: column;
   }
   .dashboard__page__content .profile__page__right__section .danger__zone__section .danger__zone__section__content .headings__section .subheading {
-    font-size: 1.2rem;
+    padding-right: 0;
   }
   .dashboard__page__content .profile__page__right__section .danger__zone__section .danger__zone__section__content .delete__account__btn {
     height: auto;
     width: auto;
-    padding: 0.6rem 1.6rem;
+    padding: 1.2rem 2.4rem;
+    margin-top: 1.6rem;
+    font-weight: 500;
+  }
+  .dashboard__page__content .profile__page__right__section .change__password__section .change__password__section__content {
+    padding: 1.6rem 3.2rem;
   }
   .dashboard__page__content .profile__page__right__section .change__password__section .change__password__section__content .change__password__btn {
     padding: 0 1.2rem;
     width: auto;
+  }
+}
+@media screen and (max-width: 320px) {
+  .dashboard__page__content .heading__time__section {
+    width: 90%;
+  }
+  .dashboard__page__content .heading__time__section .heading {
+    font-size: 1.8rem;
+  }
+  .dashboard__page__content .heading__time__section .timestamp {
+    font-size: 1.4rem;
+  }
+  .dashboard__page__content .heading__time__section .description {
+    font-size: 1.2rem;
+  }
+  .dashboard__page__content .stats__overview__container {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.6rem;
   }
 }

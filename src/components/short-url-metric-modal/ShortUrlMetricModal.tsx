@@ -150,7 +150,7 @@ const ShortUrlMetricModal = (props: ShortUrlMetricModalProps) => {
           }}
         >
           <div className="url__metric__dialog__title__container">
-            <div className="title">Short URL Metrics</div>
+            <div className="title">URL Metrics</div>
             <div
               className="close__button__container"
               onClick={() => {

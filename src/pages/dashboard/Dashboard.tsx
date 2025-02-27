@@ -10,8 +10,13 @@ import {
   GeographicalApiResponse,
   PopularURLApiResponse,
 } from "../../api/dashboard/dashboard.api.response";
+import { GetSubscriptionRequest } from "../../api/subscription/subs.api.request";
+import { GetSubscriptionResponse } from "../../api/subscription/subs.api.response";
+import { getActiveSubscription } from "../../api/subscription/subscription";
 import ChartPercentageStatsContainer from "../../components/chart-percentage-stats-container/ChartPercentageStatsContainer";
+import DailyHitsLineChart from "../../components/daily-hits-line-chart/DailyHitsLineChart";
 import DashboardNavbar from "../../components/dashboard-navbar/DashboardNavbar";
+import { SidebarToggleButton } from "../../components/dashboard-navbar/toggle-button/SidebarToggleButton";
 import DashboardStat from "../../components/dashboard-overview-stat/DashboardStat";
 import DashboardHeadSubHead from "../../components/dashboardheadsubhead/DashboardHeadSubHead";
 import InvisibleContainer from "../../components/invisible-container/InvisibleContainer";
@@ -21,6 +26,7 @@ import { ModalIcon } from "../../components/modal/Modal.enums";
 import NoDataAvailable from "../../components/no-data-available/NoDataAvailable";
 import PieChart from "../../components/pie-chart/PieChart";
 import PopularUrl from "../../components/popular-url/PopularUrl";
+import UpgradePlan from "../../components/upgrade-plan/UpgradePlan";
 import {
   DASH_BROWSER_HEAD,
   DASH_BROWSER_SUBHEAD,
@@ -38,17 +44,11 @@ import {
 import useAuth from "../../hooks/useAuth";
 import { getCurrentDateTime } from "../../utils/datetimeutils";
 import { getEnv } from "../../utils/envutils";
-
-import { GetSubscriptionRequest } from "../../api/subscription/subs.api.request";
-import { GetSubscriptionResponse } from "../../api/subscription/subs.api.response";
-import { getActiveSubscription } from "../../api/subscription/subscription";
-import DailyHitsLineChart from "../../components/daily-hits-line-chart/DailyHitsLineChart";
-import { SidebarToggleButton } from "../../components/dashboard-navbar/toggle-button/SidebarToggleButton";
-import UpgradePlan from "../../components/updrade-plan/UpgradePlan";
 import {
   isDeviceMetricsAllowed,
   isGeographicalMetricsAllowed,
 } from "../../utils/subscriptonUtils";
+
 import "./Dashboard.css";
 
 const Dashboard = () => {
@@ -67,7 +67,7 @@ const Dashboard = () => {
   >([]);
   const [continents, setContinents] = useState<apiModal.Continent[]>([]);
   const [countries, setCountries] = useState<apiModal.Country[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [popularUrls, setPopularUrls] = useState<apiModal.PopularURL[]>([]);
   const [oss, setOss] = useState<apiModal.OS[]>([]);
   const [browsers, setBrowsers] = useState<apiModal.Browser[]>([]);
@@ -119,6 +119,7 @@ const Dashboard = () => {
     const authToken = getAuthToken();
 
     if (!userId || !authToken) {
+      setLoading(false);
       logout();
       navigate(LOGIN_URL, { replace: true });
       return;
@@ -134,7 +135,6 @@ const Dashboard = () => {
       return;
     }
 
-    setLoading(true);
     const endTime = Date.now();
 
     const geoMetricsAllowed: boolean = isGeographicalMetricsAllowed(

@@ -16,3 +16,12 @@
 .dash__head__subhead__container .text__centered {
   text-align: center;
 }
+
+@media screen and (max-width: 600px) {
+  .dash__head__subhead__container .heading {
+    font-size: 1.6rem;
+  }
+  .dash__head__subhead__container .subheading {
+    font-size: 1.3rem;
+  }
+}

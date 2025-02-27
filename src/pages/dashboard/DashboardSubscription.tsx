@@ -40,6 +40,7 @@ import {
 } from "../../api/payment/payment.api.response";
 import { SidebarToggleButton } from "../../components/dashboard-navbar/toggle-button/SidebarToggleButton";
 import { Payment } from "../../components/payment/Payment";
+
 import "./Dashboard.css";
 
 type ActiveSubscriptionPack = {
@@ -360,14 +361,25 @@ const DashboardSubscription = () => {
               subheading={DASH_PAYMENT_HISTORY_SUBHEAD}
             />
 
-            {showPaymentHistoryLoader && <InternalLoader />}
+            {showPaymentHistoryLoader && (
+              <div
+                style={{
+                  padding: "2.4rem",
+                }}
+              >
+                <InternalLoader />
+              </div>
+            )}
 
-            <div className="content">
-              {payments &&
-                payments.map((payment) => (
+            {!showPaymentHistoryLoader && payments && <NoDataAvailable />}
+
+            {payments && payments.length > 0 && (
+              <div className="content">
+                {payments.map((payment) => (
                   <Payment key={payment.id} {...payment} />
                 ))}
-            </div>
+              </div>
+            )}
 
             {showFetchPaymentHistoryButton && (
               <RegularButton

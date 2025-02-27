@@ -564,6 +564,10 @@ $component__margin: 1.2rem 0;
       .profile__page__left__section {
         width: 80%;
         margin: auto;
+
+        .personal__details__section {
+          width: 100%;
+        }
       }
 
       .profile__page__right__section {
@@ -601,34 +605,89 @@ $component__margin: 1.2rem 0;
 @media screen and (max-width: 600px) {
   .dashboard__page__content {
     .heading__time__section {
-      width: 75%;
+      width: 80%;
+
+      .heading {
+        font-size: 2.8rem;
+      }
+    }
+
+    .profile__page__content__container {
+      .update__profile__form {
+        margin-top: 0;
+
+        .image__container {
+          width: 12rem;
+          height: 12rem;
+        }
+      }
+
+      .profile__page__left__section
+        .personal__details__section
+        .profile__picture__container
+        .profile__picture
+        img {
+        width: 12rem;
+        height: 12rem;
+      }
     }
 
     .profile__page__right__section {
-      .danger__zone__section .danger__zone__section__content {
-        .headings__section {
-          .heading {
-            font-size: 1.4rem;
-          }
+      .personal__details__section .personal__details__section__content {
+        column-gap: 10%;
+      }
 
+      .danger__zone__section .danger__zone__section__content {
+        flex-direction: column;
+
+        .headings__section {
           .subheading {
-            font-size: 1.2rem;
+            padding-right: 0;
           }
         }
 
         .delete__account__btn {
           height: auto;
           width: auto;
-          padding: 0.6rem 1.6rem;
+          padding: 1.2rem 2.4rem;
+          margin-top: 1.6rem;
+          font-weight: 500;
         }
       }
 
-      .change__password__section
-        .change__password__section__content
+      .change__password__section .change__password__section__content {
+        padding: 1.6rem 3.2rem;
+
         .change__password__btn {
-        padding: 0 1.2rem;
-        width: auto;
+          padding: 0 1.2rem;
+          width: auto;
+        }
       }
+    }
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .dashboard__page__content {
+    .heading__time__section {
+      width: 90%;
+
+      .heading {
+        font-size: 1.8rem;
+      }
+
+      .timestamp {
+        font-size: 1.4rem;
+      }
+
+      .description {
+        font-size: 1.2rem;
+      }
+    }
+
+    .stats__overview__container {
+      grid-template-columns: repeat(1, 1fr);
+      gap: 1.6rem;
     }
   }
 }
