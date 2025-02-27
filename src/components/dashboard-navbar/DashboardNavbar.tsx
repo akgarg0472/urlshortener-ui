@@ -1,7 +1,8 @@
-import React, { MouseEventHandler, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { doLogout } from "../../api/auth/auth";
 import { LogoutApiResponse } from "../../api/auth/auth.api.response";
+import { SIDEBAR_NAVBAR_TOGGLE_DISPLAY_CLASS } from "../../constants";
 import useAuth from "../../hooks/useAuth";
 import { dashboardNavbarLinks } from "../../utils/data";
 import LinkButton from "../button/LinkButton";
@@ -10,7 +11,6 @@ import CreateUrlModal from "../create-url-modal/CreateUrlModal";
 import Modal from "../modal/Modal";
 import { ModalIcon } from "../modal/Modal.enums";
 import DashboardLink from "./dashboard-link/DashboardLink";
-import { SIDEBAR_NAVBAR_TOGGLE_DISPLAY_CLASS } from "../../constants";
 
 import "./DashboardNavbar.css";
 

@@ -13,6 +13,8 @@ import {
   OAuthProviderResponse,
 } from "../../../api/auth/auth.api.response";
 import LinkButton from "../../../components/button/LinkButton";
+import LoginWithGitHubButton from "../../../components/button/oauth/LoginWithGitHubButton";
+import LoginWithGoogleButton from "../../../components/button/oauth/LoginWithGoogleButton";
 import RegularButton from "../../../components/button/RegularButton";
 import InputField from "../../../components/inputfield/InputField";
 import { InputFieldType } from "../../../components/inputfield/InputField.enums";
@@ -20,17 +22,19 @@ import Loader from "../../../components/loader/Loader";
 import { LoaderSpeed } from "../../../components/loader/Loader.enums";
 import Modal from "../../../components/modal/Modal";
 import { ModalIcon } from "../../../components/modal/Modal.enums";
+import SeparatorWithText from "../../../components/separator-with-text/SeparatorWithText";
 import { DASHBOARD_URL, OAUTH_SUCCESS_RESPONSE_KEY } from "../../../constants";
 import useAuth from "../../../hooks/useAuth";
 import { validateLoginPage } from "../../../utils/authutils";
 
-import LoginWithGitHubButton from "../../../components/button/oauth/LoginWithGitHubButton";
-import LoginWithGoogleButton from "../../../components/button/oauth/LoginWithGoogleButton";
-import SeparatorWithText from "../../../components/separator-with-text/SeparatorWithText";
 import "../Auth.css";
 
 const Login = () => {
   const navigation = useNavigate();
+  const [googleButtonLoading, setGoogleButtonLoading] =
+    useState<boolean>(false);
+  const [githubButtonLoading, setGithubButtonLoading] =
+    useState<boolean>(false);
   const { setAuth, isUserLoggedIn } = useAuth();
   const [searchParams] = useSearchParams();
   let popupInterval: NodeJS.Timer | null = null;
@@ -101,9 +105,13 @@ const Login = () => {
 
   const googleLoginButtonClickHandler = async () => {
     try {
+      setGoogleButtonLoading(true);
+
       const oAuthProvider: OAuthProviderResponse = await doGetOAuthProvider({
         provider: "google",
       });
+
+      setGoogleButtonLoading(false);
 
       if (!oAuthProvider.clients || oAuthProvider.clients.length !== 1) {
         Modal.showModal({
@@ -167,8 +175,12 @@ const Login = () => {
           provider: "google",
         };
 
+        setGoogleButtonLoading(true);
+
         const callbackResponse: OAuthCallbackResponse =
           await doOAuthCallback(reqBody);
+
+        setGoogleButtonLoading(false);
 
         if (!callbackResponse.success) {
           Modal.showModal({
@@ -212,7 +224,7 @@ const Login = () => {
           }
           window.removeEventListener("storage", storageMessageListener);
         }
-      }, 1000);
+      }, 500);
 
       window.addEventListener("storage", storageMessageListener);
       // eslint-disable-next-line
@@ -221,14 +233,20 @@ const Login = () => {
         icon: ModalIcon.ERROR,
         message: "Failed to login using Google. Please try again later",
       });
+    } finally {
+      setGoogleButtonLoading(false);
     }
   };
 
   const githubLoginButtonClickHandler = async () => {
     try {
+      setGithubButtonLoading(true);
+
       const oAuthProvider: OAuthProviderResponse = await doGetOAuthProvider({
         provider: "github",
       });
+
+      setGithubButtonLoading(false);
 
       if (!oAuthProvider.clients || oAuthProvider.clients.length !== 1) {
         Modal.showModal({
@@ -288,14 +306,12 @@ const Login = () => {
           provider: "github",
         };
 
-        Loader.showLoader({
-          speed: LoaderSpeed.HIGH,
-        });
+        setGithubButtonLoading(true);
 
         const callbackResponse: OAuthCallbackResponse =
           await doOAuthCallback(reqBody);
 
-        Loader.hideLoader();
+        setGithubButtonLoading(false);
 
         if (!callbackResponse.success) {
           Modal.showModal({
@@ -347,6 +363,8 @@ const Login = () => {
         icon: ModalIcon.ERROR,
         message: "Failed to login using Google. Please try again later",
       });
+    } finally {
+      setGithubButtonLoading(false);
     }
   };
 
@@ -452,11 +470,13 @@ const Login = () => {
             <LoginWithGoogleButton
               key="login_with_google_btn"
               onClickHandler={googleLoginButtonClickHandler}
+              loading={googleButtonLoading}
             />
 
             <LoginWithGitHubButton
               key="login_with_github_btn"
               onClickHandler={githubLoginButtonClickHandler}
+              loading={githubButtonLoading}
             />
           </div>
         </div>
