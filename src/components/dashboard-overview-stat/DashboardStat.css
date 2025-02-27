@@ -24,7 +24,6 @@
   justify-content: center;
   font-size: 1.4rem;
   padding: 0.4rem 0.8rem;
-  width: 20%;
   border-radius: 0.4rem;
   font-weight: 600;
 }
@@ -61,4 +60,4 @@
 .dashboard__stats__container:hover {
   transform: scale(1.025);
   box-shadow: var(--dashboard-content-hover-box-shadow);
-}/*# sourceMappingURL=DashboardStat.css.map */
+}

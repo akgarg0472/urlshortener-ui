@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { MouseEventHandler, useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { doLogout } from "../../api/auth/auth";
 import { LogoutApiResponse } from "../../api/auth/auth.api.response";
@@ -10,8 +10,8 @@ import CreateUrlModal from "../create-url-modal/CreateUrlModal";
 import Modal from "../modal/Modal";
 import { ModalIcon } from "../modal/Modal.enums";
 import DashboardLink from "./dashboard-link/DashboardLink";
-
 import { SIDEBAR_NAVBAR_TOGGLE_DISPLAY_CLASS } from "../../constants";
+
 import "./DashboardNavbar.css";
 
 const DashboardNavbar = () => {
@@ -21,23 +21,20 @@ const DashboardNavbar = () => {
   const [showCreateNewLinkModal, setShowCreateNewLinkModal] = useState(false);
   const sidebarRef = useRef<HTMLDivElement | null>(null);
 
+  const handleMouseClickOutsideNavbar = (event: MouseEvent) => {
+    if (
+      sidebarRef.current &&
+      !sidebarRef.current.contains(event.target as Node) &&
+      !(event.target as HTMLElement).classList.contains(
+        SIDEBAR_NAVBAR_TOGGLE_DISPLAY_CLASS
+      )
+    ) {
+      sidebarRef.current.classList.remove(SIDEBAR_NAVBAR_TOGGLE_DISPLAY_CLASS);
+    }
+  };
+
   useEffect(() => {
-    const handleMouseClickOutsideNavbar = (event: MouseEvent) => {
-      if (
-        sidebarRef.current &&
-        !sidebarRef.current.contains(event.target as Node) &&
-        !(event.target as HTMLElement).classList.contains(
-          SIDEBAR_NAVBAR_TOGGLE_DISPLAY_CLASS
-        )
-      ) {
-        sidebarRef.current.classList.remove(
-          SIDEBAR_NAVBAR_TOGGLE_DISPLAY_CLASS
-        );
-      }
-    };
-
     document.addEventListener("mousedown", handleMouseClickOutsideNavbar);
-
     return () => {
       document.removeEventListener("mousedown", handleMouseClickOutsideNavbar);
     };
@@ -90,7 +87,12 @@ const DashboardNavbar = () => {
           <RegularButton
             className="create__new__link__btn"
             content="Create New Link"
-            onClick={() => setShowCreateNewLinkModal(true)}
+            onClick={() => {
+              sidebarRef?.current?.classList.remove(
+                SIDEBAR_NAVBAR_TOGGLE_DISPLAY_CLASS
+              );
+              setShowCreateNewLinkModal(true);
+            }}
           />
 
           <div className="dashboard__navbar__links__container">

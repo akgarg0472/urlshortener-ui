@@ -1,4 +1,3 @@
-$modal__width: 33vw;
 $modal__close__btn__dimension: 2rem;
 $modal__border__radius: 0.8rem;
 
@@ -10,7 +9,7 @@ $modal__border__radius: 0.8rem;
 .create__short__url__modal__dialog {
   background: #ffffff;
   border-color: #ffffff;
-  width: $modal__width;
+  width: 33vw;
   border-radius: 4px;
   margin: auto;
   display: flex;
@@ -118,5 +117,31 @@ $modal__border__radius: 0.8rem;
 @media screen and (max-width: 1366px) {
   .generate__short__url__btn {
     width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .create__short__url__modal__dialog {
+    width: 50vw;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .create__short__url__modal__dialog {
+    width: 66vw;
+
+    .short__url__dialog__container {
+      padding: 4rem;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .create__short__url__modal__dialog {
+    width: 75vw;
+
+    .short__url__dialog__container {
+      padding: 3.2rem;
+    }
   }
 }

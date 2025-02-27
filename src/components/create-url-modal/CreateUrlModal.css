@@ -104,4 +104,25 @@
   .generate__short__url__btn {
     width: 100% !important;
   }
-}/*# sourceMappingURL=CreateUrlModal.css.map */
+}
+@media screen and (max-width: 1024px) {
+  .create__short__url__modal__dialog {
+    width: 50vw;
+  }
+}
+@media screen and (max-width: 768px) {
+  .create__short__url__modal__dialog {
+    width: 66vw;
+  }
+  .create__short__url__modal__dialog .short__url__dialog__container {
+    padding: 4rem;
+  }
+}
+@media screen and (max-width: 600px) {
+  .create__short__url__modal__dialog {
+    width: 75vw;
+  }
+  .create__short__url__modal__dialog .short__url__dialog__container {
+    padding: 3.2rem;
+  }
+}
