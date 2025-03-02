@@ -25,7 +25,7 @@ ChartJS.register(
   Legend
 );
 
-const DailyHitsLineChart = (props: DailyHitsLineChartProps) => {
+export const DailyHitsLineChart = (props: DailyHitsLineChartProps) => {
   const [bgColor, setBgColor] = React.useState("");
   const [borderColor, setBorderColor] = React.useState("");
 
@@ -62,5 +62,3 @@ const DailyHitsLineChart = (props: DailyHitsLineChartProps) => {
     </React.Fragment>
   );
 };
-
-export default DailyHitsLineChart;

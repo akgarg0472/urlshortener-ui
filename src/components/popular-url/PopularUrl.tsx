@@ -16,7 +16,7 @@ const PopularUrl = (props: {
 
           <div className="urls">
             <span>{props.shortUrl}</span>
-            <span>{props.originalUrl}</span>
+            <span title={props.originalUrl}>{props.originalUrl}</span>
           </div>
         </div>
 

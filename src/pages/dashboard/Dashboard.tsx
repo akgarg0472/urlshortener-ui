@@ -14,7 +14,7 @@ import { GetSubscriptionRequest } from "../../api/subscription/subs.api.request"
 import { GetSubscriptionResponse } from "../../api/subscription/subs.api.response";
 import { getActiveSubscription } from "../../api/subscription/subscription";
 import ChartPercentageStatsContainer from "../../components/chart-percentage-stats-container/ChartPercentageStatsContainer";
-import DailyHitsLineChart from "../../components/daily-hits-line-chart/DailyHitsLineChart";
+import { DailyHitsLineChart } from "../../components/daily-hits-line-chart/DailyHitsLineChart";
 import DashboardNavbar from "../../components/dashboard-navbar/DashboardNavbar";
 import { SidebarToggleButton } from "../../components/dashboard-navbar/toggle-button/SidebarToggleButton";
 import DashboardStat from "../../components/dashboard-overview-stat/DashboardStat";
