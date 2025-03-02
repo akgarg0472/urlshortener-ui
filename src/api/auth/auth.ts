@@ -86,7 +86,6 @@ const doOAuthCallback = async (
       httpCode: callbackResponse.status,
       success: callbackResponse.data.success,
       user_id: callbackResponse.data.user_id,
-      auth_token: callbackResponse.data.auth_token,
       email: callbackResponse.data.email,
       name: callbackResponse.data.name,
       is_new_user: callbackResponse.data.is_new_user,
@@ -195,7 +194,6 @@ const doLogin = async (
       httpCode: 200,
       message: "Login Successful",
       success: true,
-      token: loginApiResponse.data.auth_token,
       userId: loginApiResponse.data.user_id,
       name: loginApiResponse.data.name,
       login_type: loginApiResponse.data.login_type,
@@ -227,7 +225,6 @@ const doLogout = async (
     ) + LOGOUT_API_URL_V1;
 
   const requestBody = {
-    auth_token: props.authToken,
     user_id: props.userId,
   };
 

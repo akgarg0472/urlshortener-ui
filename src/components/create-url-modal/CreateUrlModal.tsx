@@ -1,3 +1,4 @@
+import { Info } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import { getUsageStatistics } from "../../api/dashboard/dashboard";
 import { GenerateUrlResponse } from "../../api/dashboard/dashboard.api.response";
@@ -19,7 +20,6 @@ import Modal from "../modal/Modal";
 import { ModalIcon } from "../modal/Modal.enums";
 import { CreateUrlSuccess } from "./create-url-success/CreateUrlSuccess";
 
-import { Info } from "lucide-react";
 import "./CreateUrlModal.css";
 
 interface CreateUrlModalProps {
@@ -27,14 +27,15 @@ interface CreateUrlModalProps {
 }
 
 const CreateUrlModal = (props: CreateUrlModalProps) => {
-  const { getUserId, getAuthToken } = useAuth();
+  const { getUserId } = useAuth();
 
   const generateShortUrlButtonRef = useRef<HTMLButtonElement>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [originalUrl, setOriginalUrl] = useState<string>("");
   const [customAlias, setCustomAlias] = useState<string>("");
   const [expirationDate, setExpirationDate] = useState<number | null>(null);
-  const [showCustomAlias, setShowCustomAlias] = useState<boolean>(false);
+  const [showCustomAlias, setShowCustomAlias] = useState<boolean>(true);
+  const [enableCustomAlias, setEnableCustomAlias] = useState<boolean>(false);
   const [fetchingUsage, setFetchingUsage] = useState<boolean>(true);
   const [customAliasThresholdCrossed, setCustomAliasThresholdCrossed] =
     useState<boolean>(false);
@@ -45,38 +46,43 @@ const CreateUrlModal = (props: CreateUrlModalProps) => {
     // eslint-disable-next-line
   }, []);
 
-  const fetchActiveSubscription =
-    async (): Promise<GetSubscriptionResponse> => {
-      const request: GetSubscriptionRequest = {
-        userId: getUserId()!,
-        authToken: getAuthToken()!,
-      };
-      return await getActiveSubscription(request);
+  const fetchActiveSubscription = async (
+    userId: string
+  ): Promise<GetSubscriptionResponse> => {
+    const request: GetSubscriptionRequest = {
+      userId: userId,
     };
+    return await getActiveSubscription(request);
+  };
 
   const fetchCustomAliasUsage = async () => {
-    const subscription = await fetchActiveSubscription();
     const userId: string = getUserId()!;
+    const subscription = await fetchActiveSubscription(userId);
 
-    if (subscription.success && subscription.subscription) {
-      const request: MetricUsageRequest = {
-        metricName: "customAlias",
-        userId: userId,
-        authToken: getAuthToken()!,
-        startTime: subscription.subscription.activated_at,
-        endTime: Date.now(),
-      };
-      const response = await getUsageStatistics(request);
+    if (!subscription.success || !subscription.subscription) {
+      setShowCustomAlias(false);
+      setEnableCustomAlias(false);
+      setFetchingUsage(false);
+      return;
+    }
 
-      if (response.success && response.value !== undefined) {
-        const allowedCustomAlias: number = getAllowedCustomAlias(userId);
+    const request: MetricUsageRequest = {
+      metricName: "customAlias",
+      userId: userId,
+      startTime: subscription.subscription.activated_at,
+      endTime: Date.now(),
+    };
 
-        if (allowedCustomAlias !== -1) {
-          if (allowedCustomAlias > response.value) {
-            setShowCustomAlias(true);
-          } else {
-            setCustomAliasThresholdCrossed(true);
-          }
+    const response = await getUsageStatistics(request);
+
+    if (response.success && response.value !== undefined) {
+      const allowedCustomAlias: number = getAllowedCustomAlias(userId);
+
+      if (allowedCustomAlias !== -1) {
+        if (allowedCustomAlias > response.value) {
+          setEnableCustomAlias(true);
+        } else {
+          setCustomAliasThresholdCrossed(true);
         }
       }
     }
@@ -122,9 +128,8 @@ const CreateUrlModal = (props: CreateUrlModalProps) => {
     }
 
     const userId = getUserId();
-    const authToken = getAuthToken();
 
-    if (!userId || !authToken) {
+    if (!userId) {
       return;
     }
 
@@ -139,7 +144,6 @@ const CreateUrlModal = (props: CreateUrlModalProps) => {
       originalUrl: originalUrl,
       expirationTime: expirationDate,
       userId: userId,
-      authToken: authToken,
       customAlias: customAlias && customAlias !== "" ? customAlias : null,
     });
 
@@ -229,21 +233,23 @@ const CreateUrlModal = (props: CreateUrlModalProps) => {
                       isRequired={true}
                     />
 
-                    <InputField
-                      id="custom__alias__IF"
-                      onChange={(e) => setCustomAlias(e.target.value)}
-                      placeholder="Enter Custom alias"
-                      text={customAlias}
-                      type={InputFieldType.TEXT}
-                      title="Custom Short URL"
-                      style={{
-                        width: "100%",
-                      }}
-                      isRequired={false}
-                      disabled={!showCustomAlias}
-                      aboutIcon={<Info />}
-                      aboutIconTitle="Enter a custom short URL for easy access to this link. (Optional)"
-                    />
+                    {showCustomAlias && (
+                      <InputField
+                        id="custom__alias__IF"
+                        onChange={(e) => setCustomAlias(e.target.value)}
+                        placeholder="Enter Custom alias"
+                        text={customAlias}
+                        type={InputFieldType.TEXT}
+                        title="Custom Short URL"
+                        style={{
+                          width: "100%",
+                        }}
+                        isRequired={false}
+                        disabled={!enableCustomAlias}
+                        aboutIcon={<Info />}
+                        aboutIconTitle="Enter a custom short URL for easy access to this link. (Optional)"
+                      />
+                    )}
 
                     {customAliasThresholdCrossed ? (
                       <div className="custom__alias__quota__exceeded">

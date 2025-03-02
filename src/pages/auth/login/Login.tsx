@@ -87,7 +87,6 @@ const Login = () => {
       }
 
       const isAuthCompleted = setAuth(
-        loginResponse.token!,
         loginResponse.userId!,
         loginObject.email,
         loginResponse.name!,
@@ -191,7 +190,6 @@ const Login = () => {
         }
 
         setAuth(
-          callbackResponse.auth_token!,
           callbackResponse.user_id!,
           callbackResponse.email!,
           callbackResponse.name!,
@@ -322,7 +320,6 @@ const Login = () => {
         }
 
         setAuth(
-          callbackResponse.auth_token!,
           callbackResponse.user_id!,
           callbackResponse.email!,
           callbackResponse.name!,

@@ -48,7 +48,6 @@ export const createPaypalOrder = async (
       {
         headers: {
           "X-USER-ID": request.userId,
-          Authorization: `Bearer ${request.authToken}`,
         },
       }
     );
@@ -116,7 +115,6 @@ export const getPaymentDetail = async (
     const apiResponse = await axiosInstance.get(url + request.paymentId, {
       headers: {
         "X-USER-ID": request.userId,
-        Authorization: `Bearer ${request.authToken}`,
       },
     });
 
@@ -176,7 +174,6 @@ export const cancelPaypalPayment = async (
       {
         headers: {
           "X-USER-ID": request.userId,
-          Authorization: `Bearer ${request.authToken}`,
         },
       }
     );
@@ -225,7 +222,6 @@ export const fetchPaymentHistory = async (
     const response = await axiosInstance.get(url, {
       headers: {
         "X-USER-ID": request.userId,
-        Authorization: `Bearer ${request.authToken}`,
       },
       params: {
         userId: request.userId,

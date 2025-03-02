@@ -29,7 +29,6 @@ export const generateShortUrl = async (
       {
         headers: {
           "X-USER-ID": props.userId,
-          Authorization: `Bearer ${props.authToken}`,
         },
       }
     );

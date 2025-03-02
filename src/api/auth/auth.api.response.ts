@@ -2,7 +2,6 @@ import { ApiResponse } from "../base";
 
 export interface LoginApiResponse extends ApiResponse {
   message: string;
-  token?: string;
   userId?: string;
   name?: string;
   login_type?: string;
@@ -41,7 +40,6 @@ export interface OAuthProviderResponse extends ApiResponse {
 
 export interface OAuthCallbackResponse extends ApiResponse {
   user_id?: string;
-  auth_token?: string;
   email?: string;
   name?: string;
   is_new_user?: boolean;

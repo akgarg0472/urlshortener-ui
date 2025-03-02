@@ -5,11 +5,13 @@ import { USURL } from "../../api/dashboard/dashboard.api.modal";
 import { MyLinksApiResponse } from "../../api/dashboard/dashboard.api.response";
 import RegularButton from "../../components/button/RegularButton";
 import DashboardNavbar from "../../components/dashboard-navbar/DashboardNavbar";
+import { SidebarToggleButton } from "../../components/dashboard-navbar/toggle-button/SidebarToggleButton";
 import DashboardHeadSubHead from "../../components/dashboardheadsubhead/DashboardHeadSubHead";
 import InternalLoader from "../../components/loader/internal-loader/InternalLoader";
 import Modal from "../../components/modal/Modal";
 import { ModalIcon } from "../../components/modal/Modal.enums";
 import MyLink from "../../components/mylink/MyLink";
+import NoDataAvailable from "../../components/no-data-available/NoDataAvailable";
 import {
   DASH_MY_LINKS_HEAD,
   DASH_MY_LINKS_SUBHEAD,
@@ -17,12 +19,10 @@ import {
 } from "../../constants";
 import useAuth from "../../hooks/useAuth";
 
-import { SidebarToggleButton } from "../../components/dashboard-navbar/toggle-button/SidebarToggleButton";
-import NoDataAvailable from "../../components/no-data-available/NoDataAvailable";
 import "./Dashboard.css";
 
 const DashboardLinks = () => {
-  const { getUserId, getAuthToken, logout } = useAuth();
+  const { getUserId, logout } = useAuth();
   const navigate = useNavigate();
 
   const [urls, setUrls] = useState([] as USURL[]);
@@ -39,9 +39,8 @@ const DashboardLinks = () => {
 
   const fetchMyLinks = async () => {
     const userId = getUserId();
-    const authToken = getAuthToken();
 
-    if (!userId || !authToken) {
+    if (!userId) {
       logout();
       navigate(LOGIN_URL, { replace: true });
       return;
@@ -53,7 +52,6 @@ const DashboardLinks = () => {
       userId: userId,
       offset: nextOffset,
       limit: limit,
-      authToken: authToken,
     });
 
     setLoading(false);
@@ -62,7 +60,7 @@ const DashboardLinks = () => {
       myLinksApiResponse.httpCode === 401 ||
       myLinksApiResponse.httpCode === 403
     ) {
-      logout();
+      logout(userId);
       navigate("/login", { replace: true });
       return;
     }

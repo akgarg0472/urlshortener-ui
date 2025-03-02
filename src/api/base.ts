@@ -24,6 +24,7 @@ export const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     config.headers["X-Request-ID"] = generateRequestId();
+    config.withCredentials = true;
     return config;
   },
   (err) => {

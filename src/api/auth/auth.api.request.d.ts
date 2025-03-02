@@ -11,7 +11,6 @@ interface LoginApiRequestProps {
 }
 
 interface LogoutApiRequestProps {
-  authToken: string;
   userId: string;
 }
 

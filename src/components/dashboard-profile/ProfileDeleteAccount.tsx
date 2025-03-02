@@ -12,20 +12,19 @@ const ProfileDeleteAccount = () => {
   const [disableDeleteBtn, setDisableDeleteBtn] =
     React.useState<boolean>(false);
 
-  const { getUserId, getAuthToken, logout } = useAuth();
+  const { getUserId, logout } = useAuth();
   const navigate = useNavigate();
 
   const deleteAccount = async () => {
     const userId = getUserId();
-    const authToken = getAuthToken();
 
-    if (!userId || !authToken) {
+    if (!userId) {
       logout();
       navigate(LOGIN_URL, { replace: true });
       return;
     }
 
-    const deleteResp = await deleteProfile(userId, authToken);
+    const deleteResp = await deleteProfile(userId);
 
     setDisableDeleteBtn(false);
     Modal.closeModal();

@@ -51,7 +51,6 @@ export const getActiveSubscription = async (
       },
       headers: {
         "X-USER-ID": request.userId,
-        Authorization: `Bearer ${request.authToken}`,
       },
     });
 
@@ -119,7 +118,6 @@ export const getAllSubscriptions = async (
       },
       headers: {
         "X-USER-ID": request.userId,
-        Authorization: `Bearer ${request.authToken}`,
       },
     });
 

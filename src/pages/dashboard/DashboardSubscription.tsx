@@ -50,7 +50,7 @@ type ActiveSubscriptionPack = {
 };
 
 const DashboardSubscription = () => {
-  const { getUserId, logout, getAuthToken } = useAuth();
+  const { getUserId, logout } = useAuth();
   const navigate = useNavigate();
 
   const [activeSubscription, setActiveSubscription] =
@@ -87,9 +87,8 @@ const DashboardSubscription = () => {
 
   const fetchActiveSubscription = async () => {
     const userId = getUserId();
-    const authToken = getAuthToken();
 
-    if (!userId || !authToken) {
+    if (!userId) {
       logout();
       navigate(LOGIN_URL, { replace: true });
       return;
@@ -100,7 +99,6 @@ const DashboardSubscription = () => {
 
     const req: GetSubscriptionRequest = {
       userId: userId,
-      authToken: authToken,
     };
 
     const response: GetSubscriptionResponse = await getActiveSubscription(req);
@@ -155,9 +153,8 @@ const DashboardSubscription = () => {
 
   const fetchAllSubscriptionHistory = async () => {
     const userId = getUserId();
-    const authToken = getAuthToken();
 
-    if (!userId || !authToken) {
+    if (!userId) {
       logout();
       navigate(LOGIN_URL, { replace: true });
       return;
@@ -168,7 +165,6 @@ const DashboardSubscription = () => {
 
     const req: GetSubscriptionRequest = {
       userId: userId,
-      authToken: authToken,
     };
 
     const response: getAllSubscriptionsResponse =
@@ -205,7 +201,6 @@ const DashboardSubscription = () => {
   const fetchAllPaymentHistory = async () => {
     const request: PaymentHistoryRequest = {
       userId: getUserId()!,
-      authToken: getAuthToken()!,
     };
 
     setShowPaymentHistoryLoader(true);

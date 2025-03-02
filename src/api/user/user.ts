@@ -18,8 +18,7 @@ import {
 } from "./user.api.response";
 
 export const getProfile = async (
-  userId: string,
-  authToken: string
+  userId: string
 ): Promise<GetProfileResponse> => {
   const url =
     getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765").replace(
@@ -31,7 +30,6 @@ export const getProfile = async (
     const apiResponse = await axiosInstance.get(url, {
       headers: {
         "X-USER-ID": userId,
-        Authorization: `Bearer ${authToken}`,
       },
     });
 
@@ -64,8 +62,7 @@ export const getProfile = async (
 
 export const updateProfile = async (
   userId: string,
-  updateRequest: UpdateProfileRequest,
-  authToken: string
+  updateRequest: UpdateProfileRequest
 ): Promise<UpdateProfileResponse> => {
   const url =
     getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765").replace(
@@ -102,7 +99,6 @@ export const updateProfile = async (
       headers: {
         "Content-Type": "multipart/form-data",
         "X-USER-ID": userId,
-        Authorization: `Bearer ${authToken}`,
       },
     });
 
@@ -118,8 +114,7 @@ export const updateProfile = async (
 
 export const updatePassword = async (
   profileId: string,
-  request: UpdatePasswordRequest,
-  authToken: string
+  request: UpdatePasswordRequest
 ): Promise<UpdatePasswordResponse> => {
   const url =
     getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765").replace(
@@ -137,7 +132,6 @@ export const updatePassword = async (
     const updatePasswordResp = await axiosInstance.patch(url, body, {
       headers: {
         "X-USER-ID": profileId,
-        Authorization: `Bearer ${authToken}`,
       },
     });
 
@@ -152,8 +146,7 @@ export const updatePassword = async (
 };
 
 export const deleteProfile = async (
-  profileId: string,
-  authToken: string
+  profileId: string
 ): Promise<DeleteProfileResponse> => {
   const url =
     getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765").replace(
@@ -165,7 +158,6 @@ export const deleteProfile = async (
     const deleteResponse = await axiosInstance.delete(url, {
       headers: {
         "X-USER-ID": profileId,
-        Authorization: `Bearer ${authToken}`,
       },
     });
 

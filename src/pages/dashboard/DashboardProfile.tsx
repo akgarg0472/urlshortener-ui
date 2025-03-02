@@ -5,11 +5,14 @@ import { GetProfileResponse } from "../../api/user/user.api.response";
 import DashboardStatsHeading from "../../components/DashboardStatsHeading/DashboardStatsHeading";
 import LinkButton from "../../components/button/LinkButton";
 import DashboardNavbar from "../../components/dashboard-navbar/DashboardNavbar";
+import { SidebarToggleButton } from "../../components/dashboard-navbar/toggle-button/SidebarToggleButton";
 import ProfileAccountInformation from "../../components/dashboard-profile/ProfileAccountInformation";
+import ProfileAddressInformation from "../../components/dashboard-profile/ProfileAddressInformation";
 import ProfileChangePassword from "../../components/dashboard-profile/ProfileChangePassword";
 import ProfileDeleteAccount from "../../components/dashboard-profile/ProfileDeleteAccount";
 import ProfilePersonalDetails from "../../components/dashboard-profile/ProfilePersonalDetails";
 import DashboardHeadSubHead from "../../components/dashboardheadsubhead/DashboardHeadSubHead";
+import { InternalLoaderSize } from "../../components/loader/Loader.enums";
 import InternalLoader from "../../components/loader/internal-loader/InternalLoader";
 import Modal from "../../components/modal/Modal";
 import { ModalIcon } from "../../components/modal/Modal.enums";
@@ -21,13 +24,10 @@ import {
 import useAuth from "../../hooks/useAuth";
 import { getEnv } from "../../utils/envutils";
 
-import { SidebarToggleButton } from "../../components/dashboard-navbar/toggle-button/SidebarToggleButton";
-import ProfileAddressInformation from "../../components/dashboard-profile/ProfileAddressInformation";
-import { InternalLoaderSize } from "../../components/loader/Loader.enums";
 import "./Dashboard.css";
 
 const DashboardProfile = () => {
-  const { logout, getUserId, getAuthToken, getLoginType } = useAuth();
+  const { logout, getUserId, getLoginType } = useAuth();
   const navigate = useNavigate();
 
   const [loading, setLoading] = React.useState<boolean>(true);
@@ -64,20 +64,19 @@ const DashboardProfile = () => {
 
   const fetchProfile = async () => {
     const userId = getUserId();
-    const authToken = getAuthToken();
 
-    if (!userId || !authToken) {
+    if (!userId) {
       logout();
       navigate(LOGIN_URL, { replace: true });
       return;
     }
 
-    const profile: GetProfileResponse = await getProfile(userId, authToken);
+    const profile: GetProfileResponse = await getProfile(userId);
 
     setLoading(false);
 
     if (profile.httpCode === 401 || profile.httpCode === 403) {
-      logout();
+      logout(userId);
       navigate("/login", { replace: true });
       return;
     }

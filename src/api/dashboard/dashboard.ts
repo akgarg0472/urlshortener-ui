@@ -50,7 +50,6 @@ export const getDashboard = async (
       },
       headers: {
         "X-USER-ID": props.userId,
-        Authorization: `Bearer ${props.authToken}`,
       },
     });
 
@@ -109,7 +108,6 @@ export const getMyLinks = async (props: {
   userId: string;
   limit: number;
   offset: number;
-  authToken: string;
 }): Promise<MyLinksApiResponse> => {
   const url =
     getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765").replace(
@@ -126,7 +124,6 @@ export const getMyLinks = async (props: {
       },
       headers: {
         "X-USER-ID": props.userId,
-        Authorization: `Bearer ${props.authToken}`,
       },
     });
 
@@ -182,7 +179,6 @@ export const getUrlMetrics = async (props: {
   endTime: number;
   shortUrl: string;
   limit: number;
-  authToken: string;
 }): Promise<UrlMetricApiResponse> => {
   const url =
     getEnv("REACT_APP_BACKEND_BASE_URL", "http://127.0.0.1:8765").replace(
@@ -201,7 +197,6 @@ export const getUrlMetrics = async (props: {
       },
       headers: {
         "X-USER-ID": props.userId,
-        Authorization: `Bearer ${props.authToken}`,
       },
     });
 
@@ -335,7 +330,6 @@ export const getUsageStatistics = async (
       },
       headers: {
         "X-USER-ID": request.userId,
-        Authorization: `Bearer ${request.authToken}`,
       },
     });
 
@@ -396,7 +390,6 @@ const geographicalApiPromise = (
       },
       headers: {
         "X-USER-ID": geographicRequest.userId,
-        Authorization: `Bearer ${geographicRequest.authToken}`,
       },
     }
   );
@@ -421,7 +414,6 @@ const getDeviceMetricsStats = (
     },
     headers: {
       "X-USER-ID": props.userId,
-      Authorization: `Bearer ${props.authToken}`,
     },
   });
 
@@ -447,7 +439,6 @@ const popularUrlsPromise = (
     },
     headers: {
       "X-USER-ID": popularUrlRequest.userId,
-      Authorization: `Bearer ${popularUrlRequest.authToken}`,
     },
   });
 

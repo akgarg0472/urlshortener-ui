@@ -1,5 +1,6 @@
+import { doLogout } from "../api/auth/auth";
+
 interface AuthObject {
-  authToken: string;
   userId: string;
   email: string;
   name: string;
@@ -10,7 +11,6 @@ const AUTH_OBJ_NAME: string = "auth";
 
 const useAuth = () => {
   const setAuth = (
-    authToken: string,
     userId: string,
     email: string,
     name: string,
@@ -18,7 +18,6 @@ const useAuth = () => {
   ): boolean => {
     try {
       const auth: AuthObject = {
-        authToken,
         userId,
         email,
         name,
@@ -59,18 +58,13 @@ const useAuth = () => {
     return _auth.userId;
   };
 
-  const getAuthToken = () => {
-    const auth: string | null = localStorage.getItem(AUTH_OBJ_NAME);
-
-    if (auth === null) {
-      return null;
+  const logout = async (userId?: string) => {
+    if (userId) {
+      await doLogout({
+        userId: userId,
+      });
     }
 
-    const _auth: AuthObject = JSON.parse(auth);
-    return _auth.authToken;
-  };
-
-  const logout = () => {
     localStorage.removeItem(AUTH_OBJ_NAME);
     sessionStorage.clear();
   };
@@ -115,7 +109,6 @@ const useAuth = () => {
     getUserId,
     logout,
     getName,
-    getAuthToken,
     getEmail,
     getLoginType,
   };

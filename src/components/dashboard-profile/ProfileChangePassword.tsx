@@ -9,7 +9,7 @@ import Modal from "../modal/Modal";
 import { ModalIcon } from "../modal/Modal.enums";
 
 const ProfileChangePassword = () => {
-  const { getUserId, getAuthToken } = useAuth();
+  const { getUserId } = useAuth();
 
   const [changePasswordFields, setChangePasswordFields] = React.useState({
     currentPassword: "",
@@ -30,11 +30,7 @@ const ProfileChangePassword = () => {
         confirmPassword: changePasswordFields.confirmNewPassword,
       };
 
-      const updatePassResp = await updatePassword(
-        getUserId()!,
-        changePassReq,
-        getAuthToken()!
-      );
+      const updatePassResp = await updatePassword(getUserId()!, changePassReq);
 
       setDisableChangePasswordButton(false);
 

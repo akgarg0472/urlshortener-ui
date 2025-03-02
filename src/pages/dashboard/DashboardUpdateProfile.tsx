@@ -50,7 +50,7 @@ const DashboardUpdateProfile = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const profilePictureChooserBtnRef: RefObject<HTMLInputElement> = useRef(null);
   const [loadingImage, setLoadingImage] = useState<boolean>(true);
-  const { getUserId, getAuthToken, logout } = useAuth();
+  const { getUserId, logout } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -60,18 +60,17 @@ const DashboardUpdateProfile = () => {
 
   const fetchProfile = async () => {
     const userId = getUserId();
-    const authToken = getAuthToken();
 
-    if (!userId || !authToken) {
+    if (!userId) {
       logout();
       navigate(LOGIN_URL, { replace: true });
       return;
     }
 
-    const profile = await getProfile(userId, authToken);
+    const profile = await getProfile(userId);
 
     if (profile.httpCode === 401 || profile.httpCode === 403) {
-      logout();
+      logout(userId);
       navigate("/login", { replace: true });
       return;
     }
@@ -161,14 +160,18 @@ const DashboardUpdateProfile = () => {
 
       const updateResponse = await updateProfile(
         getUserId()!,
-        updateProfileRequest,
-        getAuthToken()!
+        updateProfileRequest
       );
 
       Loader.hideLoader();
 
       if (updateResponse.httpCode === 401 || updateResponse.httpCode === 403) {
-        logout();
+        const userId = getUserId();
+        if (userId) {
+          logout(userId);
+        } else {
+          logout();
+        }
         navigate("/login", { replace: true });
         return;
       }

@@ -40,7 +40,6 @@ const HomeNavbar = () => {
 
   const handleLogout = async () => {
     const logoutApiResponse: LogoutApiResponse = await doLogout({
-      authToken: getAuth()!.authToken!,
       userId: getAuth()!.userId!,
     });
 

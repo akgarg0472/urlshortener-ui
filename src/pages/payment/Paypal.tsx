@@ -26,7 +26,7 @@ enum PaypalCallbackStatus {
 
 const Paypal = () => {
   const [searchParams] = useSearchParams();
-  const { getUserId, getAuthToken } = useAuth();
+  const { getUserId } = useAuth();
   const { status } = useParams();
   const navigate = useNavigate();
 
@@ -51,7 +51,6 @@ const Paypal = () => {
 
     const request: GetPaymentDetailRequest = {
       userId: getUserId()!,
-      authToken: getAuthToken()!,
       paymentId: paymentId,
     };
 
@@ -88,7 +87,6 @@ const Paypal = () => {
     const request: PaypalCancelPaymentRequest = {
       userId: getUserId()!,
       paymentId: paymentId!,
-      authToken: getAuthToken()!,
     };
 
     Loader.showLoader();

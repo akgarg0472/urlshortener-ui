@@ -28,8 +28,7 @@ type PlanProps = {
 };
 
 const PriceCard = (plan: PlanProps) => {
-  const { isUserLoggedIn, getUserId, getAuthToken, getName, getEmail } =
-    useAuth();
+  const { isUserLoggedIn, getUserId, getName, getEmail } = useAuth();
   const [activePackId, setActivePackId] = useState<string | null>(null);
   const [buttonText, setButtonText] = useState<string>("Get Started");
   const navigate = useNavigate();
@@ -61,7 +60,6 @@ const PriceCard = (plan: PlanProps) => {
       packId: plan.packId,
       paymentMethod: "Card",
       userId: getUserId()!,
-      authToken: getAuthToken()!,
       name: getName()!,
       email: getEmail(),
     });

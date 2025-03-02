@@ -4,6 +4,7 @@ import { LatestHit } from "../../api/dashboard/dashboard.api.modal";
 import { UrlMetricApiResponse } from "../../api/dashboard/dashboard.api.response";
 import useAuth from "../../hooks/useAuth";
 import { convertTimestampToDateTime } from "../../utils/datetimeutils";
+import { isUrlMetricAllowed } from "../../utils/subscriptonUtils";
 import InternalLoader from "../loader/internal-loader/InternalLoader";
 import {
   InternalLoaderSize,
@@ -13,11 +14,10 @@ import Modal from "../modal/Modal";
 import { ModalIcon } from "../modal/Modal.enums";
 import URLMetadata from "./URLMetadata/URLMetadata";
 
-import { isUrlMetricAllowed } from "../../utils/subscriptonUtils";
 import "./ShortUrlMetricModal.css";
 
 const ShortUrlMetricModal = (props: ShortUrlMetricModalProps) => {
-  const { getUserId, getAuthToken } = useAuth();
+  const { getUserId } = useAuth();
 
   const [loading, setLoading] = useState(true);
   const [totalHits, setTotalHits] = useState(0);
@@ -58,7 +58,6 @@ const ShortUrlMetricModal = (props: ShortUrlMetricModalProps) => {
       endTime: new Date().getTime(),
       startTime: 0,
       limit: 10,
-      authToken: getAuthToken()!,
     });
 
     if (apiResponse.httpCode !== 200) {

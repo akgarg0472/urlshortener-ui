@@ -52,7 +52,7 @@ import {
 import "./Dashboard.css";
 
 const Dashboard = () => {
-  const { getUserId, getName, logout, getAuthToken } = useAuth();
+  const { getUserId, getName, logout } = useAuth();
   const navigate = useNavigate();
 
   const [todayStats, setTodayStats] = useState<apiModal.DashboardApiStat[]>([]);
@@ -85,9 +85,8 @@ const Dashboard = () => {
   const fetchActiveSubscriptionDetails =
     async (): Promise<GetSubscriptionResponse | null> => {
       const userId = getUserId();
-      const authToken = getAuthToken();
 
-      if (!userId || !authToken) {
+      if (!userId) {
         logout();
         navigate(LOGIN_URL, { replace: true });
         return null;
@@ -95,14 +94,13 @@ const Dashboard = () => {
 
       const req: GetSubscriptionRequest = {
         userId: userId,
-        authToken: authToken,
       };
 
       const response: GetSubscriptionResponse =
         await getActiveSubscription(req);
 
       if (response.httpCode === 401) {
-        logout();
+        logout(userId);
         navigate(LOGIN_URL, { replace: true });
         return null;
       }
@@ -116,9 +114,8 @@ const Dashboard = () => {
 
   const fetchDashboard = async () => {
     const userId = getUserId();
-    const authToken = getAuthToken();
 
-    if (!userId || !authToken) {
+    if (!userId) {
       setLoading(false);
       logout();
       navigate(LOGIN_URL, { replace: true });
@@ -132,6 +129,7 @@ const Dashboard = () => {
         icon: ModalIcon.ERROR,
         message: "Failed to fetch active subscripton details",
       });
+      setLoading(false);
       return;
     }
 
@@ -155,7 +153,6 @@ const Dashboard = () => {
                 userId: userId,
                 startTime: 0,
                 endTime: endTime,
-                authToken: authToken,
               }
             : null,
           popularUrlParam: {
@@ -164,14 +161,12 @@ const Dashboard = () => {
             limit: 5,
             startTime: 0,
             endTime: endTime,
-            authToken: authToken,
           },
           deviceMetricsParam: deviceMetricsAllowed
             ? {
                 userId: userId,
                 startTime: 0,
                 endTime: endTime,
-                authToken: authToken,
               }
             : null,
         }),
@@ -179,7 +174,6 @@ const Dashboard = () => {
           userId: userId!,
           startTime: 0,
           endTime: Date.now(),
-          authToken: authToken,
         }),
       ]);
 
@@ -191,7 +185,7 @@ const Dashboard = () => {
       dashboardApiResponse.httpCode === 403 ||
       dashboardStatisticsApiResponse.httpCode === 403
     ) {
-      logout();
+      logout(userId);
       navigate("/login", { replace: true });
       return;
     }
