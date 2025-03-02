@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-
 import { calculatePercentChange } from "../../utils/percentageChangeUtils";
+
 import "./DashboardStat.css";
 
 type DashboardStatsProps = {

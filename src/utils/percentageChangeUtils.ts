@@ -26,7 +26,7 @@ export const calculatePercentChange = (
   }
 
   const result = {
-    percentage: `${percentageChange}%`,
+    percentage: `${Math.round(percentageChange * 100) / 100}%`,
     direction: direction,
   };
 
