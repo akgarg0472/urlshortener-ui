@@ -366,7 +366,9 @@ const DashboardSubscription = () => {
               </div>
             )}
 
-            {!showPaymentHistoryLoader && payments && <NoDataAvailable />}
+            {!showPaymentHistoryLoader && payments?.length === 0 && (
+              <NoDataAvailable />
+            )}
 
             {payments && payments.length > 0 && (
               <div className="content">
