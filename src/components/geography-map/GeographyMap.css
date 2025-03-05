@@ -1,0 +1,9 @@
+.geography__map {
+  width: 90%;
+}
+
+@media screen and (max-width: 768px) {
+  .geography__map {
+    width: 100%;
+  }
+}

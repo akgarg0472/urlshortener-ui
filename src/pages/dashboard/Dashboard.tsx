@@ -50,6 +50,7 @@ import {
 } from "../../utils/subscriptonUtils";
 
 import "./Dashboard.css";
+import { GeographyMap } from "../../components/geography-map/GeographyMap";
 
 const Dashboard = () => {
   const { getUserId, getName, logout } = useAuth();
@@ -386,13 +387,9 @@ const Dashboard = () => {
                   <React.Fragment>
                     {continents.length > 0 ? (
                       <React.Fragment>
-                        <PieChart
-                          datasetLabel="Country"
-                          data={continents}
-                          legendPosition="bottom"
-                        />
-
-                        <ChartPercentageStatsContainer
+                        <GeographyMap
+                          type="continent"
+                          key="continents__geo__map"
                           data={continents.map((c) => {
                             return { name: c.name, value: c.hits_count };
                           })}
@@ -426,17 +423,12 @@ const Dashboard = () => {
                 ) : geographyMetricsAllowed ? (
                   countries.length > 0 ? (
                     <>
-                      <PieChart
-                        datasetLabel="Country"
-                        data={countries}
-                        legendPosition="bottom"
-                      />
-
-                      <ChartPercentageStatsContainer
-                        data={countries.map((c) => ({
-                          name: c.name,
-                          value: c.hits_count,
-                        }))}
+                      <GeographyMap
+                        type="country"
+                        key="continents__geo__map"
+                        data={countries.map((c) => {
+                          return { name: c.name, value: c.hits_count };
+                        })}
                       />
                     </>
                   ) : (
